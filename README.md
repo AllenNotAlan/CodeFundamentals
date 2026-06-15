@@ -7,9 +7,13 @@ This repository serves as a centralized hub for learning and implementing core c
 
 ## 🏗️ Technical Stack
 - **Language:** C# 12.0
-- **Runtime:** .NET 8.0 (Core Executable)
+- **Runtime:** .NET 10.0 (Core Executable)
 - **Environment:** Visual Studio / VS Code
+- **Testing:** xUnit
 - **Documentation:** Markdown (GitHub Flavored)
+
+## 📖 Documentation
+- [Development Guide (How to add solutions, tests, etc.)](DEVELOPMENT.md)
 
 ## 📁 Repository Structure
 - **/CodeFundamentals**: The primary C# project containing algorithm implementations.
