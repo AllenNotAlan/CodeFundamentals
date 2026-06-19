@@ -32,4 +32,48 @@ public class ArraysSolutionTests
         // Assert
         Assert.Equal(expected, result);
     }
+    
+    //Test For max num in Array
+
+    [Fact]
+    public void ReturnMaxInArray_ValidInput_ReturnCorrectMaxNum()
+    {
+        //Arrange
+        int[] input = { 1, 10, 50, 20 };
+        int expected = 50;
+        
+        //Act
+        int result = ArraysSolution.ReturnMaxInArray(input);
+        
+        //Assert
+        Assert.Equal(expected, result);
+    }
+
+    [Fact]
+    public void ReturnMaxInArray_ValidInput_DuplicateMax_ReturnCorrectMaxNum()
+    {
+        //Arrange
+        int[] input = { 1, 10, 50, 50, 20, 20, 50 };
+        int expected = 50;
+        
+        //Act
+        int result = ArraysSolution.ReturnMaxInArray(input);
+        
+        //Assert
+        Assert.Equal(expected, result);
+    }
+
+    [Fact]
+    public void ReversedString_ValidInput_ReturnCorrectString()
+    {
+        //Arrange
+        string input = "hello";
+        string expected = "olleh";
+        
+        //Act
+        string result = ArraysSolution.ReversedString(input);
+        
+        //Assert
+        Assert.Equal(expected,result);
+    }
 }

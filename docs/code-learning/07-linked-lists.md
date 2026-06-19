@@ -16,8 +16,9 @@ Each node:
 ```csharp
 public class ListNode
 {
-    public int val;
-    public ListNode next;
+    public int val;      // 1. The data stored in this node
+    public ListNode next; // 2. Reference to the next node in the chain (null if last)
+
     public ListNode(int val = 0, ListNode next = null)
     {
         this.val  = val;
@@ -42,10 +43,16 @@ public class ListNode
 
 ### 1. Traversal
 ```csharp
+// 1. Start at the beginning
 ListNode curr = head;
+
+// 2. Loop until we reach the end of the list (null)
 while (curr != null)
 {
+    // 3. Perform an action with the current node's value
     Console.WriteLine(curr.val);
+    
+    // 4. Move to the next node in the chain
     curr = curr.next;
 }
 ```
@@ -53,23 +60,37 @@ while (curr != null)
 ### 2. Dummy head node
 Simplifies edge cases (inserting at the head, handling empty lists):
 ```csharp
+// 1. Create a placeholder node that points to the actual head
 var dummy = new ListNode(0);
 dummy.next = head;
+
+// 2. Use a pointer to build or traverse starting from before the head
 ListNode curr = dummy;
-// work with curr...
-return dummy.next;  // the real head
+
+// 3. Work with curr...
+
+// 4. Return 'dummy.next' which always points to the correctly updated head
+return dummy.next;  
 ```
 
 ### 3. Fast & slow pointers
 Two pointers at different speeds — classic for cycle detection and finding the middle:
 ```csharp
+// 1. Both pointers start at the head
 ListNode slow = head, fast = head;
+
+// 2. fast moves twice as fast as slow. 
+//    Loop ends when fast reaches the end of the list.
 while (fast != null && fast.next != null)
 {
-    slow = slow.next;       // moves 1 step
-    fast = fast.next.next;  // moves 2 steps
+    // 3. slow moves 1 step
+    slow = slow.next;       
+    
+    // 4. fast moves 2 steps
+    fast = fast.next.next;  
 }
-// slow is now at the middle
+
+// 5. When the loop ends, slow is now at the middle (or the start of the second half)
 ```
 
 ---
@@ -87,27 +108,44 @@ while (fast != null && fast.next != null)
 ```csharp
 ListNode ReverseList(ListNode head)
 {
+    // 1. Initialize pointers: 'prev' starts as null (new tail)
     ListNode prev = null;
     ListNode curr = head;
 
     while (curr != null)
     {
-        ListNode next = curr.next;  // save next before overwriting
-        curr.next = prev;           // reverse the pointer
-        prev = curr;                // advance prev
-        curr = next;                // advance curr
+        // 2. Temporary store the next node (so we don't lose the rest of the list)
+        ListNode next = curr.next;  
+        
+        // 3. Reverse the current node's pointer to point backwards
+        curr.next = prev;           
+        
+        // 4. Move pointers forward for the next iteration
+        prev = curr;                
+        curr = next;                
     }
-    return prev;  // prev is the new head
+    
+    // 5. 'prev' will be pointing to the new head of the reversed list
+    return prev;  
 }
 ```
 ```python
 def reverse_list(head):
+    # 1. Start with no previous node and the current head
     prev, curr = None, head
+    
     while curr:
+        # 2. Keep track of the rest of the list
         next_node = curr.next
+        
+        # 3. Flip the pointer
         curr.next = prev
+        
+        # 4. Advance prev and curr
         prev = curr
         curr = next_node
+        
+    # 5. Return the new head
     return prev
 ```
 ⏱ Time: O(n) | Space: O(1)
@@ -132,11 +170,14 @@ Return:   prev=3  →  3→2→1
 ```csharp
 ListNode MergeTwoLists(ListNode l1, ListNode l2)
 {
+    // 1. Create a dummy node to act as the starting point of the new list
     var dummy = new ListNode(0);
     ListNode curr = dummy;
 
+    // 2. Traverse both lists as long as both have nodes
     while (l1 != null && l2 != null)
     {
+        // 3. Attach the smaller value to our merged list
         if (l1.val <= l2.val)
         {
             curr.next = l1;
@@ -147,17 +188,25 @@ ListNode MergeTwoLists(ListNode l1, ListNode l2)
             curr.next = l2;
             l2 = l2.next;
         }
+        // 4. Move the merged list pointer forward
         curr = curr.next;
     }
-    curr.next = l1 ?? l2;  // attach remaining list
+    
+    // 5. One list might still have nodes left; attach them to the end
+    curr.next = l1 ?? l2;  
+    
+    // 6. Return the head of the merged list (skip the dummy)
     return dummy.next;
 }
 ```
 ```python
 def merge_two_lists(l1, l2):
+    # 1. Placeholder node to simplify list construction
     dummy = ListNode(0)
     curr = dummy
+    
     while l1 and l2:
+        # 2. Compare heads and pick the smaller one
         if l1.val <= l2.val:
             curr.next = l1
             l1 = l1.next
@@ -165,7 +214,10 @@ def merge_two_lists(l1, l2):
             curr.next = l2
             l2 = l2.next
         curr = curr.next
+        
+    # 3. Append the remainder of whichever list is not empty
     curr.next = l1 or l2
+    
     return dummy.next
 ```
 ⏱ Time: O(n + m) | Space: O(1)
@@ -181,24 +233,39 @@ def merge_two_lists(l1, l2):
 ```csharp
 bool HasCycle(ListNode head)
 {
+    // 1. Initialize two pointers at the head
     ListNode slow = head, fast = head;
+    
+    // 2. Loop as long as 'fast' can move forward 2 steps
     while (fast != null && fast.next != null)
     {
+        // 3. slow moves 1 step, fast moves 2 steps
         slow = slow.next;
         fast = fast.next.next;
-        if (slow == fast) return true;  // they met → cycle!
+        
+        // 4. If they meet at the same node, a cycle MUST exist
+        if (slow == fast) return true;  
     }
-    return false;  // fast reached the end → no cycle
+    
+    // 5. If 'fast' reaches the end, there is no cycle
+    return false;  
 }
 ```
 ```python
 def has_cycle(head):
+    # 1. Standard two-pointer approach for cycle detection
     slow = fast = head
+    
     while fast and fast.next:
+        # 2. Move at different speeds
         slow = slow.next
         fast = fast.next.next
+        
+        # 3. Meeting point found
         if slow is fast:
             return True
+            
+    # 4. Reached end of list
     return False
 ```
 ⏱ Time: O(n) | Space: O(1)
@@ -216,34 +283,50 @@ def has_cycle(head):
 ```csharp
 ListNode RemoveNthFromEnd(ListNode head, int n)
 {
+    // 1. Create a dummy node pointing to the head. 
+    //    This handles the edge case of removing the head itself.
     var dummy = new ListNode(0, head);
     ListNode fast = dummy, slow = dummy;
 
-    // Advance fast by n+1 steps
+    // 2. Advance 'fast' pointer so that there are 'n' nodes between 'slow' and 'fast'
     for (int i = 0; i <= n; i++)
+    {
         fast = fast.next;
+    }
 
-    // Move both until fast reaches end
+    // 3. Move both pointers at the same speed. 
+    //    When 'fast' hits null, 'slow' is exactly one node BEFORE the target.
     while (fast != null)
     {
         slow = slow.next;
         fast = fast.next;
     }
 
-    slow.next = slow.next.next;  // skip the target node
+    // 4. Skip the target node by updating the 'next' reference
+    slow.next = slow.next.next;  
+    
+    // 5. Return the start of the list
     return dummy.next;
 }
 ```
 ```python
 def remove_nth_from_end(head, n):
+    # 1. Use a dummy node to simplify head removal
     dummy = ListNode(0, head)
     fast = slow = dummy
+    
+    # 2. Create the 'n' node gap
     for _ in range(n + 1):
         fast = fast.next
+        
+    # 3. Maintain the gap until fast reaches the end
     while fast:
         slow = slow.next
         fast = fast.next
+        
+    # 4. Remove the node
     slow.next = slow.next.next
+    
     return dummy.next
 ```
 ⏱ Time: O(n) | Space: O(1)
@@ -259,12 +342,17 @@ def remove_nth_from_end(head, n):
 ```csharp
 ListNode MiddleNode(ListNode head)
 {
+    // 1. Initialize two pointers at the head
     ListNode slow = head, fast = head;
+    
+    // 2. Move 'fast' twice as fast as 'slow'
     while (fast != null && fast.next != null)
     {
         slow = slow.next;
         fast = fast.next.next;
     }
+    
+    // 3. When 'fast' reaches the end, 'slow' is at the middle node
     return slow;
 }
 ```

@@ -9,24 +9,41 @@ Sorting and binary search are two foundational tools. Sorting reorganises data t
 ### Built-in sorting in C# and Python
 ```csharp
 int[] nums = { 5, 2, 8, 1, 9 };
-Array.Sort(nums);                     // [1, 2, 5, 8, 9] ascending
-Array.Sort(nums, (a, b) => b - a);    // descending (custom comparer)
+
+// 1. Sort the array in-place in ascending order (O(n log n))
+Array.Sort(nums);                     
+
+// 2. Sort with a custom comparer for descending order
+Array.Sort(nums, (a, b) => b - a);    
 
 string[] words = { "banana", "apple", "cherry" };
-Array.Sort(words);                    // alphabetical
-Array.Sort(words, (a, b) => a.Length.CompareTo(b.Length)); // by length
 
-// LINQ alternatives
+// 3. Default alphabetical sort
+Array.Sort(words);                    
+
+// 4. Sort by a property (length) using a lambda expression
+Array.Sort(words, (a, b) => a.Length.CompareTo(b.Length)); 
+
+// 5. LINQ provides a non-destructive way to get a sorted collection
 var sorted = nums.OrderBy(x => x).ToArray();
 var sortedDesc = nums.OrderByDescending(x => x).ToArray();
 ```
 ```python
 nums = [5, 2, 8, 1, 9]
-nums.sort()                          # in-place ascending
-nums.sort(reverse=True)              # descending
-sorted_copy = sorted(nums)           # returns new list
+
+# 1. In-place ascending sort
+nums.sort()                          
+
+# 2. In-place descending sort
+nums.sort(reverse=True)              
+
+# 3. Create a new sorted list (original remains unchanged)
+sorted_copy = sorted(nums)           
+
 words = ["banana", "apple", "cherry"]
-words.sort(key=lambda w: len(w))     # sort by length
+
+# 4. Use 'key' to sort by a specific criteria (e.g., word length)
+words.sort(key=lambda w: len(w))     
 ```
 
 **Complexity:** Built-in sorts are O(n log n) — Tim sort in Python, intro sort in .NET.
@@ -60,25 +77,57 @@ low=3 > high=2 → not found
 ```csharp
 int BinarySearch(int[] nums, int target)
 {
+    // 1. Define the search boundaries
     int low = 0, high = nums.Length - 1;
+
+    // 2. Loop until the boundaries cross
     while (low <= high)
     {
-        int mid = low + (high - low) / 2;  // avoids integer overflow vs (low+high)/2
-        if (nums[mid] == target) return mid;
-        else if (nums[mid] < target) low  = mid + 1;
-        else                         high = mid - 1;
+        // 3. Find the middle index. 
+        //    (high-low)/2 avoids potential overflow of (low+high)/2
+        int mid = low + (high - low) / 2;  
+        
+        // 4. Check if we found the target
+        if (nums[mid] == target) 
+        {
+            return mid;
+        }
+        // 5. If target is larger, ignore the left half
+        else if (nums[mid] < target) 
+        {
+            low  = mid + 1;
+        }
+        // 6. If target is smaller, ignore the right half
+        else 
+        {
+            high = mid - 1;
+        }
     }
-    return -1;  // not found
+
+    // 7. Loop ended without finding the target
+    return -1;  
 }
 ```
 ```python
 def binary_search(nums, target):
+    # 1. Initialize pointers to the start and end of the list
     low, high = 0, len(nums) - 1
+    
     while low <= high:
+        # 2. Calculate the middle index (using floor division)
         mid = (low + high) // 2
-        if nums[mid] == target:   return mid
-        elif nums[mid] < target:  low  = mid + 1
-        else:                     high = mid - 1
+        
+        # 3. Found the target!
+        if nums[mid] == target:   
+            return mid
+        # 4. Target is in the right half
+        elif nums[mid] < target:  
+            low  = mid + 1
+        # 5. Target is in the left half
+        else:                     
+            high = mid - 1
+            
+    # 6. Target not found
     return -1
 ```
 
@@ -93,8 +142,9 @@ int FindFirst(int[] nums, int target)
         int mid = low + (high - low) / 2;
         if (nums[mid] == target)
         {
-            result = mid;   // found one, but keep searching left
-            high = mid - 1;
+            // 1. We found a match, but there might be an earlier one to the left
+            result = mid;   
+            high = mid - 1; // 2. Shrink the search space to the left side
         }
         else if (nums[mid] < target) low  = mid + 1;
         else                         high = mid - 1;
@@ -121,8 +171,13 @@ int Search(int[] nums, int target)
     int low = 0, high = nums.Length - 1;
     while (low <= high)
     {
+        // 1. Calculate the mid-point
         int mid = low + (high - low) / 2;
-        if      (nums[mid] == target) return mid;
+        
+        // 2. Exact match found
+        if (nums[mid] == target) return mid;
+        
+        // 3. Adjust boundaries based on comparison
         else if (nums[mid] <  target) low  = mid + 1;
         else                          high = mid - 1;
     }
@@ -146,11 +201,18 @@ int SearchInsert(int[] nums, int target)
     while (low <= high)
     {
         int mid = low + (high - low) / 2;
-        if      (nums[mid] == target) return mid;
+        
+        // 1. If found, return the index immediately
+        if (nums[mid] == target) return mid;
+        
+        // 2. Standard binary search logic to narrow the range
         else if (nums[mid] <  target) low  = mid + 1;
         else                          high = mid - 1;
     }
-    return low;  // when loop ends, low is the insertion point
+    
+    // 3. Crucial Insight: If the loop finishes without a match,
+    //    'low' will point to the index where the target should be inserted.
+    return low;  
 }
 ```
 ```python
@@ -158,9 +220,17 @@ def search_insert(nums, target):
     low, high = 0, len(nums) - 1
     while low <= high:
         mid = (low + high) // 2
-        if   nums[mid] == target: return mid
-        elif nums[mid] <  target: low  = mid + 1
-        else:                     high = mid - 1
+        
+        # 1. Match found
+        if nums[mid] == target: 
+            return mid
+        # 2. Narrow search space
+        elif nums[mid] <  target: 
+            low  = mid + 1
+        else:                     
+            high = mid - 1
+            
+    # 3. After the loop, low is the correct insertion point
     return low
 ```
 ⏱ Time: O(log n) | Space: O(1)
@@ -179,26 +249,44 @@ def search_insert(nums, target):
 int FindMin(int[] nums)
 {
     int low = 0, high = nums.Length - 1;
+    
+    // 1. Use 'low < high' because we are converging on a single element
     while (low < high)
     {
         int mid = low + (high - low) / 2;
+        
+        // 2. If mid is greater than high, the pivot (and min) must be to the right
         if (nums[mid] > nums[high])
-            low = mid + 1;    // minimum is in the right half
+        {
+            low = mid + 1;
+        }
+        // 3. Otherwise, the minimum is either at mid or to the left
         else
-            high = mid;       // minimum is in the left half (could be mid itself)
+        {
+            high = mid;
+        }
     }
+    
+    // 4. When low == high, we've found the minimum element
     return nums[low];
 }
 ```
 ```python
 def find_min(nums):
     low, high = 0, len(nums) - 1
+    
+    # 1. Converge towards the minimum element
     while low < high:
         mid = (low + high) // 2
+        
+        # 2. If middle value is > rightmost value, right side is unsorted/rotated
         if nums[mid] > nums[high]:
             low = mid + 1
+        # 3. Otherwise, minimum is in the left side (including mid)
         else:
             high = mid
+            
+    # 4. 'low' will point to the smallest value
     return nums[low]
 ```
 ⏱ Time: O(log n) | Space: O(1)
@@ -216,29 +304,41 @@ def find_min(nums):
 ```csharp
 int[][] Merge(int[][] intervals)
 {
+    // 1. Sort intervals by their start time (crucial for greedy merging)
     Array.Sort(intervals, (a, b) => a[0].CompareTo(b[0]));
+    
     var merged = new List<int[]>();
 
     foreach (var interval in intervals)
     {
-        // If merged is empty OR current doesn't overlap with last merged interval
+        // 2. If 'merged' is empty OR current interval doesn't overlap with the last one added
         if (merged.Count == 0 || merged[^1][1] < interval[0])
+        {
             merged.Add(interval);
+        }
         else
-            merged[^1][1] = Math.Max(merged[^1][1], interval[1]); // extend last
+        {
+            // 3. Overlap found! Update the end time of the last interval to cover both
+            merged[^1][1] = Math.Max(merged[^1][1], interval[1]);
+        }
     }
     return merged.ToArray();
 }
 ```
 ```python
 def merge(intervals):
+    # 1. Sort intervals based on the start value
     intervals.sort(key=lambda x: x[0])
+    
     merged = []
     for start, end in intervals:
+        # 2. If merged list is empty or current interval doesn't overlap
         if not merged or merged[-1][1] < start:
             merged.append([start, end])
         else:
+            # 3. Overlap detected: extend the end of the previous interval
             merged[-1][1] = max(merged[-1][1], end)
+            
     return merged
 ```
 ⏱ Time: O(n log n) | Space: O(n)

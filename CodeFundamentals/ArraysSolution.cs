@@ -1,4 +1,5 @@
 using System;
+using System.Text;
 
 //namespace - this gives Program.cs access to this class
 namespace CodeFundamentals;
@@ -71,5 +72,44 @@ public class ArraysSolution
         }
 
         return solution;
+    }
+
+    public static int ReturnMaxInArray(int[] nums)
+    {
+        int max = nums[0];
+
+        for (int i = 0; i < nums.Length; i++)
+        {
+            if (nums[i] > max)
+            {
+                max = nums[i];
+            }
+        }
+
+        return max;
+    }
+
+    public static string ReversedString(string word)
+    {
+        char[] stringArray = word.ToCharArray();
+
+        int left = 0;
+        int right = stringArray.Length - 1;
+
+        while (left < right)
+        {
+            var temp = stringArray[left];
+            stringArray[left] = stringArray[right];
+            stringArray[right] = temp;
+            
+            left++;
+            right--;
+        }
+
+
+        var sb = new StringBuilder();
+        sb.Append(stringArray);
+        
+        return sb.ToString();
     }
 }
