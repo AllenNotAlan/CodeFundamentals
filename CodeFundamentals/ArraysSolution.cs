@@ -1,4 +1,6 @@
 using System;
+using System.Globalization;
+using System.Text;
 
 //namespace - this gives Program.cs access to this class
 namespace CodeFundamentals;
@@ -71,5 +73,90 @@ public class ArraysSolution
         }
 
         return solution;
+    }
+
+    public static int MaxValueFinder(int[] nums)
+    {
+        var arrayLength = nums.Length;
+        var maxNum = nums[0];
+
+        for(int i = 0; i < arrayLength; i++)
+        {
+            if (nums[i] > maxNum)
+            {
+                maxNum = nums[i];
+            }
+        }
+
+        return maxNum;
+    }
+
+    public static string ReverseString(string input)
+    {
+        var sb = new StringBuilder();
+
+        for (int i = input.Length - 1; i >= 0; i--)
+        {
+            sb.Append(input[i]);
+        }
+
+        return sb.ToString();
+    }
+
+    public static string ReverseString_New(string input)
+    {
+        char[] stringArray = input.ToArray();
+
+        int left = 0;
+        int right = stringArray.Length - 1;
+
+        while (left < right)
+        {
+            var temp = stringArray[left];
+            stringArray[left] = stringArray[right];
+            stringArray[right] = temp;
+
+            left++;
+            right--;
+        }
+
+        return new string(stringArray);
+    }
+
+    public static string ReverseString_Tuple(string input)
+    {
+        char[] stringArray = input.ToCharArray();
+
+        int left = 0;
+        int right = stringArray.Length - 1;
+
+        while (left < right)
+        {
+            (stringArray[left], stringArray[right]) = (stringArray[right], stringArray[left]);
+
+            left++;
+            right--;
+        }
+
+        return new string(stringArray);
+    }
+
+    public static int ReturnProductOfArray(int[] input)
+    {
+        int[] prefix = new int[input.Length];
+
+        prefix[0] = input[0];
+
+        for(int i = 1; i < input.Length; i++)
+        {
+            prefix[i] = prefix[i - 1] + input[i];
+        }
+
+        foreach(int x in prefix)
+        {
+            Console.WriteLine(x);
+        }
+
+        return prefix[input.Length - 1];
     }
 }
