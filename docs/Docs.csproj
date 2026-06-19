@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <!-- Prevent assembly output, compilation, and generating assembly attributes -->
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <IncludeBuildOutput>false</IncludeBuildOutput>
+    <!-- Suppress warning about no source files compiled -->
+    <NoWarn>$(NoWarn);CS2008</NoWarn>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- Recursively include all files in the docs folder except bin/obj and the csproj itself -->
+    <None Include="**\*" Exclude="bin\**\*;obj\**\*;Docs.csproj" />
+  </ItemGroup>
+
+</Project>
