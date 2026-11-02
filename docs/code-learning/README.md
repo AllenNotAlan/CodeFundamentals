@@ -7,7 +7,7 @@
 
 ## 📚 Topics (work through in order)
 
-The plan runs in two phases. **Phase 1 (1–9)** builds the foundations and targets LeetCode **Easy**. **Phase 2 (10–14)** steps up to the **Medium** patterns and the recognition/communication skills that decide most interviews. The jump from 9 → 10 is a deliberate step up in difficulty — see the note below.
+The plan runs in two phases. **Phase 1 (1–9)** builds the foundations and targets LeetCode **Easy**. **Phase 2 (10–16)** steps up to the **Medium** patterns and the recognition/communication skills that decide most interviews. The jump from 9 → 10 is a deliberate step up in difficulty — see the note below.
 
 ### Phase 1 — Foundations (LeetCode Easy)
 
@@ -25,7 +25,7 @@ The plan runs in two phases. **Phase 1 (1–9)** builds the foundations and targ
 
 ### Phase 2 — Stepping up (LeetCode Medium & interview patterns)
 
-> ⚠️ **Difficulty step-up.** Chapters 10–16 move from Easy into **Medium** territory (Union-Find, topological sort, Dijkstra, Edit Distance, N-Queens). Each chapter opens with a **"Builds on"** note pointing back to the Phase 1 foundations it depends on — don't skip ahead until those feel solid. Chapter 14 is the capstone (recognition + method); 15–16 add two more high-value patterns you can slot into the cheat sheet.
+> ⚠️ **Difficulty step-up.** Chapters 10–16 move from Easy into **Medium** territory (Union-Find, topological sort, Dijkstra, Edit Distance, N-Queens). Each chapter opens with a **"Builds on"** note pointing back to the Phase 1 foundations it depends on — don't skip ahead until those feel solid. **Chapter 14 is the method capstone** — the signal → pattern cheat sheet and the say-it-out-loud interview routine. Read 10–13 first, then 14, then treat 15–16 (Greedy, Tries) as two more patterns to fold into the cheat sheet.
 
 | # | Topic | Key Concepts | Why It Matters |
 |---|-------|-------------|----------------|
@@ -52,7 +52,7 @@ The plan runs in two phases. **Phase 1 (1–9)** builds the foundations and targ
 4. **Re-implement from memory** — close the file and write it again.
 5. **Go to LeetCode** — apply the pattern to real problems.
 
-Work **Phase 1 in order first** — each chapter reuses the one before it. Only move into **Phase 2** once the Phase 1 patterns feel automatic; the later chapters assume them. Chapter 14 is the capstone — read it last, then keep it open as a cheat sheet while you drill.
+Work **Phase 1 in order first** — each chapter reuses the one before it. Only move into **Phase 2** once the Phase 1 patterns feel automatic; the later chapters assume them. Work 10–13 in order, then **chapter 14 — the method capstone** — and keep it open as a cheat sheet while you drill chapters 15–16 and practise on real problems.
 
 ---
 
