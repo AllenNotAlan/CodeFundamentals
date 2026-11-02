@@ -546,7 +546,71 @@ def oranges_rotting(grid):
 | Explore/flood a whole region | **DFS** | Simple recursion; natural for "fill this area" |
 | Ordering with dependencies | **Topological sort** | Produces a valid prerequisite order |
 | "How many groups?" / connectivity | **Union-Find** | Near-O(1) merge & group count |
-| Shortest path (weighted) | Dijkstra (beyond this intro) | BFS doesn't account for edge costs |
+| Shortest path (weighted) | **Dijkstra** (see below) | BFS ignores edge costs; Dijkstra uses a min-heap to always expand the cheapest frontier |
+
+---
+
+## Weighted shortest path — Dijkstra (stepping beyond BFS)
+
+BFS finds the fewest *edges*, which is the shortest path only when every edge costs the same. The moment edges have **weights** (distances, fares, latencies), BFS is wrong — a 2-hop path can cost more than a 5-hop one. Dijkstra fixes this by always expanding the **cheapest-so-far** node next, using a min-heap (priority queue — see [11 — Heaps & Priority Queues](./11-heaps-priority-queues.md)).
+
+> **Intuition:** it's BFS where the queue is replaced by a priority queue keyed on total distance. You pop the closest unfinalised node, relax its neighbours (try to improve their best-known distance), and repeat. Once popped, a node's distance is final — because any later path to it would have to go through something even further away. (This is why Dijkstra needs **non-negative** weights.)
+
+```csharp
+// Shortest distances from `src` over a weighted graph.
+// graph[u] = list of (neighbour, weight).
+int[] Dijkstra(List<(int to, int w)>[] graph, int src)
+{
+    int n = graph.Length;
+    var dist = new int[n];
+    Array.Fill(dist, int.MaxValue);
+    dist[src] = 0;
+
+    // Min-heap ordered by distance: (distance, node).
+    var pq = new PriorityQueue<int, int>();
+    pq.Enqueue(src, 0);
+
+    while (pq.TryDequeue(out int u, out int d))
+    {
+        if (d > dist[u]) continue;            // stale entry — already found better
+        foreach (var (v, w) in graph[u])
+        {
+            int nd = d + w;
+            if (nd < dist[v])                 // relaxation: found a cheaper route to v
+            {
+                dist[v] = nd;
+                pq.Enqueue(v, nd);
+            }
+        }
+    }
+    return dist;
+}
+```
+```python
+import heapq
+
+def dijkstra(graph, src):            # graph[u] = list of (v, w)
+    n = len(graph)
+    dist = [float('inf')] * n
+    dist[src] = 0
+    pq = [(0, src)]                  # (distance, node)
+
+    while pq:
+        d, u = heapq.heappop(pq)
+        if d > dist[u]:              # stale entry
+            continue
+        for v, w in graph[u]:
+            nd = d + w
+            if nd < dist[v]:         # relaxation
+                dist[v] = nd
+                heapq.heappush(pq, (nd, v))
+    return dist
+```
+⏱ Time: O((V + E) log V) | Space: O(V)
+
+**When to reach for it:** "shortest/cheapest/fastest path" with **weighted** edges and **no negative weights** (e.g. network routing, cheapest flight within K stops, minimum effort path on a grid). If weights can be negative, Dijkstra breaks — that's Bellman-Ford territory, which is beyond this chapter. If the graph is unweighted, don't over-engineer: plain BFS is both simpler and faster.
+
+**Try it on:** #743 (Network Delay Time), #1631 (Path With Minimum Effort), #787 (Cheapest Flights Within K Stops).
 
 ---
 
@@ -569,3 +633,5 @@ def oranges_rotting(grid):
 - #547 — Number of Provinces (Union-Find)
 - #417 — Pacific Atlantic Water Flow (DFS from borders)
 - #684 — Redundant Connection (Union-Find cycle detection)
+- #743 — Network Delay Time ⭐⭐ (Dijkstra, weighted shortest path)
+- #1631 — Path With Minimum Effort ⭐⭐ (Dijkstra on a grid)

@@ -65,13 +65,15 @@ const PARTS = [
       ["backtracking", "docs/code-learning/12-backtracking.md", "12 · Backtracking"],
       ["dp-patterns", "docs/code-learning/13-dynamic-programming-patterns.md", "13 · DP Patterns"],
       ["pattern-recognition", "docs/code-learning/14-pattern-recognition.md", "14 · Pattern Recognition"],
+      ["greedy", "docs/code-learning/15-greedy.md", "15 · Greedy"],
+      ["tries", "docs/code-learning/16-tries.md", "16 · Tries"],
     ],
   },
   {
     title: "Advanced Extras",
     chapters: [
-      ["twoptr-adv", "docs/extras/two-pointers-mastery.md", "15 · Advanced Two Pointers"],
-      ["space", "docs/extras/space-complexity-guide.md", "16 · Space Complexity"],
+      ["twoptr-adv", "docs/extras/two-pointers-mastery.md", "17 · Advanced Two Pointers"],
+      ["space", "docs/extras/space-complexity-guide.md", "18 · Space Complexity"],
     ],
   },
   {
@@ -165,6 +167,14 @@ const REFERENCES = {
     ["NeetCode 150 (patterns, grouped)", "https://neetcode.io/practice"],
     ["Blind 75", "https://www.teamblind.com/post/New-Year-Gift---Curated-List-of-Top-75-LeetCode-Questions-to-Save-Your-Time-OaM1orEU"],
     ["Tech Interview Handbook — Algorithms", "https://www.techinterviewhandbook.org/algorithms/study-cheatsheet/"],
+  ],
+  greedy: [
+    ["NeetCode — Greedy roadmap", "https://neetcode.io/roadmap"],
+    ["LeetCode — Greedy tag", "https://leetcode.com/tag/greedy/"],
+  ],
+  tries: [
+    ["LeetCode — Trie tag", "https://leetcode.com/tag/trie/"],
+    ["Visualgo — Trie", "https://visualgo.net/en/trie"],
   ],
   "twoptr-adv": [["LeetCode — Container With Most Water", "https://leetcode.com/problems/container-with-most-water/"]],
   space: [["Big-O Cheat Sheet", "https://www.bigocheatsheet.com/"]],

@@ -191,6 +191,8 @@ WHERE status = 'shipped';
 
 ### Index Selection Rules
 
+> 📌 **Canonical source** for index-selection reasoning. The fintech track's indexing question reuses these same rules.
+
 | Rule | Explanation |
 |------|-------------|
 | Equality columns first | `user_id = ?` and `status = ?` go before range columns |
@@ -329,6 +331,8 @@ Cons:
 
 ### Decision Framework
 
+> 📌 **Canonical source.** These are the baseline row-count thresholds for this repo. Domain tracks may state deliberately different numbers — e.g. the fintech track uses higher thresholds because financial-data retention keeps far more rows per table. If you see different numbers elsewhere, this is the general-purpose default.
+
 ```
 < 50M rows      → Single Postgres, good indexes, done
 50M – 500M rows → Partitioning + read replicas
@@ -338,6 +342,8 @@ Cons:
 ---
 
 ## Question 6 — Optimistic vs Pessimistic Locking
+
+> 📌 **Canonical source** for the three concurrency-control strategies (pessimistic / optimistic / atomic-conditional). Domain tracks apply the same mechanics to their own example (e.g. the fintech track uses them to prevent overdraft) and link here for the general explanation.
 
 > "Two requests try to buy the last item in stock simultaneously. How do you prevent overselling?"
 

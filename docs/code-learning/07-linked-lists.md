@@ -2,6 +2,8 @@
 
 A linked list is a chain of nodes, each holding a value and a pointer to the next node. Unlike arrays, there's **no index-based access** — you must traverse from the head.
 
+> **Builds on:** [01 — Arrays & Strings](./01-arrays-and-strings.md) (the contrast — no O(1) indexing) and the **fast/slow pointer** idea from [03 — Two Pointers](./03-two-pointers.md).
+
 ---
 
 ## Core Concepts
@@ -374,5 +376,5 @@ ListNode MiddleNode(ListNode head)
 - #206 — Reverse Linked List ⭐
 - #21 — Merge Two Sorted Lists ⭐
 - #141 — Linked List Cycle ⭐
-- #876 — Middle of the Linked List
-- #19 — Remove Nth Node From End of List
+- #876 — Middle of the Linked List ⭐
+- #19 — Remove Nth Node From End of List ⭐⭐ (two-pointer gap)

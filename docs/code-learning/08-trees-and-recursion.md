@@ -2,6 +2,8 @@
 
 Trees appear constantly in interviews. Mastering tree traversal also teaches you recursion — which is the skill behind many other patterns.
 
+> **Builds on:** [05 — Stacks & Queues](./05-stacks-and-queues.md) (DFS uses a stack / the call stack; BFS uses a queue). This recursion is the foundation for [09 — DP](./09-dynamic-programming-intro.md), [10 — Graphs](./10-graphs.md), and [12 — Backtracking](./12-backtracking.md).
+
 ---
 
 ## Core Concepts
@@ -381,7 +383,7 @@ You don't need to think about the whole tree — just what *this node* does with
 
 - #104 — Maximum Depth of Binary Tree ⭐
 - #101 — Symmetric Tree ⭐
-- #112 — Path Sum
-- #98 — Validate Binary Search Tree
-- #102 — Binary Tree Level Order Traversal
-- #226 — Invert Binary Tree (classic)
+- #226 — Invert Binary Tree ⭐ (classic)
+- #112 — Path Sum ⭐
+- #102 — Binary Tree Level Order Traversal ⭐⭐ (BFS)
+- #98 — Validate Binary Search Tree ⭐⭐ (bounds passing)

@@ -2,6 +2,8 @@
 
 Dynamic programming (DP) sounds scary but at its core it's simple: **solve a big problem by breaking it into smaller subproblems and caching the results so you don't recompute them.**
 
+> **Builds on:** [08 — Trees & Recursion](./08-trees-and-recursion.md) (DP is recursion + memoization). Contrast it with [15 — Greedy](./15-greedy.md), and once the machinery clicks, move on to the shapes in [13 — DP Patterns](./13-dynamic-programming-patterns.md).
+
 ---
 
 ## Core Concepts
@@ -381,6 +383,6 @@ def unique_paths(m, n):
 - #509 — Fibonacci Number ⭐
 - #70 — Climbing Stairs ⭐
 - #198 — House Robber ⭐
-- #322 — Coin Change
-- #62 — Unique Paths
-- #746 — Min Cost Climbing Stairs (very similar to Climbing Stairs)
+- #746 — Min Cost Climbing Stairs ⭐ (very similar to Climbing Stairs)
+- #62 — Unique Paths ⭐⭐ (2D grid DP)
+- #322 — Coin Change ⭐⭐ (unbounded, min-count)

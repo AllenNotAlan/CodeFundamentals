@@ -2,6 +2,8 @@
 
 Sorting and binary search are two foundational tools. Sorting reorganises data to make it easier to work with; binary search lets you find things in O(log n) instead of O(n).
 
+> **Builds on:** [01 — Arrays & Strings](./01-arrays-and-strings.md). A **sorted** array is also the precondition for the [two-pointer](./03-two-pointers.md) pattern, and binary search underpins the heap/"minimise the max" ideas in [11 — Heaps](./11-heaps-priority-queues.md).
+
 ---
 
 ## Sorting
@@ -358,6 +360,6 @@ def merge(intervals):
 
 - #704 — Binary Search ⭐
 - #35 — Search Insert Position ⭐
-- #153 — Find Minimum in Rotated Sorted Array
-- #56 — Merge Intervals
-- #34 — Find First and Last Position of Element in Sorted Array
+- #153 — Find Minimum in Rotated Sorted Array ⭐⭐ (modified binary search)
+- #56 — Merge Intervals ⭐⭐ (sort first, then sweep)
+- #34 — Find First and Last Position of Element in Sorted Array ⭐⭐ (leftmost/rightmost variant)

@@ -2,6 +2,8 @@
 
 The single most useful data structure for optimising brute-force solutions. If you find yourself writing a nested loop, ask: *"Can I use a dictionary instead?"*
 
+> **Builds on:** [01 — Arrays & Strings](./01-arrays-and-strings.md) (iteration and the nested-loop patterns a hash map replaces).
+
 ---
 
 ## Core Concepts
@@ -320,5 +322,5 @@ def first_uniq_char(s):
 - #1 — Two Sum ⭐
 - #217 — Contains Duplicate ⭐
 - #242 — Valid Anagram ⭐
-- #387 — First Unique Character in a String
-- #49 — Group Anagrams (good challenge)
+- #387 — First Unique Character in a String ⭐
+- #49 — Group Anagrams ⭐⭐ (grouping by a computed key)

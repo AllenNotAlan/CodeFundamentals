@@ -1,4 +1,4 @@
-# 16 — Space Complexity: The Memory Blueprint
+# 18 — Space Complexity: The Memory Blueprint
 
 Space complexity is the measure of how much **working memory** (RAM) an algorithm needs to complete its task. For a student, the best way to think about this is: "If I give my program a massive amount of data, will my computer run out of memory and crash?"
 

@@ -2,6 +2,8 @@
 
 The sliding window technique maintains a contiguous subarray (or substring) as you slide it across the input. It transforms O(n²) nested-loop solutions into O(n).
 
+> **Builds on:** [03 — Two Pointers](./03-two-pointers.md) (a window is just two pointers moving in the same direction) and [02 — Hash Maps & Sets](./02-hash-maps-and-sets.md) (for counting what's inside the window).
+
 ---
 
 ## Core Concepts
@@ -337,6 +339,6 @@ Signal words: *"maximum/minimum subarray"*, *"longest/shortest substring"*, *"al
 
 - #121 — Best Time to Buy and Sell Stock ⭐
 - #3 — Longest Substring Without Repeating Characters ⭐
-- #643 — Maximum Average Subarray I
-- #209 — Minimum Size Subarray Sum
-- #1004 — Max Consecutive Ones III (variable window with a budget)
+- #643 — Maximum Average Subarray I ⭐
+- #209 — Minimum Size Subarray Sum ⭐⭐ (variable window)
+- #1004 — Max Consecutive Ones III ⭐⭐ (variable window with a budget)

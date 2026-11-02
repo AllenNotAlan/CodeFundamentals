@@ -25,7 +25,7 @@ Train yourself to read a problem and map its *signals* to a pattern. These signa
 | If the problem says / looks like… | Reach for | Chapter |
 |-----------------------------------|-----------|---------|
 | "sum/pair/duplicate", fast lookups needed | **Hash map / set** | [02](./02-hash-maps-and-sets.md) |
-| **Sorted** array, find a pair/triplet, or remove in place | **Two pointers** | [03](./03-two-pointers.md) · [15](./two-pointers-mastery.md) |
+| **Sorted** array, find a pair/triplet, or remove in place | **Two pointers** | [03](./03-two-pointers.md) · [mastery](../extras/two-pointers-mastery.md) |
 | **Contiguous** subarray/substring with a condition | **Sliding window** | [04](./04-sliding-window.md) |
 | Matching/nesting, "most recent", next-greater | **Stack** (monotonic) | [05](./05-stacks-and-queues.md) |
 | **Sorted** input + "find/search", or "minimise the max" | **Binary search** | [06](./06-sorting-and-binary-search.md) |
@@ -35,9 +35,13 @@ Train yourself to read a problem and map its *signals* to a pattern. These signa
 | Nodes & edges, grid, "connected"/"reachable"/"shortest unweighted" | **Graph BFS/DFS / Union-Find** | [10](./10-graphs.md) |
 | "top/K largest/smallest", "median", "merge K" | **Heap / priority queue** | [11](./11-heaps-priority-queues.md) |
 | "all combinations/permutations/subsets", "generate every" | **Backtracking** | [12](./12-backtracking.md) |
+| "maximum non-overlapping", "fewest jumps", "sort then pick" | **Greedy** | [15](./15-greedy.md) |
+| "starts with", "autocomplete", "prefix", "dictionary of words" | **Trie (prefix tree)** | [16](./16-tries.md) |
 
 ### Secondary tells
 - **"Shortest path, unweighted"** → BFS specifically (not DFS) — BFS reaches nodes in distance order ([10](./10-graphs.md)).
+- **"Shortest/cheapest path with weights"** (no negatives) → Dijkstra = BFS with a min-heap ([10](./10-graphs.md)).
+- **"Greedy feels right"** → check it's *provably* safe (exchange argument); otherwise it's probably DP ([15](./15-greedy.md) vs [13](./13-dynamic-programming-patterns.md)).
 - **"Top K" with `k ≪ n`** → a size-K heap, not a full sort ([11](./11-heaps-priority-queues.md)).
 - **"Contiguous"** → sliding window; **"any order / subsequence"** → usually DP or backtracking. That one word changes the pattern.
 - **"Sorted"** appearing anywhere is a loud hint for two pointers or binary search.

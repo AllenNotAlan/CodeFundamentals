@@ -104,6 +104,20 @@ In a distributed system, when the network partitions (it will), you choose betwe
 
 > **📖 DDIA Ch. 7 (Transactions) & Ch. 9 (Consistency and Consensus):** isolation levels, linearizability vs eventual consistency, and why consensus (e.g. Raft) is the foundation under leader election and distributed locks.
 
+### Consensus & quorums — how nodes agree
+
+Strong consistency across replicas rests on **consensus**: getting a set of nodes to agree on a value even when some are slow, crashed, or partitioned. You rarely implement this yourself, but you must know *where it lives* in a design and name it.
+
+- **Consensus algorithms (Raft, Paxos):** elect a single leader and replicate a log so every node applies the same operations in the same order. This is what backs **leader election** (who's the primary?), **distributed locks**, and strongly-consistent metadata stores (etcd, ZooKeeper, Consul). A Raft cluster stays available as long as a **majority** (e.g. 2 of 3, 3 of 5) is reachable.
+- **Quorums (leaderless, Dynamo/Cassandra-style):** instead of a leader, require `R + W > N` — reads touch `R` replicas, writes touch `W`, with `N` total. Overlapping read/write sets guarantees a read sees the latest write. Tuning `R`/`W` trades latency against consistency: `W=N` makes writes durable but slow; `W=1` is fast but risky.
+
+**Worked tell — "how does the ledger stay correct across nodes?"**
+> "Writes go through a single Raft-elected leader per shard so the replication log is totally ordered — no two nodes disagree on the balance. For reads I can serve followers for the feed (eventually consistent) but route balance checks to the leader or use a quorum read, because a stale balance can cause an overdraft. If the leader dies, Raft elects a new one from an up-to-date follower within a couple of seconds; writes pause briefly rather than risk divergence — a deliberate CP choice."
+
+That paragraph — naming Raft, the ordered log, quorum reads, and the CP trade-off under failover — is the senior-level answer to the consensus probe.
+
+> **📖 DDIA Ch. 9 (Consistency and Consensus):** linearizability, the theory behind quorums, and why total-order broadcast is equivalent to consensus. Ch. 5 covers the leaderless quorum (`R + W > N`) mechanics in practice.
+
 ---
 
 ## 7. Messaging & Event Streaming — decoupling services
@@ -137,7 +151,7 @@ In distributed systems, requests time out, retry, and arrive twice. Design for i
 
 ## 9. Back-of-the-Envelope Estimation — the numbers to know
 
-Interviewers expect rough capacity math. Memorise these anchors:
+> 📌 **Canonical latency table** for the whole set. Other chapters cite a short subset for a specific design; this is the full, authoritative list. Treat all figures as order-of-magnitude anchors, not benchmarks.
 
 | Operation | Rough latency |
 |-----------|--------------|
@@ -152,6 +166,20 @@ Interviewers expect rough capacity math. Memorise these anchors:
 
 ---
 
+## 10. Observability — how you run it at 3am
+
+Designing the happy path is half the job; interviewers probe "how would on-call debug this when it breaks?" Name the three pillars and what you'd alert on.
+
+- **Metrics (the numbers):** aggregate time-series — request rate, error rate, latency percentiles (p50/p95/p99), queue depth, replication lag. Two useful frameworks: **RED** (Rate, Errors, Duration) for request-driven services; **USE** (Utilisation, Saturation, Errors) for resources. Store in Prometheus/Datadog; graph in dashboards.
+- **Logs (the detail):** structured (JSON) events with a **correlation/trace ID** so you can stitch one request across services. Logs are for *why* a specific request failed; don't use them for aggregate counting (that's metrics).
+- **Traces (the path):** distributed tracing (OpenTelemetry/Jaeger) follows one request hop-by-hop across services and shows where the latency actually went — indispensable in microservices.
+
+**Alert on symptoms, not causes:** page on user-visible SLO breaches (error rate, p99 latency) and on leading indicators of imminent failure (DLQ depth rising, replication lag growing, disk filling), not on every CPU blip. Over-alerting causes pager fatigue and missed real incidents.
+
+**Interview tell:** the README-level claim "you build it, you run it, you fix it at 3am" is only credible if you can say *what you'd look at first*: "I'd check the service's RED dashboard for the error spike, pull the traces for failing requests by correlation ID, and look at DLQ depth and replication lag to localise the failing dependency." Tie each component in your design to **one metric you'd alert on**.
+
+---
+
 ## Putting the blocks together — a mental checklist
 
 For any design, walk the request's journey and name the block at each hop:
@@ -160,8 +188,9 @@ For any design, walk the request's journey and name the block at each hop:
 3. **API → Cache** (§2): cache-aside for hot reads; name the invalidation plan.
 4. **API → Database** (§3): SQL vs NoSQL *with justification*; replication (§4) for availability, partitioning (§5) at scale.
 5. **Async work → Broker** (§7): Kafka/queue for decoupling and bursts; idempotent consumers (§8).
-6. **State the consistency model per component** (§6) and the **failure modes** (§8).
+6. **State the consistency model per component** (§6) and the **failure modes** (§8); for strongly-consistent state, name **where consensus lives** (§6 — leader/quorum).
 7. **Back it with numbers** (§9).
+8. **Say how you'd operate it** (§10): one metric you'd alert on per component, and how on-call would trace a failure.
 
 Say the trade-off at every block — *that* is what reads as senior.
 
@@ -172,7 +201,8 @@ Say the trade-off at every block — *that* is what reads as senior.
 - **Jumping to architecture before requirements** — always clarify and estimate first.
 - **Naming a technology without justifying it** — "Kafka because we need replayable events and multiple consumers," not just "Kafka."
 - **One consistency model for everything** — specify per component.
-- **Ignoring failure** — interviewers probe "what happens when this dies?" Have the resilience blocks (§8) ready.
+- **Ignoring failure** — interviewers probe "what happens when this dies?" Have the resilience blocks (§8) and failover/consensus story (§6) ready.
+- **No operational story** — "how would you debug this at 3am?" needs the observability answer (§10), not silence.
 - **Hand-waving scale** — do the back-of-envelope math (§9), even roughly.
 
 ---

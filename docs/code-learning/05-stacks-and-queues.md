@@ -2,6 +2,8 @@
 
 Two fundamental data structures with very different personalities. Understanding them unlocks a huge category of problems.
 
+> **Builds on:** [01 — Arrays & Strings](./01-arrays-and-strings.md) (the backing storage). The queue here is the foundation for **BFS**, used later in [08 — Trees & Recursion](./08-trees-and-recursion.md) and [10 — Graphs](./10-graphs.md).
+
 ---
 
 ## Core Concepts
@@ -399,6 +401,6 @@ def daily_temperatures(temperatures):
 
 - #20 — Valid Parentheses ⭐
 - #155 — Min Stack ⭐
-- #232 — Implement Queue using Stacks
-- #739 — Daily Temperatures
-- #496 — Next Greater Element I
+- #232 — Implement Queue using Stacks ⭐
+- #739 — Daily Temperatures ⭐⭐ (monotonic stack)
+- #496 — Next Greater Element I ⭐⭐ (monotonic stack)

@@ -2,6 +2,8 @@
 
 A technique where you maintain two indices (pointers) into an array or string, typically moving toward each other or in the same direction. Eliminates the need for nested loops in many situations.
 
+> **Builds on:** [01 — Arrays & Strings](./01-arrays-and-strings.md) (indexing and in-place traversal). Often an alternative to the [hash-map](./02-hash-maps-and-sets.md) approach when the input is **sorted**.
+
 ---
 
 ## Core Concepts
@@ -357,7 +359,7 @@ def move_zeroes(nums):
 ## LeetCode Problems to Try Now
 
 - #125 — Valid Palindrome ⭐
-- #167 — Two Sum II
-- #977 — Squares of a Sorted Array
+- #167 — Two Sum II ⭐
+- #977 — Squares of a Sorted Array ⭐
 - #283 — Move Zeroes ⭐
-- #26 — Remove Duplicates from Sorted Array
+- #26 — Remove Duplicates from Sorted Array ⭐⭐ (in-place write pointer)

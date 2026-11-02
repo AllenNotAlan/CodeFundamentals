@@ -374,6 +374,6 @@ int[] ProductExceptSelf(int[] nums) {
 ## LeetCode Problems to Try Now
 
 - #1480 — Running Sum of 1d Array ⭐ (easy warm-up)
-- #344 — Reverse String
-- #1 — Two Sum (preview of hash maps, try brute force first)
-- #238 — Product of Array Except Self (great prefix/suffix challenge)
+- #344 — Reverse String ⭐
+- #1 — Two Sum ⭐ (preview of hash maps, try brute force first)
+- #238 — Product of Array Except Self ⭐⭐ (prefix/suffix challenge)

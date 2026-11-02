@@ -125,6 +125,49 @@ if (existing != null) return existing.Result; // return cached response
 | Single DB vs Sharded | Single (partitioned) initially | Simpler consistency; shard later by account |
 | SQL vs NoSQL | SQL (PostgreSQL) | ACID transactions are non-negotiable for money |
 
+### Deep Dive: Card Authorisation vs Settlement (the two-phase reality)
+
+The payment above looks instant, but **card payments post to the ledger in two phases**, often hours or days apart. Getting this right is the single most fintech-specific thing you can demonstrate.
+
+```
+1. AUTHORISATION (real-time, <100ms)
+   Card network asks "approve £4.50 at Tesco?"
+   → Check card not frozen, funds available, fraud rules
+   → Place a HOLD (reserve £4.50): available balance drops, but no money has moved
+   → Respond approve/decline to the network
+
+2. PRESENTMENT / SETTLEMENT (later — hours to days)
+   Merchant submits the batch for actual money movement
+   → Convert the hold into a real double-entry ledger posting
+   → Release the hold; debit the account for the settled amount
+```
+
+**Why two phases matters — the cases interviewers probe:**
+
+| Situation | What happens |
+|-----------|--------------|
+| Auth then normal settle | Hold → ledger debit of the same amount; hold released |
+| Settled amount ≠ auth amount (tips, fuel) | Auth £1 at a pump, settle £60 — settlement wins; design for amount drift |
+| Auth never settles (expires) | Hold must auto-expire after N days, or funds are stuck forever |
+| Settlement with no prior auth | "Force post" (e.g. offline terminal) — must still post correctly |
+| Reversal (auth cancelled) | Release the hold; **never** leave a phantom debit |
+
+**Data model implication:** the **available balance** (what the user can spend) = `settled balance − sum of active holds`. You track holds separately from settled ledger entries:
+
+```sql
+CREATE TABLE holds (
+    id            UUID PRIMARY KEY,
+    account_id    UUID NOT NULL REFERENCES accounts(id),
+    amount        BIGINT NOT NULL,            -- minor units
+    status        VARCHAR(20) NOT NULL,       -- 'active', 'settled', 'expired', 'reversed'
+    auth_id       VARCHAR(64) NOT NULL,       -- network authorisation id
+    expires_at    TIMESTAMPTZ NOT NULL,
+    created_at    TIMESTAMPTZ NOT NULL DEFAULT NOW()
+);
+```
+
+**Interview tell:** mentioning "auth places a hold, settlement posts the ledger entry, and they can differ" immediately signals you understand real payments, not just a toy transfer. It also explains *why* the available balance and the statement balance differ in the app.
+
 ---
 
 ## Question 2 — Design a Real-Time Notification System
@@ -310,6 +353,8 @@ Write path (freeze/unfreeze):
 
 What if a user freezes their card but a transaction arrives before Redis is updated?
 
+> ⚠️ **Disclaimer — the timings below are illustrative, not literal.** The exact millisecond values are a teaching device to show *the shape* of the race (a read can land between the source-of-truth write and the cache write), not a claim about real latencies or a strict ordering. Focus on the mitigation, not the numbers.
+
 ```
 Timeline:
   T=0ms   User taps "Freeze"
@@ -372,6 +417,8 @@ CREATE TABLE expense_splits (
 ### Settlement Algorithm
 
 Minimise the number of payments needed to settle all debts:
+
+> ⚠️ **Disclaimer — "minimise" is approximate.** Finding the provably *minimum* number of settlement transactions is NP-hard (it's related to subset-sum). The greedy "largest creditor ↔ largest debtor" approach below is a well-known heuristic that produces a *good*, usually near-minimal result — not a guaranteed optimum. In an interview, say exactly that: "this greedy minimises in practice but isn't provably optimal; the exact version is NP-hard." Naming the limitation is a senior signal.
 
 ```csharp
 // Calculate net balance for each member
@@ -441,6 +488,7 @@ List<Settlement> CalculateSettlements(Dictionary<string, long> balances)
 6. **Think about failure modes** — "What happens when this service goes down?"
 7. **Consider the human side** — "How would on-call engineers debug this?"
 8. **Know your numbers:**
+   > ⚠️ **Disclaimer — these are order-of-magnitude anchors, not benchmarks.** Real latencies vary by hardware, payload, and load. They're here so you can do back-of-envelope math out loud; interviewers want the right *ballpark* (µs vs ms vs 100ms), not exact figures. For the canonical, fuller table see [System Design Building Blocks §9](../interview-prep-generic/06-system-design-building-blocks.md).
    - Redis read: <1ms
    - Postgres read: 5–20ms
    - Kafka publish: 5–10ms

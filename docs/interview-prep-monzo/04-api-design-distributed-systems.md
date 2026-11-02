@@ -113,68 +113,18 @@ Consistent error structure lets clients handle errors programmatically.
 
 > "How do you ensure a payment isn't processed twice if the client retries?"
 
-### The Problem
+Idempotency keys are the answer, and the mechanism is general — see the canonical write-up (problem, Redis-backed store, distributed lock, the implementation, TTL/scope/storage considerations, and the "cache only on success" caveat) in **[generic §Q2 — Idempotency](../interview-prep-generic/04-api-design-distributed-systems.md#question-2--idempotency-in-distributed-systems)**.
+
+### Fintech delta — why this is non-negotiable here
 
 ```
 Client → POST /payments → Server processes → Response lost in transit
-Client → POST /payments → Server processes AGAIN → Double charge!
+Client → POST /payments → Server processes AGAIN → Double charge! 💸
 ```
 
-### Solution: Idempotency Keys
-
-```
-┌────────┐                    ┌─────────────┐         ┌──────────┐
-│ Client │─── POST /pay ─────▶│   API       │────────▶│ Idempotency│
-│        │   Idempotency-Key  │   Gateway   │         │   Store    │
-└────────┘                    └──────┬──────┘         │  (Redis)   │
-                                     │                └──────┬─────┘
-                                     │                       │
-                              ┌──────▼──────┐               │
-                              │ Key exists?  │◀──────────────┘
-                              └──────┬──────┘
-                                     │
-                          ┌──────────┼──────────┐
-                          │ NO                   │ YES
-                          ▼                      ▼
-                   ┌─────────────┐      ┌──────────────┐
-                   │ Process     │      │ Return cached │
-                   │ payment     │      │ response      │
-                   │ Store result│      └──────────────┘
-                   └─────────────┘
-```
-
-### Implementation
-
-```csharp
-public async Task<PaymentResult> ProcessPayment(PaymentRequest request, string idempotencyKey)
-{
-    // Check if already processed
-    var cached = await _redis.GetAsync<PaymentResult>($"idem:{idempotencyKey}");
-    if (cached != null) return cached;
-
-    // Acquire lock to prevent concurrent processing of same key
-    await using var lockHandle = await _redis.AcquireLockAsync(
-        $"idem_lock:{idempotencyKey}", TimeSpan.FromSeconds(30));
-
-    // Double-check after acquiring lock
-    cached = await _redis.GetAsync<PaymentResult>($"idem:{idempotencyKey}");
-    if (cached != null) return cached;
-
-    // Process the payment
-    var result = await _paymentService.Execute(request);
-
-    // Cache the result (TTL: 24 hours)
-    await _redis.SetAsync($"idem:{idempotencyKey}", result, TimeSpan.FromHours(24));
-
-    return result;
-}
-```
-
-### Key Considerations
-- **TTL:** Keys should expire (24–72 hours) — clients shouldn't retry after days
-- **Scope:** Key should be per-user, per-action (not globally unique)
-- **Storage:** Redis for speed; persist to DB for audit trail
-- **Concurrent requests:** Use distributed locking to prevent race conditions
+- **The client supplies the key**, not the server (header `Idempotency-Key`), so a retry of *the same user intent* is deduplicated — a fresh "send £50" is a new key.
+- **Persist the key with the payment, not just in Redis.** Redis gives the fast path; the durable record in the payments DB is the audit trail regulators expect, and the source of truth if the cache is cold.
+- **The hardest version — exactly-once ledger posting under retries** — is covered in [05 — Database & Data Modelling](./05-database-data-modelling.md) (atomic conditional update) and the auth-vs-settlement lifecycle later in this chapter: the idempotency key guards the *request*, but the ledger's atomic guard guards the *money*.
 
 ---
 
@@ -301,28 +251,9 @@ public class PaymentSaga
 
 ### Pattern 3: Outbox Pattern
 
-Ensures database write and event publish are atomic:
+The outbox pattern makes "update the DB" and "publish the event" atomic by writing the event into an `outbox` table inside the *same* transaction, then relaying it with a background worker. The mechanism and diagram are in **[generic §Q4 — Outbox Pattern](../interview-prep-generic/04-api-design-distributed-systems.md#question-4--consistency-patterns)**.
 
-```
-┌─────────────────────────────────────────┐
-│  Single Database Transaction:           │
-│                                         │
-│  1. UPDATE accounts SET balance = ...   │
-│  2. INSERT INTO outbox (event_payload)  │
-│                                         │
-│  COMMIT                                 │
-└─────────────────────────────────────────┘
-         │
-         ▼ (background worker polls outbox)
-┌─────────────────────────────────────────┐
-│  Outbox Publisher:                       │
-│  1. SELECT * FROM outbox WHERE sent=false│
-│  2. Publish to Kafka                    │
-│  3. UPDATE outbox SET sent=true         │
-└─────────────────────────────────────────┘
-```
-
-**Why?** You can't atomically write to a DB and publish to Kafka. The outbox pattern solves this by making the event part of the DB transaction.
+**Fintech delta:** this is how you avoid the classic "debited the account but failed to publish `payment.completed`" split-brain. The ledger write *and* the outbox row commit together; if the relay crashes, the event is still in the outbox and gets published on recovery — at-least-once, so the consumer must be idempotent (same key discipline as Q2).
 
 ---
 
@@ -330,42 +261,12 @@ Ensures database write and event publish are atomic:
 
 > "How do you evolve APIs without breaking existing clients?"
 
-### Strategies
+The strategies (URL vs header vs additive-only), the non-breaking-vs-breaking change rules, and the `Sunset`/`Deprecation` header deprecation flow are general — see **[generic §Q5 — API Versioning](../interview-prep-generic/04-api-design-distributed-systems.md#question-5--api-versioning--backward-compatibility)**.
 
-| Strategy | Pros | Cons |
-|----------|------|------|
-| URL versioning (`/v1/`, `/v2/`) | Explicit, easy routing | URL pollution, hard to deprecate |
-| Header versioning (`Accept: application/vnd.api.v2+json`) | Clean URLs | Hidden, harder to test |
-| Additive changes only | No versioning needed | Can't remove/rename fields |
-
-### Rules for Non-Breaking Changes
-
-```
-✅ Safe (backward compatible):
-  - Add a new optional field to response
-  - Add a new optional query parameter
-  - Add a new endpoint
-  - Add a new enum value (if clients handle unknown values)
-
-❌ Breaking:
-  - Remove or rename a field
-  - Change a field's type
-  - Make an optional field required
-  - Change the meaning of an existing field
-  - Remove an endpoint
-```
-
-### Deprecation Strategy
-
-```http
-GET /v1/transactions/123
-→ 200 OK
-   Sunset: Sat, 01 Jun 2025 00:00:00 GMT
-   Deprecation: true
-   Link: </v2/transactions/123>; rel="successor-version"
-```
-
-Communicate deprecation via headers, documentation, and direct outreach to consumers.
+**Fintech delta:** backward compatibility is heavier here because clients include *other banks, Open Banking TPPs, and long-lived mobile app versions* you can't force-upgrade. Practical consequences:
+- Prefer **additive, never-remove** evolution on payment/transaction payloads — a field you drop may be a field a regulator-mandated integration still reads.
+- Deprecation windows are long and must be communicated formally (Open Banking has versioned API standards with published sunset dates).
+- Money and status enums are especially dangerous to change — adding a new `status` value can break a client that doesn't handle unknowns, so document the "clients must tolerate unknown enum values" contract up front.
 
 ---
 
@@ -373,87 +274,11 @@ Communicate deprecation via headers, documentation, and direct outreach to consu
 
 > "How do you prevent cascading failures when a downstream service is unhealthy?"
 
-### The Problem
-
-```
-Payment Service → Fraud Service (down) → timeout → retry → timeout → retry
-  → Payment Service thread pool exhausted → ALL payments fail
-```
-
-### Circuit Breaker States
-
-```
-         ┌─────────────────────────────────────────┐
-         │                                         │
-         ▼                                         │
-    ┌─────────┐    failures > threshold    ┌──────────┐
-    │ CLOSED  │ ─────────────────────────▶ │   OPEN   │
-    │(normal) │                            │(fail fast)│
-    └─────────┘                            └─────┬────┘
-         ▲                                       │
-         │         timeout expires               │
-         │                                       ▼
-         │                               ┌────────────┐
-         └─────── success ───────────────│ HALF-OPEN  │
-                                         │(test one)  │
-                                         └────────────┘
-```
-
-### Implementation
-
-```csharp
-public class CircuitBreaker
-{
-    private enum State { Closed, Open, HalfOpen }
-
-    private State _state = State.Closed;
-    private int _failureCount = 0;
-    private DateTime _openedAt;
-    private readonly int _threshold = 5;
-    private readonly TimeSpan _timeout = TimeSpan.FromSeconds(30);
-
-    public async Task<T> Execute<T>(Func<Task<T>> action, Func<Task<T>> fallback)
-    {
-        if (_state == State.Open)
-        {
-            if (DateTime.UtcNow - _openedAt > _timeout)
-                _state = State.HalfOpen;
-            else
-                return await fallback();
-        }
-
-        try
-        {
-            var result = await action();
-            OnSuccess();
-            return result;
-        }
-        catch
-        {
-            OnFailure();
-            return await fallback();
-        }
-    }
-
-    private void OnSuccess()
-    {
-        _failureCount = 0;
-        _state = State.Closed;
-    }
-
-    private void OnFailure()
-    {
-        _failureCount++;
-        if (_failureCount >= _threshold)
-        {
-            _state = State.Open;
-            _openedAt = DateTime.UtcNow;
-        }
-    }
-}
-```
+The problem (thread-pool exhaustion from retrying a dead dependency), the CLOSED → OPEN → HALF-OPEN state machine, and the reference `CircuitBreaker` implementation (plus its thread-safety caveat) are general — see **[generic §Q6 — Circuit Breaker](../interview-prep-generic/04-api-design-distributed-systems.md#question-6--circuit-breaker-pattern)**.
 
 ### In Fintech Context
+
+The interesting part is the *fallback policy*, which is domain-specific and risk-laden:
 
 ```
 Fraud service down?
@@ -463,6 +288,8 @@ Fraud service down?
   → Circuit half-opens after 30s, tests one request
   → If healthy, resume normal flow
 ```
+
+> ⚠️ **This fallback is a deliberate risk trade-off, not a default.** "Approve low-value when fraud scoring is unavailable" trades a small, bounded fraud-loss exposure for availability (customers can still spend). It's a *business* decision with a risk/compliance owner — in an interview, present it as "one option, and here's the risk," not as obviously correct. The safer stance for higher-risk flows is fail-closed (decline) + queue for review.
 
 ---
 
