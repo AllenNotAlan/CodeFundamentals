@@ -1,4 +1,4 @@
-# 10 — Advanced Two Pointers
+# 15 — Advanced Two Pointers
 
 The Two-Pointer technique is often the "missing link" between a brute-force $O(n^2)$ solution and an optimal $O(n)$ implementation. While the basic concept—tracking two indices—is simple, its advanced applications involve managing complex state, coordinating three or more pointers, and handling non-linear data traversal.
 

@@ -60,6 +60,8 @@ h1:hover .anchor,h2:hover .anchor,h3:hover .anchor{opacity:.55}
 .task-list{list-style:none;padding-left:.2em}.task-item{display:flex;gap:.5em;align-items:flex-start}.task-item input{margin-top:.5em}
 blockquote{margin:1em 0;padding:.5em 1em;border-left:4px solid var(--accent);background:var(--accent-weak);border-radius:0 8px 8px 0}
 blockquote p{margin:.35em 0}
+blockquote.ddia{border-left-color:#8250df;background:color-mix(in srgb, #8250df 10%, transparent)}
+html[data-theme=dark] blockquote.ddia{background:color-mix(in srgb, #8250df 22%, transparent)}
 code{font-family:"SFMono-Regular",Consolas,Menlo,monospace;font-size:.86em;background:var(--code-bg);padding:.15em .4em;border-radius:5px;border:1px solid var(--border)}
 .math{font-family:"Cambria Math","Latin Modern Math",Georgia,"Times New Roman",serif;font-style:italic;white-space:nowrap;padding:0 .05em}
 .math sup,.math sub{font-style:normal}
@@ -155,7 +157,7 @@ details.solution>div{padding:0 14px 8px}
 
 <div class="shell">
   <aside class="sidebar" id="sidebar">
-    <nav aria-label="Chapters"><ul class="nav"><li class="nav-part"><span class="part-label">Start Here</span><ul><li><a class="nav-link" data-chapter="readme" href="#readme">Project Overview</a></li><li><a class="nav-link" data-chapter="dev" href="#dev">Development Guide</a></li><li><a class="nav-link" data-chapter="learn-readme" href="#learn-readme">Learning Plan</a></li></ul></li><li class="nav-part"><span class="part-label">Fundamentals — Coding Patterns</span><ul><li><a class="nav-link" data-chapter="arrays" href="#arrays">1 · Arrays &amp; Strings</a></li><li><a class="nav-link" data-chapter="hashmaps" href="#hashmaps">2 · Hash Maps &amp; Sets</a></li><li><a class="nav-link" data-chapter="twoptr" href="#twoptr">3 · Two Pointers</a></li><li><a class="nav-link" data-chapter="window" href="#window">4 · Sliding Window</a></li><li><a class="nav-link" data-chapter="stacks" href="#stacks">5 · Stacks &amp; Queues</a></li><li><a class="nav-link" data-chapter="binsearch" href="#binsearch">6 · Sorting &amp; Binary Search</a></li><li><a class="nav-link" data-chapter="lists" href="#lists">7 · Linked Lists</a></li><li><a class="nav-link" data-chapter="trees" href="#trees">8 · Trees &amp; Recursion</a></li><li><a class="nav-link" data-chapter="dp" href="#dp">9 · Dynamic Programming</a></li></ul></li><li class="nav-part"><span class="part-label">Advanced Extras</span><ul><li><a class="nav-link" data-chapter="twoptr-adv" href="#twoptr-adv">10 · Advanced Two Pointers</a></li><li><a class="nav-link" data-chapter="space" href="#space">11 · Space Complexity</a></li></ul></li><li class="nav-part"><span class="part-label">Interview Prep — Generic</span><ul><li><a class="nav-link" data-chapter="g-readme" href="#g-readme">Overview</a></li><li><a class="nav-link" data-chapter="g-sd" href="#g-sd">System Design</a></li><li><a class="nav-link" data-chapter="g-algo" href="#g-algo">Coding &amp; Algorithms</a></li><li><a class="nav-link" data-chapter="g-beh" href="#g-beh">Behavioural</a></li><li><a class="nav-link" data-chapter="g-api" href="#g-api">API &amp; Distributed Systems</a></li><li><a class="nav-link" data-chapter="g-db" href="#g-db">Database &amp; Data Modelling</a></li></ul></li><li class="nav-part"><span class="part-label">Interview Prep — .NET</span><ul><li><a class="nav-link" data-chapter="d-readme" href="#d-readme">Overview</a></li><li><a class="nav-link" data-chapter="d-sd" href="#d-sd">System Design</a></li><li><a class="nav-link" data-chapter="d-algo" href="#d-algo">Coding &amp; Algorithms</a></li><li><a class="nav-link" data-chapter="d-beh" href="#d-beh">Behavioural</a></li><li><a class="nav-link" data-chapter="d-api" href="#d-api">API &amp; Distributed Systems</a></li><li><a class="nav-link" data-chapter="d-db" href="#d-db">Database &amp; Data Modelling</a></li></ul></li><li class="nav-part"><span class="part-label">Interview Prep — Monzo</span><ul><li><a class="nav-link" data-chapter="m-readme" href="#m-readme">Overview</a></li><li><a class="nav-link" data-chapter="m-sd" href="#m-sd">System Design</a></li><li><a class="nav-link" data-chapter="m-algo" href="#m-algo">Coding &amp; Algorithms</a></li><li><a class="nav-link" data-chapter="m-beh" href="#m-beh">Behavioural</a></li><li><a class="nav-link" data-chapter="m-api" href="#m-api">API &amp; Distributed Systems</a></li><li><a class="nav-link" data-chapter="m-db" href="#m-db">Database &amp; Data Modelling</a></li><li><a class="nav-link" data-chapter="m-assess" href="#m-assess">Role Assessment</a></li></ul></li><li class="nav-part"><span class="part-label">Personal Projects</span><ul><li><a class="nav-link" data-chapter="p-readme" href="#p-readme">Overview &amp; Roadmap</a></li><li><a class="nav-link" data-chapter="p-go" href="#p-go">1 · Go Transaction API</a></li><li><a class="nav-link" data-chapter="p-kafka" href="#p-kafka">2 · Event-Driven Kafka</a></li><li><a class="nav-link" data-chapter="p-resil" href="#p-resil">3 · Resilient Payment Service</a></li><li><a class="nav-link" data-chapter="p-practice" href="#p-practice">4 · Coding Practice Plan</a></li></ul></li></ul></nav>
+    <nav aria-label="Chapters"><ul class="nav"><li class="nav-part"><span class="part-label">Start Here</span><ul><li><a class="nav-link" data-chapter="readme" href="#readme">Project Overview</a></li><li><a class="nav-link" data-chapter="dev" href="#dev">Development Guide</a></li><li><a class="nav-link" data-chapter="learn-readme" href="#learn-readme">Learning Plan</a></li></ul></li><li class="nav-part"><span class="part-label">Fundamentals — Coding Patterns</span><ul><li><a class="nav-link" data-chapter="arrays" href="#arrays">1 · Arrays &amp; Strings</a></li><li><a class="nav-link" data-chapter="hashmaps" href="#hashmaps">2 · Hash Maps &amp; Sets</a></li><li><a class="nav-link" data-chapter="twoptr" href="#twoptr">3 · Two Pointers</a></li><li><a class="nav-link" data-chapter="window" href="#window">4 · Sliding Window</a></li><li><a class="nav-link" data-chapter="stacks" href="#stacks">5 · Stacks &amp; Queues</a></li><li><a class="nav-link" data-chapter="binsearch" href="#binsearch">6 · Sorting &amp; Binary Search</a></li><li><a class="nav-link" data-chapter="lists" href="#lists">7 · Linked Lists</a></li><li><a class="nav-link" data-chapter="trees" href="#trees">8 · Trees &amp; Recursion</a></li><li><a class="nav-link" data-chapter="dp" href="#dp">9 · Dynamic Programming</a></li><li><a class="nav-link" data-chapter="graphs" href="#graphs">10 · Graphs</a></li><li><a class="nav-link" data-chapter="heaps" href="#heaps">11 · Heaps &amp; Priority Queues</a></li><li><a class="nav-link" data-chapter="backtracking" href="#backtracking">12 · Backtracking</a></li><li><a class="nav-link" data-chapter="dp-patterns" href="#dp-patterns">13 · DP Patterns</a></li><li><a class="nav-link" data-chapter="pattern-recognition" href="#pattern-recognition">14 · Pattern Recognition</a></li></ul></li><li class="nav-part"><span class="part-label">Advanced Extras</span><ul><li><a class="nav-link" data-chapter="twoptr-adv" href="#twoptr-adv">15 · Advanced Two Pointers</a></li><li><a class="nav-link" data-chapter="space" href="#space">16 · Space Complexity</a></li></ul></li><li class="nav-part"><span class="part-label">Interview Prep — Generic</span><ul><li><a class="nav-link" data-chapter="g-readme" href="#g-readme">Overview</a></li><li><a class="nav-link" data-chapter="g-sd" href="#g-sd">System Design</a></li><li><a class="nav-link" data-chapter="g-algo" href="#g-algo">Coding &amp; Algorithms</a></li><li><a class="nav-link" data-chapter="g-beh" href="#g-beh">Behavioural</a></li><li><a class="nav-link" data-chapter="g-api" href="#g-api">API &amp; Distributed Systems</a></li><li><a class="nav-link" data-chapter="g-db" href="#g-db">Database &amp; Data Modelling</a></li><li><a class="nav-link" data-chapter="g-blocks" href="#g-blocks">System Design Building Blocks</a></li></ul></li><li class="nav-part"><span class="part-label">Interview Prep — .NET</span><ul><li><a class="nav-link" data-chapter="d-readme" href="#d-readme">Overview</a></li><li><a class="nav-link" data-chapter="d-sd" href="#d-sd">System Design</a></li><li><a class="nav-link" data-chapter="d-algo" href="#d-algo">Coding &amp; Algorithms</a></li><li><a class="nav-link" data-chapter="d-beh" href="#d-beh">Behavioural</a></li><li><a class="nav-link" data-chapter="d-api" href="#d-api">API &amp; Distributed Systems</a></li><li><a class="nav-link" data-chapter="d-db" href="#d-db">Database &amp; Data Modelling</a></li></ul></li><li class="nav-part"><span class="part-label">Interview Prep — Monzo</span><ul><li><a class="nav-link" data-chapter="m-readme" href="#m-readme">Overview</a></li><li><a class="nav-link" data-chapter="m-sd" href="#m-sd">System Design</a></li><li><a class="nav-link" data-chapter="m-algo" href="#m-algo">Coding &amp; Algorithms</a></li><li><a class="nav-link" data-chapter="m-beh" href="#m-beh">Behavioural</a></li><li><a class="nav-link" data-chapter="m-api" href="#m-api">API &amp; Distributed Systems</a></li><li><a class="nav-link" data-chapter="m-db" href="#m-db">Database &amp; Data Modelling</a></li><li><a class="nav-link" data-chapter="m-assess" href="#m-assess">Role Assessment</a></li></ul></li><li class="nav-part"><span class="part-label">Personal Projects</span><ul><li><a class="nav-link" data-chapter="p-readme" href="#p-readme">Overview &amp; Roadmap</a></li><li><a class="nav-link" data-chapter="p-go" href="#p-go">1 · Go Transaction API</a></li><li><a class="nav-link" data-chapter="p-kafka" href="#p-kafka">2 · Event-Driven Kafka</a></li><li><a class="nav-link" data-chapter="p-resil" href="#p-resil">3 · Resilient Payment Service</a></li><li><a class="nav-link" data-chapter="p-practice" href="#p-practice">4 · Coding Practice Plan</a></li></ul></li></ul></nav>
   </aside>
   <main class="main" id="main">
     <section class="chapter" id="readme" data-part="Start Here">
@@ -2907,13 +2909,1497 @@ fib[3] = fib[2] + fib[1] = 2
 <ul><li>#509 — Fibonacci Number ⭐</li><li>#70 — Climbing Stairs ⭐</li><li>#198 — House Robber ⭐</li><li>#322 — Coin Change</li><li>#62 — Unique Paths</li><li>#746 — Min Cost Climbing Stairs (very similar to Climbing Stairs)</li></ul>
 </article>
 <section class="refs"><h2>🔗 Further reading</h2><ul><li><a href="https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-spring-2020/" target="_blank" rel="noopener">MIT OCW — Dynamic Programming</a></li></ul></section>
-<nav class="pager"><a class="pg prev" data-goto="trees" href="#trees">← 8 · Trees &amp; Recursion</a><a class="pg next" data-goto="twoptr-adv" href="#twoptr-adv">10 · Advanced Two Pointers →</a></nav>
+<nav class="pager"><a class="pg prev" data-goto="trees" href="#trees">← 8 · Trees &amp; Recursion</a><a class="pg next" data-goto="graphs" href="#graphs">10 · Graphs →</a></nav>
+</section>
+<section class="chapter" id="graphs" data-part="Fundamentals — Coding Patterns">
+<div class="chapter-head"><span class="part-tag">Fundamentals — Coding Patterns</span></div>
+<nav class="chapter-toc"><span class="toc-head">On this page</span><ul><li class="t2"><a href="#graphs--core-concepts">Core Concepts</a></li><li class="t3"><a href="#graphs--vocabulary">Vocabulary</a></li><li class="t3"><a href="#graphs--how-to-represent-a-graph">How to represent a graph</a></li><li class="t2"><a href="#graphs--the-one-rule-that-separates-graphs-from-trees-visited-tracking">The One Rule That Separates Graphs From Trees: **visited tracking**</a></li><li class="t2"><a href="#graphs--patterns-with-code">Patterns with Code</a></li><li class="t3"><a href="#graphs--pattern-1-dfs-depth-first-search-go-deep-then-backtrack">Pattern 1: DFS (Depth-First Search) — go deep, then backtrack</a></li><li class="t3"><a href="#graphs--pattern-2-bfs-breadth-first-search-explore-level-by-level">Pattern 2: BFS (Breadth-First Search) — explore level by level</a></li><li class="t3"><a href="#graphs--pattern-3-topological-sort-ordering-with-dependencies">Pattern 3: Topological Sort — ordering with dependencies</a></li><li class="t3"><a href="#graphs--pattern-4-union-find-disjoint-set-grouping-connected-things-fast">Pattern 4: Union-Find (Disjoint Set) — grouping connected things fast</a></li><li class="t2"><a href="#graphs--practice-problems">Practice Problems</a></li><li class="t3"><a href="#graphs--problem-1-number-of-islands-leetcode-200">Problem 1 — Number of Islands (LeetCode #200)</a></li><li class="t3"><a href="#graphs--problem-2-course-schedule-leetcode-207">Problem 2 — Course Schedule (LeetCode #207)</a></li><li class="t3"><a href="#graphs--problem-3-clone-graph-leetcode-133">Problem 3 — Clone Graph (LeetCode #133)</a></li><li class="t3"><a href="#graphs--problem-4-number-of-provinces-leetcode-547">Problem 4 — Number of Provinces (LeetCode #547)</a></li><li class="t3"><a href="#graphs--problem-5-rotting-oranges-leetcode-994">Problem 5 — Rotting Oranges (LeetCode #994)</a></li><li class="t2"><a href="#graphs--choosing-your-graph-tool">Choosing Your Graph Tool</a></li><li class="t2"><a href="#graphs--common-mistakes">Common Mistakes</a></li><li class="t2"><a href="#graphs--leetcode-problems-to-try-now">LeetCode Problems to Try Now</a></li></ul></nav>
+<article class="doc">
+<h1 id="graphs--10-graphs"><a class="anchor" href="#graphs--10-graphs">#</a>10 — Graphs</h1>
+<p>A graph is just <strong>nodes connected by edges</strong>. That's it. A tree (chapter 08) is a special graph with no cycles and one path between any two nodes — so you already know most of this. Graphs simply drop those restrictions: there can be cycles, multiple paths, and no single &quot;root&quot;.</p>
+<blockquote><p><strong>Builds on:</strong> recursion &amp; DFS from <a href="#trees">Trees &amp; Recursion</a>, and the queue-based BFS from <a href="#stacks">Stacks &amp; Queues</a>. If those are shaky, revisit them first — graph traversal is the same idea generalised.</p></blockquote>
+<hr>
+<h2 id="graphs--core-concepts"><a class="anchor" href="#graphs--core-concepts">#</a>Core Concepts</h2>
+<h3 id="graphs--vocabulary"><a class="anchor" href="#graphs--vocabulary">#</a>Vocabulary</h3>
+<ul><li><strong>Vertex / Node</strong> — a thing (a person, a city, a course).</li><li><strong>Edge</strong> — a connection between two nodes.</li><li><strong>Directed</strong> — edges have a direction (A → B, like &quot;A follows B&quot;). <strong>Undirected</strong> — edges go both ways (A — B, like &quot;A is friends with B&quot;).</li><li><strong>Weighted</strong> — edges carry a cost (distance, price). <strong>Unweighted</strong> — all edges equal.</li><li><strong>Cycle</strong> — a path that returns to where it started. Trees have none; general graphs can.</li></ul>
+<h3 id="graphs--how-to-represent-a-graph"><a class="anchor" href="#graphs--how-to-represent-a-graph">#</a>How to represent a graph</h3>
+<p><strong>1. Adjacency List (use this 95% of the time)</strong> — a map from each node to its neighbours. Space-efficient for sparse graphs.</p>
+<div class="code-wrap" data-lang="text"><button class="copy-btn" type="button">Copy</button><pre><code class="language-plaintext">Graph:  0 → 1        Adjacency list:
+        0 → 2          0: [1, 2]
+        1 → 2          1: [2]
+        2 → 0          2: [0]</code></pre></div>
+<p><strong>2. Adjacency Matrix</strong> — an <code>n × n</code> grid where <code>matrix[i][j] = 1</code> means an edge from <code>i</code> to <code>j</code>. Fast edge lookups, but <code>O(n²)</code> space — only worth it for dense graphs.</p>
+<div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">// Building an adjacency list from an edge list
+var graph = new Dictionary&lt;int, List&lt;int&gt;&gt;();
+void AddEdge(int from, int to, bool undirected = true)
+{
+    if (!graph.ContainsKey(from)) graph[from] = new List&lt;int&gt;();
+    graph[from].Add(to);
+    if (undirected)
+    {
+        if (!graph.ContainsKey(to)) graph[to] = new List&lt;int&gt;();
+        graph[to].Add(from);   // undirected = edge both ways
+    }
+}</code></pre></div>
+<hr>
+<h2 id="graphs--the-one-rule-that-separates-graphs-from-trees-visited-tracking"><a class="anchor" href="#graphs--the-one-rule-that-separates-graphs-from-trees-visited-tracking">#</a>The One Rule That Separates Graphs From Trees: <strong>visited tracking</strong></h2>
+<p>In a tree you never revisit a node because there are no cycles. In a graph you <strong>must</strong> track visited nodes or you will loop forever. Almost every graph bug is a missing or misplaced <code>visited</code> set.</p>
+<div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">var visited = new HashSet&lt;int&gt;();   // the single most important line in graph code</code></pre></div>
+<hr>
+<h2 id="graphs--patterns-with-code"><a class="anchor" href="#graphs--patterns-with-code">#</a>Patterns with Code</h2>
+<h3 id="graphs--pattern-1-dfs-depth-first-search-go-deep-then-backtrack"><a class="anchor" href="#graphs--pattern-1-dfs-depth-first-search-go-deep-then-backtrack">#</a>Pattern 1: DFS (Depth-First Search) — go deep, then backtrack</h3>
+<p>This is literally tree DFS from chapter 08 plus a <code>visited</code> set.</p>
+<div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">void Dfs(int node, Dictionary&lt;int, List&lt;int&gt;&gt; graph, HashSet&lt;int&gt; visited)
+{
+    // 1. If we've already seen this node, stop — this prevents infinite loops on cycles.
+    if (visited.Contains(node)) return;
+
+    // 2. Mark as visited BEFORE exploring neighbours.
+    visited.Add(node);
+    Console.WriteLine(node);   // process the node
+
+    // 3. Recurse into every neighbour.
+    foreach (int neighbour in graph.GetValueOrDefault(node, new List&lt;int&gt;()))
+        Dfs(neighbour, graph, visited);
+}</code></pre></div>
+<div class="code-wrap" data-lang="python"><button class="copy-btn" type="button">Copy</button><pre><code class="language-python">def dfs(node, graph, visited):
+    # 1. Skip nodes we've already explored (handles cycles).
+    if node in visited:
+        return
+    # 2. Mark visited before recursing.
+    visited.add(node)
+    print(node)  # process the node
+    # 3. Explore each neighbour.
+    for neighbour in graph.get(node, []):
+        dfs(neighbour, graph, visited)</code></pre></div>
+<p><strong>Why use it?</strong> Natural for &quot;explore a whole region&quot; problems (islands, connected components) and anything path/backtracking-flavoured. Uses the call stack, so watch recursion depth on huge graphs.</p>
+<h3 id="graphs--pattern-2-bfs-breadth-first-search-explore-level-by-level"><a class="anchor" href="#graphs--pattern-2-bfs-breadth-first-search-explore-level-by-level">#</a>Pattern 2: BFS (Breadth-First Search) — explore level by level</h3>
+<p>This is the queue-based level-order traversal from chapter 08, generalised. <strong>BFS finds the shortest path in an unweighted graph</strong> because it reaches nodes in order of distance.</p>
+<div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">void Bfs(int start, Dictionary&lt;int, List&lt;int&gt;&gt; graph)
+{
+    var visited = new HashSet&lt;int&gt; { start };
+    var queue = new Queue&lt;int&gt;();
+    queue.Enqueue(start);
+
+    while (queue.Count &gt; 0)
+    {
+        int node = queue.Dequeue();   // 1. take the next closest node
+        Console.WriteLine(node);
+
+        // 2. Add every unvisited neighbour to the back of the queue.
+        foreach (int neighbour in graph.GetValueOrDefault(node, new List&lt;int&gt;()))
+        {
+            if (!visited.Contains(neighbour))
+            {
+                visited.Add(neighbour);   // 3. mark when ENQUEUED, not when dequeued
+                queue.Enqueue(neighbour);
+            }
+        }
+    }
+}</code></pre></div>
+<div class="code-wrap" data-lang="python"><button class="copy-btn" type="button">Copy</button><pre><code class="language-python">from collections import deque
+
+def bfs(start, graph):
+    visited = {start}
+    queue = deque([start])
+    while queue:
+        node = queue.popleft()        # 1. next closest node
+        print(node)
+        for neighbour in graph.get(node, []):
+            if neighbour not in visited:
+                visited.add(neighbour)  # 2. mark when enqueued
+                queue.append(neighbour)</code></pre></div>
+<p><strong>Common bug:</strong> marking visited when you <em>dequeue</em> instead of when you <em>enqueue</em> — that lets a node get added to the queue many times. Mark on enqueue.</p>
+<h3 id="graphs--pattern-3-topological-sort-ordering-with-dependencies"><a class="anchor" href="#graphs--pattern-3-topological-sort-ordering-with-dependencies">#</a>Pattern 3: Topological Sort — ordering with dependencies</h3>
+<p>For a <strong>directed acyclic graph (DAG)</strong>: produce an order where every node comes before the nodes that depend on it. Think &quot;course prerequisites&quot; or &quot;build order&quot;. Uses BFS with in-degree counts (Kahn's algorithm).</p>
+<div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">// Returns a valid order, or empty list if a cycle exists (impossible to order).
+List&lt;int&gt; TopoSort(int n, Dictionary&lt;int, List&lt;int&gt;&gt; graph)
+{
+    var inDegree = new int[n];
+    foreach (var edges in graph.Values)
+        foreach (int to in edges) inDegree[to]++;   // 1. count incoming edges
+
+    // 2. Start with every node that has no prerequisites.
+    var queue = new Queue&lt;int&gt;();
+    for (int i = 0; i &lt; n; i++)
+        if (inDegree[i] == 0) queue.Enqueue(i);
+
+    var order = new List&lt;int&gt;();
+    while (queue.Count &gt; 0)
+    {
+        int node = queue.Dequeue();
+        order.Add(node);
+        // 3. &quot;Remove&quot; this node: any neighbour losing its last dependency becomes free.
+        foreach (int next in graph.GetValueOrDefault(node, new List&lt;int&gt;()))
+            if (--inDegree[next] == 0) queue.Enqueue(next);
+    }
+
+    // 4. If we couldn't place every node, there was a cycle.
+    return order.Count == n ? order : new List&lt;int&gt;();
+}</code></pre></div>
+<p><strong>Why use it?</strong> Dependency resolution, task scheduling, detecting cycles in directed graphs (if you can't order all nodes, there's a cycle).</p>
+<h3 id="graphs--pattern-4-union-find-disjoint-set-grouping-connected-things-fast"><a class="anchor" href="#graphs--pattern-4-union-find-disjoint-set-grouping-connected-things-fast">#</a>Pattern 4: Union-Find (Disjoint Set) — grouping connected things fast</h3>
+<p>Tracks which nodes belong to the same group, with near-<code>O(1)</code> merges and lookups. Great for &quot;how many groups?&quot; and cycle detection in undirected graphs.</p>
+<div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">public class UnionFind
+{
+    private readonly int[] parent;
+    public UnionFind(int n)
+    {
+        parent = new int[n];
+        for (int i = 0; i &lt; n; i++) parent[i] = i;   // each node starts in its own group
+    }
+
+    // Find the &quot;representative&quot; of a node's group, compressing the path as we go.
+    public int Find(int x)
+    {
+        if (parent[x] != x) parent[x] = Find(parent[x]);  // path compression
+        return parent[x];
+    }
+
+    // Merge two groups. Returns false if they were already joined (i.e. a cycle).
+    public bool Union(int a, int b)
+    {
+        int rootA = Find(a), rootB = Find(b);
+        if (rootA == rootB) return false;
+        parent[rootA] = rootB;
+        return true;
+    }
+}</code></pre></div>
+<p><strong>Why use it?</strong> When the question is about connectivity/grouping rather than paths — &quot;number of provinces&quot;, &quot;redundant connection&quot;, &quot;accounts merge&quot;.</p>
+<hr>
+<h2 id="graphs--practice-problems"><a class="anchor" href="#graphs--practice-problems">#</a>Practice Problems</h2>
+<hr>
+<h3 id="graphs--problem-1-number-of-islands-leetcode-200"><a class="anchor" href="#graphs--problem-1-number-of-islands-leetcode-200">#</a>Problem 1 — Number of Islands (LeetCode #200)</h3>
+<p><strong>Task:</strong> Given a grid of <code>'1'</code> (land) and <code>'0'</code> (water), count the islands (groups of land connected horizontally/vertically).</p>
+<p><strong>Example:</strong></p>
+<div class="code-wrap" data-lang="text"><button class="copy-btn" type="button">Copy</button><pre><code class="language-plaintext">1 1 0 0
+1 0 0 1
+0 0 1 1</code></pre></div>
+<p>→ <code>3</code></p>
+<p><strong>Think first:</strong> A grid <em>is</em> a graph — each cell is a node, neighbours are up/down/left/right. Each time you find unvisited land, flood-fill the whole island with DFS and count one.</p>
+<p><strong>Solution:</strong></p>
+<div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">int NumIslands(char[][] grid)
+{
+    if (grid.Length == 0) return 0;
+    int rows = grid.Length, cols = grid[0].Length, count = 0;
+
+    void Sink(int r, int c)
+    {
+        // 1. Stop if out of bounds or on water.
+        if (r &lt; 0 || c &lt; 0 || r &gt;= rows || c &gt;= cols || grid[r][c] == '0') return;
+        // 2. Mark this land visited by sinking it (avoids a separate visited set).
+        grid[r][c] = '0';
+        // 3. Flood the four neighbours.
+        Sink(r + 1, c); Sink(r - 1, c); Sink(r, c + 1); Sink(r, c - 1);
+    }
+
+    for (int r = 0; r &lt; rows; r++)
+        for (int c = 0; c &lt; cols; c++)
+            if (grid[r][c] == '1')
+            {
+                count++;      // 4. found a new island
+                Sink(r, c);   //    then erase all of it
+            }
+    return count;
+}</code></pre></div>
+<div class="code-wrap" data-lang="python"><button class="copy-btn" type="button">Copy</button><pre><code class="language-python">def num_islands(grid):
+    if not grid:
+        return 0
+    rows, cols, count = len(grid), len(grid[0]), 0
+
+    def sink(r, c):
+        # 1. Out of bounds or water → stop.
+        if r &lt; 0 or c &lt; 0 or r &gt;= rows or c &gt;= cols or grid[r][c] == '0':
+            return
+        grid[r][c] = '0'                       # 2. mark visited
+        sink(r + 1, c); sink(r - 1, c)         # 3. flood neighbours
+        sink(r, c + 1); sink(r, c - 1)
+
+    for r in range(rows):
+        for c in range(cols):
+            if grid[r][c] == '1':
+                count += 1                      # 4. new island
+                sink(r, c)
+    return count</code></pre></div>
+<p>⏱ Time: O(rows × cols) | Space: O(rows × cols) worst case (recursion depth)</p>
+<hr>
+<h3 id="graphs--problem-2-course-schedule-leetcode-207"><a class="anchor" href="#graphs--problem-2-course-schedule-leetcode-207">#</a>Problem 2 — Course Schedule (LeetCode #207)</h3>
+<p><strong>Task:</strong> Given <code>numCourses</code> and prerequisite pairs <code>[a, b]</code> (&quot;to take <code>a</code> you must first take <code>b</code>&quot;), return whether you can finish all courses.</p>
+<p><strong>Example:</strong> <code>numCourses = 2</code>, <code>[[1, 0]]</code> → <code>true</code>; <code>[[1, 0], [0, 1]]</code> → <code>false</code> (circular).</p>
+<p><strong>Key insight:</strong> This is cycle detection on a directed graph — equivalently, &quot;does a topological order exist?&quot;. If topo sort places every course, there's no cycle.</p>
+<p><strong>Solution:</strong></p>
+<div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">bool CanFinish(int numCourses, int[][] prerequisites)
+{
+    var graph = new Dictionary&lt;int, List&lt;int&gt;&gt;();
+    var inDegree = new int[numCourses];
+
+    // 1. Build graph: edge b → a means &quot;b unlocks a&quot;. Count in-degrees.
+    foreach (var pair in prerequisites)
+    {
+        int course = pair[0], prereq = pair[1];
+        if (!graph.ContainsKey(prereq)) graph[prereq] = new List&lt;int&gt;();
+        graph[prereq].Add(course);
+        inDegree[course]++;
+    }
+
+    // 2. Queue up courses with no prerequisites.
+    var queue = new Queue&lt;int&gt;();
+    for (int i = 0; i &lt; numCourses; i++)
+        if (inDegree[i] == 0) queue.Enqueue(i);
+
+    // 3. Peel off courses in dependency order, counting how many we complete.
+    int completed = 0;
+    while (queue.Count &gt; 0)
+    {
+        int course = queue.Dequeue();
+        completed++;
+        foreach (int next in graph.GetValueOrDefault(course, new List&lt;int&gt;()))
+            if (--inDegree[next] == 0) queue.Enqueue(next);
+    }
+
+    // 4. If we completed all of them, no cycle existed.
+    return completed == numCourses;
+}</code></pre></div>
+<div class="code-wrap" data-lang="python"><button class="copy-btn" type="button">Copy</button><pre><code class="language-python">from collections import deque
+
+def can_finish(num_courses, prerequisites):
+    graph = {i: [] for i in range(num_courses)}
+    in_degree = [0] * num_courses
+
+    # 1. Build graph + in-degrees.
+    for course, prereq in prerequisites:
+        graph[prereq].append(course)
+        in_degree[course] += 1
+
+    # 2. Start from courses with no prerequisites.
+    queue = deque(i for i in range(num_courses) if in_degree[i] == 0)
+
+    # 3. Topologically peel courses off.
+    completed = 0
+    while queue:
+        course = queue.popleft()
+        completed += 1
+        for nxt in graph[course]:
+            in_degree[nxt] -= 1
+            if in_degree[nxt] == 0:
+                queue.append(nxt)
+
+    # 4. All placed → no cycle.
+    return completed == num_courses</code></pre></div>
+<p>⏱ Time: O(V + E) | Space: O(V + E)</p>
+<hr>
+<h3 id="graphs--problem-3-clone-graph-leetcode-133"><a class="anchor" href="#graphs--problem-3-clone-graph-leetcode-133">#</a>Problem 3 — Clone Graph (LeetCode #133)</h3>
+<p><strong>Task:</strong> Deep-copy a connected undirected graph. Each node has a value and a list of neighbours.</p>
+<p><strong>Key insight:</strong> As you traverse, keep a map from <code>original node → its clone</code>. When you meet a node again (cycles!), return the existing clone instead of cloning forever.</p>
+<p><strong>Solution:</strong></p>
+<div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">public class Node
+{
+    public int val;
+    public IList&lt;Node&gt; neighbors = new List&lt;Node&gt;();
+    public Node(int v) { val = v; }
+}
+
+Node CloneGraph(Node node)
+{
+    if (node == null) return null;
+    var clones = new Dictionary&lt;Node, Node&gt;();
+
+    Node Dfs(Node cur)
+    {
+        // 1. Already cloned? Return the existing copy (this breaks cycles).
+        if (clones.TryGetValue(cur, out var existing)) return existing;
+
+        // 2. Create the clone and record it BEFORE recursing into neighbours.
+        var copy = new Node(cur.val);
+        clones[cur] = copy;
+
+        // 3. Clone each neighbour and wire it up.
+        foreach (var nb in cur.neighbors)
+            copy.neighbors.Add(Dfs(nb));
+
+        return copy;
+    }
+
+    return Dfs(node);
+}</code></pre></div>
+<div class="code-wrap" data-lang="python"><button class="copy-btn" type="button">Copy</button><pre><code class="language-python">def clone_graph(node):
+    if not node:
+        return None
+    clones = {}
+
+    def dfs(cur):
+        # 1. Return existing clone if seen (handles cycles).
+        if cur in clones:
+            return clones[cur]
+        # 2. Create and register the clone before recursing.
+        copy = Node(cur.val)
+        clones[cur] = copy
+        # 3. Clone and attach neighbours.
+        for nb in cur.neighbors:
+            copy.neighbors.append(dfs(nb))
+        return copy
+
+    return dfs(node)</code></pre></div>
+<p>⏱ Time: O(V + E) | Space: O(V)</p>
+<hr>
+<h3 id="graphs--problem-4-number-of-provinces-leetcode-547"><a class="anchor" href="#graphs--problem-4-number-of-provinces-leetcode-547">#</a>Problem 4 — Number of Provinces (LeetCode #547)</h3>
+<p><strong>Task:</strong> <code>isConnected[i][j] = 1</code> if city <code>i</code> and <code>j</code> are directly connected. Return the number of provinces (groups of directly or indirectly connected cities).</p>
+<p><strong>Example:</strong> <code>[[1,1,0],[1,1,0],[0,0,1]]</code> → <code>2</code></p>
+<p><strong>Key insight:</strong> Pure connectivity question → Union-Find. Union every connected pair, then count distinct groups.</p>
+<p><strong>Solution:</strong></p>
+<div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">int FindCircleNum(int[][] isConnected)
+{
+    int n = isConnected.Length;
+    var uf = new UnionFind(n);   // from Pattern 4 above
+
+    // 1. Union every directly connected pair (upper triangle is enough).
+    for (int i = 0; i &lt; n; i++)
+        for (int j = i + 1; j &lt; n; j++)
+            if (isConnected[i][j] == 1) uf.Union(i, j);
+
+    // 2. Count distinct roots = number of groups.
+    int provinces = 0;
+    for (int i = 0; i &lt; n; i++)
+        if (uf.Find(i) == i) provinces++;
+    return provinces;
+}</code></pre></div>
+<div class="code-wrap" data-lang="python"><button class="copy-btn" type="button">Copy</button><pre><code class="language-python">def find_circle_num(is_connected):
+    n = len(is_connected)
+    parent = list(range(n))
+
+    def find(x):
+        while parent[x] != x:
+            parent[x] = parent[parent[x]]   # path compression
+            x = parent[x]
+        return x
+
+    def union(a, b):
+        parent[find(a)] = find(b)
+
+    # 1. Union every connected pair.
+    for i in range(n):
+        for j in range(i + 1, n):
+            if is_connected[i][j] == 1:
+                union(i, j)
+
+    # 2. Count distinct roots.
+    return sum(1 for i in range(n) if find(i) == i)</code></pre></div>
+<p>⏱ Time: O(n² · α(n)) | Space: O(n) — α is the near-constant inverse-Ackermann factor</p>
+<hr>
+<h3 id="graphs--problem-5-rotting-oranges-leetcode-994"><a class="anchor" href="#graphs--problem-5-rotting-oranges-leetcode-994">#</a>Problem 5 — Rotting Oranges (LeetCode #994)</h3>
+<p><strong>Task:</strong> In a grid, <code>2</code> = rotten orange, <code>1</code> = fresh, <code>0</code> = empty. Each minute, rotten oranges rot their 4-directional fresh neighbours. Return the minutes until none are fresh, or <code>-1</code> if impossible.</p>
+<p><strong>Key insight:</strong> &quot;Spreads outward one layer per minute&quot; = <strong>multi-source BFS</strong>. Seed the queue with <em>all</em> rotten oranges at once; each BFS level is one minute.</p>
+<p><strong>Solution:</strong></p>
+<div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">int OrangesRotting(int[][] grid)
+{
+    int rows = grid.Length, cols = grid[0].Length, fresh = 0;
+    var queue = new Queue&lt;(int r, int c)&gt;();
+
+    // 1. Seed queue with every rotten orange; count fresh ones.
+    for (int r = 0; r &lt; rows; r++)
+        for (int c = 0; c &lt; cols; c++)
+            if (grid[r][c] == 2) queue.Enqueue((r, c));
+            else if (grid[r][c] == 1) fresh++;
+
+    int minutes = 0;
+    int[][] dirs = { new[]{1,0}, new[]{-1,0}, new[]{0,1}, new[]{0,-1} };
+
+    // 2. BFS one level (minute) at a time, but only count minutes while work happens.
+    while (queue.Count &gt; 0 &amp;&amp; fresh &gt; 0)
+    {
+        minutes++;
+        int size = queue.Count;
+        for (int i = 0; i &lt; size; i++)
+        {
+            var (r, c) = queue.Dequeue();
+            foreach (var d in dirs)
+            {
+                int nr = r + d[0], nc = c + d[1];
+                if (nr &gt;= 0 &amp;&amp; nc &gt;= 0 &amp;&amp; nr &lt; rows &amp;&amp; nc &lt; cols &amp;&amp; grid[nr][nc] == 1)
+                {
+                    grid[nr][nc] = 2;   // 3. rot it, mark visited
+                    fresh--;
+                    queue.Enqueue((nr, nc));
+                }
+            }
+        }
+    }
+
+    // 4. If any fresh remain unreachable, it's impossible.
+    return fresh == 0 ? minutes : -1;
+}</code></pre></div>
+<div class="code-wrap" data-lang="python"><button class="copy-btn" type="button">Copy</button><pre><code class="language-python">from collections import deque
+
+def oranges_rotting(grid):
+    rows, cols, fresh = len(grid), len(grid[0]), 0
+    queue = deque()
+
+    # 1. Seed all rotten; count fresh.
+    for r in range(rows):
+        for c in range(cols):
+            if grid[r][c] == 2:
+                queue.append((r, c))
+            elif grid[r][c] == 1:
+                fresh += 1
+
+    minutes = 0
+    dirs = [(1, 0), (-1, 0), (0, 1), (0, -1)]
+
+    # 2. Level-by-level BFS = minute-by-minute spread.
+    while queue and fresh &gt; 0:
+        minutes += 1
+        for _ in range(len(queue)):
+            r, c = queue.popleft()
+            for dr, dc in dirs:
+                nr, nc = r + dr, c + dc
+                if 0 &lt;= nr &lt; rows and 0 &lt;= nc &lt; cols and grid[nr][nc] == 1:
+                    grid[nr][nc] = 2        # 3. rot + mark
+                    fresh -= 1
+                    queue.append((nr, nc))
+
+    # 4. Unreachable fresh oranges → impossible.
+    return minutes if fresh == 0 else -1</code></pre></div>
+<p>⏱ Time: O(rows × cols) | Space: O(rows × cols)</p>
+<hr>
+<h2 id="graphs--choosing-your-graph-tool"><a class="anchor" href="#graphs--choosing-your-graph-tool">#</a>Choosing Your Graph Tool</h2>
+<div class="table-wrap"><table><thead><tr><th>The question asks about…</th><th>Reach for</th><th>Why</th></tr></thead><tbody><tr><td>Shortest path (unweighted)</td><td><strong>BFS</strong></td><td>Reaches nodes in distance order</td></tr><tr><td>Explore/flood a whole region</td><td><strong>DFS</strong></td><td>Simple recursion; natural for &quot;fill this area&quot;</td></tr><tr><td>Ordering with dependencies</td><td><strong>Topological sort</strong></td><td>Produces a valid prerequisite order</td></tr><tr><td>&quot;How many groups?&quot; / connectivity</td><td><strong>Union-Find</strong></td><td>Near-O(1) merge &amp; group count</td></tr><tr><td>Shortest path (weighted)</td><td>Dijkstra (beyond this intro)</td><td>BFS doesn't account for edge costs</td></tr></tbody></table></div>
+<hr>
+<h2 id="graphs--common-mistakes"><a class="anchor" href="#graphs--common-mistakes">#</a>Common Mistakes</h2>
+<ul><li><strong>No <code>visited</code> set</strong> — the #1 graph bug. Without it, any cycle loops forever.</li><li><strong>Marking visited too late in BFS</strong> — mark on <em>enqueue</em>, not dequeue, or nodes get queued multiple times.</li><li><strong>Forgetting grids are graphs</strong> — many &quot;grid&quot; problems are just BFS/DFS with 4-directional neighbours.</li><li><strong>Wrong edge direction</strong> — in directed graphs, double-check which way the edge points (prerequisite vs unlocks).</li><li><strong>Blowing the stack</strong> — deep DFS recursion can overflow on huge graphs; switch to an explicit stack or BFS.</li></ul>
+<hr>
+<h2 id="graphs--leetcode-problems-to-try-now"><a class="anchor" href="#graphs--leetcode-problems-to-try-now">#</a>LeetCode Problems to Try Now</h2>
+<ul><li>#200 — Number of Islands ⭐ (DFS/BFS flood fill)</li><li>#994 — Rotting Oranges ⭐ (multi-source BFS)</li><li>#207 — Course Schedule ⭐⭐ (topological sort / cycle detection)</li><li>#133 — Clone Graph ⭐⭐ (DFS + visited map)</li><li>#547 — Number of Provinces (Union-Find)</li><li>#417 — Pacific Atlantic Water Flow (DFS from borders)</li><li>#684 — Redundant Connection (Union-Find cycle detection)</li></ul>
+</article>
+<section class="refs"><h2>🔗 Further reading</h2><ul><li><a href="https://neetcode.io/roadmap" target="_blank" rel="noopener">NeetCode — Graphs roadmap</a></li><li><a href="https://visualgo.net/en/dfsbfs" target="_blank" rel="noopener">Visualgo — Graph traversal (BFS/DFS)</a></li><li><a href="https://visualgo.net/en/ufds" target="_blank" rel="noopener">Visualgo — Union-Find (Disjoint Sets)</a></li></ul></section>
+<nav class="pager"><a class="pg prev" data-goto="dp" href="#dp">← 9 · Dynamic Programming</a><a class="pg next" data-goto="heaps" href="#heaps">11 · Heaps &amp; Priority Queues →</a></nav>
+</section>
+<section class="chapter" id="heaps" data-part="Fundamentals — Coding Patterns">
+<div class="chapter-head"><span class="part-tag">Fundamentals — Coding Patterns</span></div>
+<nav class="chapter-toc"><span class="toc-head">On this page</span><ul><li class="t2"><a href="#heaps--core-concepts">Core Concepts</a></li><li class="t3"><a href="#heaps--what-a-heap-is">What a heap is</a></li><li class="t3"><a href="#heaps--the-three-operations-that-matter">The three operations that matter</a></li><li class="t3"><a href="#heaps--in-your-language">In your language</a></li><li class="t2"><a href="#heaps--the-signal-when-to-reach-for-a-heap">The Signal: when to reach for a heap</a></li><li class="t2"><a href="#heaps--patterns-with-code">Patterns with Code</a></li><li class="t3"><a href="#heaps--pattern-1-top-k-with-a-bounded-heap">Pattern 1: Top-K with a bounded heap</a></li><li class="t3"><a href="#heaps--pattern-2-merging-k-sorted-sequences">Pattern 2: Merging K sorted sequences</a></li><li class="t3"><a href="#heaps--pattern-3-two-heaps-for-a-running-median">Pattern 3: Two heaps for a running median</a></li><li class="t2"><a href="#heaps--practice-problems">Practice Problems</a></li><li class="t3"><a href="#heaps--problem-1-kth-largest-element-in-an-array-leetcode-215">Problem 1 — Kth Largest Element in an Array (LeetCode #215)</a></li><li class="t3"><a href="#heaps--problem-2-top-k-frequent-elements-leetcode-347">Problem 2 — Top K Frequent Elements (LeetCode #347)</a></li><li class="t3"><a href="#heaps--problem-3-k-closest-points-to-origin-leetcode-973">Problem 3 — K Closest Points to Origin (LeetCode #973)</a></li><li class="t3"><a href="#heaps--problem-4-merge-k-sorted-lists-leetcode-23">Problem 4 — Merge K Sorted Lists (LeetCode #23)</a></li><li class="t2"><a href="#heaps--heap-vs-sorting-when-each-wins">Heap vs Sorting — when each wins</a></li><li class="t2"><a href="#heaps--common-mistakes">Common Mistakes</a></li><li class="t2"><a href="#heaps--leetcode-problems-to-try-now">LeetCode Problems to Try Now</a></li></ul></nav>
+<article class="doc">
+<h1 id="heaps--11-heaps-priority-queues"><a class="anchor" href="#heaps--11-heaps-priority-queues">#</a>11 — Heaps &amp; Priority Queues</h1>
+<p>A heap answers one question extremely fast: <strong>&quot;what's the smallest (or largest) thing right now?&quot;</strong> If sorting (chapter 06) reorganises <em>everything</em> so you can find extremes, a heap keeps <em>just enough</em> order to hand you the extreme in <code>O(log n)</code> — without paying to fully sort.</p>
+<blockquote><p><strong>Builds on:</strong> the cost of sorting from <a href="#binsearch">Sorting &amp; Binary Search</a>. The key realisation: if you only ever need the top/bottom element repeatedly, sorting the whole collection is wasteful — a heap is the right tool.</p></blockquote>
+<hr>
+<h2 id="heaps--core-concepts"><a class="anchor" href="#heaps--core-concepts">#</a>Core Concepts</h2>
+<h3 id="heaps--what-a-heap-is"><a class="anchor" href="#heaps--what-a-heap-is">#</a>What a heap is</h3>
+<p>A <strong>binary heap</strong> is a tree kept in a simple invariant:</p>
+<ul><li><strong>Min-heap:</strong> every parent ≤ its children → the smallest element is always at the root.</li><li><strong>Max-heap:</strong> every parent ≥ its children → the largest element is always at the root.</li></ul>
+<p>You never fully sort the data. You just maintain &quot;the root is the extreme&quot;, which is cheap to preserve on insert/remove.</p>
+<div class="code-wrap" data-lang="text"><button class="copy-btn" type="button">Copy</button><pre><code class="language-plaintext">Min-heap (root = smallest):
+
+        1
+       / \
+      3    2
+     / \
+    7   5</code></pre></div>
+<h3 id="heaps--the-three-operations-that-matter"><a class="anchor" href="#heaps--the-three-operations-that-matter">#</a>The three operations that matter</h3>
+<div class="table-wrap"><table><thead><tr><th>Operation</th><th>Cost</th><th>What it does</th></tr></thead><tbody><tr><td>Peek</td><td>O(1)</td><td>Look at the min/max (the root)</td></tr><tr><td>Push (insert)</td><td>O(log n)</td><td>Add an element, bubble it to its place</td></tr><tr><td>Pop (extract)</td><td>O(log n)</td><td>Remove the min/max, re-settle the heap</td></tr></tbody></table></div>
+<h3 id="heaps--in-your-language"><a class="anchor" href="#heaps--in-your-language">#</a>In your language</h3>
+<ul><li><strong>C#:</strong> <code>PriorityQueue&lt;TElement, TPriority&gt;</code> — lower priority value dequeues first (a min-heap by default). For a max-heap, negate the priority or use a comparer.</li><li><strong>Python:</strong> <code>heapq</code> on a plain list — it's a <strong>min-heap</strong>. For a max-heap, push negated values.</li></ul>
+<div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">// C# min-heap of ints
+var minHeap = new PriorityQueue&lt;int, int&gt;();
+minHeap.Enqueue(5, 5);
+minHeap.Enqueue(1, 1);
+minHeap.Enqueue(3, 3);
+int smallest = minHeap.Dequeue();   // 1
+
+// Max-heap: negate the priority
+var maxHeap = new PriorityQueue&lt;int, int&gt;();
+maxHeap.Enqueue(5, -5);
+maxHeap.Enqueue(1, -1);
+int largest = maxHeap.Dequeue();    // 5</code></pre></div>
+<div class="code-wrap" data-lang="python"><button class="copy-btn" type="button">Copy</button><pre><code class="language-python">import heapq
+
+# Python min-heap
+min_heap = []
+heapq.heappush(min_heap, 5)
+heapq.heappush(min_heap, 1)
+heapq.heappush(min_heap, 3)
+smallest = heapq.heappop(min_heap)   # 1
+
+# Max-heap: push negatives, negate on the way out
+max_heap = []
+heapq.heappush(max_heap, -5)
+heapq.heappush(max_heap, -1)
+largest = -heapq.heappop(max_heap)   # 5</code></pre></div>
+<hr>
+<h2 id="heaps--the-signal-when-to-reach-for-a-heap"><a class="anchor" href="#heaps--the-signal-when-to-reach-for-a-heap">#</a>The Signal: when to reach for a heap</h2>
+<p>Ask: <em>&quot;Do I repeatedly need the smallest/largest element from a changing collection?&quot;</em> If yes → heap.</p>
+<p>Signal words: <strong>&quot;top K&quot;</strong>, <strong>&quot;K largest/smallest&quot;</strong>, <strong>&quot;K closest&quot;</strong>, <strong>&quot;median&quot;</strong>, <strong>&quot;merge K sorted …&quot;</strong>, <strong>&quot;most frequent&quot;</strong>, <strong>&quot;schedule by priority&quot;</strong>.</p>
+<p>The classic trap it avoids: re-sorting after every change is <code>O(n log n)</code> <em>each time</em>; a heap makes each update <code>O(log n)</code>.</p>
+<hr>
+<h2 id="heaps--patterns-with-code"><a class="anchor" href="#heaps--patterns-with-code">#</a>Patterns with Code</h2>
+<h3 id="heaps--pattern-1-top-k-with-a-bounded-heap"><a class="anchor" href="#heaps--pattern-1-top-k-with-a-bounded-heap">#</a>Pattern 1: Top-K with a bounded heap</h3>
+<p>To find the <strong>K largest</strong> elements, keep a <strong>min-heap of size K</strong>. The root is the smallest of your current top-K; if a new element beats it, evict the root. This is <code>O(n log k)</code> — much better than sorting everything when <code>k ≪ n</code>.</p>
+<div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">int[] TopKLargest(int[] nums, int k)
+{
+    // 1. Min-heap holds the k largest seen so far; its root is the weakest survivor.
+    var heap = new PriorityQueue&lt;int, int&gt;();
+    foreach (int n in nums)
+    {
+        heap.Enqueue(n, n);
+        // 2. Keep only k elements — drop the smallest when we exceed k.
+        if (heap.Count &gt; k) heap.Dequeue();
+    }
+    // 3. Whatever remains is the top-k.
+    return heap.UnorderedItems.Select(x =&gt; x.Element).ToArray();
+}</code></pre></div>
+<div class="code-wrap" data-lang="python"><button class="copy-btn" type="button">Copy</button><pre><code class="language-python">import heapq
+
+def top_k_largest(nums, k):
+    # nlargest handles the bounded-heap logic for you.
+    return heapq.nlargest(k, nums)</code></pre></div>
+<p><strong>Why a MIN-heap for the LARGEST?</strong> Because you want to cheaply discard the <em>weakest</em> of your current winners. The smallest of the top-K sits at a min-heap's root, ready to evict.</p>
+<h3 id="heaps--pattern-2-merging-k-sorted-sequences"><a class="anchor" href="#heaps--pattern-2-merging-k-sorted-sequences">#</a>Pattern 2: Merging K sorted sequences</h3>
+<p>Put the head of each sequence in a heap; repeatedly pop the global minimum and push the next element from that sequence. Each pop gives the next element in overall sorted order.</p>
+<div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">// Merge k sorted arrays into one sorted list.
+List&lt;int&gt; MergeK(List&lt;int[]&gt; lists)
+{
+    // Heap entry: (value, whichList, indexInThatList)
+    var heap = new PriorityQueue&lt;(int val, int list, int idx), int&gt;();
+    for (int i = 0; i &lt; lists.Count; i++)
+        if (lists[i].Length &gt; 0)
+            heap.Enqueue((lists[i][0], i, 0), lists[i][0]);   // 1. seed with each head
+
+    var result = new List&lt;int&gt;();
+    while (heap.Count &gt; 0)
+    {
+        var (val, list, idx) = heap.Dequeue();   // 2. smallest across all heads
+        result.Add(val);
+        // 3. Advance that list; push its next element if any remain.
+        if (idx + 1 &lt; lists[list].Length)
+        {
+            int next = lists[list][idx + 1];
+            heap.Enqueue((next, list, idx + 1), next);
+        }
+    }
+    return result;
+}</code></pre></div>
+<p><strong>Why use it?</strong> The heap only ever holds <code>k</code> items (one per sequence), so merging <code>n</code> total elements costs <code>O(n log k)</code>.</p>
+<h3 id="heaps--pattern-3-two-heaps-for-a-running-median"><a class="anchor" href="#heaps--pattern-3-two-heaps-for-a-running-median">#</a>Pattern 3: Two heaps for a running median</h3>
+<p>Keep a <strong>max-heap of the lower half</strong> and a <strong>min-heap of the upper half</strong>, balanced in size. The median is then at the top(s) of the heaps — <code>O(log n)</code> per insert, <code>O(1)</code> to read the median.</p>
+<div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">public class MedianFinder
+{
+    private readonly PriorityQueue&lt;int, int&gt; low = new();   // max-heap (negated)
+    private readonly PriorityQueue&lt;int, int&gt; high = new();  // min-heap
+
+    public void AddNum(int num)
+    {
+        // 1. Add to the lower half (max-heap via negated priority).
+        low.Enqueue(num, -num);
+        // 2. Balance: move the largest of the low half into the high half.
+        var top = low.Dequeue();
+        high.Enqueue(top, top);
+        // 3. Keep low at least as big as high.
+        if (high.Count &gt; low.Count)
+        {
+            var t = high.Dequeue();
+            low.Enqueue(t, -t);
+        }
+    }
+
+    public double FindMedian()
+    {
+        // Odd count → low has the extra element. Even → average the two tops.
+        if (low.Count &gt; high.Count) return low.Peek();
+        return (low.Peek() + high.Peek()) / 2.0;
+    }
+}</code></pre></div>
+<div class="code-wrap" data-lang="python"><button class="copy-btn" type="button">Copy</button><pre><code class="language-python">import heapq
+
+class MedianFinder:
+    def __init__(self):
+        self.low = []    # max-heap (store negatives)
+        self.high = []   # min-heap
+
+    def add_num(self, num):
+        heapq.heappush(self.low, -num)                 # 1. into lower half
+        heapq.heappush(self.high, -heapq.heappop(self.low))  # 2. shift largest up
+        if len(self.high) &gt; len(self.low):             # 3. rebalance
+            heapq.heappush(self.low, -heapq.heappop(self.high))
+
+    def find_median(self):
+        if len(self.low) &gt; len(self.high):
+            return -self.low[0]
+        return (-self.low[0] + self.high[0]) / 2</code></pre></div>
+<p><strong>Why use it?</strong> Splitting the data at the median lets you read the middle instantly while keeping inserts cheap.</p>
+<hr>
+<h2 id="heaps--practice-problems"><a class="anchor" href="#heaps--practice-problems">#</a>Practice Problems</h2>
+<hr>
+<h3 id="heaps--problem-1-kth-largest-element-in-an-array-leetcode-215"><a class="anchor" href="#heaps--problem-1-kth-largest-element-in-an-array-leetcode-215">#</a>Problem 1 — Kth Largest Element in an Array (LeetCode #215)</h3>
+<p><strong>Task:</strong> Return the kth largest element (kth in sorted order, not kth distinct).</p>
+<p><strong>Example:</strong> <code>[3, 2, 1, 5, 6, 4]</code>, <code>k = 2</code> → <code>5</code></p>
+<p><strong>Think first:</strong> You don't need the whole array sorted — just the kth largest. A size-k min-heap keeps exactly the top-k; its root <em>is</em> the kth largest.</p>
+<p><strong>Solution:</strong></p>
+<div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">int FindKthLargest(int[] nums, int k)
+{
+    var heap = new PriorityQueue&lt;int, int&gt;();   // min-heap, capped at size k
+    foreach (int n in nums)
+    {
+        heap.Enqueue(n, n);
+        if (heap.Count &gt; k) heap.Dequeue();     // evict the smallest
+    }
+    return heap.Peek();   // root = kth largest
+}</code></pre></div>
+<div class="code-wrap" data-lang="python"><button class="copy-btn" type="button">Copy</button><pre><code class="language-python">import heapq
+
+def find_kth_largest(nums, k):
+    heap = []
+    for n in nums:
+        heapq.heappush(heap, n)
+        if len(heap) &gt; k:
+            heapq.heappop(heap)   # keep only the k largest
+    return heap[0]                # root = kth largest</code></pre></div>
+<p>⏱ Time: O(n log k) | Space: O(k)</p>
+<hr>
+<h3 id="heaps--problem-2-top-k-frequent-elements-leetcode-347"><a class="anchor" href="#heaps--problem-2-top-k-frequent-elements-leetcode-347">#</a>Problem 2 — Top K Frequent Elements (LeetCode #347)</h3>
+<p><strong>Task:</strong> Return the k most frequent elements.</p>
+<p><strong>Example:</strong> <code>[1,1,1,2,2,3]</code>, <code>k = 2</code> → <code>[1, 2]</code></p>
+<p><strong>Key insight:</strong> Count frequencies with a hash map (chapter 02), then use a size-k min-heap keyed on frequency to keep the k most frequent.</p>
+<p><strong>Solution:</strong></p>
+<div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">int[] TopKFrequent(int[] nums, int k)
+{
+    // 1. Frequency count (hash map pattern from chapter 02).
+    var freq = new Dictionary&lt;int, int&gt;();
+    foreach (int n in nums) freq[n] = freq.GetValueOrDefault(n) + 1;
+
+    // 2. Min-heap keyed by frequency, capped at k.
+    var heap = new PriorityQueue&lt;int, int&gt;();
+    foreach (var (num, count) in freq)
+    {
+        heap.Enqueue(num, count);
+        if (heap.Count &gt; k) heap.Dequeue();   // drop the least frequent survivor
+    }
+
+    // 3. The heap now holds the k most frequent.
+    return heap.UnorderedItems.Select(x =&gt; x.Element).ToArray();
+}</code></pre></div>
+<div class="code-wrap" data-lang="python"><button class="copy-btn" type="button">Copy</button><pre><code class="language-python">import heapq
+from collections import Counter
+
+def top_k_frequent(nums, k):
+    # 1. Count frequencies, 2+3. nlargest by frequency.
+    freq = Counter(nums)
+    return [num for num, _ in freq.most_common(k)]</code></pre></div>
+<p>⏱ Time: O(n log k) | Space: O(n)</p>
+<hr>
+<h3 id="heaps--problem-3-k-closest-points-to-origin-leetcode-973"><a class="anchor" href="#heaps--problem-3-k-closest-points-to-origin-leetcode-973">#</a>Problem 3 — K Closest Points to Origin (LeetCode #973)</h3>
+<p><strong>Task:</strong> Return the k points closest to <code>(0, 0)</code>.</p>
+<p><strong>Example:</strong> <code>[[1,3],[-2,2]]</code>, <code>k = 1</code> → <code>[[-2,2]]</code></p>
+<p><strong>Key insight:</strong> &quot;K closest&quot; → size-k heap keyed on distance. Keep a <strong>max-heap of size k</strong> so you can evict the <em>farthest</em> survivor when a closer point arrives. (We can compare squared distance — no need for <code>sqrt</code>.)</p>
+<p><strong>Solution:</strong></p>
+<div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">int[][] KClosest(int[][] points, int k)
+{
+    // Max-heap on squared distance: root is the farthest of our current k.
+    var heap = new PriorityQueue&lt;int[], int&gt;();
+    foreach (var p in points)
+    {
+        int dist = p[0] * p[0] + p[1] * p[1];
+        heap.Enqueue(p, -dist);              // negate → max-heap
+        if (heap.Count &gt; k) heap.Dequeue();  // evict the farthest
+    }
+    return heap.UnorderedItems.Select(x =&gt; x.Element).ToArray();
+}</code></pre></div>
+<div class="code-wrap" data-lang="python"><button class="copy-btn" type="button">Copy</button><pre><code class="language-python">import heapq
+
+def k_closest(points, k):
+    # nsmallest by squared distance returns the k closest.
+    return heapq.nsmallest(k, points, key=lambda p: p[0] ** 2 + p[1] ** 2)</code></pre></div>
+<p>⏱ Time: O(n log k) | Space: O(k)</p>
+<hr>
+<h3 id="heaps--problem-4-merge-k-sorted-lists-leetcode-23"><a class="anchor" href="#heaps--problem-4-merge-k-sorted-lists-leetcode-23">#</a>Problem 4 — Merge K Sorted Lists (LeetCode #23)</h3>
+<p><strong>Task:</strong> Merge <code>k</code> sorted linked lists into one sorted list.</p>
+<p><strong>Key insight:</strong> This is Pattern 2. Keep the current head of each list in a min-heap; repeatedly pop the smallest and advance that list. Ties in linked lists need a tiebreaker since nodes aren't comparable — use an index.</p>
+<p><strong>Solution:</strong></p>
+<div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">// ListNode from chapter 07: { int val; ListNode next; }
+ListNode MergeKLists(ListNode[] lists)
+{
+    // Priority = node value; tiebreaker index keeps it stable &amp; comparable.
+    var heap = new PriorityQueue&lt;ListNode, (int val, int idx)&gt;();
+    for (int i = 0; i &lt; lists.Length; i++)
+        if (lists[i] != null) heap.Enqueue(lists[i], (lists[i].val, i));   // 1. seed heads
+
+    var dummy = new ListNode(0);
+    var tail = dummy;
+    int counter = lists.Length;
+
+    while (heap.Count &gt; 0)
+    {
+        var node = heap.Dequeue();   // 2. smallest current head
+        tail.next = node;
+        tail = tail.next;
+        // 3. Push the next node from that list.
+        if (node.next != null) heap.Enqueue(node.next, (node.next.val, counter++));
+    }
+    return dummy.next;
+}</code></pre></div>
+<div class="code-wrap" data-lang="python"><button class="copy-btn" type="button">Copy</button><pre><code class="language-python">import heapq
+
+def merge_k_lists(lists):
+    heap = []
+    # 1. Seed heap with (value, index, node) — index breaks ties.
+    for i, node in enumerate(lists):
+        if node:
+            heapq.heappush(heap, (node.val, i, node))
+
+    dummy = tail = ListNode(0)
+    counter = len(lists)
+    while heap:
+        val, i, node = heapq.heappop(heap)   # 2. smallest head
+        tail.next = node
+        tail = tail.next
+        if node.next:                         # 3. advance that list
+            heapq.heappush(heap, (node.next.val, counter, node.next))
+            counter += 1
+    return dummy.next</code></pre></div>
+<p>⏱ Time: O(n log k) | Space: O(k)</p>
+<hr>
+<h2 id="heaps--heap-vs-sorting-when-each-wins"><a class="anchor" href="#heaps--heap-vs-sorting-when-each-wins">#</a>Heap vs Sorting — when each wins</h2>
+<div class="table-wrap"><table><thead><tr><th>Situation</th><th>Use</th><th>Why</th></tr></thead><tbody><tr><td>Need the full order once</td><td><strong>Sort</strong> (chapter 06)</td><td>One <code>O(n log n)</code> pass, then done</td></tr><tr><td>Need top/bottom K from n</td><td><strong>Heap, size K</strong></td><td><code>O(n log k)</code> — cheaper when <code>k ≪ n</code></td></tr><tr><td>Stream of data, extreme at any time</td><td><strong>Heap</strong></td><td><code>O(log n)</code> per update; sorting can't keep up</td></tr><tr><td>Repeated &quot;next smallest&quot; across sources</td><td><strong>Heap</strong></td><td>Merge-K pattern; heap holds only the heads</td></tr></tbody></table></div>
+<hr>
+<h2 id="heaps--common-mistakes"><a class="anchor" href="#heaps--common-mistakes">#</a>Common Mistakes</h2>
+<ul><li><strong>Wrong heap direction</strong> — for the <em>K largest</em> use a <em>min</em>-heap (so you evict the weakest); for <em>K smallest</em> use a <em>max</em>-heap. This feels backwards at first.</li><li><strong>Forgetting Python <code>heapq</code> is min-only</strong> — negate values for max-heap behaviour, and remember to negate back.</li><li><strong>Non-comparable elements</strong> — in C#/Python, when priorities tie on objects (e.g. linked-list nodes), add an index tiebreaker or the comparison throws.</li><li><strong>Using a heap when one sort suffices</strong> — if you need everything in order exactly once, just sort.</li></ul>
+<hr>
+<h2 id="heaps--leetcode-problems-to-try-now"><a class="anchor" href="#heaps--leetcode-problems-to-try-now">#</a>LeetCode Problems to Try Now</h2>
+<ul><li>#215 — Kth Largest Element ⭐ (bounded min-heap)</li><li>#347 — Top K Frequent Elements ⭐ (hash map + heap)</li><li>#973 — K Closest Points to Origin ⭐ (max-heap of size k)</li><li>#23 — Merge K Sorted Lists ⭐⭐ (merge-K pattern)</li><li>#295 — Find Median from Data Stream ⭐⭐ (two heaps)</li><li>#621 — Task Scheduler (greedy + max-heap)</li></ul>
+</article>
+<section class="refs"><h2>🔗 Further reading</h2><ul><li><a href="https://learn.microsoft.com/dotnet/api/system.collections.generic.priorityqueue-2" target="_blank" rel="noopener">MS Docs — PriorityQueue&lt;TElement,TPriority&gt;</a></li><li><a href="https://docs.python.org/3/library/heapq.html" target="_blank" rel="noopener">Python docs — heapq</a></li><li><a href="https://visualgo.net/en/heap" target="_blank" rel="noopener">Visualgo — Binary Heap</a></li></ul></section>
+<nav class="pager"><a class="pg prev" data-goto="graphs" href="#graphs">← 10 · Graphs</a><a class="pg next" data-goto="backtracking" href="#backtracking">12 · Backtracking →</a></nav>
+</section>
+<section class="chapter" id="backtracking" data-part="Fundamentals — Coding Patterns">
+<div class="chapter-head"><span class="part-tag">Fundamentals — Coding Patterns</span></div>
+<nav class="chapter-toc"><span class="toc-head">On this page</span><ul><li class="t2"><a href="#backtracking--core-concepts">Core Concepts</a></li><li class="t3"><a href="#backtracking--the-shape-of-every-backtracking-solution">The shape of every backtracking solution</a></li><li class="t3"><a href="#backtracking--the-universal-template">The universal template</a></li><li class="t3"><a href="#backtracking--when-to-reach-for-it">When to reach for it</a></li><li class="t3"><a href="#backtracking--backtracking-vs-brute-force">Backtracking vs brute force</a></li><li class="t2"><a href="#backtracking--patterns-with-code">Patterns with Code</a></li><li class="t3"><a href="#backtracking--pattern-1-subsets-include-or-exclude-each-element">Pattern 1: Subsets — include or exclude each element</a></li><li class="t3"><a href="#backtracking--pattern-2-permutations-order-matters-track-whats-used">Pattern 2: Permutations — order matters, track what's used</a></li><li class="t3"><a href="#backtracking--pattern-3-pruning-abandon-dead-branches-early">Pattern 3: Pruning — abandon dead branches early</a></li><li class="t2"><a href="#backtracking--practice-problems">Practice Problems</a></li><li class="t3"><a href="#backtracking--problem-1-subsets-leetcode-78">Problem 1 — Subsets (LeetCode #78)</a></li><li class="t3"><a href="#backtracking--problem-2-permutations-leetcode-46">Problem 2 — Permutations (LeetCode #46)</a></li><li class="t3"><a href="#backtracking--problem-3-combination-sum-leetcode-39">Problem 3 — Combination Sum (LeetCode #39)</a></li><li class="t3"><a href="#backtracking--problem-4-word-search-leetcode-79">Problem 4 — Word Search (LeetCode #79)</a></li><li class="t2"><a href="#backtracking--the-backtracking-checklist">The Backtracking Checklist</a></li><li class="t2"><a href="#backtracking--common-mistakes">Common Mistakes</a></li><li class="t2"><a href="#backtracking--leetcode-problems-to-try-now">LeetCode Problems to Try Now</a></li></ul></nav>
+<article class="doc">
+<h1 id="backtracking--12-backtracking"><a class="anchor" href="#backtracking--12-backtracking">#</a>12 — Backtracking</h1>
+<p>Backtracking is <strong>recursion (chapter 08) plus an undo step</strong>. You build a solution one choice at a time; when a path can't work (or you've recorded it), you <em>undo the last choice</em> and try a different one. It's how you systematically explore every possibility without getting lost.</p>
+<blockquote><p><strong>Builds on:</strong> the recursion mental model from <a href="#trees">Trees &amp; Recursion</a>. The new idea here is the <strong>un-choose</strong> step — the &quot;backtrack&quot; that gives the technique its name. You already saw it once in the wild: the debt-settlement answer in the Monzo coding prep undoes <code>balances[i] += balances[start]</code> after exploring — that's backtracking.</p></blockquote>
+<hr>
+<h2 id="backtracking--core-concepts"><a class="anchor" href="#backtracking--core-concepts">#</a>Core Concepts</h2>
+<h3 id="backtracking--the-shape-of-every-backtracking-solution"><a class="anchor" href="#backtracking--the-shape-of-every-backtracking-solution">#</a>The shape of every backtracking solution</h3>
+<p>Think of it as walking a tree of decisions. At each node you:</p>
+<div class="code-wrap" data-lang="text"><button class="copy-btn" type="button">Copy</button><pre><code class="language-plaintext">1. CHOOSE   — make a choice (add to current path)
+2. EXPLORE  — recurse with that choice in place
+3. UN-CHOOSE— undo the choice (remove from path), then try the next option</code></pre></div>
+<p>That three-line rhythm — choose / explore / un-choose — is the whole technique. The &quot;un-choose&quot; is what lets one shared <code>path</code> variable be reused across every branch instead of copying state everywhere.</p>
+<h3 id="backtracking--the-universal-template"><a class="anchor" href="#backtracking--the-universal-template">#</a>The universal template</h3>
+<div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">void Backtrack(State path, Options remaining)
+{
+    // Base case: is this a complete solution? Record it.
+    if (IsComplete(path))
+    {
+        results.Add(Copy(path));   // copy! path keeps mutating after this
+        return;
+    }
+
+    foreach (var choice in remaining)
+    {
+        if (!IsValid(choice, path)) continue;  // prune dead branches early
+
+        path.Add(choice);                       // 1. CHOOSE
+        Backtrack(path, Narrow(remaining, choice)); // 2. EXPLORE
+        path.RemoveLast();                      // 3. UN-CHOOSE (the backtrack)
+    }
+}</code></pre></div>
+<h3 id="backtracking--when-to-reach-for-it"><a class="anchor" href="#backtracking--when-to-reach-for-it">#</a>When to reach for it</h3>
+<p>Signal words: <strong>&quot;all combinations/permutations/subsets&quot;</strong>, <strong>&quot;generate every …&quot;</strong>, <strong>&quot;find all paths&quot;</strong>, <strong>&quot;is there any arrangement that …&quot;</strong>, puzzles with constraints (Sudoku, N-Queens).</p>
+<p>The giveaway: the problem asks for <strong>every</strong> valid configuration, or asks whether <em>some</em> configuration exists among many — and a greedy/DP shortcut isn't available because choices interact.</p>
+<h3 id="backtracking--backtracking-vs-brute-force"><a class="anchor" href="#backtracking--backtracking-vs-brute-force">#</a>Backtracking vs brute force</h3>
+<p>Brute force generates everything then filters. Backtracking <strong>prunes as it goes</strong> — it abandons a partial path the moment it can't lead to a valid solution (<code>IsValid</code> / <code>continue</code> above). Same answers, far less work.</p>
+<hr>
+<h2 id="backtracking--patterns-with-code"><a class="anchor" href="#backtracking--patterns-with-code">#</a>Patterns with Code</h2>
+<h3 id="backtracking--pattern-1-subsets-include-or-exclude-each-element"><a class="anchor" href="#backtracking--pattern-1-subsets-include-or-exclude-each-element">#</a>Pattern 1: Subsets — include or exclude each element</h3>
+<p>Every element is a binary choice: take it or don't. The decision tree has <code>2ⁿ</code> leaves = all subsets.</p>
+<div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">IList&lt;IList&lt;int&gt;&gt; Subsets(int[] nums)
+{
+    var results = new List&lt;IList&lt;int&gt;&gt;();
+    var path = new List&lt;int&gt;();
+
+    void Backtrack(int start)
+    {
+        // Every node in the tree is itself a valid subset — record a copy.
+        results.Add(new List&lt;int&gt;(path));
+
+        // Try adding each remaining element (start.. avoids duplicates/reorderings).
+        for (int i = start; i &lt; nums.Length; i++)
+        {
+            path.Add(nums[i]);        // 1. CHOOSE
+            Backtrack(i + 1);         // 2. EXPLORE (only elements after i)
+            path.RemoveAt(path.Count - 1);  // 3. UN-CHOOSE
+        }
+    }
+
+    Backtrack(0);
+    return results;
+}</code></pre></div>
+<div class="code-wrap" data-lang="python"><button class="copy-btn" type="button">Copy</button><pre><code class="language-python">def subsets(nums):
+    results, path = [], []
+
+    def backtrack(start):
+        results.append(path[:])          # record a copy of the current subset
+        for i in range(start, len(nums)):
+            path.append(nums[i])         # 1. choose
+            backtrack(i + 1)             # 2. explore
+            path.pop()                   # 3. un-choose
+    backtrack(0)
+    return results</code></pre></div>
+<p><strong>The <code>start</code> index</strong> is how you avoid generating <code>[1,2]</code> and <code>[2,1]</code> as different subsets — you only ever look <em>forward</em>.</p>
+<h3 id="backtracking--pattern-2-permutations-order-matters-track-whats-used"><a class="anchor" href="#backtracking--pattern-2-permutations-order-matters-track-whats-used">#</a>Pattern 2: Permutations — order matters, track what's used</h3>
+<p>Here every ordering is distinct, so you consider <em>all</em> remaining elements at each step and mark which are already in the path.</p>
+<div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">IList&lt;IList&lt;int&gt;&gt; Permute(int[] nums)
+{
+    var results = new List&lt;IList&lt;int&gt;&gt;();
+    var path = new List&lt;int&gt;();
+    var used = new bool[nums.Length];
+
+    void Backtrack()
+    {
+        // Complete when the path uses every element.
+        if (path.Count == nums.Length)
+        {
+            results.Add(new List&lt;int&gt;(path));
+            return;
+        }
+        for (int i = 0; i &lt; nums.Length; i++)
+        {
+            if (used[i]) continue;    // skip elements already in this permutation
+            used[i] = true;           // 1. CHOOSE
+            path.Add(nums[i]);
+            Backtrack();              // 2. EXPLORE
+            path.RemoveAt(path.Count - 1);  // 3. UN-CHOOSE
+            used[i] = false;
+        }
+    }
+
+    Backtrack();
+    return results;
+}</code></pre></div>
+<div class="code-wrap" data-lang="python"><button class="copy-btn" type="button">Copy</button><pre><code class="language-python">def permute(nums):
+    results, path = [], []
+    used = [False] * len(nums)
+
+    def backtrack():
+        if len(path) == len(nums):
+            results.append(path[:])
+            return
+        for i in range(len(nums)):
+            if used[i]:
+                continue
+            used[i] = True            # 1. choose
+            path.append(nums[i])
+            backtrack()               # 2. explore
+            path.pop()                # 3. un-choose
+            used[i] = False
+    backtrack()
+    return results</code></pre></div>
+<p><strong>Subsets vs permutations:</strong> subsets use a <code>start</code> index (look forward only); permutations use a <code>used[]</code> flag (any unused element, order matters). That single difference changes everything.</p>
+<h3 id="backtracking--pattern-3-pruning-abandon-dead-branches-early"><a class="anchor" href="#backtracking--pattern-3-pruning-abandon-dead-branches-early">#</a>Pattern 3: Pruning — abandon dead branches early</h3>
+<p>The real power of backtracking is quitting a path as soon as it's hopeless. In Combination Sum, once the running total exceeds the target, every deeper choice is wasted — so we <code>break</code>/<code>return</code> instead of exploring.</p>
+<div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">IList&lt;IList&lt;int&gt;&gt; CombinationSum(int[] candidates, int target)
+{
+    var results = new List&lt;IList&lt;int&gt;&gt;();
+    var path = new List&lt;int&gt;();
+
+    void Backtrack(int start, int remaining)
+    {
+        if (remaining == 0)                      // exact hit → record
+        {
+            results.Add(new List&lt;int&gt;(path));
+            return;
+        }
+        for (int i = start; i &lt; candidates.Length; i++)
+        {
+            if (candidates[i] &gt; remaining) continue;  // PRUNE: can't fit
+            path.Add(candidates[i]);             // 1. CHOOSE
+            // reuse allowed → pass i (not i+1); subtract from remaining
+            Backtrack(i, remaining - candidates[i]);  // 2. EXPLORE
+            path.RemoveAt(path.Count - 1);       // 3. UN-CHOOSE
+        }
+    }
+
+    Backtrack(0, target);
+    return results;
+}</code></pre></div>
+<p><strong>Why pruning matters:</strong> without the <code>candidates[i] &gt; remaining</code> check you'd explore enormous useless subtrees. Good pruning is the difference between &quot;works&quot; and &quot;times out&quot;.</p>
+<hr>
+<h2 id="backtracking--practice-problems"><a class="anchor" href="#backtracking--practice-problems">#</a>Practice Problems</h2>
+<hr>
+<h3 id="backtracking--problem-1-subsets-leetcode-78"><a class="anchor" href="#backtracking--problem-1-subsets-leetcode-78">#</a>Problem 1 — Subsets (LeetCode #78)</h3>
+<p><strong>Task:</strong> Return all possible subsets (the power set) of a set of distinct integers.</p>
+<p><strong>Example:</strong> <code>[1, 2, 3]</code> → <code>[[], [1], [1,2], [1,2,3], [1,3], [2], [2,3], [3]]</code></p>
+<p><strong>Solution:</strong> (This is Pattern 1 directly.)</p>
+<div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">IList&lt;IList&lt;int&gt;&gt; Subsets(int[] nums)
+{
+    var results = new List&lt;IList&lt;int&gt;&gt;();
+    var path = new List&lt;int&gt;();
+
+    void Backtrack(int start)
+    {
+        results.Add(new List&lt;int&gt;(path));   // every node is a subset
+        for (int i = start; i &lt; nums.Length; i++)
+        {
+            path.Add(nums[i]);               // choose
+            Backtrack(i + 1);                // explore forward only
+            path.RemoveAt(path.Count - 1);   // un-choose
+        }
+    }
+
+    Backtrack(0);
+    return results;
+}</code></pre></div>
+<div class="code-wrap" data-lang="python"><button class="copy-btn" type="button">Copy</button><pre><code class="language-python">def subsets(nums):
+    results, path = [], []
+
+    def backtrack(start):
+        results.append(path[:])
+        for i in range(start, len(nums)):
+            path.append(nums[i])
+            backtrack(i + 1)
+            path.pop()
+    backtrack(0)
+    return results</code></pre></div>
+<p>⏱ Time: O(n · 2ⁿ) | Space: O(n) recursion depth</p>
+<hr>
+<h3 id="backtracking--problem-2-permutations-leetcode-46"><a class="anchor" href="#backtracking--problem-2-permutations-leetcode-46">#</a>Problem 2 — Permutations (LeetCode #46)</h3>
+<p><strong>Task:</strong> Return all permutations of distinct integers.</p>
+<p><strong>Example:</strong> <code>[1, 2, 3]</code> → six orderings: <code>[1,2,3], [1,3,2], [2,1,3], [2,3,1], [3,1,2], [3,2,1]</code></p>
+<p><strong>Solution:</strong> (Pattern 2 directly.)</p>
+<div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">IList&lt;IList&lt;int&gt;&gt; Permute(int[] nums)
+{
+    var results = new List&lt;IList&lt;int&gt;&gt;();
+    var path = new List&lt;int&gt;();
+    var used = new bool[nums.Length];
+
+    void Backtrack()
+    {
+        if (path.Count == nums.Length)
+        {
+            results.Add(new List&lt;int&gt;(path));
+            return;
+        }
+        for (int i = 0; i &lt; nums.Length; i++)
+        {
+            if (used[i]) continue;
+            used[i] = true; path.Add(nums[i]);
+            Backtrack();
+            path.RemoveAt(path.Count - 1); used[i] = false;
+        }
+    }
+
+    Backtrack();
+    return results;
+}</code></pre></div>
+<div class="code-wrap" data-lang="python"><button class="copy-btn" type="button">Copy</button><pre><code class="language-python">def permute(nums):
+    results, path = [], []
+    used = [False] * len(nums)
+
+    def backtrack():
+        if len(path) == len(nums):
+            results.append(path[:])
+            return
+        for i in range(len(nums)):
+            if used[i]:
+                continue
+            used[i] = True; path.append(nums[i])
+            backtrack()
+            path.pop(); used[i] = False
+    backtrack()
+    return results</code></pre></div>
+<p>⏱ Time: O(n · n!) | Space: O(n)</p>
+<hr>
+<h3 id="backtracking--problem-3-combination-sum-leetcode-39"><a class="anchor" href="#backtracking--problem-3-combination-sum-leetcode-39">#</a>Problem 3 — Combination Sum (LeetCode #39)</h3>
+<p><strong>Task:</strong> Given distinct candidates and a target, return all unique combinations summing to the target. The same number may be reused unlimited times.</p>
+<p><strong>Example:</strong> <code>candidates = [2, 3, 6, 7]</code>, <code>target = 7</code> → <code>[[2,2,3], [7]]</code></p>
+<p><strong>Key insight:</strong> Pattern 3 with reuse — pass <code>i</code> (not <code>i+1</code>) so a candidate can be chosen again, and prune when a candidate exceeds the remaining target.</p>
+<p><strong>Solution:</strong></p>
+<div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">IList&lt;IList&lt;int&gt;&gt; CombinationSum(int[] candidates, int target)
+{
+    var results = new List&lt;IList&lt;int&gt;&gt;();
+    var path = new List&lt;int&gt;();
+
+    void Backtrack(int start, int remaining)
+    {
+        if (remaining == 0)
+        {
+            results.Add(new List&lt;int&gt;(path));
+            return;
+        }
+        for (int i = start; i &lt; candidates.Length; i++)
+        {
+            if (candidates[i] &gt; remaining) continue;      // prune
+            path.Add(candidates[i]);
+            Backtrack(i, remaining - candidates[i]);      // i, not i+1 → reuse
+            path.RemoveAt(path.Count - 1);
+        }
+    }
+
+    Backtrack(0, target);
+    return results;
+}</code></pre></div>
+<div class="code-wrap" data-lang="python"><button class="copy-btn" type="button">Copy</button><pre><code class="language-python">def combination_sum(candidates, target):
+    results, path = [], []
+
+    def backtrack(start, remaining):
+        if remaining == 0:
+            results.append(path[:])
+            return
+        for i in range(start, len(candidates)):
+            if candidates[i] &gt; remaining:
+                continue                      # prune
+            path.append(candidates[i])
+            backtrack(i, remaining - candidates[i])   # reuse allowed
+            path.pop()
+    backtrack(0, target)
+    return results</code></pre></div>
+<p>⏱ Time: O(exponential in target/candidates) | Space: O(target / min candidate)</p>
+<hr>
+<h3 id="backtracking--problem-4-word-search-leetcode-79"><a class="anchor" href="#backtracking--problem-4-word-search-leetcode-79">#</a>Problem 4 — Word Search (LeetCode #79)</h3>
+<p><strong>Task:</strong> Given a grid of letters, return whether a word exists as a path of adjacent (up/down/left/right) cells, each cell used once.</p>
+<p><strong>Example:</strong> grid of <code>A B C E / S F C S / A D E E</code>, word <code>&quot;ABCCED&quot;</code> → <code>true</code></p>
+<p><strong>Key insight:</strong> DFS from each cell with backtracking — mark a cell used before recursing, then <strong>un-mark it</strong> so other paths can reuse it. This is the grid-graph idea from chapter 10 <em>plus</em> the undo step.</p>
+<p><strong>Solution:</strong></p>
+<div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">bool Exist(char[][] board, string word)
+{
+    int rows = board.Length, cols = board[0].Length;
+
+    bool Dfs(int r, int c, int idx)
+    {
+        if (idx == word.Length) return true;              // matched the whole word
+        if (r &lt; 0 || c &lt; 0 || r &gt;= rows || c &gt;= cols) return false;
+        if (board[r][c] != word[idx]) return false;        // letter mismatch
+
+        char temp = board[r][c];
+        board[r][c] = '#';        // 1. CHOOSE: mark visited (sentinel)
+
+        // 2. EXPLORE the four neighbours for the next letter.
+        bool found = Dfs(r + 1, c, idx + 1) || Dfs(r - 1, c, idx + 1)
+                  || Dfs(r, c + 1, idx + 1) || Dfs(r, c - 1, idx + 1);
+
+        board[r][c] = temp;       // 3. UN-CHOOSE: restore for other paths
+        return found;
+    }
+
+    for (int r = 0; r &lt; rows; r++)
+        for (int c = 0; c &lt; cols; c++)
+            if (Dfs(r, c, 0)) return true;
+    return false;
+}</code></pre></div>
+<div class="code-wrap" data-lang="python"><button class="copy-btn" type="button">Copy</button><pre><code class="language-python">def exist(board, word):
+    rows, cols = len(board), len(board[0])
+
+    def dfs(r, c, idx):
+        if idx == len(word):
+            return True
+        if r &lt; 0 or c &lt; 0 or r &gt;= rows or c &gt;= cols or board[r][c] != word[idx]:
+            return False
+
+        temp, board[r][c] = board[r][c], '#'     # 1. choose (mark visited)
+        found = (dfs(r + 1, c, idx + 1) or dfs(r - 1, c, idx + 1) or
+                 dfs(r, c + 1, idx + 1) or dfs(r, c - 1, idx + 1))  # 2. explore
+        board[r][c] = temp                       # 3. un-choose (restore)
+        return found
+
+    for r in range(rows):
+        for c in range(cols):
+            if dfs(r, c, 0):
+                return True
+    return False</code></pre></div>
+<p>⏱ Time: O(rows × cols × 4^len) | Space: O(len) recursion depth</p>
+<hr>
+<h2 id="backtracking--the-backtracking-checklist"><a class="anchor" href="#backtracking--the-backtracking-checklist">#</a>The Backtracking Checklist</h2>
+<p>When you spot a backtracking problem, answer these before coding:</p>
+<ol><li><strong>What is a &quot;complete&quot; solution?</strong> (your base case)</li><li><strong>What are the choices at each step?</strong> (the <code>for</code> loop)</li><li><strong>How do I prevent reusing/reordering?</strong> (<code>start</code> index vs <code>used[]</code> flag)</li><li><strong>Can I prune?</strong> (skip choices that can't lead anywhere)</li><li><strong>What do I undo after exploring?</strong> (the un-choose)</li></ol>
+<hr>
+<h2 id="backtracking--common-mistakes"><a class="anchor" href="#backtracking--common-mistakes">#</a>Common Mistakes</h2>
+<ul><li><strong>Forgetting to un-choose</strong> — the single most common bug; without it, state leaks between branches and results are wrong.</li><li><strong>Storing the path by reference, not a copy</strong> — <code>results.Add(path)</code> stores a pointer that keeps mutating; always add a <em>copy</em> (<code>new List&lt;int&gt;(path)</code> / <code>path[:]</code>).</li><li><strong><code>start</code> vs <code>used[]</code> confusion</strong> — <code>start</code> for combinations/subsets (forward only), <code>used[]</code> for permutations (order matters).</li><li><strong>No pruning</strong> — correct but times out; add validity checks to abandon dead branches early.</li><li><strong>Off-by-one in the base case</strong> — trace tiny inputs (empty set, single element) by hand.</li></ul>
+<hr>
+<h2 id="backtracking--leetcode-problems-to-try-now"><a class="anchor" href="#backtracking--leetcode-problems-to-try-now">#</a>LeetCode Problems to Try Now</h2>
+<ul><li>#78 — Subsets ⭐ (choose/skip template)</li><li>#46 — Permutations ⭐ (<code>used[]</code> flag)</li><li>#39 — Combination Sum ⭐⭐ (reuse + pruning)</li><li>#79 — Word Search ⭐⭐ (grid DFS + undo)</li><li>#77 — Combinations</li><li>#22 — Generate Parentheses (pruning by valid-so-far)</li><li>#51 — N-Queens (classic constraint backtracking)</li></ul>
+</article>
+<section class="refs"><h2>🔗 Further reading</h2><ul><li><a href="https://neetcode.io/roadmap" target="_blank" rel="noopener">NeetCode — Backtracking roadmap</a></li><li><a href="https://leetcode.com/tag/backtracking/" target="_blank" rel="noopener">LeetCode — Backtracking tag</a></li></ul></section>
+<nav class="pager"><a class="pg prev" data-goto="heaps" href="#heaps">← 11 · Heaps &amp; Priority Queues</a><a class="pg next" data-goto="dp-patterns" href="#dp-patterns">13 · DP Patterns →</a></nav>
+</section>
+<section class="chapter" id="dp-patterns" data-part="Fundamentals — Coding Patterns">
+<div class="chapter-head"><span class="part-tag">Fundamentals — Coding Patterns</span></div>
+<nav class="chapter-toc"><span class="toc-head">On this page</span><ul><li class="t2"><a href="#dp-patterns--core-concepts">Core Concepts</a></li><li class="t3"><a href="#dp-patterns--the-four-dp-shapes-youll-meet-most">The four DP shapes you'll meet most</a></li><li class="t3"><a href="#dp-patterns--the-recognition-question">The recognition question</a></li><li class="t2"><a href="#dp-patterns--patterns-with-code">Patterns with Code</a></li><li class="t3"><a href="#dp-patterns--pattern-1-01-knapsack-take-it-or-leave-it-with-a-budget">Pattern 1: 0/1 Knapsack — take-it-or-leave-it with a budget</a></li><li class="t3"><a href="#dp-patterns--pattern-2-subsequence-best-run-so-far-lis">Pattern 2: Subsequence — &quot;best run so far&quot; (LIS)</a></li><li class="t3"><a href="#dp-patterns--pattern-3-grid-accumulate-from-neighbours-min-path-sum">Pattern 3: Grid — accumulate from neighbours (Min Path Sum)</a></li><li class="t3"><a href="#dp-patterns--pattern-4-two-strings-match-or-mismatch-edit-distance">Pattern 4: Two strings — match or mismatch (Edit Distance)</a></li><li class="t2"><a href="#dp-patterns--practice-problems">Practice Problems</a></li><li class="t3"><a href="#dp-patterns--problem-1-partition-equal-subset-sum-leetcode-416">Problem 1 — Partition Equal Subset Sum (LeetCode #416)</a></li><li class="t3"><a href="#dp-patterns--problem-2-longest-increasing-subsequence-leetcode-300">Problem 2 — Longest Increasing Subsequence (LeetCode #300)</a></li><li class="t3"><a href="#dp-patterns--problem-3-longest-common-subsequence-leetcode-1143">Problem 3 — Longest Common Subsequence (LeetCode #1143)</a></li><li class="t3"><a href="#dp-patterns--problem-4-coin-change-ii-leetcode-518">Problem 4 — Coin Change II (LeetCode #518)</a></li><li class="t2"><a href="#dp-patterns--from-recurrence-to-code-a-repeatable-recipe">From Recurrence to Code: a repeatable recipe</a></li><li class="t2"><a href="#dp-patterns--common-mistakes">Common Mistakes</a></li><li class="t2"><a href="#dp-patterns--leetcode-problems-to-try-now">LeetCode Problems to Try Now</a></li></ul></nav>
+<article class="doc">
+<h1 id="dp-patterns--13-dynamic-programming-patterns"><a class="anchor" href="#dp-patterns--13-dynamic-programming-patterns">#</a>13 — Dynamic Programming Patterns</h1>
+<p>Chapter 09 taught the <em>machinery</em> of DP: define a subproblem, write a recurrence, pick base cases, choose an iteration order. This chapter teaches <strong>recognition</strong> — the handful of recurring <em>shapes</em> that most interview DP problems fall into, so you can spot which one you're looking at and reach for the matching template.</p>
+<blockquote><p><strong>Builds on:</strong> the memoisation/tabulation foundations from <a href="#dp">Dynamic Programming (Introduction)</a>. If &quot;what does <code>dp[i]</code> mean?&quot; isn't yet second nature, go back first — here we assume it is and focus on the patterns.</p></blockquote>
+<hr>
+<h2 id="dp-patterns--core-concepts"><a class="anchor" href="#dp-patterns--core-concepts">#</a>Core Concepts</h2>
+<h3 id="dp-patterns--the-four-dp-shapes-youll-meet-most"><a class="anchor" href="#dp-patterns--the-four-dp-shapes-youll-meet-most">#</a>The four DP shapes you'll meet most</h3>
+<div class="table-wrap"><table><thead><tr><th>Shape</th><th>The decision at each step</th><th>Canonical problem</th></tr></thead><tbody><tr><td><strong>0/1 choice</strong></td><td>Take this item or skip it</td><td>0/1 Knapsack</td></tr><tr><td><strong>Sequence / subsequence</strong></td><td>Extend or restart a run</td><td>Longest Increasing Subsequence</td></tr><tr><td><strong>Grid / 2D</strong></td><td>Come from above or from the left</td><td>Unique Paths, Min Path Sum</td></tr><tr><td><strong>Two-string</strong></td><td>Characters match or they don't</td><td>Longest Common Subsequence, Edit Distance</td></tr></tbody></table></div>
+<p>Recognising the shape tells you the <em>dimensions of your <code>dp</code> table</em> and the <em>form of the recurrence</em> before you write a line of code.</p>
+<h3 id="dp-patterns--the-recognition-question"><a class="anchor" href="#dp-patterns--the-recognition-question">#</a>The recognition question</h3>
+<p>When you suspect DP (from chapter 09: &quot;number of ways&quot;, &quot;min/max cost&quot;, &quot;is it possible&quot;), ask <strong>&quot;what is the decision being made repeatedly, and what does the answer depend on?&quot;</strong> The answer defines your state:</p>
+<ul><li>Depends on <em>an index and a remaining capacity</em> → 0/1 knapsack shape (2D: item × capacity).</li><li>Depends on <em>the best run ending here</em> → subsequence shape (1D over positions).</li><li>Depends on <em>a position in a grid</em> → grid shape (2D over rows × cols).</li><li>Depends on <em>two positions, one in each string</em> → two-string shape (2D).</li></ul>
+<hr>
+<h2 id="dp-patterns--patterns-with-code"><a class="anchor" href="#dp-patterns--patterns-with-code">#</a>Patterns with Code</h2>
+<h3 id="dp-patterns--pattern-1-01-knapsack-take-it-or-leave-it-with-a-budget"><a class="anchor" href="#dp-patterns--pattern-1-01-knapsack-take-it-or-leave-it-with-a-budget">#</a>Pattern 1: 0/1 Knapsack — take-it-or-leave-it with a budget</h3>
+<p>You have items with weights and values and a capacity. Each item is used <strong>at most once</strong>. Maximise value without exceeding capacity. The state is <code>dp[i][w]</code> = best value using the first <code>i</code> items with capacity <code>w</code>.</p>
+<div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">int Knapsack(int[] weights, int[] values, int capacity)
+{
+    int n = weights.Length;
+    // dp[i, w] = max value using first i items within capacity w
+    int[,] dp = new int[n + 1, capacity + 1];
+
+    for (int i = 1; i &lt;= n; i++)
+        for (int w = 0; w &lt;= capacity; w++)
+        {
+            // Option A: skip item i → inherit the value without it.
+            dp[i, w] = dp[i - 1, w];
+
+            // Option B: take item i (if it fits) → its value + best of remaining capacity.
+            if (weights[i - 1] &lt;= w)
+                dp[i, w] = Math.Max(dp[i, w],
+                                    values[i - 1] + dp[i - 1, w - weights[i - 1]]);
+        }
+
+    return dp[n, capacity];
+}</code></pre></div>
+<div class="code-wrap" data-lang="python"><button class="copy-btn" type="button">Copy</button><pre><code class="language-python">def knapsack(weights, values, capacity):
+    n = len(weights)
+    dp = [[0] * (capacity + 1) for _ in range(n + 1)]
+
+    for i in range(1, n + 1):
+        for w in range(capacity + 1):
+            dp[i][w] = dp[i - 1][w]                     # skip item i
+            if weights[i - 1] &lt;= w:                      # or take it if it fits
+                dp[i][w] = max(dp[i][w],
+                               values[i - 1] + dp[i - 1][w - weights[i - 1]])
+    return dp[n][capacity]</code></pre></div>
+<p><strong>The shape:</strong> a 2D table indexed by <em>which items</em> × <em>how much budget</em>. The recurrence is always &quot;best of (skip) vs (take, if it fits)&quot;. Subset-sum, partition-equal-subset, and target-sum are all this shape in disguise.</p>
+<h3 id="dp-patterns--pattern-2-subsequence-best-run-so-far-lis"><a class="anchor" href="#dp-patterns--pattern-2-subsequence-best-run-so-far-lis">#</a>Pattern 2: Subsequence — &quot;best run so far&quot; (LIS)</h3>
+<p>For Longest Increasing Subsequence, <code>dp[i]</code> = length of the longest increasing subsequence <strong>ending at index i</strong>. Each position looks back at all smaller-value predecessors and extends the best one.</p>
+<div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">int LengthOfLIS(int[] nums)
+{
+    if (nums.Length == 0) return 0;
+    // dp[i] = length of the longest increasing subsequence ending at i.
+    int[] dp = new int[nums.Length];
+    Array.Fill(dp, 1);          // each element alone is a subsequence of length 1
+    int best = 1;
+
+    for (int i = 1; i &lt; nums.Length; i++)
+        for (int j = 0; j &lt; i; j++)
+            if (nums[j] &lt; nums[i])                 // can we extend the run ending at j?
+            {
+                dp[i] = Math.Max(dp[i], dp[j] + 1);
+                best = Math.Max(best, dp[i]);
+            }
+
+    return best;
+}</code></pre></div>
+<div class="code-wrap" data-lang="python"><button class="copy-btn" type="button">Copy</button><pre><code class="language-python">def length_of_lis(nums):
+    if not nums:
+        return 0
+    dp = [1] * len(nums)        # each element is an LIS of length 1 by itself
+    best = 1
+    for i in range(1, len(nums)):
+        for j in range(i):
+            if nums[j] &lt; nums[i]:                   # extend the run ending at j
+                dp[i] = max(dp[i], dp[j] + 1)
+                best = max(best, dp[i])
+    return best</code></pre></div>
+<p><strong>The shape:</strong> 1D table over positions, where <code>dp[i]</code> summarises &quot;the best thing ending here&quot;. The answer is often the <em>max over all <code>dp[i]</code></em>, not <code>dp[last]</code>. (This is <code>O(n²)</code>; an <code>O(n log n)</code> version using binary search exists — a nice follow-up that reuses chapter 06.)</p>
+<h3 id="dp-patterns--pattern-3-grid-accumulate-from-neighbours-min-path-sum"><a class="anchor" href="#dp-patterns--pattern-3-grid-accumulate-from-neighbours-min-path-sum">#</a>Pattern 3: Grid — accumulate from neighbours (Min Path Sum)</h3>
+<p>On a grid, <code>dp[i][j]</code> is the best cost to <em>reach</em> cell <code>(i,j)</code>, built from the cells you could have come from (above or left). This generalises Unique Paths from chapter 09 (counting) to <em>optimising</em> a cost.</p>
+<div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">int MinPathSum(int[][] grid)
+{
+    int rows = grid.Length, cols = grid[0].Length;
+    int[,] dp = new int[rows, cols];
+    dp[0, 0] = grid[0][0];
+
+    // First row: can only come from the left.
+    for (int c = 1; c &lt; cols; c++) dp[0, c] = dp[0, c - 1] + grid[0][c];
+    // First column: can only come from above.
+    for (int r = 1; r &lt; rows; r++) dp[r, 0] = dp[r - 1, 0] + grid[r][0];
+
+    // Interior: cheaper of (from above) vs (from left), plus this cell.
+    for (int r = 1; r &lt; rows; r++)
+        for (int c = 1; c &lt; cols; c++)
+            dp[r, c] = grid[r][c] + Math.Min(dp[r - 1, c], dp[r, c - 1]);
+
+    return dp[rows - 1, cols - 1];
+}</code></pre></div>
+<div class="code-wrap" data-lang="python"><button class="copy-btn" type="button">Copy</button><pre><code class="language-python">def min_path_sum(grid):
+    rows, cols = len(grid), len(grid[0])
+    dp = [[0] * cols for _ in range(rows)]
+    dp[0][0] = grid[0][0]
+
+    for c in range(1, cols):                    # first row: from the left only
+        dp[0][c] = dp[0][c - 1] + grid[0][c]
+    for r in range(1, rows):                    # first column: from above only
+        dp[r][0] = dp[r - 1][0] + grid[r][0]
+
+    for r in range(1, rows):
+        for c in range(1, cols):
+            dp[r][c] = grid[r][c] + min(dp[r - 1][c], dp[r][c - 1])  # best neighbour
+    return dp[rows - 1][cols - 1]</code></pre></div>
+<p><strong>The shape:</strong> 2D table matching the grid; fill the edges as base cases, then each interior cell combines its reachable neighbours. Watch for the base-case edges — they're where grid DP usually breaks.</p>
+<h3 id="dp-patterns--pattern-4-two-strings-match-or-mismatch-edit-distance"><a class="anchor" href="#dp-patterns--pattern-4-two-strings-match-or-mismatch-edit-distance">#</a>Pattern 4: Two strings — match or mismatch (Edit Distance)</h3>
+<p>When a problem compares two sequences, the state is <code>dp[i][j]</code> over <em>a prefix of each</em>. Edit Distance: minimum insert/delete/replace operations to turn string <code>a</code> into string <code>b</code>.</p>
+<div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">int EditDistance(string a, string b)
+{
+    int m = a.Length, n = b.Length;
+    // dp[i, j] = edits to turn a[0..i) into b[0..j)
+    int[,] dp = new int[m + 1, n + 1];
+
+    // Base cases: turning a prefix into &quot;&quot; costs that many deletions/insertions.
+    for (int i = 0; i &lt;= m; i++) dp[i, 0] = i;
+    for (int j = 0; j &lt;= n; j++) dp[0, j] = j;
+
+    for (int i = 1; i &lt;= m; i++)
+        for (int j = 1; j &lt;= n; j++)
+        {
+            if (a[i - 1] == b[j - 1])
+                dp[i, j] = dp[i - 1, j - 1];            // characters match → no cost
+            else
+                dp[i, j] = 1 + Math.Min(dp[i - 1, j - 1],      // replace
+                                 Math.Min(dp[i - 1, j],        // delete from a
+                                          dp[i, j - 1]));      // insert into a
+        }
+
+    return dp[m, n];
+}</code></pre></div>
+<div class="code-wrap" data-lang="python"><button class="copy-btn" type="button">Copy</button><pre><code class="language-python">def edit_distance(a, b):
+    m, n = len(a), len(b)
+    dp = [[0] * (n + 1) for _ in range(m + 1)]
+
+    for i in range(m + 1):      # base: delete all of a's prefix
+        dp[i][0] = i
+    for j in range(n + 1):      # base: insert all of b's prefix
+        dp[0][j] = j
+
+    for i in range(1, m + 1):
+        for j in range(1, n + 1):
+            if a[i - 1] == b[j - 1]:
+                dp[i][j] = dp[i - 1][j - 1]             # match → carry over
+            else:
+                dp[i][j] = 1 + min(dp[i - 1][j - 1],    # replace
+                                   dp[i - 1][j],        # delete
+                                   dp[i][j - 1])        # insert
+    return dp[m][n]</code></pre></div>
+<p><strong>The shape:</strong> 2D table over prefixes of two strings; the recurrence always splits into &quot;last characters match&quot; vs &quot;they don't&quot; (and in the mismatch case, the three edit operations). Longest Common Subsequence is the same skeleton with a different recurrence.</p>
+<hr>
+<h2 id="dp-patterns--practice-problems"><a class="anchor" href="#dp-patterns--practice-problems">#</a>Practice Problems</h2>
+<hr>
+<h3 id="dp-patterns--problem-1-partition-equal-subset-sum-leetcode-416"><a class="anchor" href="#dp-patterns--problem-1-partition-equal-subset-sum-leetcode-416">#</a>Problem 1 — Partition Equal Subset Sum (LeetCode #416)</h3>
+<p><strong>Task:</strong> Can the array be split into two subsets with equal sum?</p>
+<p><strong>Example:</strong> <code>[1, 5, 11, 5]</code> → <code>true</code> (<code>[1,5,5]</code> and <code>[11]</code>)</p>
+<p><strong>Key insight:</strong> This is 0/1 knapsack in disguise. If the total is odd, it's impossible. Otherwise the question becomes: &quot;can we pick a subset that sums to <code>total / 2</code>?&quot; — a take-it-or-leave-it decision per element.</p>
+<p><strong>Solution:</strong></p>
+<div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">bool CanPartition(int[] nums)
+{
+    int total = nums.Sum();
+    if (total % 2 != 0) return false;          // odd total can't split evenly
+    int target = total / 2;
+
+    // dp[s] = can we form sum s using some subset seen so far?
+    var dp = new bool[target + 1];
+    dp[0] = true;                               // empty subset sums to 0
+
+    foreach (int num in nums)
+        // Iterate downward so each item is used at most once (0/1, not unbounded).
+        for (int s = target; s &gt;= num; s--)
+            dp[s] = dp[s] || dp[s - num];
+
+    return dp[target];
+}</code></pre></div>
+<div class="code-wrap" data-lang="python"><button class="copy-btn" type="button">Copy</button><pre><code class="language-python">def can_partition(nums):
+    total = sum(nums)
+    if total % 2 != 0:
+        return False
+    target = total // 2
+
+    dp = [False] * (target + 1)
+    dp[0] = True
+    for num in nums:
+        for s in range(target, num - 1, -1):   # downward → use each item once
+            dp[s] = dp[s] or dp[s - num]
+    return dp[target]</code></pre></div>
+<p>⏱ Time: O(n × target) | Space: O(target)</p>
+<hr>
+<h3 id="dp-patterns--problem-2-longest-increasing-subsequence-leetcode-300"><a class="anchor" href="#dp-patterns--problem-2-longest-increasing-subsequence-leetcode-300">#</a>Problem 2 — Longest Increasing Subsequence (LeetCode #300)</h3>
+<p><strong>Task:</strong> Return the length of the longest strictly increasing subsequence.</p>
+<p><strong>Example:</strong> <code>[10, 9, 2, 5, 3, 7, 101, 18]</code> → <code>4</code> (<code>[2, 3, 7, 101]</code>)</p>
+<p><strong>Solution:</strong> (Pattern 2 directly.)</p>
+<div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">int LengthOfLIS(int[] nums)
+{
+    int[] dp = new int[nums.Length];
+    Array.Fill(dp, 1);
+    int best = 1;
+    for (int i = 1; i &lt; nums.Length; i++)
+        for (int j = 0; j &lt; i; j++)
+            if (nums[j] &lt; nums[i])
+            {
+                dp[i] = Math.Max(dp[i], dp[j] + 1);
+                best = Math.Max(best, dp[i]);
+            }
+    return nums.Length == 0 ? 0 : best;
+}</code></pre></div>
+<div class="code-wrap" data-lang="python"><button class="copy-btn" type="button">Copy</button><pre><code class="language-python">def length_of_lis(nums):
+    if not nums:
+        return 0
+    dp = [1] * len(nums)
+    for i in range(1, len(nums)):
+        for j in range(i):
+            if nums[j] &lt; nums[i]:
+                dp[i] = max(dp[i], dp[j] + 1)
+    return max(dp)</code></pre></div>
+<p>⏱ Time: O(n²) | Space: O(n)</p>
+<hr>
+<h3 id="dp-patterns--problem-3-longest-common-subsequence-leetcode-1143"><a class="anchor" href="#dp-patterns--problem-3-longest-common-subsequence-leetcode-1143">#</a>Problem 3 — Longest Common Subsequence (LeetCode #1143)</h3>
+<p><strong>Task:</strong> Return the length of the longest subsequence common to two strings.</p>
+<p><strong>Example:</strong> <code>&quot;abcde&quot;</code>, <code>&quot;ace&quot;</code> → <code>3</code> (<code>&quot;ace&quot;</code>)</p>
+<p><strong>Key insight:</strong> Two-string shape. <code>dp[i][j]</code> = LCS length of the first <code>i</code> chars of <code>a</code> and first <code>j</code> of <code>b</code>. If the current characters match, extend the diagonal; otherwise take the best of dropping one character from either string.</p>
+<p><strong>Solution:</strong></p>
+<div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">int LongestCommonSubsequence(string a, string b)
+{
+    int m = a.Length, n = b.Length;
+    int[,] dp = new int[m + 1, n + 1];          // dp[0, *] and dp[*, 0] = 0 (empty)
+
+    for (int i = 1; i &lt;= m; i++)
+        for (int j = 1; j &lt;= n; j++)
+            if (a[i - 1] == b[j - 1])
+                dp[i, j] = dp[i - 1, j - 1] + 1;        // match → extend diagonal
+            else
+                dp[i, j] = Math.Max(dp[i - 1, j], dp[i, j - 1]);  // drop one char
+
+    return dp[m, n];
+}</code></pre></div>
+<div class="code-wrap" data-lang="python"><button class="copy-btn" type="button">Copy</button><pre><code class="language-python">def longest_common_subsequence(a, b):
+    m, n = len(a), len(b)
+    dp = [[0] * (n + 1) for _ in range(m + 1)]
+
+    for i in range(1, m + 1):
+        for j in range(1, n + 1):
+            if a[i - 1] == b[j - 1]:
+                dp[i][j] = dp[i - 1][j - 1] + 1          # match → extend
+            else:
+                dp[i][j] = max(dp[i - 1][j], dp[i][j - 1])  # drop a char
+    return dp[m][n]</code></pre></div>
+<p>⏱ Time: O(m × n) | Space: O(m × n)</p>
+<hr>
+<h3 id="dp-patterns--problem-4-coin-change-ii-leetcode-518"><a class="anchor" href="#dp-patterns--problem-4-coin-change-ii-leetcode-518">#</a>Problem 4 — Coin Change II (LeetCode #518)</h3>
+<p><strong>Task:</strong> Given coin denominations and an amount, return the <strong>number of combinations</strong> that make up that amount (unlimited coins each).</p>
+<p><strong>Example:</strong> <code>amount = 5</code>, <code>coins = [1, 2, 5]</code> → <code>4</code></p>
+<p><strong>Key insight:</strong> Contrast with chapter 09's Coin Change (fewest coins). This counts <em>combinations</em>, and the loop order matters: iterate <strong>coins on the outside</strong> so you count each combination once (not every ordering). This is the unbounded-knapsack counting variant.</p>
+<p><strong>Solution:</strong></p>
+<div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">int Change(int amount, int[] coins)
+{
+    // dp[a] = number of combinations that sum to a.
+    var dp = new int[amount + 1];
+    dp[0] = 1;                      // one way to make 0: use nothing
+
+    // Coins OUTSIDE, amount inside → combinations, not permutations.
+    foreach (int coin in coins)
+        for (int a = coin; a &lt;= amount; a++)
+            dp[a] += dp[a - coin];
+
+    return dp[amount];
+}</code></pre></div>
+<div class="code-wrap" data-lang="python"><button class="copy-btn" type="button">Copy</button><pre><code class="language-python">def change(amount, coins):
+    dp = [0] * (amount + 1)
+    dp[0] = 1                       # one way to make 0
+    for coin in coins:              # coins outer loop = count combinations once
+        for a in range(coin, amount + 1):
+            dp[a] += dp[a - coin]
+    return dp[amount]</code></pre></div>
+<p>⏱ Time: O(amount × coins) | Space: O(amount)</p>
+<hr>
+<h2 id="dp-patterns--from-recurrence-to-code-a-repeatable-recipe"><a class="anchor" href="#dp-patterns--from-recurrence-to-code-a-repeatable-recipe">#</a>From Recurrence to Code: a repeatable recipe</h2>
+<ol><li><strong>Name the state</strong> in a sentence: &quot;<code>dp[i][j]</code> = …&quot;. If you can't, you don't understand the problem yet.</li><li><strong>Match it to a shape</strong> (0/1 choice, subsequence, grid, two-string) → that fixes the table dimensions.</li><li><strong>Write the recurrence</strong> as &quot;best/count of the choices available at this state&quot;.</li><li><strong>Fill base cases</strong> — usually the empty prefix / first row / first column.</li><li><strong>Pick the order</strong> so every value you read is already computed.</li><li><strong>Optimise space last</strong> — many 2D tables collapse to 1D (as in Partition Equal Subset Sum).</li></ol>
+<hr>
+<h2 id="dp-patterns--common-mistakes"><a class="anchor" href="#dp-patterns--common-mistakes">#</a>Common Mistakes</h2>
+<ul><li><strong>Wrong loop direction for 0/1 vs unbounded</strong> — iterate capacity <em>downward</em> to use an item once (0/1); <em>upward</em> to reuse it (unbounded). Getting this backwards silently changes the problem.</li><li><strong>Coins/amount loop order</strong> — for <em>counting combinations</em>, coins must be the outer loop; swapping counts permutations instead.</li><li><strong>Answer is <code>max over dp</code>, not <code>dp[last]</code></strong> — true for LIS and similar &quot;best ending here&quot; problems.</li><li><strong>Off-by-one on string DP</strong> — size tables <code>(m+1) × (n+1)</code> and index the string with <code>i-1</code>/<code>j-1</code>.</li><li><strong>Skipping base cases</strong> — the first row/column is where grid and string DP most often break.</li></ul>
+<hr>
+<h2 id="dp-patterns--leetcode-problems-to-try-now"><a class="anchor" href="#dp-patterns--leetcode-problems-to-try-now">#</a>LeetCode Problems to Try Now</h2>
+<ul><li>#416 — Partition Equal Subset Sum ⭐ (0/1 knapsack)</li><li>#300 — Longest Increasing Subsequence ⭐ (subsequence shape)</li><li>#1143 — Longest Common Subsequence ⭐⭐ (two-string shape)</li><li>#518 — Coin Change II ⭐⭐ (unbounded counting)</li><li>#64 — Minimum Path Sum (grid shape)</li><li>#72 — Edit Distance ⭐⭐ (two-string, three operations)</li><li>#1049 — Last Stone Weight II (subset-sum in disguise)</li></ul>
+</article>
+<section class="refs"><h2>🔗 Further reading</h2><ul><li><a href="https://neetcode.io/roadmap" target="_blank" rel="noopener">NeetCode — 1-D &amp; 2-D DP</a></li><li><a href="https://leetcode.com/tag/dynamic-programming/" target="_blank" rel="noopener">LeetCode — Dynamic Programming tag</a></li></ul></section>
+<nav class="pager"><a class="pg prev" data-goto="backtracking" href="#backtracking">← 12 · Backtracking</a><a class="pg next" data-goto="pattern-recognition" href="#pattern-recognition">14 · Pattern Recognition →</a></nav>
+</section>
+<section class="chapter" id="pattern-recognition" data-part="Fundamentals — Coding Patterns">
+<div class="chapter-head"><span class="part-tag">Fundamentals — Coding Patterns</span></div>
+<nav class="chapter-toc"><span class="toc-head">On this page</span><ul><li class="t2"><a href="#pattern-recognition--why-this-matters-more-than-solving-more-problems">Why this matters more than solving more problems</a></li><li class="t2"><a href="#pattern-recognition--the-recognition-cheat-sheet">The Recognition Cheat Sheet</a></li><li class="t3"><a href="#pattern-recognition--secondary-tells">Secondary tells</a></li><li class="t2"><a href="#pattern-recognition--the-interview-method-say-this-out-loud-every-time">The Interview Method (say this out loud, every time)</a></li><li class="t2"><a href="#pattern-recognition--worked-walkthrough-applying-the-method-cold">Worked Walkthrough — applying the method cold</a></li><li class="t2"><a href="#pattern-recognition--how-to-practise-recognition-not-just-solving">How to practise recognition (not just solving)</a></li><li class="t2"><a href="#pattern-recognition--reading-complexity-out-loud">Reading complexity out loud</a></li><li class="t2"><a href="#pattern-recognition--common-mistakes-interview-behaviour-not-just-code">Common Mistakes (interview behaviour, not just code)</a></li><li class="t2"><a href="#pattern-recognition--where-to-go-next">Where to go next</a></li></ul></nav>
+<article class="doc">
+<h1 id="pattern-recognition--14-pattern-recognition-interview-method"><a class="anchor" href="#pattern-recognition--14-pattern-recognition-interview-method">#</a>14 — Pattern Recognition &amp; Interview Method</h1>
+<p>This is the capstone. Chapters 01–13 each taught a <em>tool</em>. This chapter teaches the two skills that actually decide a coding interview: <strong>recognising which tool a new problem needs</strong>, and <strong>communicating your way through it</strong>. Owning twelve patterns is worthless if you freeze when a fresh prompt doesn't announce which one applies — and it never does.</p>
+<blockquote><p><strong>Builds on:</strong> every prior chapter. Keep them open; this chapter constantly points back to them.</p></blockquote>
+<hr>
+<h2 id="pattern-recognition--why-this-matters-more-than-solving-more-problems"><a class="anchor" href="#pattern-recognition--why-this-matters-more-than-solving-more-problems">#</a>Why this matters more than solving more problems</h2>
+<p>In a Monzo-style <strong>pairing</strong> interview, the interviewer is watching <em>how you think</em>, not whether you've memorised a solution. They want to see you:</p>
+<ul><li>turn a vague prompt into a precise problem,</li><li>recognise the underlying pattern quickly,</li><li>reason about trade-offs out loud,</li><li>write clean code and test it yourself.</li></ul>
+<p>A candidate who deeply owns ~13 patterns and talks through them clearly beats one who has &quot;seen&quot; 300 problems but goes silent. So this chapter is about <strong>recognition speed</strong> and <strong>a repeatable method</strong>, not more volume.</p>
+<hr>
+<h2 id="pattern-recognition--the-recognition-cheat-sheet"><a class="anchor" href="#pattern-recognition--the-recognition-cheat-sheet">#</a>The Recognition Cheat Sheet</h2>
+<p>Train yourself to read a problem and map its <em>signals</em> to a pattern. These signals are the single most useful thing to memorise.</p>
+<div class="table-wrap"><table><thead><tr><th>If the problem says / looks like…</th><th>Reach for</th><th>Chapter</th></tr></thead><tbody><tr><td>&quot;sum/pair/duplicate&quot;, fast lookups needed</td><td><strong>Hash map / set</strong></td><td><a href="#hashmaps">02</a></td></tr><tr><td><strong>Sorted</strong> array, find a pair/triplet, or remove in place</td><td><strong>Two pointers</strong></td><td><a href="#twoptr">03</a> · <a href="#pattern-recognition">15</a></td></tr><tr><td><strong>Contiguous</strong> subarray/substring with a condition</td><td><strong>Sliding window</strong></td><td><a href="#window">04</a></td></tr><tr><td>Matching/nesting, &quot;most recent&quot;, next-greater</td><td><strong>Stack</strong> (monotonic)</td><td><a href="#stacks">05</a></td></tr><tr><td><strong>Sorted</strong> input + &quot;find/search&quot;, or &quot;minimise the max&quot;</td><td><strong>Binary search</strong></td><td><a href="#binsearch">06</a></td></tr><tr><td>Reorder/detect-cycle in a chain, &quot;in place&quot; pointers</td><td><strong>Linked-list pointers</strong></td><td><a href="#lists">07</a></td></tr><tr><td>Tree shape, &quot;depth/path/validate&quot;, mirror</td><td><strong>Tree DFS/BFS + recursion</strong></td><td><a href="#trees">08</a></td></tr><tr><td>&quot;number of ways&quot;, &quot;min/max cost&quot;, &quot;is it possible&quot;</td><td><strong>Dynamic programming</strong></td><td><a href="#dp">09</a> · <a href="#dp-patterns">13</a></td></tr><tr><td>Nodes &amp; edges, grid, &quot;connected&quot;/&quot;reachable&quot;/&quot;shortest unweighted&quot;</td><td><strong>Graph BFS/DFS / Union-Find</strong></td><td><a href="#graphs">10</a></td></tr><tr><td>&quot;top/K largest/smallest&quot;, &quot;median&quot;, &quot;merge K&quot;</td><td><strong>Heap / priority queue</strong></td><td><a href="#heaps">11</a></td></tr><tr><td>&quot;all combinations/permutations/subsets&quot;, &quot;generate every&quot;</td><td><strong>Backtracking</strong></td><td><a href="#backtracking">12</a></td></tr></tbody></table></div>
+<h3 id="pattern-recognition--secondary-tells"><a class="anchor" href="#pattern-recognition--secondary-tells">#</a>Secondary tells</h3>
+<ul><li><strong>&quot;Shortest path, unweighted&quot;</strong> → BFS specifically (not DFS) — BFS reaches nodes in distance order (<a href="#graphs">10</a>).</li><li><strong>&quot;Top K&quot; with <code>k ≪ n</code></strong> → a size-K heap, not a full sort (<a href="#heaps">11</a>).</li><li><strong>&quot;Contiguous&quot;</strong> → sliding window; <strong>&quot;any order / subsequence&quot;</strong> → usually DP or backtracking. That one word changes the pattern.</li><li><strong>&quot;Sorted&quot;</strong> appearing anywhere is a loud hint for two pointers or binary search.</li><li><strong>A grid</strong> is almost always a graph in disguise (<a href="#graphs">10</a>).</li></ul>
+<hr>
+<h2 id="pattern-recognition--the-interview-method-say-this-out-loud-every-time"><a class="anchor" href="#pattern-recognition--the-interview-method-say-this-out-loud-every-time">#</a>The Interview Method (say this out loud, every time)</h2>
+<p>This is the framework from the interview-prep track, made into muscle memory. Narrate each step — the interviewer scores your reasoning, not just your final code.</p>
+<div class="code-wrap" data-lang="text"><button class="copy-btn" type="button">Copy</button><pre><code class="language-plaintext">1. CLARIFY      Restate the problem. Ask about input size, ranges, duplicates,
+                empty/null, sorted?, return value. Never start coding blind.
+2. EXAMPLES     Walk a concrete example by hand. Then an edge case
+                (empty, single element, all-same, negative).
+3. BRUTE FORCE  State the naive approach and its complexity — out loud.
+                &quot;I could do this in O(n²) by…&quot;. Shows you can always ship *something*.
+4. OPTIMISE     Name the pattern. &quot;Since the array is sorted, two pointers
+                gets this to O(n).&quot; This is where chapters 01–13 pay off.
+5. CODE         Write it cleanly, talking as you go. Good names, no dead code.
+6. TEST         Trace your own code on the example. Check the edge cases from step 2.
+                Fix bugs before they tell you.</code></pre></div>
+<p><strong>Golden rule:</strong> a working brute force you can explain beats an optimal solution you get stuck halfway through. Always secure <em>an</em> answer, then improve it.</p>
+<hr>
+<h2 id="pattern-recognition--worked-walkthrough-applying-the-method-cold"><a class="anchor" href="#pattern-recognition--worked-walkthrough-applying-the-method-cold">#</a>Worked Walkthrough — applying the method cold</h2>
+<p>Let's run the method on a prompt as if seeing it for the first time.</p>
+<blockquote><p><strong>Prompt:</strong> &quot;Given an array of integers, return the length of the longest substring… I mean subarray… whose elements sum to at most <code>k</code>. All numbers are positive.&quot;</p></blockquote>
+<p><strong>1. Clarify.</strong> &quot;Positive integers only — good. Contiguous subarray, not subsequence? (yes.) Can <code>k</code> be negative or zero? If all numbers are positive and <code>k ≥ 0</code>, an empty subarray trivially sums to 0. Return the <em>length</em>, not the subarray itself?&quot;</p>
+<p><strong>2. Examples.</strong> <code>nums = [2, 1, 1, 3]</code>, <code>k = 4</code> → <code>[2, 1, 1]</code> sums to 4, length 3. Edge: <code>k = 0</code> → length 0 (positives can't fit). Single element bigger than <code>k</code> → 0.</p>
+<p><strong>3. Brute force.</strong> &quot;I could check every subarray — <code>O(n²)</code> pairs, each summed in <code>O(1)</code> with running totals. That works but it's quadratic.&quot;</p>
+<p><strong>4. Optimise — recognise the pattern.</strong> The word <strong>&quot;contiguous&quot;</strong> + &quot;a condition on the sum&quot; is the sliding-window tell (chapter 04). Because all numbers are <strong>positive</strong>, the sum grows as the window expands and shrinks as it contracts — so a variable window is valid. &quot;I'll expand <code>right</code>, and while the sum exceeds <code>k</code>, shrink from <code>left</code>. <code>O(n)</code>.&quot;</p>
+<p><strong>5. Code.</strong></p>
+<div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">int LongestSubarrayAtMostK(int[] nums, int k)
+{
+    int left = 0, sum = 0, best = 0;
+    for (int right = 0; right &lt; nums.Length; right++)
+    {
+        sum += nums[right];                 // expand the window
+        while (sum &gt; k &amp;&amp; left &lt;= right)    // shrink while invalid
+            sum -= nums[left++];
+        best = Math.Max(best, right - left + 1);
+    }
+    return best;
+}</code></pre></div>
+<p><strong>6. Test.</strong> Trace <code>[2,1,1,3], k=4</code>: window grows to <code>[2,1,1]</code> (sum 4, len 3); adding 3 → sum 7 &gt; 4, shrink until valid. <code>best = 3</code>. ✓ Edge <code>k=0</code>: the <code>while</code> empties every window → <code>best = 0</code>. ✓</p>
+<p>Notice the pattern was <em>never named in the prompt</em> — &quot;contiguous&quot; + &quot;sum condition&quot; + &quot;positive numbers&quot; is what pointed to sliding window. That inference is the skill.</p>
+<hr>
+<h2 id="pattern-recognition--how-to-practise-recognition-not-just-solving"><a class="anchor" href="#pattern-recognition--how-to-practise-recognition-not-just-solving">#</a>How to practise recognition (not just solving)</h2>
+<p>Solving problems one by one builds <em>tools</em>; this routine builds <em>recognition</em>:</p>
+<ol><li><strong>Read 10 problems without solving them.</strong> For each, write only: &quot;Pattern = _<strong>, because </strong>_.&quot; Check against editorials. You'll be wrong early — that's the point.</li><li><strong>Group by pattern, not by difficulty.</strong> Do five sliding-window problems in a row; the shared structure becomes obvious and the tell sticks.</li><li><strong>Re-derive, don't re-memorise.</strong> After solving, close the editorial and rewrite from the <em>pattern</em>, not from memory of that specific solution.</li><li><strong>Time the recognition, not the coding.</strong> Give yourself 60 seconds per prompt to name the pattern and the target complexity out loud. Interviews are won or lost in that first minute.</li><li><strong>Keep a &quot;signals&quot; log.</strong> Each time a problem surprises you, add its tell to your own version of the cheat sheet above.</li></ol>
+<hr>
+<h2 id="pattern-recognition--reading-complexity-out-loud"><a class="anchor" href="#pattern-recognition--reading-complexity-out-loud">#</a>Reading complexity out loud</h2>
+<p>Interviewers expect you to state complexity unprompted. A quick reference tied to the patterns:</p>
+<div class="table-wrap"><table><thead><tr><th>Pattern</th><th>Typical time</th><th>Typical space</th></tr></thead><tbody><tr><td>Hash map / set</td><td>O(n)</td><td>O(n)</td></tr><tr><td>Two pointers / sliding window</td><td>O(n)</td><td>O(1)</td></tr><tr><td>Binary search</td><td>O(log n)</td><td>O(1)</td></tr><tr><td>Tree/graph BFS/DFS</td><td>O(V + E)</td><td>O(V)</td></tr><tr><td>Heap (top-K)</td><td>O(n log k)</td><td>O(k)</td></tr><tr><td>Backtracking</td><td>exponential (prune!)</td><td>O(depth)</td></tr><tr><td>DP</td><td>O(states × transition)</td><td>O(states)</td></tr></tbody></table></div>
+<p>If your approach is worse than these for its pattern, that's usually the hint you've missed the intended optimisation.</p>
+<hr>
+<h2 id="pattern-recognition--common-mistakes-interview-behaviour-not-just-code"><a class="anchor" href="#pattern-recognition--common-mistakes-interview-behaviour-not-just-code">#</a>Common Mistakes (interview behaviour, not just code)</h2>
+<ul><li><strong>Coding before clarifying</strong> — you solve the wrong problem. Always run step 1.</li><li><strong>Silent thinking</strong> — the interviewer can't score what they can't hear. Narrate.</li><li><strong>Jumping to &quot;the clever trick&quot;</strong> — state the brute force first; it's your safety net.</li><li><strong>Not testing your own code</strong> — trace an example before they ask. Catching your own bug is a strong signal.</li><li><strong>Pattern-forcing</strong> — not everything is DP. Match signals to patterns honestly; sometimes a hash map is the whole answer.</li><li><strong>Giving up at the optimisation</strong> — a clear <code>O(n²)</code> you can explain is a pass; a half-written <code>O(n)</code> you abandoned is not.</li></ul>
+<hr>
+<h2 id="pattern-recognition--where-to-go-next"><a class="anchor" href="#pattern-recognition--where-to-go-next">#</a>Where to go next</h2>
+<ul><li>Drill by pattern using the 50-problem plan in the <a href="#p-practice">Personal Projects — Coding Practice Plan</a>.</li><li>For the interview conversation itself, see the interview-prep <strong>Coding &amp; Algorithms</strong> chapters, which apply this exact method to fintech-flavoured prompts.</li><li>Then shift to <strong>System Design</strong> — a separate skill with its own method, covered in the interview-prep track and the System Design Building Blocks chapter.</li></ul>
+</article>
+<section class="refs"><h2>🔗 Further reading</h2><ul><li><a href="https://neetcode.io/practice" target="_blank" rel="noopener">NeetCode 150 (patterns, grouped)</a></li><li><a href="https://www.teamblind.com/post/New-Year-Gift---Curated-List-of-Top-75-LeetCode-Questions-to-Save-Your-Time-OaM1orEU" target="_blank" rel="noopener">Blind 75</a></li><li><a href="https://www.techinterviewhandbook.org/algorithms/study-cheatsheet/" target="_blank" rel="noopener">Tech Interview Handbook — Algorithms</a></li></ul></section>
+<nav class="pager"><a class="pg prev" data-goto="dp-patterns" href="#dp-patterns">← 13 · DP Patterns</a><a class="pg next" data-goto="twoptr-adv" href="#twoptr-adv">15 · Advanced Two Pointers →</a></nav>
 </section>
 <section class="chapter has-math" id="twoptr-adv" data-part="Advanced Extras">
 <div class="chapter-head"><span class="part-tag">Advanced Extras</span></div>
 <nav class="chapter-toc"><span class="toc-head">On this page</span><ul><li class="t2"><a href="#twoptr-adv--core-concepts">Core Concepts</a></li><li class="t3"><a href="#twoptr-adv--when-to-use-it">When to use it</a></li><li class="t3"><a href="#twoptr-adv--the-flavors">The Flavors</a></li><li class="t2"><a href="#twoptr-adv--patterns-with-code">Patterns with Code</a></li><li class="t3"><a href="#twoptr-adv--pattern-1-three-way-partitioning-dutch-national-flag">Pattern 1: Three-way partitioning (Dutch National Flag)</a></li><li class="t3"><a href="#twoptr-adv--pattern-2-fixed-ahead-pointer-fast-slow">Pattern 2: Fixed-Ahead Pointer (Fast &amp; Slow)</a></li><li class="t3"><a href="#twoptr-adv--pattern-3-the-expand-from-center-palindrome-substrings">Pattern 3: The &quot;Expand from Center&quot; (Palindrome Substrings)</a></li><li class="t2"><a href="#twoptr-adv--building-blocks-warm-up-exercises">Building Blocks: Warm-up Exercises</a></li><li class="t3"><a href="#twoptr-adv--exercise-1-the-intersection-of-two-sorted-arrays">Exercise 1 — The Intersection of Two Sorted Arrays</a></li><li class="t3"><a href="#twoptr-adv--exercise-2-targeted-partitioning-the-gatekeeper">Exercise 2 — Targeted Partitioning (The &quot;Gatekeeper&quot;)</a></li><li class="t2"><a href="#twoptr-adv--practice-problems">Practice Problems</a></li><li class="t3"><a href="#twoptr-adv--problem-1-container-with-most-water-leetcode-11">Problem 1 — Container With Most Water (LeetCode #11)</a></li><li class="t3"><a href="#twoptr-adv--problem-2-3sum-leetcode-15">Problem 2 — 3Sum (LeetCode #15)</a></li><li class="t3"><a href="#twoptr-adv--problem-3-trapping-rain-water-leetcode-42">Problem 3 — Trapping Rain Water (LeetCode #42)</a></li><li class="t2"><a href="#twoptr-adv--common-mistakes">Common Mistakes</a></li><li class="t2"><a href="#twoptr-adv--leetcode-problems-to-try-now">LeetCode Problems to Try Now</a></li></ul></nav>
 <article class="doc">
-<h1 id="twoptr-adv--10-advanced-two-pointers"><a class="anchor" href="#twoptr-adv--10-advanced-two-pointers">#</a>10 — Advanced Two Pointers</h1>
+<h1 id="twoptr-adv--15-advanced-two-pointers"><a class="anchor" href="#twoptr-adv--15-advanced-two-pointers">#</a>15 — Advanced Two Pointers</h1>
 <p>The Two-Pointer technique is often the &quot;missing link&quot; between a brute-force <span class="math">O(n<sup>2</sup>)</span> solution and an optimal <span class="math">O(n)</span> implementation. While the basic concept—tracking two indices—is simple, its advanced applications involve managing complex state, coordinating three or more pointers, and handling non-linear data traversal.</p>
 <p>This guide focuses on the &quot;Senior&quot; applications of the technique: partitioning unsorted data, expanding from centers, and maintaining running maximums to solve multi-faceted problems like water trapping and triplet sum optimization.</p>
 <hr>
@@ -3037,13 +4523,13 @@ int RemoveElement(int[] nums, int val) {
 <ul><li>#11 — Container With Most Water ⭐</li><li>#15 — 3Sum ⭐⭐</li><li>#42 — Trapping Rain Water ⭐⭐⭐</li><li>#75 — Sort Colors (Dutch National Flag)</li><li>#18 — 4Sum</li></ul>
 </article>
 <section class="refs"><h2>🔗 Further reading</h2><ul><li><a href="https://leetcode.com/problems/container-with-most-water/" target="_blank" rel="noopener">LeetCode — Container With Most Water</a></li></ul></section>
-<nav class="pager"><a class="pg prev" data-goto="dp" href="#dp">← 9 · Dynamic Programming</a><a class="pg next" data-goto="space" href="#space">11 · Space Complexity →</a></nav>
+<nav class="pager"><a class="pg prev" data-goto="pattern-recognition" href="#pattern-recognition">← 14 · Pattern Recognition</a><a class="pg next" data-goto="space" href="#space">16 · Space Complexity →</a></nav>
 </section>
 <section class="chapter has-math" id="space" data-part="Advanced Extras">
 <div class="chapter-head"><span class="part-tag">Advanced Extras</span></div>
 <nav class="chapter-toc"><span class="toc-head">On this page</span><ul><li class="t2"><a href="#space--1-the-two-components-of-space">1. The Two Components of Space</a></li><li class="t3"><a href="#space--a-input-space-the-given">A. Input Space (The Given)</a></li><li class="t3"><a href="#space--b-auxiliary-space-the-extra">B. Auxiliary Space (The Extra)</a></li><li class="t2"><a href="#space--2-the-big-o-hierarchy-of-space">2. The Big-O Hierarchy of Space</a></li><li class="t3"><a href="#space--o1-constant-space-the-pocket">🟦 O(1) — Constant Space: &quot;The Pocket&quot;</a></li><li class="t3"><a href="#space--olog-n-logarithmic-space-the-fold">🟩 O(log n) — Logarithmic Space: &quot;The Fold&quot;</a></li><li class="t3"><a href="#space--on-linear-space-the-mirror">🟨 O(n) — Linear Space: &quot;The Mirror&quot;</a></li><li class="t3"><a href="#space--on2-quadratic-space-the-grid">🟥 O(n²) — Quadratic Space: &quot;The Grid&quot;</a></li><li class="t2"><a href="#space--3-the-hidden-culprit-the-call-stack">3. The &quot;Hidden&quot; Culprit: The Call Stack</a></li><li class="t3"><a href="#space--visualizing-recursive-space">Visualizing Recursive Space</a></li><li class="t2"><a href="#space--4-how-to-calculate-space-complexity-step-by-step">4. How to Calculate Space Complexity (Step-by-Step)</a></li><li class="t3"><a href="#space--step-1-identify-all-created-variables">Step 1: Identify all created variables</a></li><li class="t3"><a href="#space--step-2-determine-dependency-on-n">Step 2: Determine dependency on 'N'</a></li><li class="t3"><a href="#space--step-3-audit-the-call-stack">Step 3: Audit the Call Stack</a></li><li class="t3"><a href="#space--step-4-keep-the-dominant-term">Step 4: Keep the Dominant Term</a></li><li class="t3"><a href="#space--walkthrough-example-the-memory-auditor-in-action">Walkthrough Example: The &quot;Memory Auditor&quot; in Action</a></li><li class="t2"><a href="#space--5-summary-table-for-quick-reference">5. Summary Table for Quick Reference</a></li><li class="t2"><a href="#space--practice-questions-check-your-understanding">Practice Questions (Check Your Understanding)</a></li></ul></nav>
 <article class="doc">
-<h1 id="space--11-space-complexity-the-memory-blueprint"><a class="anchor" href="#space--11-space-complexity-the-memory-blueprint">#</a>11 — Space Complexity: The Memory Blueprint</h1>
+<h1 id="space--16-space-complexity-the-memory-blueprint"><a class="anchor" href="#space--16-space-complexity-the-memory-blueprint">#</a>16 — Space Complexity: The Memory Blueprint</h1>
 <p>Space complexity is the measure of how much <strong>working memory</strong> (RAM) an algorithm needs to complete its task. For a student, the best way to think about this is: &quot;If I give my program a massive amount of data, will my computer run out of memory and crash?&quot;</p>
 <hr>
 <h2 id="space--1-the-two-components-of-space"><a class="anchor" href="#space--1-the-two-components-of-space">#</a>1. The Two Components of Space</h2>
@@ -3164,7 +4650,7 @@ Input Size: 32 -&gt; [][][][][] (5 units)</code></pre></div>
 <ul><li><em>Answer:</em> Because recursion uses the Call Stack. Each recursive call adds a new frame to memory, whereas a loop reuse the same variables over and over in a single frame.</li></ul>
 </article>
 <section class="refs"><h2>🔗 Further reading</h2><ul><li><a href="https://www.bigocheatsheet.com/" target="_blank" rel="noopener">Big-O Cheat Sheet</a></li></ul></section>
-<nav class="pager"><a class="pg prev" data-goto="twoptr-adv" href="#twoptr-adv">← 10 · Advanced Two Pointers</a><a class="pg next" data-goto="g-readme" href="#g-readme">Overview →</a></nav>
+<nav class="pager"><a class="pg prev" data-goto="twoptr-adv" href="#twoptr-adv">← 15 · Advanced Two Pointers</a><a class="pg next" data-goto="g-readme" href="#g-readme">Overview →</a></nav>
 </section>
 <section class="chapter" id="g-readme" data-part="Interview Prep — Generic">
 <div class="chapter-head"><span class="part-tag">Interview Prep — Generic</span></div>
@@ -3188,7 +4674,7 @@ Input Size: 32 -&gt; [][][][][] (5 units)</code></pre></div>
 <ol><li><strong>Start with System Design</strong> if you're senior — it's weighted heavily</li><li><strong>Start with Coding</strong> if you're mid-level — it's the gatekeeper</li><li><strong>Don't skip Behavioural</strong> — every company cares about culture fit</li><li>Work through each doc's questions, attempt answers before reading the solutions</li><li>Practice explaining your reasoning out loud — interviewers assess communication as much as correctness</li></ol>
 </article>
 
-<nav class="pager"><a class="pg prev" data-goto="space" href="#space">← 11 · Space Complexity</a><a class="pg next" data-goto="g-sd" href="#g-sd">System Design →</a></nav>
+<nav class="pager"><a class="pg prev" data-goto="space" href="#space">← 16 · Space Complexity</a><a class="pg next" data-goto="g-sd" href="#g-sd">System Design →</a></nav>
 </section>
 <section class="chapter" id="g-sd" data-part="Interview Prep — Generic">
 <div class="chapter-head"><span class="part-tag">Interview Prep — Generic</span></div>
@@ -3260,6 +4746,7 @@ string Encode(long id)
 4. Async: publish click event to Kafka for analytics</code></pre></div>
 <h3 id="g-sd--trade-offs"><a class="anchor" href="#g-sd--trade-offs">#</a>Trade-offs</h3>
 <div class="table-wrap"><table><thead><tr><th>Decision</th><th>Choice</th><th>Why</th></tr></thead><tbody><tr><td>301 vs 302 redirect</td><td>301 (permanent)</td><td>Browsers cache it; reduces load. Use 302 if analytics matter more</td></tr><tr><td>ID generation</td><td>Distributed ID generator (Snowflake)</td><td>Avoids single-point-of-failure of auto-increment</td></tr><tr><td>Cache eviction</td><td>LRU with TTL</td><td>Most URLs follow power-law distribution (few get most traffic)</td></tr><tr><td>Database</td><td>Postgres</td><td>Simple key-value lookup; could also use DynamoDB for scale</td></tr></tbody></table></div>
+<blockquote><p><strong>📖 DDIA:</strong> the read-path cache + replica reads raise the stale-read questions from <strong>Ch. 5 (Replication)</strong>; distributed ID generation (Snowflake) and avoiding auto-increment coordination connect to <strong>Ch. 6 (Partitioning)</strong> and <strong>Ch. 9 (Consistency and Consensus)</strong>. See the <a href="#g-blocks">System Design Building Blocks</a> chapter for the reusable toolkit behind these choices.</p></blockquote>
 <hr>
 <h2 id="g-sd--question-2-design-a-notification-system"><a class="anchor" href="#g-sd--question-2-design-a-notification-system">#</a>Question 2 — Design a Notification System</h2>
 <blockquote><p>&quot;Design a system that sends push notifications, emails, and SMS to users.&quot;</p></blockquote>
@@ -4532,7 +6019,90 @@ WHERE product_id = ? AND quantity - reserved &gt;= 1;
 <ol><li><strong>Using floats for money</strong> — always use integers in minor units</li><li><strong>No indexes on foreign keys</strong> — Postgres doesn't auto-index FKs</li><li><strong>Over-normalising</strong> — sometimes denormalisation is the correct trade-off</li><li><strong>Ignoring time zones</strong> — always use <code>TIMESTAMPTZ</code>, store in UTC</li><li><strong>Not considering query patterns first</strong> — design schema around how data is read, not just how it's written</li><li><strong>Forgetting about data growth</strong> — &quot;it works with 1000 rows&quot; doesn't mean it works with 100M</li></ol>
 </article>
 
-<nav class="pager"><a class="pg prev" data-goto="g-api" href="#g-api">← API &amp; Distributed Systems</a><a class="pg next" data-goto="d-readme" href="#d-readme">Overview →</a></nav>
+<nav class="pager"><a class="pg prev" data-goto="g-api" href="#g-api">← API &amp; Distributed Systems</a><a class="pg next" data-goto="g-blocks" href="#g-blocks">System Design Building Blocks →</a></nav>
+</section>
+<section class="chapter" id="g-blocks" data-part="Interview Prep — Generic">
+<div class="chapter-head"><span class="part-tag">Interview Prep — Generic</span></div>
+<nav class="chapter-toc"><span class="toc-head">On this page</span><ul><li class="t2"><a href="#g-blocks--how-to-use-this-in-an-interview">How to use this in an interview</a></li><li class="t2"><a href="#g-blocks--1-load-balancing-spreading-traffic">1. Load Balancing — spreading traffic</a></li><li class="t2"><a href="#g-blocks--2-caching-dont-recompute-what-you-can-remember">2. Caching — don't recompute what you can remember</a></li><li class="t2"><a href="#g-blocks--3-databases-sql-vs-nosql-and-why">3. Databases — SQL vs NoSQL, and why</a></li><li class="t2"><a href="#g-blocks--4-replication-copies-for-availability-read-scaling">4. Replication — copies for availability &amp; read scaling</a></li><li class="t2"><a href="#g-blocks--5-partitioning-sharding-splitting-data-that-wont-fit-on-one-node">5. Partitioning (Sharding) — splitting data that won't fit on one node</a></li><li class="t2"><a href="#g-blocks--6-consistency-the-cap-trade-off">6. Consistency &amp; the CAP trade-off</a></li><li class="t2"><a href="#g-blocks--7-messaging-event-streaming-decoupling-services">7. Messaging &amp; Event Streaming — decoupling services</a></li><li class="t2"><a href="#g-blocks--8-idempotency-resilience-surviving-a-messy-network">8. Idempotency &amp; Resilience — surviving a messy network</a></li><li class="t2"><a href="#g-blocks--9-back-of-the-envelope-estimation-the-numbers-to-know">9. Back-of-the-Envelope Estimation — the numbers to know</a></li><li class="t2"><a href="#g-blocks--putting-the-blocks-together-a-mental-checklist">Putting the blocks together — a mental checklist</a></li><li class="t2"><a href="#g-blocks--common-mistakes">Common Mistakes</a></li><li class="t2"><a href="#g-blocks--further-reading">🔗 Further reading</a></li></ul></nav>
+<article class="doc">
+<h1 id="g-blocks--06-system-design-building-blocks"><a class="anchor" href="#g-blocks--06-system-design-building-blocks">#</a>06 — System Design Building Blocks</h1>
+<p>The other system-design chapters are <em>worked questions</em>. This one is the <strong>toolkit</strong> — the reusable components and concepts you assemble in any design. Learn these once and you stop re-deriving them per question; you just reach for the right block and justify it.</p>
+<blockquote><p><strong>📖 Reading companion — Designing Data-Intensive Applications (DDIA) by Martin Kleppmann.</strong> Each section below points to the DDIA chapter that covers it in depth. This chapter is the interview-sized summary; DDIA is the why-it's-true underneath. Chapter references are to the book's chapters (stable across printings), not page numbers.</p></blockquote>
+<hr>
+<h2 id="g-blocks--how-to-use-this-in-an-interview"><a class="anchor" href="#g-blocks--how-to-use-this-in-an-interview">#</a>How to use this in an interview</h2>
+<p>Every design question is answered by composing these blocks behind the <strong>clarify → estimate → high-level design → deep dive → trade-offs</strong> framework (see chapter 01). When you say &quot;I'd put a cache here,&quot; the interviewer wants to hear <em>which</em> caching strategy and <em>why</em> — that &quot;why&quot; is what this chapter gives you.</p>
+<hr>
+<h2 id="g-blocks--1-load-balancing-spreading-traffic"><a class="anchor" href="#g-blocks--1-load-balancing-spreading-traffic">#</a>1. Load Balancing — spreading traffic</h2>
+<p>A load balancer sits in front of your servers and distributes requests so no single machine is overwhelmed. It also enables horizontal scaling (add more servers) and fault tolerance (route around dead ones via health checks).</p>
+<ul><li><strong>L4 (transport)</strong> — routes by IP/port; fast, protocol-agnostic.</li><li><strong>L7 (application)</strong> — routes by HTTP content (path, headers, cookies); enables smart routing, sticky sessions, TLS termination.</li><li><strong>Algorithms:</strong> round-robin, least-connections, consistent hashing (keeps a key on the same server as the pool changes — crucial for caches).</li></ul>
+<p><strong>Interview tell:</strong> any &quot;handle millions of users / high availability&quot; requirement → put an LB in the diagram and mention health checks + horizontal scaling.</p>
+<hr>
+<h2 id="g-blocks--2-caching-dont-recompute-what-you-can-remember"><a class="anchor" href="#g-blocks--2-caching-dont-recompute-what-you-can-remember">#</a>2. Caching — don't recompute what you can remember</h2>
+<p>Caching trades memory for latency: store the result of expensive work (a DB query, a computed view) so repeat reads are near-instant.</p>
+<p><strong>Where caches live:</strong> client → CDN → API/in-memory (Redis/Memcached) → database buffer. Each layer closer to the user is faster but staler.</p>
+<p><strong>Write strategies — the part interviewers probe:</strong> | Strategy | How it works | Trade-off | |----------|--------------|-----------| | <strong>Cache-aside</strong> (lazy) | App reads cache; on miss, loads DB and populates cache | Simple, common; first read is slow, risk of stale data | | <strong>Write-through</strong> | Write to cache <em>and</em> DB together | Cache always fresh; slower writes | | <strong>Write-back</strong> | Write to cache, flush to DB later | Fast writes; risk of data loss on crash |</p>
+<p><strong>Eviction:</strong> LRU (least-recently-used) is the default; also LFU, TTL expiry. (You implemented LRU in the coding track — same idea.)</p>
+<p><strong>The hard problem is invalidation:</strong> stale data. Strategies: short TTLs, event-driven invalidation (publish &quot;user X changed&quot; → evict), or versioned keys.</p>
+<blockquote><p><strong>📖 DDIA:</strong> caching is cross-cutting, but the <em>consistency</em> consequences (reading stale data) connect to <strong>Ch. 5 (Replication)</strong> and the &quot;reading your own writes&quot; discussion.</p></blockquote>
+<hr>
+<h2 id="g-blocks--3-databases-sql-vs-nosql-and-why"><a class="anchor" href="#g-blocks--3-databases-sql-vs-nosql-and-why">#</a>3. Databases — SQL vs NoSQL, and why</h2>
+<p><strong>Relational (SQL — Postgres, MySQL):</strong> strong schema, ACID transactions, joins, mature. Default choice when correctness matters (money, orders).</p>
+<p><strong>NoSQL</strong> is a family, pick by access pattern:</p>
+<ul><li><strong>Key-value</strong> (Redis, DynamoDB) — fast lookups by key; sessions, caches.</li><li><strong>Document</strong> (MongoDB) — flexible schema; nested objects read together.</li><li><strong>Wide-column</strong> (Cassandra) — massive write throughput, tunable consistency; time-series, event logs. <em>(Monzo uses Cassandra heavily.)</em></li><li><strong>Graph</strong> (Neo4j) — relationship-heavy queries.</li></ul>
+<p><strong>Interview tell:</strong> &quot;I'd use PostgreSQL because this needs ACID transactions&quot; or &quot;Cassandra because the write volume is huge and we can tolerate eventual consistency&quot; — naming <em>and justifying</em> beats naming alone.</p>
+<blockquote><p><strong>📖 DDIA Ch. 2 &amp; 3:</strong> data models (relational vs document vs graph) and the storage engines beneath them (B-trees vs LSM-trees — the reason Cassandra writes so fast).</p></blockquote>
+<hr>
+<h2 id="g-blocks--4-replication-copies-for-availability-read-scaling"><a class="anchor" href="#g-blocks--4-replication-copies-for-availability-read-scaling">#</a>4. Replication — copies for availability &amp; read scaling</h2>
+<p>Keep the same data on multiple nodes so you survive failures and serve more reads.</p>
+<ul><li><strong>Single-leader (primary/replica):</strong> all writes go to the leader, which streams a <strong>replication log</strong> to followers. Reads can scale across followers. The catch: <strong>replication lag</strong> → a follower may briefly serve stale data (&quot;I updated my profile but it still shows the old one&quot;).</li><li><strong>Multi-leader:</strong> writes accepted at several nodes (multi-region); must resolve write conflicts.</li><li><strong>Leaderless (Dynamo-style, e.g. Cassandra):</strong> write to several nodes, read from several, use quorums (<code>R + W &gt; N</code>) to stay consistent.</li></ul>
+<p><strong>Interview tells:</strong> &quot;99.99% availability&quot; → replication + failover. &quot;Read-heavy&quot; → read replicas. &quot;Multi-region&quot; → multi-leader or leaderless + conflict handling.</p>
+<blockquote><p><strong>📖 DDIA Ch. 5 (Replication):</strong> leader/follower logs, replication lag and its anomalies (read-your-writes, monotonic reads), multi-leader conflict resolution, and leaderless quorums. One of the most interview-relevant chapters.</p></blockquote>
+<hr>
+<h2 id="g-blocks--5-partitioning-sharding-splitting-data-that-wont-fit-on-one-node"><a class="anchor" href="#g-blocks--5-partitioning-sharding-splitting-data-that-wont-fit-on-one-node">#</a>5. Partitioning (Sharding) — splitting data that won't fit on one node</h2>
+<p>When data or load exceeds a single machine, split it across nodes.</p>
+<ul><li><strong>By key range:</strong> contiguous ranges per shard — good for range scans, but risks hot spots (e.g. all recent timestamps on one shard).</li><li><strong>By hash of key:</strong> spreads load evenly, but kills efficient range queries.</li><li><strong>Hot-spot mitigation:</strong> add a suffix/prefix to spread a hot key; use consistent hashing so adding a shard moves minimal data.</li></ul>
+<p><strong>The rebalancing problem:</strong> when you add/remove nodes, how much data moves? Consistent hashing minimises it.</p>
+<p><strong>Interview tell:</strong> &quot;storage/throughput exceeds one node&quot; → shard, and immediately address <em>how you pick the partition key</em> and <em>hot spots</em>.</p>
+<blockquote><p><strong>📖 DDIA Ch. 6 (Partitioning):</strong> partitioning strategies, secondary-index partitioning, and rebalancing approaches.</p></blockquote>
+<hr>
+<h2 id="g-blocks--6-consistency-the-cap-trade-off"><a class="anchor" href="#g-blocks--6-consistency-the-cap-trade-off">#</a>6. Consistency &amp; the CAP trade-off</h2>
+<p>In a distributed system, when the network partitions (it will), you choose between <strong>consistency</strong> (every read sees the latest write) and <strong>availability</strong> (every request still gets an answer). You can't have both during a partition — that's <strong>CAP</strong>.</p>
+<p><strong>The spectrum (not a binary):</strong></p>
+<ul><li><strong>Strong / linearizable:</strong> reads always see the latest write. Needed for balances, inventory. Costs latency and availability.</li><li><strong>Eventual:</strong> replicas converge <em>eventually</em>; reads may be briefly stale. Fine for likes, feeds, cached profiles.</li><li><strong>Causal / read-your-writes:</strong> middle grounds that fix the most jarring anomalies without full linearizability.</li></ul>
+<p><strong>Interview tell:</strong> state the requirement explicitly — &quot;balances need strong consistency; the activity feed can be eventually consistent.&quot; Senior candidates name the consistency model per component, not for the whole system.</p>
+<blockquote><p><strong>📖 DDIA Ch. 7 (Transactions) &amp; Ch. 9 (Consistency and Consensus):</strong> isolation levels, linearizability vs eventual consistency, and why consensus (e.g. Raft) is the foundation under leader election and distributed locks.</p></blockquote>
+<hr>
+<h2 id="g-blocks--7-messaging-event-streaming-decoupling-services"><a class="anchor" href="#g-blocks--7-messaging-event-streaming-decoupling-services">#</a>7. Messaging &amp; Event Streaming — decoupling services</h2>
+<p>A message broker (queue or log) lets a producer hand off work without waiting for the consumer, absorbing bursts and decoupling services.</p>
+<ul><li><strong>Queue (RabbitMQ, SQS):</strong> a message is consumed by one worker, then gone. Good for task distribution.</li><li><strong>Log (Kafka):</strong> messages are an <em>append-only, replayable</em> log, partitioned for throughput. Multiple independent consumer groups read the same events; consumers track their own <strong>offset</strong>. Good for event-driven architectures and multiple downstream consumers. <em>(Monzo runs on Kafka.)</em></li></ul>
+<p><strong>Delivery semantics:</strong> at-most-once (may lose), at-least-once (may duplicate — make consumers <strong>idempotent</strong>), exactly-once (hard; usually at-least-once + dedup).</p>
+<p><strong>Patterns worth naming:</strong> the <strong>outbox pattern</strong> (write the event in the same DB transaction as the state change, to avoid &quot;updated DB but failed to publish&quot;), <strong>dead-letter queues</strong> for poison messages, and consumer <strong>backpressure</strong>.</p>
+<blockquote><p><strong>📖 DDIA Ch. 11 (Stream Processing):</strong> logs vs queues, consumer offsets, exactly-once semantics, and the outbox/change-data-capture ideas. Pairs with <strong>Ch. 10 (Batch Processing)</strong> for the batch-vs-stream contrast.</p></blockquote>
+<hr>
+<h2 id="g-blocks--8-idempotency-resilience-surviving-a-messy-network"><a class="anchor" href="#g-blocks--8-idempotency-resilience-surviving-a-messy-network">#</a>8. Idempotency &amp; Resilience — surviving a messy network</h2>
+<p>In distributed systems, requests time out, retry, and arrive twice. Design for it:</p>
+<ul><li><strong>Idempotency keys:</strong> the client sends a unique key; the server stores the result and returns the cached response on retry — so a double-tapped payment charges once. (You saw this in the payment-system design.)</li><li><strong>Retries with exponential backoff + jitter:</strong> retry transient failures without stampeding a recovering service.</li><li><strong>Circuit breakers:</strong> stop calling a failing dependency for a cooldown, fail fast, then probe to recover.</li><li><strong>Timeouts &amp; bulkheads:</strong> never wait forever; isolate resource pools so one slow dependency can't sink everything.</li></ul>
+<p><strong>Interview tell:</strong> the phrase &quot;resilient software&quot; (a Monzo requirement) → idempotency + retries + circuit breakers + DLQ. Say these words.</p>
+<blockquote><p><strong>📖 DDIA Ch. 8 (The Trouble with Distributed Systems):</strong> unreliable networks, clocks, and partial failure — <em>why</em> all the above machinery is necessary.</p></blockquote>
+<hr>
+<h2 id="g-blocks--9-back-of-the-envelope-estimation-the-numbers-to-know"><a class="anchor" href="#g-blocks--9-back-of-the-envelope-estimation-the-numbers-to-know">#</a>9. Back-of-the-Envelope Estimation — the numbers to know</h2>
+<p>Interviewers expect rough capacity math. Memorise these anchors:</p>
+<div class="table-wrap"><table><thead><tr><th>Operation</th><th>Rough latency</th></tr></thead><tbody><tr><td>Memory reference</td><td>~100 ns</td></tr><tr><td>Redis read</td><td>&lt; 1 ms</td></tr><tr><td>SSD random read</td><td>~0.1 ms</td></tr><tr><td>DB (Postgres) query</td><td>5–20 ms</td></tr><tr><td>Same-region network round trip</td><td>1–5 ms</td></tr><tr><td>Cross-continent round trip</td><td>~100–150 ms</td></tr></tbody></table></div>
+<p><strong>Method:</strong> users → requests/sec (peak ≈ 2–3× average) → storage (records × size × retention) → bandwidth. State assumptions out loud: &quot;5M users, 2 requests/day each, peak 3× → ~350 req/s.&quot;</p>
+<hr>
+<h2 id="g-blocks--putting-the-blocks-together-a-mental-checklist"><a class="anchor" href="#g-blocks--putting-the-blocks-together-a-mental-checklist">#</a>Putting the blocks together — a mental checklist</h2>
+<p>For any design, walk the request's journey and name the block at each hop:</p>
+<ol><li><strong>Client → LB</strong> (§1): spread load, health checks.</li><li><strong>LB → API servers</strong> (stateless, horizontally scalable).</li><li><strong>API → Cache</strong> (§2): cache-aside for hot reads; name the invalidation plan.</li><li><strong>API → Database</strong> (§3): SQL vs NoSQL <em>with justification</em>; replication (§4) for availability, partitioning (§5) at scale.</li><li><strong>Async work → Broker</strong> (§7): Kafka/queue for decoupling and bursts; idempotent consumers (§8).</li><li><strong>State the consistency model per component</strong> (§6) and the <strong>failure modes</strong> (§8).</li><li><strong>Back it with numbers</strong> (§9).</li></ol>
+<p>Say the trade-off at every block — <em>that</em> is what reads as senior.</p>
+<hr>
+<h2 id="g-blocks--common-mistakes"><a class="anchor" href="#g-blocks--common-mistakes">#</a>Common Mistakes</h2>
+<ul><li><strong>Jumping to architecture before requirements</strong> — always clarify and estimate first.</li><li><strong>Naming a technology without justifying it</strong> — &quot;Kafka because we need replayable events and multiple consumers,&quot; not just &quot;Kafka.&quot;</li><li><strong>One consistency model for everything</strong> — specify per component.</li><li><strong>Ignoring failure</strong> — interviewers probe &quot;what happens when this dies?&quot; Have the resilience blocks (§8) ready.</li><li><strong>Hand-waving scale</strong> — do the back-of-envelope math (§9), even roughly.</li></ul>
+<hr>
+<h2 id="g-blocks--further-reading"><a class="anchor" href="#g-blocks--further-reading">#</a>🔗 Further reading</h2>
+<ul><li><strong>Designing Data-Intensive Applications</strong> — Martin Kleppmann (the definitive deep dive; chapters mapped per section above).</li><li><a href="https://github.com/donnemartin/system-design-primer" target="_blank" rel="noopener">System Design Primer (GitHub)</a></li><li><a href="https://bytebytego.com/" target="_blank" rel="noopener">ByteByteGo</a></li><li><a href="https://monzo.com/blog/technology" target="_blank" rel="noopener">Monzo Engineering Blog</a></li></ul>
+</article>
+
+<nav class="pager"><a class="pg prev" data-goto="g-db" href="#g-db">← Database &amp; Data Modelling</a><a class="pg next" data-goto="d-readme" href="#d-readme">Overview →</a></nav>
 </section>
 <section class="chapter" id="d-readme" data-part="Interview Prep — .NET">
 <div class="chapter-head"><span class="part-tag">Interview Prep — .NET</span></div>
@@ -4556,7 +6126,7 @@ WHERE product_id = ? AND quantity - reserved &gt;= 1;
 <ol><li><strong>Start with Coding</strong> — .NET roles often gate on C# fluency</li><li><strong>System Design</strong> is critical for senior roles — know the Azure/AWS equivalents</li><li><strong>API Design</strong> overlaps heavily with day-to-day .NET work</li><li>Work through each doc's questions, attempt answers before reading solutions</li><li>Practice writing C# without IDE assistance — interviewers notice reliance on IntelliSense</li></ol>
 </article>
 
-<nav class="pager"><a class="pg prev" data-goto="g-db" href="#g-db">← Database &amp; Data Modelling</a><a class="pg next" data-goto="d-sd" href="#d-sd">System Design →</a></nav>
+<nav class="pager"><a class="pg prev" data-goto="g-blocks" href="#g-blocks">← System Design Building Blocks</a><a class="pg next" data-goto="d-sd" href="#d-sd">System Design →</a></nav>
 </section>
 <section class="chapter" id="d-sd" data-part="Interview Prep — .NET">
 <div class="chapter-head"><span class="part-tag">Interview Prep — .NET</span></div>
@@ -9406,7 +10976,7 @@ public class Solution
   </main>
 </div>
 
-<script id="search-index" type="application/json">[{"id":"readme","title":"CodeFundamentals","label":"Project Overview","part":"Start Here"},{"id":"dev","title":"Development Guide","label":"Development Guide","part":"Start Here"},{"id":"learn-readme","title":"🧠 Coding Fundamentals Learning Plan","label":"Learning Plan","part":"Start Here"},{"id":"arrays","title":"01 — Arrays & Strings","label":"1 · Arrays & Strings","part":"Fundamentals — Coding Patterns"},{"id":"hashmaps","title":"02 — Hash Maps & Sets","label":"2 · Hash Maps & Sets","part":"Fundamentals — Coding Patterns"},{"id":"twoptr","title":"03 — Two Pointers","label":"3 · Two Pointers","part":"Fundamentals — Coding Patterns"},{"id":"window","title":"04 — Sliding Window","label":"4 · Sliding Window","part":"Fundamentals — Coding Patterns"},{"id":"stacks","title":"05 — Stacks & Queues","label":"5 · Stacks & Queues","part":"Fundamentals — Coding Patterns"},{"id":"binsearch","title":"06 — Sorting & Binary Search","label":"6 · Sorting & Binary Search","part":"Fundamentals — Coding Patterns"},{"id":"lists","title":"07 — Linked Lists","label":"7 · Linked Lists","part":"Fundamentals — Coding Patterns"},{"id":"trees","title":"08 — Trees & Recursion","label":"8 · Trees & Recursion","part":"Fundamentals — Coding Patterns"},{"id":"dp","title":"09 — Dynamic Programming (Introduction)","label":"9 · Dynamic Programming","part":"Fundamentals — Coding Patterns"},{"id":"twoptr-adv","title":"10 — Advanced Two Pointers","label":"10 · Advanced Two Pointers","part":"Advanced Extras"},{"id":"space","title":"11 — Space Complexity: The Memory Blueprint","label":"11 · Space Complexity","part":"Advanced Extras"},{"id":"g-readme","title":"🎯 Interview Prep — Mid/Senior Engineering Roles","label":"Overview","part":"Interview Prep — Generic"},{"id":"g-sd","title":"01 — System Design","label":"System Design","part":"Interview Prep — Generic"},{"id":"g-algo","title":"02 — Coding & Algorithms","label":"Coding & Algorithms","part":"Interview Prep — Generic"},{"id":"g-beh","title":"03 — Behavioural & Culture Fit","label":"Behavioural","part":"Interview Prep — Generic"},{"id":"g-api","title":"04 — API Design & Distributed Systems","label":"API & Distributed Systems","part":"Interview Prep — Generic"},{"id":"g-db","title":"05 — Database & Data Modelling","label":"Database & Data Modelling","part":"Interview Prep — Generic"},{"id":"d-readme","title":"🎯 Interview Prep — .NET Engineering Roles","label":"Overview","part":"Interview Prep — .NET"},{"id":"d-sd","title":"01 — System Design (.NET Focus)","label":"System Design","part":"Interview Prep — .NET"},{"id":"d-algo","title":"02 — Coding & Algorithms (.NET Focus)","label":"Coding & Algorithms","part":"Interview Prep — .NET"},{"id":"d-beh","title":"03 — Behavioural & Culture Fit (.NET Focus)","label":"Behavioural","part":"Interview Prep — .NET"},{"id":"d-api","title":"04 — API Design & Distributed Systems (.NET Focus)","label":"API & Distributed Systems","part":"Interview Prep — .NET"},{"id":"d-db","title":"05 — Database & Data Modelling (.NET Focus)","label":"Database & Data Modelling","part":"Interview Prep — .NET"},{"id":"m-readme","title":"🎯 Interview Prep — Mid/Senior Engineering Roles","label":"Overview","part":"Interview Prep — Monzo"},{"id":"m-sd","title":"01 — System Design","label":"System Design","part":"Interview Prep — Monzo"},{"id":"m-algo","title":"02 — Coding & Algorithms","label":"Coding & Algorithms","part":"Interview Prep — Monzo"},{"id":"m-beh","title":"03 — Behavioural & Culture Fit","label":"Behavioural","part":"Interview Prep — Monzo"},{"id":"m-api","title":"04 — API Design & Distributed Systems","label":"API & Distributed Systems","part":"Interview Prep — Monzo"},{"id":"m-db","title":"05 — Database & Data Modelling","label":"Database & Data Modelling","part":"Interview Prep — Monzo"},{"id":"m-assess","title":"Monzo Engineering Role Assessment","label":"Role Assessment","part":"Interview Prep — Monzo"},{"id":"p-readme","title":"🚀 Personal Projects — Interview Gap Closure Plan","label":"Overview & Roadmap","part":"Personal Projects"},{"id":"p-go","title":"Project 1 — Go Transaction API","label":"1 · Go Transaction API","part":"Personal Projects"},{"id":"p-kafka","title":"Project 2 — Event-Driven Transaction System with Kafka","label":"2 · Event-Driven Kafka","part":"Personal Projects"},{"id":"p-resil","title":"Project 3 — Resilient Payment Service","label":"3 · Resilient Payment Service","part":"Personal Projects"},{"id":"p-practice","title":"Project 4 — Coding Challenge Tracker & Practice Plan","label":"4 · Coding Practice Plan","part":"Personal Projects"}]</script>
+<script id="search-index" type="application/json">[{"id":"readme","title":"CodeFundamentals","label":"Project Overview","part":"Start Here"},{"id":"dev","title":"Development Guide","label":"Development Guide","part":"Start Here"},{"id":"learn-readme","title":"🧠 Coding Fundamentals Learning Plan","label":"Learning Plan","part":"Start Here"},{"id":"arrays","title":"01 — Arrays & Strings","label":"1 · Arrays & Strings","part":"Fundamentals — Coding Patterns"},{"id":"hashmaps","title":"02 — Hash Maps & Sets","label":"2 · Hash Maps & Sets","part":"Fundamentals — Coding Patterns"},{"id":"twoptr","title":"03 — Two Pointers","label":"3 · Two Pointers","part":"Fundamentals — Coding Patterns"},{"id":"window","title":"04 — Sliding Window","label":"4 · Sliding Window","part":"Fundamentals — Coding Patterns"},{"id":"stacks","title":"05 — Stacks & Queues","label":"5 · Stacks & Queues","part":"Fundamentals — Coding Patterns"},{"id":"binsearch","title":"06 — Sorting & Binary Search","label":"6 · Sorting & Binary Search","part":"Fundamentals — Coding Patterns"},{"id":"lists","title":"07 — Linked Lists","label":"7 · Linked Lists","part":"Fundamentals — Coding Patterns"},{"id":"trees","title":"08 — Trees & Recursion","label":"8 · Trees & Recursion","part":"Fundamentals — Coding Patterns"},{"id":"dp","title":"09 — Dynamic Programming (Introduction)","label":"9 · Dynamic Programming","part":"Fundamentals — Coding Patterns"},{"id":"graphs","title":"10 — Graphs","label":"10 · Graphs","part":"Fundamentals — Coding Patterns"},{"id":"heaps","title":"11 — Heaps & Priority Queues","label":"11 · Heaps & Priority Queues","part":"Fundamentals — Coding Patterns"},{"id":"backtracking","title":"12 — Backtracking","label":"12 · Backtracking","part":"Fundamentals — Coding Patterns"},{"id":"dp-patterns","title":"13 — Dynamic Programming Patterns","label":"13 · DP Patterns","part":"Fundamentals — Coding Patterns"},{"id":"pattern-recognition","title":"14 — Pattern Recognition & Interview Method","label":"14 · Pattern Recognition","part":"Fundamentals — Coding Patterns"},{"id":"twoptr-adv","title":"15 — Advanced Two Pointers","label":"15 · Advanced Two Pointers","part":"Advanced Extras"},{"id":"space","title":"16 — Space Complexity: The Memory Blueprint","label":"16 · Space Complexity","part":"Advanced Extras"},{"id":"g-readme","title":"🎯 Interview Prep — Mid/Senior Engineering Roles","label":"Overview","part":"Interview Prep — Generic"},{"id":"g-sd","title":"01 — System Design","label":"System Design","part":"Interview Prep — Generic"},{"id":"g-algo","title":"02 — Coding & Algorithms","label":"Coding & Algorithms","part":"Interview Prep — Generic"},{"id":"g-beh","title":"03 — Behavioural & Culture Fit","label":"Behavioural","part":"Interview Prep — Generic"},{"id":"g-api","title":"04 — API Design & Distributed Systems","label":"API & Distributed Systems","part":"Interview Prep — Generic"},{"id":"g-db","title":"05 — Database & Data Modelling","label":"Database & Data Modelling","part":"Interview Prep — Generic"},{"id":"g-blocks","title":"06 — System Design Building Blocks","label":"System Design Building Blocks","part":"Interview Prep — Generic"},{"id":"d-readme","title":"🎯 Interview Prep — .NET Engineering Roles","label":"Overview","part":"Interview Prep — .NET"},{"id":"d-sd","title":"01 — System Design (.NET Focus)","label":"System Design","part":"Interview Prep — .NET"},{"id":"d-algo","title":"02 — Coding & Algorithms (.NET Focus)","label":"Coding & Algorithms","part":"Interview Prep — .NET"},{"id":"d-beh","title":"03 — Behavioural & Culture Fit (.NET Focus)","label":"Behavioural","part":"Interview Prep — .NET"},{"id":"d-api","title":"04 — API Design & Distributed Systems (.NET Focus)","label":"API & Distributed Systems","part":"Interview Prep — .NET"},{"id":"d-db","title":"05 — Database & Data Modelling (.NET Focus)","label":"Database & Data Modelling","part":"Interview Prep — .NET"},{"id":"m-readme","title":"🎯 Interview Prep — Mid/Senior Engineering Roles","label":"Overview","part":"Interview Prep — Monzo"},{"id":"m-sd","title":"01 — System Design","label":"System Design","part":"Interview Prep — Monzo"},{"id":"m-algo","title":"02 — Coding & Algorithms","label":"Coding & Algorithms","part":"Interview Prep — Monzo"},{"id":"m-beh","title":"03 — Behavioural & Culture Fit","label":"Behavioural","part":"Interview Prep — Monzo"},{"id":"m-api","title":"04 — API Design & Distributed Systems","label":"API & Distributed Systems","part":"Interview Prep — Monzo"},{"id":"m-db","title":"05 — Database & Data Modelling","label":"Database & Data Modelling","part":"Interview Prep — Monzo"},{"id":"m-assess","title":"Monzo Engineering Role Assessment","label":"Role Assessment","part":"Interview Prep — Monzo"},{"id":"p-readme","title":"🚀 Personal Projects — Interview Gap Closure Plan","label":"Overview & Roadmap","part":"Personal Projects"},{"id":"p-go","title":"Project 1 — Go Transaction API","label":"1 · Go Transaction API","part":"Personal Projects"},{"id":"p-kafka","title":"Project 2 — Event-Driven Transaction System with Kafka","label":"2 · Event-Driven Kafka","part":"Personal Projects"},{"id":"p-resil","title":"Project 3 — Resilient Payment Service","label":"3 · Resilient Payment Service","part":"Personal Projects"},{"id":"p-practice","title":"Project 4 — Coding Challenge Tracker & Practice Plan","label":"4 · Coding Practice Plan","part":"Personal Projects"}]</script>
 <script defer src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/highlight.min.js"></script>
 <script type="module">
 import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";
@@ -9506,6 +11076,11 @@ function enhance(root){
   injectViz(root);
   // render any author-injected Big-O charts
   renderBigOCharts(root);
+  // tag reading-companion (📖) blockquotes so they get the callout style
+  root.querySelectorAll('.doc blockquote').forEach(function(bq){
+    var t=(bq.textContent||'').trim();
+    if(t.indexOf('📖')===0||t.indexOf('DDIA')===0)bq.classList.add('ddia');
+  });
   root.dataset.enhanced='1';
 }
 

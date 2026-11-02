@@ -110,6 +110,8 @@ string Encode(long id)
 | Cache eviction | LRU with TTL | Most URLs follow power-law distribution (few get most traffic) |
 | Database | Postgres | Simple key-value lookup; could also use DynamoDB for scale |
 
+> **📖 DDIA:** the read-path cache + replica reads raise the stale-read questions from **Ch. 5 (Replication)**; distributed ID generation (Snowflake) and avoiding auto-increment coordination connect to **Ch. 6 (Partitioning)** and **Ch. 9 (Consistency and Consensus)**. See the [System Design Building Blocks](./06-system-design-building-blocks.md) chapter for the reusable toolkit behind these choices.
+
 ---
 
 ## Question 2 — Design a Notification System

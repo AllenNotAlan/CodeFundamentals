@@ -60,13 +60,18 @@ const PARTS = [
       ["lists", "docs/code-learning/07-linked-lists.md", "7 · Linked Lists"],
       ["trees", "docs/code-learning/08-trees-and-recursion.md", "8 · Trees & Recursion"],
       ["dp", "docs/code-learning/09-dynamic-programming-intro.md", "9 · Dynamic Programming"],
+      ["graphs", "docs/code-learning/10-graphs.md", "10 · Graphs"],
+      ["heaps", "docs/code-learning/11-heaps-priority-queues.md", "11 · Heaps & Priority Queues"],
+      ["backtracking", "docs/code-learning/12-backtracking.md", "12 · Backtracking"],
+      ["dp-patterns", "docs/code-learning/13-dynamic-programming-patterns.md", "13 · DP Patterns"],
+      ["pattern-recognition", "docs/code-learning/14-pattern-recognition.md", "14 · Pattern Recognition"],
     ],
   },
   {
     title: "Advanced Extras",
     chapters: [
-      ["twoptr-adv", "docs/extras/two-pointers-mastery.md", "10 · Advanced Two Pointers"],
-      ["space", "docs/extras/space-complexity-guide.md", "11 · Space Complexity"],
+      ["twoptr-adv", "docs/extras/two-pointers-mastery.md", "15 · Advanced Two Pointers"],
+      ["space", "docs/extras/space-complexity-guide.md", "16 · Space Complexity"],
     ],
   },
   {
@@ -78,6 +83,7 @@ const PARTS = [
       ["g-beh", "docs/interview-prep-generic/03-behavioural.md", "Behavioural"],
       ["g-api", "docs/interview-prep-generic/04-api-design-distributed-systems.md", "API & Distributed Systems"],
       ["g-db", "docs/interview-prep-generic/05-database-data-modelling.md", "Database & Data Modelling"],
+      ["g-blocks", "docs/interview-prep-generic/06-system-design-building-blocks.md", "System Design Building Blocks"],
     ],
   },
   {
@@ -137,6 +143,29 @@ const REFERENCES = {
   lists: [["Visualgo — Linked List", "https://visualgo.net/en/list"]],
   trees: [["Visualgo — Binary Search Tree", "https://visualgo.net/en/bst"]],
   dp: [["MIT OCW — Dynamic Programming", "https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-spring-2020/"]],
+  graphs: [
+    ["NeetCode — Graphs roadmap", "https://neetcode.io/roadmap"],
+    ["Visualgo — Graph traversal (BFS/DFS)", "https://visualgo.net/en/dfsbfs"],
+    ["Visualgo — Union-Find (Disjoint Sets)", "https://visualgo.net/en/ufds"],
+  ],
+  heaps: [
+    ["MS Docs — PriorityQueue<TElement,TPriority>", "https://learn.microsoft.com/dotnet/api/system.collections.generic.priorityqueue-2"],
+    ["Python docs — heapq", "https://docs.python.org/3/library/heapq.html"],
+    ["Visualgo — Binary Heap", "https://visualgo.net/en/heap"],
+  ],
+  backtracking: [
+    ["NeetCode — Backtracking roadmap", "https://neetcode.io/roadmap"],
+    ["LeetCode — Backtracking tag", "https://leetcode.com/tag/backtracking/"],
+  ],
+  "dp-patterns": [
+    ["NeetCode — 1-D & 2-D DP", "https://neetcode.io/roadmap"],
+    ["LeetCode — Dynamic Programming tag", "https://leetcode.com/tag/dynamic-programming/"],
+  ],
+  "pattern-recognition": [
+    ["NeetCode 150 (patterns, grouped)", "https://neetcode.io/practice"],
+    ["Blind 75", "https://www.teamblind.com/post/New-Year-Gift---Curated-List-of-Top-75-LeetCode-Questions-to-Save-Your-Time-OaM1orEU"],
+    ["Tech Interview Handbook — Algorithms", "https://www.techinterviewhandbook.org/algorithms/study-cheatsheet/"],
+  ],
   "twoptr-adv": [["LeetCode — Container With Most Water", "https://leetcode.com/problems/container-with-most-water/"]],
   space: [["Big-O Cheat Sheet", "https://www.bigocheatsheet.com/"]],
   "g-sd": [
@@ -799,6 +828,8 @@ h1:hover .anchor,h2:hover .anchor,h3:hover .anchor{opacity:.55}
 .task-list{list-style:none;padding-left:.2em}.task-item{display:flex;gap:.5em;align-items:flex-start}.task-item input{margin-top:.5em}
 blockquote{margin:1em 0;padding:.5em 1em;border-left:4px solid var(--accent);background:var(--accent-weak);border-radius:0 8px 8px 0}
 blockquote p{margin:.35em 0}
+blockquote.ddia{border-left-color:#8250df;background:color-mix(in srgb, #8250df 10%, transparent)}
+html[data-theme=dark] blockquote.ddia{background:color-mix(in srgb, #8250df 22%, transparent)}
 code{font-family:"SFMono-Regular",Consolas,Menlo,monospace;font-size:.86em;background:var(--code-bg);padding:.15em .4em;border-radius:5px;border:1px solid var(--border)}
 .math{font-family:"Cambria Math","Latin Modern Math",Georgia,"Times New Roman",serif;font-style:italic;white-space:nowrap;padding:0 .05em}
 .math sup,.math sub{font-style:normal}
@@ -973,6 +1004,11 @@ function enhance(root){
   injectViz(root);
   // render any author-injected Big-O charts
   renderBigOCharts(root);
+  // tag reading-companion (📖) blockquotes so they get the callout style
+  root.querySelectorAll('.doc blockquote').forEach(function(bq){
+    var t=(bq.textContent||'').trim();
+    if(t.indexOf('📖')===0||t.indexOf('DDIA')===0)bq.classList.add('ddia');
+  });
   root.dataset.enhanced='1';
 }
 
