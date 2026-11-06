@@ -310,32 +310,49 @@ for (int i = 0; i &lt; nums.Length; i++)
 <h3 id="arrays--2-prefix-suffix-patterns-precompute-totals-for-fast-lookups"><a class="anchor" href="#arrays--2-prefix-suffix-patterns-precompute-totals-for-fast-lookups">#</a>2. Prefix &amp; Suffix Patterns — Precompute totals for fast lookups</h3>
 <p>These patterns are used to avoid repeated work. Instead of recalculating a sum or product for every index (which is slow), you &quot;pre-calculate&quot; it once.</p>
 <ul><li><strong>Prefix:</strong> Information about everything <em>before</em> or <em>up to</em> the current index (left-to-right).</li><li><strong>Suffix:</strong> Information about everything <em>after</em> or <em>from</em> the current index (right-to-left).</li></ul>
+<p><strong>The core idea:</strong> each new answer is built from the answer you already computed one step back. You never start a sum from scratch — you take the running total you already have and fold in one more number. That &quot;reuse the previous result&quot; trick is what turns repeated O(n) work into a single O(n) pass.</p>
 <p><strong>Visualization (Sum example):</strong></p>
 <div class="code-wrap" data-lang="text"><button class="copy-btn" type="button">Copy</button><pre><code class="language-plaintext">nums:      [ 1,  2,  3,  4 ]
 --------------------------
 Prefix:    [ 1,  3,  6, 10 ]  (Summing left to right: 1, 1+2, 1+2+3, ...)
 Suffix:    [10,  9,  7,  4 ]  (Summing right to left: 4+3+2+1, 4+3+2, 4+3, 4)</code></pre></div>
+<p>Read <code>prefix[i]</code> as &quot;the total of everything from the start up to and including <code>i</code>&quot;. Read <code>suffix[i]</code> as &quot;the total of everything from <code>i</code> to the end&quot;. Notice they are built from opposite directions but store the same <em>kind</em> of information.</p>
 <p><strong>C# Implementation:</strong></p>
 <div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">int[] nums = { 1, 2, 3, 4 };
 int n = nums.Length;
 
 // Prefix Sums: Building sums from left to right
 int[] prefix = new int[n];
-// 1. The first prefix sum is just the first number.
+
+// 1. SEED: the running total has to start somewhere. The first slot has
+//    nothing before it, so its prefix sum is just the first number itself.
 prefix[0] = nums[0];
-// 2. For each following index, add the current number to the previous prefix sum.
+
+// 2. GROW: every later slot = &quot;the total I already had&quot; + &quot;one new number&quot;.
+//    prefix[i - 1] is the sum of everything up to the previous index, so adding
+//    nums[i] extends that running total by exactly one element. We never re-add
+//    the earlier numbers — they are already baked into prefix[i - 1].
 for (int i = 1; i &lt; n; i++)
     prefix[i] = prefix[i - 1] + nums[i];
 
 // Suffix Sums: Building sums from right to left
 int[] suffix = new int[n];
-// 1. The last suffix sum is just the last number.
+
+// 1. SEED: same idea, but from the other end. The last slot has nothing after
+//    it, so its suffix sum is just the last number itself.
 suffix[n - 1] = nums[n - 1];
-// 2. Loop backwards: add the current number to the 'next' suffix sum (to the right).
+
+// 2. GROW: we walk backwards. suffix[i + 1] is the total of everything to the
+//    right, so adding nums[i] extends that running total one step to the left.
+//    The loop starts at n - 2 because index n - 1 was already seeded above.
 for (int i = n - 2; i &gt;= 0; i--)
     suffix[i] = suffix[i + 1] + nums[i];</code></pre></div>
+<p><strong>Why does <code>prefix[i - 1] + nums[i]</code> work?</strong> By the time the loop reaches index <code>i</code>, the slot <code>prefix[i - 1]</code> already holds the correct sum of <em>all</em> earlier elements. So the only new thing left to account for is <code>nums[i]</code>. Adding it once gives the full total up to <code>i</code>. This is why one pass is enough — each element is visited and added a single time.</p>
+<p><strong>Watch out — loop direction is NOT the same as &quot;left vs right&quot;.</strong> A common mix-up: &quot;the prefix loop goes from index 0 up to the end, so isn't that the <em>right</em> side?&quot; No. Two separate things are happening:</p>
+<ul><li><strong>The direction the loop walks</strong> — just the order we fill the slots in (here, <code>0 → n-1</code>).</li><li><strong>Which element each step reaches for</strong> — this is what makes it a <em>left</em> calculation.</li></ul>
+<p>The prefix formula uses <code>prefix[i - 1]</code> and <code>nums[i]</code> — it only ever looks <em>backward</em> at stuff already behind index <code>i</code>. So even though the loop moves forward, each slot only gathers what's to its <strong>left</strong>. The suffix is the mirror image: its loop walks <em>backward</em>, but each step reaches <em>forward</em> (<code>suffix[i + 1]</code>), so it gathers what's to the <strong>right</strong>. The name comes from which way you reach, not which way the loop moves.</p>
 <p><strong>Why use this?</strong></p>
-<ul><li><strong>Range Queries:</strong> To find the sum of <code>nums[1..3]</code>, you can just do <code>prefix[3] - prefix[0]</code> in <strong>O(1)</strong> time instead of looping.</li><li><strong>Context:</strong> At any index <code>i</code>, you now know everything about the &quot;left side&quot; and &quot;right side&quot; instantly.</li></ul>
+<ul><li><strong>Range Queries:</strong> To find the sum of <code>nums[1..3]</code>, you can just do <code>prefix[3] - prefix[0]</code> in <strong>O(1)</strong> time instead of looping. The subtraction cancels out the part you don't want, leaving only the range you asked for.</li><li><strong>Context:</strong> At any index <code>i</code>, you now know everything about the &quot;left side&quot; (<code>prefix</code>) and &quot;right side&quot; (<code>suffix</code>) instantly — without re-scanning the array.</li><li><strong>Building block:</strong> Many harder problems (like Product of Array Except Self below) are just &quot;prefix from the left&quot; combined with &quot;suffix from the right&quot;.</li></ul>
 <hr>
 <h3 id="arrays--3-reverse-in-place"><a class="anchor" href="#arrays--3-reverse-in-place">#</a>3. Reverse in-place</h3>
 <div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">void Reverse(int[] arr)
@@ -515,41 +532,59 @@ string result = sb.ToString();</code></pre></div>
 <p><strong>Example:</strong> <code>[1, 2, 3, 4]</code> → <code>[24, 12, 8, 6]</code></p>
 <p><strong>The &quot;Aha!&quot; Moment:</strong> If you can't use division, how do you know what the product of &quot;everything else&quot; is? For any index <code>i</code>, &quot;everything else&quot; is just:</p>
 <ol><li>Everything to the <strong>left</strong> of <code>i</code>.</li><li>Everything to the <strong>right</strong> of <code>i</code>.</li></ol>
-<p>If we pre-calculate these two sides, the answer for <code>i</code> is simply <code>left_product * right_product</code>.</p>
+<p>If we pre-calculate these two sides, the answer for <code>i</code> is simply <code>left_product * right_product</code>. This is the prefix/suffix pattern again: <code>left</code> is a <strong>prefix product</strong>, <code>right</code> is a <strong>suffix product</strong>, and multiplying them stitches the two halves back together <em>around</em> index <code>i</code> — which is exactly &quot;everything except <code>i</code>&quot;.</p>
+<p><strong>Why split it into two sides?</strong> The value at <code>nums[i]</code> is the one thing we must leave out. By building <code>left[i]</code> to stop <em>just before</em> <code>i</code>, and <code>right[i]</code> to start <em>just after</em> <code>i</code>, neither side ever includes <code>nums[i]</code> itself. Multiply them and you get the product of all other elements — with no division needed.</p>
+<p>**Read &quot;left of <code>i</code>&quot; as <em>all</em> the elements before <code>i</code> — not just the one next to it.<strong> This trips people up. &quot;Everything to the left of index 3&quot; doesn't mean only index 2 — it means indices 0, 1, </strong>and** 2, all multiplied together. Likewise &quot;left of index 2&quot; is indices 0 and 1, not just index 1. So:</p>
+<div class="code-wrap" data-lang="text"><button class="copy-btn" type="button">Copy</button><pre><code class="language-plaintext">left[0] = 1                                 (nothing to the left)
+left[1] = 1 * nums[0]             = 1       (just index 0)
+left[2] = 1 * nums[0] * nums[1]   = 2       (indices 0 AND 1)
+left[3] = 1 * nums[0]*nums[1]*nums[2] = 6   (indices 0, 1 AND 2)</code></pre></div>
+<p>The code builds each one by <em>reusing the previous slot</em> (<code>left[i] = left[i-1] * nums[i-1]</code>), so it never has to re-multiply all those earlier numbers by hand — but conceptually, each slot is the product of <strong>every</strong> element before it.</p>
 <p><strong>Step-by-Step Walkthrough (<code>nums = [1, 2, 3, 4]</code>):</strong></p>
-<ol><li><strong>Calculate Left Products (Prefix):</strong><ul><li>At index 0, there's nothing to the left, so we use <code>1</code>.</li><li>Each subsequent index is <code>previous_left_product * previous_num</code>.</li><li>Result: <code>[1, 1, 2, 6]</code></li></ul></li></ol>
-<p><em>(Note: <code>6</code> at the end is <code>1 * 2 * 3</code>)</em></p>
-<ol><li><strong>Calculate Right Products (Suffix):</strong><ul><li>We go backwards! At the last index, there's nothing to the right, so we use <code>1</code>.</li><li>Each previous index is <code>next_right_product * next_num</code>.</li><li>Result: <code>[24, 12, 4, 1]</code></li></ul></li></ol>
-<p><em>(Note: <code>24</code> at the start is <code>4 * 3 * 2</code>)</em></p>
-<ol><li><strong>Combine them:</strong><ul><li>Multiply <code>left[i] * right[i]</code> for every index.</li><li><code>1*24=24</code>, <code>1*12=12</code>, <code>2*4=8</code>, <code>6*1=6</code>.</li><li>Final Result: <code>[24, 12, 8, 6]</code></li></ul></li></ol>
+<ol><li><strong>Calculate Left Products (Prefix):</strong><ul><li><strong>Fill direction: front to back (index 0 → n-1).</strong> Each slot leans on the slot <em>behind</em> it (<code>left[i] = left[i-1] * ...</code>), so the earlier slot must already exist — which is why we walk forward.</li><li>At index 0, there's nothing to the left, so we use <code>1</code> (the &quot;do nothing&quot; value for multiplication — multiplying by 1 changes nothing).</li><li>Each subsequent index is <code>previous_left_product * previous_num</code>. We reuse the product we already built and fold in just one more number, so it stays a single pass.</li><li>Notice the <code>4</code> (at index 3) never appears in the left array — it's its <em>own</em> card, and nothing can be to the left of itself.</li><li>Result: <code>[1, 1, 2, 6]</code></li></ul></li></ol>
+<p><em>(Read <code>left[3] = 6</code> as &quot;the product of everything before index 3&quot; = <code>1 * 2 * 3</code>.)</em></p>
+<ol><li><strong>Calculate Right Products (Suffix):</strong><ul><li><strong>Fill direction: back to front (index n-1 → 0).</strong> Mirror image of the left array: each slot leans on the slot <em>ahead</em> of it (<code>right[i] = right[i+1] * ...</code>), so the later slot must already exist — which is why we start at the right end and walk left.</li><li>At the last index there's nothing to the right, so we seed it with <code>1</code>, then build leftward:</li></ul></li></ol>
+<div class="code-wrap" data-lang="text"><button class="copy-btn" type="button">Copy</button><pre><code class="language-plaintext">     right[3] = 1                        (nothing to the right)
+     right[2] = right[3] * nums[3] = 4
+     right[1] = right[2] * nums[2] = 12
+     right[0] = right[1] * nums[1] = 24</code></pre></div>
+<ul><li><strong>Watch out:</strong> you <em>build</em> these values in the order <code>1, 4, 12, 24</code>, but each one is <em>stored</em> in its own index slot — so the final array reads <code>[24, 12, 4, 1]</code>, not the order you computed them in.</li><li>Result: <code>[24, 12, 4, 1]</code></li></ul>
+<p><em>(Read <code>right[0] = 24</code> as &quot;the product of everything after index 0&quot; = <code>4 * 3 * 2</code>.)</em></p>
+<ol><li><strong>Combine them:</strong><ul><li>Multiply <code>left[i] * right[i]</code> for every index. <code>left[i]</code> covers everything to the left, <code>right[i]</code> covers everything to the right, and together they cover everything <em>except</em> <code>nums[i]</code>.</li><li><code>1*24=24</code>, <code>1*12=12</code>, <code>2*4=8</code>, <code>6*1=6</code>.</li><li>Final Result: <code>[24, 12, 8, 6]</code></li></ul></li></ol>
 <p><strong>Solution:</strong></p>
 <div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">int[] ProductExceptSelf(int[] nums) {
     int n = nums.Length;
-    int[] left = new int[n];
-    int[] right = new int[n];
-    int[] res = new int[n];
+    int[] left = new int[n];   // left[i]  = product of everything BEFORE i
+    int[] right = new int[n];  // right[i] = product of everything AFTER i
+    int[] res = new int[n];    // res[i]   = left[i] * right[i]
 
-    // 1. Build the prefix array (products of everything to the left)
-    //    Initially, there is nothing to the left of the first element, so set to 1.
+    // 1. Build the prefix array (products of everything to the left).
+    //    SEED: nothing is to the left of index 0, and 1 is the identity for
+    //    multiplication (x * 1 == x), so it's the safe &quot;empty product&quot; starting point.
     left[0] = 1; 
     for (int i = 1; i &lt; n; i++)
-        // Each spot stores the product of all elements to its left.
+        // GROW: take the product we already built for the previous index and
+        // multiply in nums[i-1] — the element we just stepped past. Note we use
+        // nums[i-1], NOT nums[i], so nums[i] itself is never included.
         left[i] = left[i-1] * nums[i-1];
 
-    // 2. Build the suffix array (products of everything to the right)
-    //    There is nothing to the right of the last element, so set to 1.
+    // 2. Build the suffix array (products of everything to the right).
+    //    SEED: nothing is to the right of the last element, so again use 1.
     right[n-1] = 1;
     for (int i = n-2; i &gt;= 0; i--)
-        // Working backwards, each spot stores the product of all elements to its right.
+        // GROW: walking backwards, multiply the running right-side product by
+        // nums[i+1] — the element just to the right. Again nums[i] is excluded.
         right[i] = right[i+1] * nums[i+1];
 
-    // 3. The answer for any index is simply (product of left) * (product of right)
+    // 3. The answer for any index is (product of its left) * (product of its right).
+    //    Because neither side ever included nums[i], the result is the product of
+    //    every element EXCEPT nums[i] — exactly what the problem asks for.
     for (int i = 0; i &lt; n; i++)
         res[i] = left[i] * right[i];
 
     return res;
 }</code></pre></div>
-<p>⏱ Time: O(n) | Space: O(n)</p>
+<p>⏱ Time: O(n) | Space: O(n) — three passes over the array, plus two helper arrays. (You can drop to O(1) extra space by writing the prefix straight into <code>res</code>, then folding the suffix in with a single running variable — a common follow-up question.)</p>
 <hr>
 <h2 id="arrays--common-mistakes"><a class="anchor" href="#arrays--common-mistakes">#</a>Common Mistakes</h2>
 <ul><li><strong>Off-by-one errors</strong> — double check <code>&lt; Length</code> vs <code>&lt;= Length - 1</code>.</li><li><strong>Mutating while iterating</strong> — don't add/remove from a collection you're looping over.</li><li><strong>String concatenation in loops</strong> — use <code>StringBuilder</code> in C#.</li><li><strong>Not handling empty input</strong> — always ask: what if the array has 0 or 1 elements?</li></ul>

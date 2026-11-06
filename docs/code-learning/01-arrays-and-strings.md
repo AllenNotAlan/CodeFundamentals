@@ -41,6 +41,8 @@ These patterns are used to avoid repeated work. Instead of recalculating a sum o
 - **Prefix:** Information about everything *before* or *up to* the current index (left-to-right).
 - **Suffix:** Information about everything *after* or *from* the current index (right-to-left).
 
+**The core idea:** each new answer is built from the answer you already computed one step back. You never start a sum from scratch — you take the running total you already have and fold in one more number. That "reuse the previous result" trick is what turns repeated O(n) work into a single O(n) pass.
+
 **Visualization (Sum example):**
 ```text
 nums:      [ 1,  2,  3,  4 ]
@@ -49,6 +51,8 @@ Prefix:    [ 1,  3,  6, 10 ]  (Summing left to right: 1, 1+2, 1+2+3, ...)
 Suffix:    [10,  9,  7,  4 ]  (Summing right to left: 4+3+2+1, 4+3+2, 4+3, 4)
 ```
 
+Read `prefix[i]` as "the total of everything from the start up to and including `i`". Read `suffix[i]` as "the total of everything from `i` to the end". Notice they are built from opposite directions but store the same *kind* of information.
+
 **C# Implementation:**
 ```csharp
 int[] nums = { 1, 2, 3, 4 };
@@ -56,24 +60,46 @@ int n = nums.Length;
 
 // Prefix Sums: Building sums from left to right
 int[] prefix = new int[n];
-// 1. The first prefix sum is just the first number.
+
+// 1. SEED: the running total has to start somewhere. The first slot has
+//    nothing before it, so its prefix sum is just the first number itself.
 prefix[0] = nums[0];
-// 2. For each following index, add the current number to the previous prefix sum.
+
+// 2. GROW: every later slot = "the total I already had" + "one new number".
+//    prefix[i - 1] is the sum of everything up to the previous index, so adding
+//    nums[i] extends that running total by exactly one element. We never re-add
+//    the earlier numbers — they are already baked into prefix[i - 1].
 for (int i = 1; i < n; i++)
     prefix[i] = prefix[i - 1] + nums[i];
 
 // Suffix Sums: Building sums from right to left
 int[] suffix = new int[n];
-// 1. The last suffix sum is just the last number.
+
+// 1. SEED: same idea, but from the other end. The last slot has nothing after
+//    it, so its suffix sum is just the last number itself.
 suffix[n - 1] = nums[n - 1];
-// 2. Loop backwards: add the current number to the 'next' suffix sum (to the right).
+
+// 2. GROW: we walk backwards. suffix[i + 1] is the total of everything to the
+//    right, so adding nums[i] extends that running total one step to the left.
+//    The loop starts at n - 2 because index n - 1 was already seeded above.
 for (int i = n - 2; i >= 0; i--)
     suffix[i] = suffix[i + 1] + nums[i];
 ```
 
+**Why does `prefix[i - 1] + nums[i]` work?**
+By the time the loop reaches index `i`, the slot `prefix[i - 1]` already holds the correct sum of *all* earlier elements. So the only new thing left to account for is `nums[i]`. Adding it once gives the full total up to `i`. This is why one pass is enough — each element is visited and added a single time.
+
+**Watch out — loop direction is NOT the same as "left vs right".**
+A common mix-up: "the prefix loop goes from index 0 up to the end, so isn't that the *right* side?" No. Two separate things are happening:
+- **The direction the loop walks** — just the order we fill the slots in (here, `0 → n-1`).
+- **Which element each step reaches for** — this is what makes it a *left* calculation.
+
+The prefix formula uses `prefix[i - 1]` and `nums[i]` — it only ever looks *backward* at stuff already behind index `i`. So even though the loop moves forward, each slot only gathers what's to its **left**. The suffix is the mirror image: its loop walks *backward*, but each step reaches *forward* (`suffix[i + 1]`), so it gathers what's to the **right**. The name comes from which way you reach, not which way the loop moves.
+
 **Why use this?**
-- **Range Queries:** To find the sum of `nums[1..3]`, you can just do `prefix[3] - prefix[0]` in **O(1)** time instead of looping.
-- **Context:** At any index `i`, you now know everything about the "left side" and "right side" instantly.
+- **Range Queries:** To find the sum of `nums[1..3]`, you can just do `prefix[3] - prefix[0]` in **O(1)** time instead of looping. The subtraction cancels out the part you don't want, leaving only the range you asked for.
+- **Context:** At any index `i`, you now know everything about the "left side" (`prefix`) and "right side" (`suffix`) instantly — without re-scanning the array.
+- **Building block:** Many harder problems (like Product of Array Except Self below) are just "prefix from the left" combined with "suffix from the right".
 
 ---
 
@@ -307,24 +333,46 @@ For any index `i`, "everything else" is just:
 1. Everything to the **left** of `i`.
 2. Everything to the **right** of `i`.
 
-If we pre-calculate these two sides, the answer for `i` is simply `left_product * right_product`.
+If we pre-calculate these two sides, the answer for `i` is simply `left_product * right_product`. This is the prefix/suffix pattern again: `left` is a **prefix product**, `right` is a **suffix product**, and multiplying them stitches the two halves back together *around* index `i` — which is exactly "everything except `i`".
+
+**Why split it into two sides?**
+The value at `nums[i]` is the one thing we must leave out. By building `left[i]` to stop *just before* `i`, and `right[i]` to start *just after* `i`, neither side ever includes `nums[i]` itself. Multiply them and you get the product of all other elements — with no division needed.
+
+**Read "left of `i`" as *all* the elements before `i` — not just the one next to it.**
+This trips people up. "Everything to the left of index 3" doesn't mean only index 2 — it means indices 0, 1, **and** 2, all multiplied together. Likewise "left of index 2" is indices 0 and 1, not just index 1. So:
+```text
+left[0] = 1                                 (nothing to the left)
+left[1] = 1 * nums[0]             = 1       (just index 0)
+left[2] = 1 * nums[0] * nums[1]   = 2       (indices 0 AND 1)
+left[3] = 1 * nums[0]*nums[1]*nums[2] = 6   (indices 0, 1 AND 2)
+```
+The code builds each one by *reusing the previous slot* (`left[i] = left[i-1] * nums[i-1]`), so it never has to re-multiply all those earlier numbers by hand — but conceptually, each slot is the product of **every** element before it.
 
 **Step-by-Step Walkthrough (`nums = [1, 2, 3, 4]`):**
 
 1. **Calculate Left Products (Prefix):**
-   - At index 0, there's nothing to the left, so we use `1`.
-   - Each subsequent index is `previous_left_product * previous_num`.
+   - **Fill direction: front to back (index 0 → n-1).** Each slot leans on the slot *behind* it (`left[i] = left[i-1] * ...`), so the earlier slot must already exist — which is why we walk forward.
+   - At index 0, there's nothing to the left, so we use `1` (the "do nothing" value for multiplication — multiplying by 1 changes nothing).
+   - Each subsequent index is `previous_left_product * previous_num`. We reuse the product we already built and fold in just one more number, so it stays a single pass.
+   - Notice the `4` (at index 3) never appears in the left array — it's its *own* card, and nothing can be to the left of itself.
    - Result: `[1, 1, 2, 6]`
-   *(Note: `6` at the end is `1 * 2 * 3`)*
+   *(Read `left[3] = 6` as "the product of everything before index 3" = `1 * 2 * 3`.)*
 
 2. **Calculate Right Products (Suffix):**
-   - We go backwards! At the last index, there's nothing to the right, so we use `1`.
-   - Each previous index is `next_right_product * next_num`.
+   - **Fill direction: back to front (index n-1 → 0).** Mirror image of the left array: each slot leans on the slot *ahead* of it (`right[i] = right[i+1] * ...`), so the later slot must already exist — which is why we start at the right end and walk left.
+   - At the last index there's nothing to the right, so we seed it with `1`, then build leftward:
+     ```text
+     right[3] = 1                        (nothing to the right)
+     right[2] = right[3] * nums[3] = 4
+     right[1] = right[2] * nums[2] = 12
+     right[0] = right[1] * nums[1] = 24
+     ```
+   - **Watch out:** you *build* these values in the order `1, 4, 12, 24`, but each one is *stored* in its own index slot — so the final array reads `[24, 12, 4, 1]`, not the order you computed them in.
    - Result: `[24, 12, 4, 1]`
-   *(Note: `24` at the start is `4 * 3 * 2`)*
+   *(Read `right[0] = 24` as "the product of everything after index 0" = `4 * 3 * 2`.)*
 
 3. **Combine them:**
-   - Multiply `left[i] * right[i]` for every index.
+   - Multiply `left[i] * right[i]` for every index. `left[i]` covers everything to the left, `right[i]` covers everything to the right, and together they cover everything *except* `nums[i]`.
    - `1*24=24`, `1*12=12`, `2*4=8`, `6*1=6`.
    - Final Result: `[24, 12, 8, 6]`
 
@@ -332,32 +380,38 @@ If we pre-calculate these two sides, the answer for `i` is simply `left_product 
 ```csharp
 int[] ProductExceptSelf(int[] nums) {
     int n = nums.Length;
-    int[] left = new int[n];
-    int[] right = new int[n];
-    int[] res = new int[n];
+    int[] left = new int[n];   // left[i]  = product of everything BEFORE i
+    int[] right = new int[n];  // right[i] = product of everything AFTER i
+    int[] res = new int[n];    // res[i]   = left[i] * right[i]
 
-    // 1. Build the prefix array (products of everything to the left)
-    //    Initially, there is nothing to the left of the first element, so set to 1.
+    // 1. Build the prefix array (products of everything to the left).
+    //    SEED: nothing is to the left of index 0, and 1 is the identity for
+    //    multiplication (x * 1 == x), so it's the safe "empty product" starting point.
     left[0] = 1; 
     for (int i = 1; i < n; i++)
-        // Each spot stores the product of all elements to its left.
+        // GROW: take the product we already built for the previous index and
+        // multiply in nums[i-1] — the element we just stepped past. Note we use
+        // nums[i-1], NOT nums[i], so nums[i] itself is never included.
         left[i] = left[i-1] * nums[i-1];
 
-    // 2. Build the suffix array (products of everything to the right)
-    //    There is nothing to the right of the last element, so set to 1.
+    // 2. Build the suffix array (products of everything to the right).
+    //    SEED: nothing is to the right of the last element, so again use 1.
     right[n-1] = 1;
     for (int i = n-2; i >= 0; i--)
-        // Working backwards, each spot stores the product of all elements to its right.
+        // GROW: walking backwards, multiply the running right-side product by
+        // nums[i+1] — the element just to the right. Again nums[i] is excluded.
         right[i] = right[i+1] * nums[i+1];
 
-    // 3. The answer for any index is simply (product of left) * (product of right)
+    // 3. The answer for any index is (product of its left) * (product of its right).
+    //    Because neither side ever included nums[i], the result is the product of
+    //    every element EXCEPT nums[i] — exactly what the problem asks for.
     for (int i = 0; i < n; i++)
         res[i] = left[i] * right[i];
 
     return res;
 }
 ```
-⏱ Time: O(n) | Space: O(n)
+⏱ Time: O(n) | Space: O(n) — three passes over the array, plus two helper arrays. (You can drop to O(1) extra space by writing the prefix straight into `res`, then folding the suffix in with a single running variable — a common follow-up question.)
 
 
 ---

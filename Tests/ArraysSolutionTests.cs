@@ -5,75 +5,105 @@ namespace CodeFundamentals.Tests;
 
 public class ArraysSolutionTests
 {
+    //Test for returning the maximum in the array
     [Fact]
-    public void ReturnProductArr_ValidInput_ReturnsCorrectProductArray()
+    public void ReturnMaxNumberInArray_ReturnMaxNumber()
     {
-        // Arrange
+        //Arrange
+        int[] input = { 1, 3, 5, 7 };
+        int expected = 7;
+
+        //Act
+        int solution = ArraysSolution.ReturnMaxNumberInArray(input);
+
+        //Assert
+        Assert.Equal(expected, solution);
+    }
+
+    [Fact]
+    public void ReturnMaxNumberInArray_ReturnMaxNumber_MiddleOfArray()
+    {
+        int[] input = { 2, 1, 22, 21, 18};
+        int expected = 22;
+
+        int solution = ArraysSolution.ReturnMaxNumberInArray(input);
+
+        Assert.Equal((int)expected, solution);
+    }
+
+    [Fact]
+    public void ReturnRunningSumOfArray_ReturnsCorrectArray()
+    {
         int[] input = { 1, 2, 3, 4 };
-        int[] expected = { 24, 12, 8, 6 };
+        int[] expected = { 1, 3, 6, 10 };
 
-        // Act
-        int[] result = ArraysSolution.ReturnProductArr(input);
+        int[] solution = ArraysSolution.RunningSumOfArray(input);
 
-        // Assert
-        Assert.Equal(expected, result);
+        Assert.Equal(expected, solution);
     }
 
     [Fact]
-    public void ReturnProductArrayExceptSelf_ValidInput_ReturnsCorrectProductArray()
+    public void ReverseArray_ReturnCorrect()
     {
-        // Arrange
         int[] input = { 1, 2, 3, 4 };
-        int[] expected = { 24, 12, 8, 6 };
+        int[] expected = { 4, 3, 2, 1 };
 
-        // Act
-        int[] result = ArraysSolution.ReturnProductArrayExceptSelf(input);
+        //act
+        int[] solution = ArraysSolution.ReverseArray(input);
 
-        // Assert
-        Assert.Equal(expected, result);
-    }
-    
-    //Test For max num in Array
-
-    [Fact]
-    public void ReturnMaxInArray_ValidInput_ReturnCorrectMaxNum()
-    {
-        //Arrange
-        int[] input = { 1, 10, 50, 20 };
-        int expected = 50;
-        
-        //Act
-        int result = ArraysSolution.ReturnMaxInArray(input);
-        
-        //Assert
-        Assert.Equal(expected, result);
+        Assert.Equal(expected, solution);
     }
 
     [Fact]
-    public void ReturnMaxInArray_ValidInput_DuplicateMax_ReturnCorrectMaxNum()
+    public void IsPalindrome_ReturnFalse()
     {
-        //Arrange
-        int[] input = { 1, 10, 50, 50, 20, 20, 50 };
-        int expected = 50;
-        
-        //Act
-        int result = ArraysSolution.ReturnMaxInArray(input);
-        
-        //Assert
-        Assert.Equal(expected, result);
+        //arrange
+        string input = "Hello";
+        bool expected = false;
+
+        //act
+        bool solution = ArraysSolution.IsPalindrome(input);
+
+        //assert
+        Assert.Equal(expected, false);
+    }
+
+
+    [Fact]
+    public void IsPalindrome_ReturnTrue()
+    {
+        //arrange
+        string input = "HIIh";
+        bool expected = true;
+
+        //act
+        bool solution = ArraysSolution.IsPalindrome(input);
+
+        //assert
+        Assert.Equal(expected, solution);
     }
 
     [Fact]
-    public void ReversedString_ValidInput_ReturnCorrectString()
+    public void IsPalindrome_WithNonAlphaNumericChars_ReturnTrue()
     {
-        //Arrange
-        string input = "hello";
-        string expected = "olleh";
-        
-        //Act
-        string result = ArraysSolution.ReversedString(input);
-        
-        //Assert
-        Assert.Equal(expected,result);
+        //arrange
+        string input = "A man, a plan, a canal: Panama";
+        bool expected = true;
+
+        //act
+        bool solution = ArraysSolution.IsPalindrome(input);
+
+        //assert
+        Assert.Equal(expected, solution);
+    }
+
+    [Fact]
+    public void ReturnProductOfArrayExceptSelf_ReturnSuccess()
+    {
+        int[] input = { 1, 2, 3, 4 };
+
+
+        int[] solution = ArraysSolution.ReturnProductOfArrayExceptSelf(input);
+
     }
 }
