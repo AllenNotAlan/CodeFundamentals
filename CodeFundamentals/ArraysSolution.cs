@@ -105,39 +105,68 @@ public class ArraysSolution
 
     public static int[] ReturnProductOfArrayExceptSelf(int[] nums)
     {
-        //find the product sum to the right of the index
-        //find the product sum to the left of the index
-        //add both values
-        //insert into sums[index]
+        int n = nums.Length;
+        int[] result = new int[n];
 
-        int lengthOfArray = nums.Length;
+        //find the right product values
 
-        int[] sums = new int[lengthOfArray];
-        int[] right = new int[lengthOfArray];
-        int[] left = new int[lengthOfArray];
-
-        right[lengthOfArray - 1] = 1; //[0, 0, 0, 1]
-        for (int i = lengthOfArray - 2; i >= 0; i--)
+        int[] right = new int[n];
+        right[n - 1] = 1;
+        for (int i = n - 2; i >= 0; i--)
         {
-            int firstVal = right[i + 1];
-            int secondVal = nums[i + 1];
-            right[i] = firstVal * secondVal;
+            right[i] = nums[i + 1] * right[i + 1];
         }
 
+
+        //find the left product values
+        int[] left = new int[n];
         left[0] = 1;
-        for (int i = 1; i <= lengthOfArray - 1; i++)
+        for (int i = 1; i < n; i++)
         {
-            int firstVal = left[i - 1];
-            int secondVal = nums[i - 1];
-            left[i] = firstVal * secondVal;
+            left[i] = left[i - 1] * nums[i - 1];
         }
 
-        for (int i = 0; i < lengthOfArray; i++)
+        for (int i = 0; i < n; i++)
         {
-            sums[i] = left[i] * right[i];
+            result[i] = left[i] * right[i];
         }
 
-        return sums;
+
+        //multiplay left and right per index position
+
+        return result;
+    }
+
+    public static int[] ReturnRunningSumOfArray(int[] input) 
+    {
+        int[] result = new int[input.Length];
+
+        result[0] = input[0];
+        for (int i = 1; i < result.Length; i++)
+        {
+            result[i] = result[i - 1] + input[i];
+        }
+
+        return result;
+    }
+
+    public static int[] TwoSumArray(int[] array, int target)
+    {
+        int[] solution = new int[2];
+
+        for (int i = 0; i < array.Length; i++)
+        {
+            for(int j = i + 1; j < array.Length; j++)
+            {
+                if (array[i] + array[j] == target)
+                {
+                    solution[0] = i;
+                    solution[1] = j;
+                }
+            }
+        }
+
+        return solution;
     }
 
     private static void ArrayPrinter(int[] array)

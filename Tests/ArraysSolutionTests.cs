@@ -106,4 +106,30 @@ public class ArraysSolutionTests
         int[] solution = ArraysSolution.ReturnProductOfArrayExceptSelf(input);
 
     }
+
+    [Fact]
+    public void ReturnSumOf1DArray_ReturnSumArray()
+    {
+        int[] input = { 1, 2, 3, 4 };
+        int[] expected = { 1, 3, 6, 10 };
+
+        //act
+        int[] solution = ArraysSolution.ReturnRunningSumOfArray(input);
+
+        Assert.Equal(expected, solution);
+    }
+
+    [Fact]
+    public void TwoSumArray_ReturnSuccess()
+    {
+        int[] inputArray = { 3, 2, 4 };
+        int inputTarget = 6;
+        int[] expectedArray = { 1, 2 };
+
+        //act
+        int[] solution = ArraysSolution.TwoSumArray(inputArray, inputTarget);
+
+        //assert
+        Assert.Equal(expectedArray, solution);
+    }
 }
