@@ -34,6 +34,12 @@ slow fast
 ## Patterns with Code
 
 ### Pattern 1: Opposite-end pointers (sorted array pair sum)
+**Task:** Given a **sorted** array and a target, decide whether any two numbers add up to the target.
+
+**Example:** `sorted = [1, 3, 4, 6, 8]`, `target = 10` → `true` (4 + 6 = 10)
+
+*(Related: Problem 2 below, which returns the positions.)*
+
 ```csharp
 // Does any pair in a sorted array sum to target?
 bool HasPairSum(int[] sorted, int target)
@@ -87,6 +93,10 @@ def has_pair_sum(sorted_arr, target):
 ```
 
 ### Pattern 2: Fast/slow — remove duplicates in-place
+**Task:** Given a sorted array, remove the duplicates in-place and return how many unique values there are.
+
+**Example:** `sorted = [1, 1, 2, 2, 3]` → returns `3`, and the array now starts `[1, 2, 3, …]`
+
 ```csharp
 // slow pointer tracks the "write position" for unique elements
 int RemoveDuplicates(int[] sorted)

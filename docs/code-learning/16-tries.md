@@ -38,6 +38,12 @@ Insert "app", "apple", "apply":
 A node holds a map of child characters and a flag marking whether a word *ends* here (so `app` can be a word even though it's also a prefix of `apple`).
 
 ### Pattern — build the node once, reuse everywhere
+**Task:** Store a set of words so you can quickly check both whole words and prefixes.
+
+**Example:** after inserting `"app"` and `"apple"`: `search("app")` → `true`, `search("appl")` → `false`, `startsWith("appl")` → `true`
+
+*(Full walkthrough: Problem 1 below.)*
+
 `insert`, `search`, and `startsWith` are the same walk; they differ only in what they check at the end (word-end flag vs "did the path exist at all").
 
 ---

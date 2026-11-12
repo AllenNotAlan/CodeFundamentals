@@ -20,6 +20,10 @@ Arrays and strings are the bread and butter of LeetCode. Almost every problem to
 ## Essential Patterns
 
 ### 1. Iterate with index
+**Task:** Visit every element of an array in order and print it.
+
+**Example:** `nums = [1, 2, 3, 4, 5]` → prints `1`, `2`, `3`, `4`, `5` (one per line)
+
 ```csharp
 // Step-by-step:
 // 1. Initialize an array of integers.
@@ -35,6 +39,10 @@ for (int i = 0; i < nums.Length; i++)
 ```
 
 ### 2. Prefix & Suffix Patterns — Precompute totals for fast lookups
+**Task:** Given an array, work out the running total at every position, once from the left and once from the right, so any total can be read instantly.
+
+**Example:** `nums = [1, 2, 3, 4]` → prefix `[1, 3, 6, 10]`, suffix `[10, 9, 7, 4]`
+
 
 These patterns are used to avoid repeated work. Instead of recalculating a sum or product for every index (which is slow), you "pre-calculate" it once.
 
@@ -104,6 +112,10 @@ The prefix formula uses `prefix[i - 1]` and `nums[i]` — it only ever looks *ba
 ---
 
 ### 3. Reverse in-place
+**Task:** Reverse an array without creating a second array.
+
+**Example:** `arr = [1, 2, 3, 4, 5]` → `[5, 4, 3, 2, 1]`
+
 ```csharp
 void Reverse(int[] arr)
 {
@@ -129,6 +141,10 @@ void Reverse(int[] arr)
 - **Two-Pointer Foundation:** This is the simplest example of the "Two-Pointer" pattern, which is used for many complex problems (like Palindromes).
 
 ### 4. StringBuilder for string building
+**Task:** Build one long string out of many small pieces (here, the numbers 0 to 999) without slowing down.
+
+**Example:** appending `0`, `1`, `2`, … `999` → one string `"0123456789101112…999"`
+
 ```csharp
 // 1. Initialize StringBuilder which uses an internal buffer.
 var sb = new StringBuilder();

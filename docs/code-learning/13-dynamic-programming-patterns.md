@@ -30,6 +30,10 @@ When you suspect DP (from chapter 09: "number of ways", "min/max cost", "is it p
 ## Patterns with Code
 
 ### Pattern 1: 0/1 Knapsack — take-it-or-leave-it with a budget
+**Task:** Given items with a weight and a value, and a bag with a weight limit, choose items (each at most once) to get the highest total value.
+
+**Example:** `weights = [1, 3, 4]`, `values = [15, 20, 30]`, `capacity = 4` → `35` (take the items with weights 1 and 3)
+
 You have items with weights and values and a capacity. Each item is used **at most once**. Maximise value without exceeding capacity. The state is `dp[i][w]` = best value using the first `i` items with capacity `w`.
 
 ```csharp
@@ -70,6 +74,12 @@ def knapsack(weights, values, capacity):
 **The shape:** a 2D table indexed by *which items* × *how much budget*. The recurrence is always "best of (skip) vs (take, if it fits)". Subset-sum, partition-equal-subset, and target-sum are all this shape in disguise.
 
 ### Pattern 2: Subsequence — "best run so far" (LIS)
+**Task:** Find the length of the longest strictly increasing subsequence (the numbers don't have to be next to each other).
+
+**Example:** `nums = [10, 9, 2, 5, 3, 7]` → `3` (for example `2, 5, 7`)
+
+*(Full walkthrough: Problem 2 below.)*
+
 For Longest Increasing Subsequence, `dp[i]` = length of the longest increasing subsequence **ending at index i**. Each position looks back at all smaller-value predecessors and extends the best one.
 
 ```csharp
@@ -108,6 +118,10 @@ def length_of_lis(nums):
 **The shape:** 1D table over positions, where `dp[i]` summarises "the best thing ending here". The answer is often the *max over all `dp[i]`*, not `dp[last]`. (This is `O(n²)`; an `O(n log n)` version using binary search exists — a nice follow-up that reuses chapter 06.)
 
 ### Pattern 3: Grid — accumulate from neighbours (Min Path Sum)
+**Task:** In a grid of costs, find the cheapest path from the top-left to the bottom-right, moving only right or down.
+
+**Example:** `grid = [[1,3,1],[1,5,1],[4,2,1]]` → `7` (the path `1 → 3 → 1 → 1 → 1`)
+
 On a grid, `dp[i][j]` is the best cost to *reach* cell `(i,j)`, built from the cells you could have come from (above or left). This generalises Unique Paths from chapter 09 (counting) to *optimising* a cost.
 
 ```csharp
@@ -149,6 +163,10 @@ def min_path_sum(grid):
 **The shape:** 2D table matching the grid; fill the edges as base cases, then each interior cell combines its reachable neighbours. Watch for the base-case edges — they're where grid DP usually breaks.
 
 ### Pattern 4: Two strings — match or mismatch (Edit Distance)
+**Task:** Find the minimum number of insert, delete or replace steps needed to turn one string into another.
+
+**Example:** `"horse"` → `"ros"` takes `3` steps
+
 When a problem compares two sequences, the state is `dp[i][j]` over *a prefix of each*. Edit Distance: minimum insert/delete/replace operations to turn string `a` into string `b`.
 
 ```csharp

@@ -9,6 +9,10 @@ Sorting and binary search are two foundational tools. Sorting reorganises data t
 ## Sorting
 
 ### Built-in sorting in C# and Python
+**Task:** Put numbers or words in order: ascending, descending, or by a custom rule such as length.
+
+**Example:** `nums = [5, 2, 8, 1, 9]` → `[1, 2, 5, 8, 9]`; `words = ["banana", "apple", "cherry"]` sorted alphabetically → `["apple", "banana", "cherry"]`
+
 ```csharp
 int[] nums = { 5, 2, 8, 1, 9 };
 
@@ -76,6 +80,12 @@ low=3 > high=2 → not found
 ```
 
 ### Standard template
+**Task:** Given a sorted array and a target, find the target's index (or `-1` if it isn't there) without checking every element.
+
+**Example:** `nums = [1, 3, 5, 7, 9, 11, 13]`, `target = 7` → `3`; `target = 6` → `-1`
+
+*(Full walkthrough: Problem 1 below.)*
+
 ```csharp
 int BinarySearch(int[] nums, int target)
 {
@@ -134,6 +144,10 @@ def binary_search(nums, target):
 ```
 
 ### "Find leftmost / find rightmost" variant
+**Task:** Given a sorted array that may contain duplicates, find the index of the **first** occurrence of the target.
+
+**Example:** `nums = [1, 2, 2, 2, 3]`, `target = 2` → `1`
+
 When there are duplicates and you want the first or last occurrence:
 ```csharp
 int FindFirst(int[] nums, int target)

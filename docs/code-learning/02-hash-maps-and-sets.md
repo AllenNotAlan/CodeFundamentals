@@ -26,7 +26,10 @@ A hash function converts a key (e.g. `"apple"`) into an integer index, pointing 
 ## Essential Patterns
 
 ### 1. Frequency Count
-Count how many times each element appears.
+**Task:** Given a list of numbers, count how many times each number appears.
+
+**Example:** `nums = [1, 2, 2, 3, 3, 3]` → `{1: 1, 2: 2, 3: 3}`
+
 ```csharp
 int[] nums = { 1, 2, 2, 3, 3, 3 };
 
@@ -63,6 +66,10 @@ for n in nums:
 ```
 
 ### 2. "Have I seen this before?" — HashSet membership
+**Task:** Given a list of numbers, report every number that shows up a second time.
+
+**Example:** `nums = [1, 5, 3, 5, 2]` → `Duplicate: 5`
+
 ```csharp
 // 1. Use a HashSet for O(1) membership checks.
 var seen = new HashSet<int>();
@@ -92,7 +99,12 @@ for n in [1, 5, 3, 5, 2]:
 ```
 
 ### 3. Complement / Pair Lookup
-Store what you *need* so far, check if the current element satisfies it.
+**Task:** Given a list of numbers and a target, find the two numbers that add up to the target and return their positions.
+
+**Example:** `nums = [2, 7, 11, 15]`, `target = 9` → `[0, 1]` (because 2 + 7 = 9)
+
+*(Full walkthrough: Problem 1 below.)*
+
 ```csharp
 // Classic Two Sum pattern: 1-pass approach
 var map = new Dictionary<int, int>();  // Stores: value → index
@@ -113,6 +125,10 @@ for (int i = 0; i < nums.Length; i++)
 ```
 
 ### 4. Grouping with a Dictionary
+**Task:** Given a list of words, group together the words that are anagrams of each other.
+
+**Example:** `words = ["eat", "tea", "tan", "ate", "nat", "bat"]` → `[["eat", "tea", "ate"], ["tan", "nat"], ["bat"]]`
+
 ```csharp
 // Group strings by their sorted form (anagram grouping)
 var groups = new Dictionary<string, List<string>>();

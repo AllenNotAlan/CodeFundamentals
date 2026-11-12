@@ -82,6 +82,12 @@ The classic trap it avoids: re-sorting after every change is `O(n log n)` *each 
 ## Patterns with Code
 
 ### Pattern 1: Top-K with a bounded heap
+**Task:** Given a list of numbers and `k`, find the `k` largest numbers without sorting the whole list.
+
+**Example:** `nums = [3, 1, 5, 12, 2, 11]`, `k = 3` → `[5, 11, 12]` (in any order)
+
+*(Related: Problems 1 and 2 below.)*
+
 To find the **K largest** elements, keep a **min-heap of size K**. The root is the smallest of your current top-K; if a new element beats it, evict the root. This is `O(n log k)` — much better than sorting everything when `k ≪ n`.
 
 ```csharp
@@ -109,6 +115,12 @@ def top_k_largest(nums, k):
 **Why a MIN-heap for the LARGEST?** Because you want to cheaply discard the *weakest* of your current winners. The smallest of the top-K sits at a min-heap's root, ready to evict.
 
 ### Pattern 2: Merging K sorted sequences
+**Task:** Merge several already-sorted lists into one sorted list.
+
+**Example:** `[[1, 4, 7], [2, 5], [3, 6]]` → `[1, 2, 3, 4, 5, 6, 7]`
+
+*(Related: Problem 4 below, using linked lists.)*
+
 Put the head of each sequence in a heap; repeatedly pop the global minimum and push the next element from that sequence. Each pop gives the next element in overall sorted order.
 
 ```csharp
@@ -139,6 +151,10 @@ List<int> MergeK(List<int[]> lists)
 **Why use it?** The heap only ever holds `k` items (one per sequence), so merging `n` total elements costs `O(n log k)`.
 
 ### Pattern 3: Two heaps for a running median
+**Task:** Numbers arrive one at a time. At any moment, report the median of everything seen so far.
+
+**Example:** add `5`, then `2`, then `8` → the medians are `5`, `3.5`, `5`
+
 Keep a **max-heap of the lower half** and a **min-heap of the upper half**, balanced in size. The median is then at the top(s) of the heaps — `O(log n)` per insert, `O(1)` to read the median.
 
 ```csharp

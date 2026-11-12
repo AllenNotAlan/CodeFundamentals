@@ -68,6 +68,10 @@ int Sum(int n)
 ## Tree Traversals
 
 ### Depth-First Search (DFS) — three orders
+**Task:** Visit every node of a binary tree, going all the way down one branch before moving to the next.
+
+**Example:** the tree below → Inorder `4, 2, 5, 1, 3`; Preorder `1, 2, 4, 5, 3`; Postorder `4, 5, 2, 3, 1`
+
 
 ```
     1
@@ -115,6 +119,10 @@ void Preorder(TreeNode node)
 ```
 
 ### Breadth-First Search (BFS) — level order
+**Task:** Visit a binary tree one level at a time, from the top down.
+
+**Example:** a tree with root `1`, children `2` and `3`, where `2` has children `4` and `5` → levels `[1]`, `[2, 3]`, `[4, 5]`
+
 
 Process nodes level by level using a queue:
 ```csharp

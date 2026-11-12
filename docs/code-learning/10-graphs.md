@@ -57,6 +57,12 @@ var visited = new HashSet<int>();   // the single most important line in graph c
 ## Patterns with Code
 
 ### Pattern 1: DFS (Depth-First Search) — go deep, then backtrack
+**Task:** Starting from one node, visit every node you can reach, without looping forever on cycles.
+
+**Example:** undirected edges `0–1`, `0–2`, `1–3`, start at `0` → visits `0, 1, 3, 2`
+
+*(Related: Problem 1 below.)*
+
 This is literally tree DFS from chapter 08 plus a `visited` set.
 
 ```csharp
@@ -89,6 +95,12 @@ def dfs(node, graph, visited):
 **Why use it?** Natural for "explore a whole region" problems (islands, connected components) and anything path/backtracking-flavoured. Uses the call stack, so watch recursion depth on huge graphs.
 
 ### Pattern 2: BFS (Breadth-First Search) — explore level by level
+**Task:** Starting from one node, visit the others in order of distance (fewest edges first). This also gives the shortest path when every edge counts the same.
+
+**Example:** the same edges `0–1`, `0–2`, `1–3`, start at `0` → visits `0, 1, 2, 3` (node `3` is two steps away)
+
+*(Related: Problem 5 below.)*
+
 This is the queue-based level-order traversal from chapter 08, generalised. **BFS finds the shortest path in an unweighted graph** because it reaches nodes in order of distance.
 
 ```csharp
@@ -132,6 +144,12 @@ def bfs(start, graph):
 **Common bug:** marking visited when you *dequeue* instead of when you *enqueue* — that lets a node get added to the queue many times. Mark on enqueue.
 
 ### Pattern 3: Topological Sort — ordering with dependencies
+**Task:** Given tasks with prerequisites, produce an order where every task comes after the tasks it depends on.
+
+**Example:** 4 courses, where `0` must come before `1` and `2`, and both of those before `3` → `[0, 1, 2, 3]`
+
+*(Full walkthrough: Problem 2 below.)*
+
 For a **directed acyclic graph (DAG)**: produce an order where every node comes before the nodes that depend on it. Think "course prerequisites" or "build order". Uses BFS with in-degree counts (Kahn's algorithm).
 
 ```csharp
@@ -164,6 +182,12 @@ List<int> TopoSort(int n, Dictionary<int, List<int>> graph)
 **Why use it?** Dependency resolution, task scheduling, detecting cycles in directed graphs (if you can't order all nodes, there's a cycle).
 
 ### Pattern 4: Union-Find (Disjoint Set) — grouping connected things fast
+**Task:** Given pairs of items that are connected, count how many separate groups there are.
+
+**Example:** 5 nodes with connections `0–1`, `1–2`, `3–4` → `2` groups: `{0, 1, 2}` and `{3, 4}`
+
+*(Related: Problem 4 below.)*
+
 Tracks which nodes belong to the same group, with near-`O(1)` merges and lookups. Great for "how many groups?" and cycle detection in undirected graphs.
 
 ```csharp

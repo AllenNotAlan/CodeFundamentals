@@ -29,6 +29,12 @@ Think of a window frame sliding across your data:
 ## Patterns with Code
 
 ### Fixed window — sliding max sum of size k
+**Task:** Given an array and a window size `k`, find the largest sum of any `k` consecutive numbers.
+
+**Example:** `nums = [2, 1, 5, 1, 3, 2]`, `k = 3` → `9` (the window `5 + 1 + 3`)
+
+*(Related: Problem 1 below.)*
+
 ```csharp
 int MaxSumSubarray(int[] nums, int k)
 {
@@ -72,6 +78,12 @@ def max_sum_subarray(nums, k):
 ```
 
 ### Variable window — longest subarray satisfying a condition
+**Task:** Find the longest stretch of consecutive numbers that stays valid. Here, "valid" means every number is at most `limit`.
+
+**Example:** `nums = [1, 2, 5, 1, 2, 3]`, `limit = 3` → `3` (the stretch `[1, 2, 3]`; the `5` breaks the first run)
+
+*(Problems 3 and 4 below use the same expand-and-shrink idea.)*
+
 ```csharp
 // Template: find longest subarray with all elements ≤ limit
 int LongestValid(int[] nums, int limit)

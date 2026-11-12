@@ -54,6 +54,12 @@ Brute force generates everything then filters. Backtracking **prunes as it goes*
 ## Patterns with Code
 
 ### Pattern 1: Subsets — include or exclude each element
+**Task:** Given a list of distinct numbers, list every possible subset.
+
+**Example:** `nums = [1, 2, 3]` → `[]`, `[1]`, `[2]`, `[3]`, `[1,2]`, `[1,3]`, `[2,3]`, `[1,2,3]` (8 subsets)
+
+*(Full walkthrough: Problem 1 below.)*
+
 Every element is a binary choice: take it or don't. The decision tree has `2ⁿ` leaves = all subsets.
 
 ```csharp
@@ -96,6 +102,12 @@ def subsets(nums):
 **The `start` index** is how you avoid generating `[1,2]` and `[2,1]` as different subsets — you only ever look *forward*.
 
 ### Pattern 2: Permutations — order matters, track what's used
+**Task:** Given a list of distinct numbers, list every possible ordering of them.
+
+**Example:** `nums = [1, 2, 3]` → `[1,2,3]`, `[1,3,2]`, `[2,1,3]`, `[2,3,1]`, `[3,1,2]`, `[3,2,1]`
+
+*(Full walkthrough: Problem 2 below.)*
+
 Here every ordering is distinct, so you consider *all* remaining elements at each step and mark which are already in the path.
 
 ```csharp
@@ -151,6 +163,12 @@ def permute(nums):
 **Subsets vs permutations:** subsets use a `start` index (look forward only); permutations use a `used[]` flag (any unused element, order matters). That single difference changes everything.
 
 ### Pattern 3: Pruning — abandon dead branches early
+**Task:** Given distinct numbers and a target, find every combination that adds up to the target (a number may be reused).
+
+**Example:** `candidates = [2, 3, 5]`, `target = 7` → `[[2, 2, 3], [2, 5]]`
+
+*(Full walkthrough: Problem 3 below.)*
+
 The real power of backtracking is quitting a path as soon as it's hopeless. In Combination Sum, once the running total exceeds the target, every deeper choice is wasted — so we `break`/`return` instead of exploring.
 
 ```csharp

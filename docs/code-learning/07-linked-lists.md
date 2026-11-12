@@ -44,6 +44,10 @@ public class ListNode
 ## Essential Patterns
 
 ### 1. Traversal
+**Task:** Visit every node of a linked list from head to tail and print its value.
+
+**Example:** `1 → 2 → 3` → prints `1`, `2`, `3`
+
 ```csharp
 // 1. Start at the beginning
 ListNode curr = head;
@@ -60,6 +64,10 @@ while (curr != null)
 ```
 
 ### 2. Dummy head node
+**Task:** Remove every node with a given value from a linked list, even when the value sits at the head.
+
+**Example:** `1 → 1 → 2 → 3`, remove `1` → `2 → 3` (the head itself changed)
+
 Simplifies edge cases (inserting at the head, handling empty lists):
 ```csharp
 // 1. Create a placeholder node that points to the actual head
@@ -76,6 +84,12 @@ return dummy.next;
 ```
 
 ### 3. Fast & slow pointers
+**Task:** Find the middle node of a linked list in a single pass.
+
+**Example:** `1 → 2 → 3 → 4 → 5` → the middle node is `3`
+
+*(Full walkthrough: Problem 5 below.)*
+
 Two pointers at different speeds — classic for cycle detection and finding the middle:
 ```csharp
 // 1. Both pointers start at the head

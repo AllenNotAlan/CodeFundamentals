@@ -42,12 +42,28 @@ If you can't convince yourself both hold, reach for DP instead.
 ## Essential Patterns
 
 ### Pattern 1 — Interval scheduling (sort by end)
+**Task:** Given a set of time intervals, keep as many non-overlapping ones as possible.
+
+**Example:** `[[1,3], [2,4], [3,5]]` → keep `[1,3]` and `[3,5]` (2 intervals; touching ends are fine)
+
+*(Full walkthrough: Problem 2 below.)*
+
 To fit the **most** non-overlapping intervals, always keep the one that **finishes earliest** — it frees the timeline soonest.
 
 ### Pattern 2 — Reach / jump (track the furthest reachable)
+**Task:** Given how far you can jump from each position, decide whether you can reach the last index.
+
+**Example:** `nums = [2, 3, 1, 1, 4]` → `true`; `nums = [3, 2, 1, 0, 4]` → `false`
+
+*(Full walkthrough: Problems 3 and 4 below.)*
+
 For "can I reach the end?" / "fewest jumps", sweep left to right tracking the furthest index reachable so far.
 
 ### Pattern 3 — Exchange argument (prove by swapping)
+**Task:** Explain *why* a greedy rule is correct, not just that it passes the tests.
+
+**Example:** (Assign Cookies) if a bigger cookie goes to a child who a smaller cookie would have satisfied, swapping the two never loses a satisfied child, so "give the smallest cookie that works" is safe.
+
 To justify a greedy order, argue that swapping any two elements out of greedy order never improves (and often worsens) the result. This is the proof interviewers want to hear — even informally.
 
 ---

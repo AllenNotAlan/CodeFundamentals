@@ -296,6 +296,8 @@ public class YourNewSolutionTests
 <hr>
 <h2 id="arrays--essential-patterns"><a class="anchor" href="#arrays--essential-patterns">#</a>Essential Patterns</h2>
 <h3 id="arrays--1-iterate-with-index"><a class="anchor" href="#arrays--1-iterate-with-index">#</a>1. Iterate with index</h3>
+<p><strong>Task:</strong> Visit every element of an array in order and print it.</p>
+<p><strong>Example:</strong> <code>nums = [1, 2, 3, 4, 5]</code> → prints <code>1</code>, <code>2</code>, <code>3</code>, <code>4</code>, <code>5</code> (one per line)</p>
 <div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">// Step-by-step:
 // 1. Initialize an array of integers.
 int[] nums = { 1, 2, 3, 4, 5 };
@@ -308,6 +310,8 @@ for (int i = 0; i &lt; nums.Length; i++)
     Console.WriteLine(nums[i]);
 }</code></pre></div>
 <h3 id="arrays--2-prefix-suffix-patterns-precompute-totals-for-fast-lookups"><a class="anchor" href="#arrays--2-prefix-suffix-patterns-precompute-totals-for-fast-lookups">#</a>2. Prefix &amp; Suffix Patterns — Precompute totals for fast lookups</h3>
+<p><strong>Task:</strong> Given an array, work out the running total at every position, once from the left and once from the right, so any total can be read instantly.</p>
+<p><strong>Example:</strong> <code>nums = [1, 2, 3, 4]</code> → prefix <code>[1, 3, 6, 10]</code>, suffix <code>[10, 9, 7, 4]</code></p>
 <p>These patterns are used to avoid repeated work. Instead of recalculating a sum or product for every index (which is slow), you &quot;pre-calculate&quot; it once.</p>
 <ul><li><strong>Prefix:</strong> Information about everything <em>before</em> or <em>up to</em> the current index (left-to-right).</li><li><strong>Suffix:</strong> Information about everything <em>after</em> or <em>from</em> the current index (right-to-left).</li></ul>
 <p><strong>The core idea:</strong> each new answer is built from the answer you already computed one step back. You never start a sum from scratch — you take the running total you already have and fold in one more number. That &quot;reuse the previous result&quot; trick is what turns repeated O(n) work into a single O(n) pass.</p>
@@ -355,6 +359,8 @@ for (int i = n - 2; i &gt;= 0; i--)
 <ul><li><strong>Range Queries:</strong> To find the sum of <code>nums[1..3]</code>, you can just do <code>prefix[3] - prefix[0]</code> in <strong>O(1)</strong> time instead of looping. The subtraction cancels out the part you don't want, leaving only the range you asked for.</li><li><strong>Context:</strong> At any index <code>i</code>, you now know everything about the &quot;left side&quot; (<code>prefix</code>) and &quot;right side&quot; (<code>suffix</code>) instantly — without re-scanning the array.</li><li><strong>Building block:</strong> Many harder problems (like Product of Array Except Self below) are just &quot;prefix from the left&quot; combined with &quot;suffix from the right&quot;.</li></ul>
 <hr>
 <h3 id="arrays--3-reverse-in-place"><a class="anchor" href="#arrays--3-reverse-in-place">#</a>3. Reverse in-place</h3>
+<p><strong>Task:</strong> Reverse an array without creating a second array.</p>
+<p><strong>Example:</strong> <code>arr = [1, 2, 3, 4, 5]</code> → <code>[5, 4, 3, 2, 1]</code></p>
 <div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">void Reverse(int[] arr)
 {
     // 1. Initialize two pointers: one at the start, one at the end.
@@ -375,6 +381,8 @@ for (int i = n - 2; i &gt;= 0; i--)
 <p><strong>Why use this?</strong></p>
 <ul><li><strong>Memory Optimization:</strong> You reverse the data using only <strong>O(1)</strong> extra space. No need to allocate a second array.</li><li><strong>Two-Pointer Foundation:</strong> This is the simplest example of the &quot;Two-Pointer&quot; pattern, which is used for many complex problems (like Palindromes).</li></ul>
 <h3 id="arrays--4-stringbuilder-for-string-building"><a class="anchor" href="#arrays--4-stringbuilder-for-string-building">#</a>4. StringBuilder for string building</h3>
+<p><strong>Task:</strong> Build one long string out of many small pieces (here, the numbers 0 to 999) without slowing down.</p>
+<p><strong>Example:</strong> appending <code>0</code>, <code>1</code>, <code>2</code>, … <code>999</code> → one string <code>&quot;0123456789101112…999&quot;</code></p>
 <div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">// 1. Initialize StringBuilder which uses an internal buffer.
 var sb = new StringBuilder();
 
@@ -612,7 +620,8 @@ left[3] = 1 * nums[0]*nums[1]*nums[2] = 6   (indices 0, 1 AND 2)</code></pre></d
 <hr>
 <h2 id="hashmaps--essential-patterns"><a class="anchor" href="#hashmaps--essential-patterns">#</a>Essential Patterns</h2>
 <h3 id="hashmaps--1-frequency-count"><a class="anchor" href="#hashmaps--1-frequency-count">#</a>1. Frequency Count</h3>
-<p>Count how many times each element appears.</p>
+<p><strong>Task:</strong> Given a list of numbers, count how many times each number appears.</p>
+<p><strong>Example:</strong> <code>nums = [1, 2, 2, 3, 3, 3]</code> → <code>{1: 1, 2: 2, 3: 3}</code></p>
 <div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">int[] nums = { 1, 2, 2, 3, 3, 3 };
 
 // 1. Create a dictionary to store values as keys and their counts as values.
@@ -644,6 +653,8 @@ for n in nums:
     #    We then add 1 to whatever value was there (or to 0).
     freq[n] = freq.get(n, 0) + 1</code></pre></div>
 <h3 id="hashmaps--2-have-i-seen-this-before-hashset-membership"><a class="anchor" href="#hashmaps--2-have-i-seen-this-before-hashset-membership">#</a>2. &quot;Have I seen this before?&quot; — HashSet membership</h3>
+<p><strong>Task:</strong> Given a list of numbers, report every number that shows up a second time.</p>
+<p><strong>Example:</strong> <code>nums = [1, 5, 3, 5, 2]</code> → <code>Duplicate: 5</code></p>
 <div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">// 1. Use a HashSet for O(1) membership checks.
 var seen = new HashSet&lt;int&gt;();
 int[] nums = { 1, 5, 3, 5, 2 };
@@ -668,7 +679,9 @@ for n in [1, 5, 3, 5, 2]:
     # 3. Store the element in the set for future reference.
     seen.add(n)</code></pre></div>
 <h3 id="hashmaps--3-complement-pair-lookup"><a class="anchor" href="#hashmaps--3-complement-pair-lookup">#</a>3. Complement / Pair Lookup</h3>
-<p>Store what you <em>need</em> so far, check if the current element satisfies it.</p>
+<p><strong>Task:</strong> Given a list of numbers and a target, find the two numbers that add up to the target and return their positions.</p>
+<p><strong>Example:</strong> <code>nums = [2, 7, 11, 15]</code>, <code>target = 9</code> → <code>[0, 1]</code> (because 2 + 7 = 9)</p>
+<p><em>(Full walkthrough: Problem 1 below.)</em></p>
 <div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">// Classic Two Sum pattern: 1-pass approach
 var map = new Dictionary&lt;int, int&gt;();  // Stores: value → index
 
@@ -686,6 +699,8 @@ for (int i = 0; i &lt; nums.Length; i++)
     map[nums[i]] = i;
 }</code></pre></div>
 <h3 id="hashmaps--4-grouping-with-a-dictionary"><a class="anchor" href="#hashmaps--4-grouping-with-a-dictionary">#</a>4. Grouping with a Dictionary</h3>
+<p><strong>Task:</strong> Given a list of words, group together the words that are anagrams of each other.</p>
+<p><strong>Example:</strong> <code>words = [&quot;eat&quot;, &quot;tea&quot;, &quot;tan&quot;, &quot;ate&quot;, &quot;nat&quot;, &quot;bat&quot;]</code> → <code>[[&quot;eat&quot;, &quot;tea&quot;, &quot;ate&quot;], [&quot;tan&quot;, &quot;nat&quot;], [&quot;bat&quot;]]</code></p>
 <div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">// Group strings by their sorted form (anagram grouping)
 var groups = new Dictionary&lt;string, List&lt;string&gt;&gt;();
 
@@ -872,6 +887,9 @@ slow fast</code></pre></div>
 <hr>
 <h2 id="twoptr--patterns-with-code"><a class="anchor" href="#twoptr--patterns-with-code">#</a>Patterns with Code</h2>
 <h3 id="twoptr--pattern-1-opposite-end-pointers-sorted-array-pair-sum"><a class="anchor" href="#twoptr--pattern-1-opposite-end-pointers-sorted-array-pair-sum">#</a>Pattern 1: Opposite-end pointers (sorted array pair sum)</h3>
+<p><strong>Task:</strong> Given a <strong>sorted</strong> array and a target, decide whether any two numbers add up to the target.</p>
+<p><strong>Example:</strong> <code>sorted = [1, 3, 4, 6, 8]</code>, <code>target = 10</code> → <code>true</code> (4 + 6 = 10)</p>
+<p><em>(Related: Problem 2 below, which returns the positions.)</em></p>
 <div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">// Does any pair in a sorted array sum to target?
 bool HasPairSum(int[] sorted, int target)
 {
@@ -920,6 +938,8 @@ bool HasPairSum(int[] sorted, int target)
             
     return False</code></pre></div>
 <h3 id="twoptr--pattern-2-fastslow-remove-duplicates-in-place"><a class="anchor" href="#twoptr--pattern-2-fastslow-remove-duplicates-in-place">#</a>Pattern 2: Fast/slow — remove duplicates in-place</h3>
+<p><strong>Task:</strong> Given a sorted array, remove the duplicates in-place and return how many unique values there are.</p>
+<p><strong>Example:</strong> <code>sorted = [1, 1, 2, 2, 3]</code> → returns <code>3</code>, and the array now starts <code>[1, 2, 3, …]</code></p>
 <div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">// slow pointer tracks the &quot;write position&quot; for unique elements
 int RemoveDuplicates(int[] sorted)
 {
@@ -1173,6 +1193,9 @@ int RemoveDuplicates(int[] sorted)
 <hr>
 <h2 id="window--patterns-with-code"><a class="anchor" href="#window--patterns-with-code">#</a>Patterns with Code</h2>
 <h3 id="window--fixed-window-sliding-max-sum-of-size-k"><a class="anchor" href="#window--fixed-window-sliding-max-sum-of-size-k">#</a>Fixed window — sliding max sum of size k</h3>
+<p><strong>Task:</strong> Given an array and a window size <code>k</code>, find the largest sum of any <code>k</code> consecutive numbers.</p>
+<p><strong>Example:</strong> <code>nums = [2, 1, 5, 1, 3, 2]</code>, <code>k = 3</code> → <code>9</code> (the window <code>5 + 1 + 3</code>)</p>
+<p><em>(Related: Problem 1 below.)</em></p>
 <div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">int MaxSumSubarray(int[] nums, int k)
 {
     // 1. Build the initial window sum of size 'k'.
@@ -1211,6 +1234,9 @@ int RemoveDuplicates(int[] sorted)
         
     return max_sum</code></pre></div>
 <h3 id="window--variable-window-longest-subarray-satisfying-a-condition"><a class="anchor" href="#window--variable-window-longest-subarray-satisfying-a-condition">#</a>Variable window — longest subarray satisfying a condition</h3>
+<p><strong>Task:</strong> Find the longest stretch of consecutive numbers that stays valid. Here, &quot;valid&quot; means every number is at most <code>limit</code>.</p>
+<p><strong>Example:</strong> <code>nums = [1, 2, 5, 1, 2, 3]</code>, <code>limit = 3</code> → <code>3</code> (the stretch <code>[1, 2, 3]</code>; the <code>5</code> breaks the first run)</p>
+<p><em>(Problems 3 and 4 below use the same expand-and-shrink idea.)</em></p>
 <div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">// Template: find longest subarray with all elements ≤ limit
 int LongestValid(int[] nums, int limit)
 {
@@ -1458,6 +1484,9 @@ Peek   → 2       (doesn't remove)</code></pre></div>
 <hr>
 <h2 id="stacks--patterns-with-code"><a class="anchor" href="#stacks--patterns-with-code">#</a>Patterns with Code</h2>
 <h3 id="stacks--stack-matching-brackets"><a class="anchor" href="#stacks--stack-matching-brackets">#</a>Stack: Matching brackets</h3>
+<p><strong>Task:</strong> Check whether every opening bracket in a string has a matching closing bracket, in the correct order.</p>
+<p><strong>Example:</strong> <code>&quot;({[]})&quot;</code> → <code>true</code>, <code>&quot;(]&quot;</code> → <code>false</code></p>
+<p><em>(Full walkthrough: Problem 1 below.)</em></p>
 <div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">bool IsBalanced(string s)
 {
     // 1. Initialize a stack to keep track of opening brackets
@@ -1492,6 +1521,9 @@ Peek   → 2       (doesn't remove)</code></pre></div>
     return stack.Count == 0;
 }</code></pre></div>
 <h3 id="stacks--stack-monotonic-stack-next-greater-element"><a class="anchor" href="#stacks--stack-monotonic-stack-next-greater-element">#</a>Stack: Monotonic stack (next greater element)</h3>
+<p><strong>Task:</strong> For each number in an array, find the next number to its right that is bigger (or <code>-1</code> if there isn't one).</p>
+<p><strong>Example:</strong> <code>nums = [2, 1, 3, 2, 4]</code> → <code>[3, 3, 4, 4, -1]</code></p>
+<p><em>(Related: Problem 4 below.)</em></p>
 <p>A monotonic stack keeps elements in sorted order. Useful for &quot;next greater/smaller&quot; problems.</p>
 <div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">// For each element, find the next element that is greater
 int[] NextGreaterElement(int[] nums)
@@ -1521,6 +1553,8 @@ int[] NextGreaterElement(int[] nums)
     return result;
 }</code></pre></div>
 <h3 id="stacks--queue-bfs-level-by-level"><a class="anchor" href="#stacks--queue-bfs-level-by-level">#</a>Queue: BFS level-by-level</h3>
+<p><strong>Task:</strong> Visit a binary tree one level at a time, from the top down.</p>
+<p><strong>Example:</strong> a tree with root <code>1</code>, children <code>2</code> and <code>3</code>, where <code>2</code> has children <code>4</code> and <code>5</code> → levels <code>[1]</code>, <code>[2, 3]</code>, <code>[4, 5]</code></p>
 <div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">void BfsExample(TreeNode root)
 {
     if (root == null) return;
@@ -1782,6 +1816,8 @@ int[] NextGreaterElement(int[] nums)
 <hr>
 <h2 id="binsearch--sorting"><a class="anchor" href="#binsearch--sorting">#</a>Sorting</h2>
 <h3 id="binsearch--built-in-sorting-in-c-and-python"><a class="anchor" href="#binsearch--built-in-sorting-in-c-and-python">#</a>Built-in sorting in C# and Python</h3>
+<p><strong>Task:</strong> Put numbers or words in order: ascending, descending, or by a custom rule such as length.</p>
+<p><strong>Example:</strong> <code>nums = [5, 2, 8, 1, 9]</code> → <code>[1, 2, 5, 8, 9]</code>; <code>words = [&quot;banana&quot;, &quot;apple&quot;, &quot;cherry&quot;]</code> sorted alphabetically → <code>[&quot;apple&quot;, &quot;banana&quot;, &quot;cherry&quot;]</code></p>
 <div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">int[] nums = { 5, 2, 8, 1, 9 };
 
 // 1. Sort the array in-place in ascending order (O(n log n))
@@ -1834,6 +1870,9 @@ low=0 high=2  mid=1 → nums[1]=3 &lt; 6 → low=2
 low=2 high=2  mid=2 → nums[2]=5 &lt; 6 → low=3
 low=3 &gt; high=2 → not found</code></pre></div>
 <h3 id="binsearch--standard-template"><a class="anchor" href="#binsearch--standard-template">#</a>Standard template</h3>
+<p><strong>Task:</strong> Given a sorted array and a target, find the target's index (or <code>-1</code> if it isn't there) without checking every element.</p>
+<p><strong>Example:</strong> <code>nums = [1, 3, 5, 7, 9, 11, 13]</code>, <code>target = 7</code> → <code>3</code>; <code>target = 6</code> → <code>-1</code></p>
+<p><em>(Full walkthrough: Problem 1 below.)</em></p>
 <div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">int BinarySearch(int[] nums, int target)
 {
     // 1. Define the search boundaries
@@ -1887,6 +1926,8 @@ low=3 &gt; high=2 → not found</code></pre></div>
     # 6. Target not found
     return -1</code></pre></div>
 <h3 id="binsearch--find-leftmost-find-rightmost-variant"><a class="anchor" href="#binsearch--find-leftmost-find-rightmost-variant">#</a>&quot;Find leftmost / find rightmost&quot; variant</h3>
+<p><strong>Task:</strong> Given a sorted array that may contain duplicates, find the index of the <strong>first</strong> occurrence of the target.</p>
+<p><strong>Example:</strong> <code>nums = [1, 2, 2, 2, 3]</code>, <code>target = 2</code> → <code>1</code></p>
 <p>When there are duplicates and you want the first or last occurrence:</p>
 <div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">int FindFirst(int[] nums, int target)
 {
@@ -2100,6 +2141,8 @@ low=3 &gt; high=2 → not found</code></pre></div>
 <hr>
 <h2 id="lists--essential-patterns"><a class="anchor" href="#lists--essential-patterns">#</a>Essential Patterns</h2>
 <h3 id="lists--1-traversal"><a class="anchor" href="#lists--1-traversal">#</a>1. Traversal</h3>
+<p><strong>Task:</strong> Visit every node of a linked list from head to tail and print its value.</p>
+<p><strong>Example:</strong> <code>1 → 2 → 3</code> → prints <code>1</code>, <code>2</code>, <code>3</code></p>
 <div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">// 1. Start at the beginning
 ListNode curr = head;
 
@@ -2113,6 +2156,8 @@ while (curr != null)
     curr = curr.next;
 }</code></pre></div>
 <h3 id="lists--2-dummy-head-node"><a class="anchor" href="#lists--2-dummy-head-node">#</a>2. Dummy head node</h3>
+<p><strong>Task:</strong> Remove every node with a given value from a linked list, even when the value sits at the head.</p>
+<p><strong>Example:</strong> <code>1 → 1 → 2 → 3</code>, remove <code>1</code> → <code>2 → 3</code> (the head itself changed)</p>
 <p>Simplifies edge cases (inserting at the head, handling empty lists):</p>
 <div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">// 1. Create a placeholder node that points to the actual head
 var dummy = new ListNode(0);
@@ -2126,6 +2171,9 @@ ListNode curr = dummy;
 // 4. Return 'dummy.next' which always points to the correctly updated head
 return dummy.next;  </code></pre></div>
 <h3 id="lists--3-fast-slow-pointers"><a class="anchor" href="#lists--3-fast-slow-pointers">#</a>3. Fast &amp; slow pointers</h3>
+<p><strong>Task:</strong> Find the middle node of a linked list in a single pass.</p>
+<p><strong>Example:</strong> <code>1 → 2 → 3 → 4 → 5</code> → the middle node is <code>3</code></p>
+<p><em>(Full walkthrough: Problem 5 below.)</em></p>
 <p>Two pointers at different speeds — classic for cycle detection and finding the middle:</p>
 <div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">// 1. Both pointers start at the head
 ListNode slow = head, fast = head;
@@ -2421,6 +2469,8 @@ int Sum(int n)
 <hr>
 <h2 id="trees--tree-traversals"><a class="anchor" href="#trees--tree-traversals">#</a>Tree Traversals</h2>
 <h3 id="trees--depth-first-search-dfs-three-orders"><a class="anchor" href="#trees--depth-first-search-dfs-three-orders">#</a>Depth-First Search (DFS) — three orders</h3>
+<p><strong>Task:</strong> Visit every node of a binary tree, going all the way down one branch before moving to the next.</p>
+<p><strong>Example:</strong> the tree below → Inorder <code>4, 2, 5, 1, 3</code>; Preorder <code>1, 2, 4, 5, 3</code>; Postorder <code>4, 5, 2, 3, 1</code></p>
 <div class="code-wrap" data-lang="text"><button class="copy-btn" type="button">Copy</button><pre><code class="language-plaintext">    1
    / \
   2   3
@@ -2456,6 +2506,8 @@ void Preorder(TreeNode node)
     Preorder(node.right);
 }</code></pre></div>
 <h3 id="trees--breadth-first-search-bfs-level-order"><a class="anchor" href="#trees--breadth-first-search-bfs-level-order">#</a>Breadth-First Search (BFS) — level order</h3>
+<p><strong>Task:</strong> Visit a binary tree one level at a time, from the top down.</p>
+<p><strong>Example:</strong> a tree with root <code>1</code>, children <code>2</code> and <code>3</code>, where <code>2</code> has children <code>4</code> and <code>5</code> → levels <code>[1]</code>, <code>[2, 3]</code>, <code>[4, 5]</code></p>
 <p>Process nodes level by level using a queue:</p>
 <div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">IList&lt;IList&lt;int&gt;&gt; LevelOrder(TreeNode root)
 {
@@ -3002,6 +3054,9 @@ void AddEdge(int from, int to, bool undirected = true)
 <hr>
 <h2 id="graphs--patterns-with-code"><a class="anchor" href="#graphs--patterns-with-code">#</a>Patterns with Code</h2>
 <h3 id="graphs--pattern-1-dfs-depth-first-search-go-deep-then-backtrack"><a class="anchor" href="#graphs--pattern-1-dfs-depth-first-search-go-deep-then-backtrack">#</a>Pattern 1: DFS (Depth-First Search) — go deep, then backtrack</h3>
+<p><strong>Task:</strong> Starting from one node, visit every node you can reach, without looping forever on cycles.</p>
+<p><strong>Example:</strong> undirected edges <code>0–1</code>, <code>0–2</code>, <code>1–3</code>, start at <code>0</code> → visits <code>0, 1, 3, 2</code></p>
+<p><em>(Related: Problem 1 below.)</em></p>
 <p>This is literally tree DFS from chapter 08 plus a <code>visited</code> set.</p>
 <div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">void Dfs(int node, Dictionary&lt;int, List&lt;int&gt;&gt; graph, HashSet&lt;int&gt; visited)
 {
@@ -3028,6 +3083,9 @@ void AddEdge(int from, int to, bool undirected = true)
         dfs(neighbour, graph, visited)</code></pre></div>
 <p><strong>Why use it?</strong> Natural for &quot;explore a whole region&quot; problems (islands, connected components) and anything path/backtracking-flavoured. Uses the call stack, so watch recursion depth on huge graphs.</p>
 <h3 id="graphs--pattern-2-bfs-breadth-first-search-explore-level-by-level"><a class="anchor" href="#graphs--pattern-2-bfs-breadth-first-search-explore-level-by-level">#</a>Pattern 2: BFS (Breadth-First Search) — explore level by level</h3>
+<p><strong>Task:</strong> Starting from one node, visit the others in order of distance (fewest edges first). This also gives the shortest path when every edge counts the same.</p>
+<p><strong>Example:</strong> the same edges <code>0–1</code>, <code>0–2</code>, <code>1–3</code>, start at <code>0</code> → visits <code>0, 1, 2, 3</code> (node <code>3</code> is two steps away)</p>
+<p><em>(Related: Problem 5 below.)</em></p>
 <p>This is the queue-based level-order traversal from chapter 08, generalised. <strong>BFS finds the shortest path in an unweighted graph</strong> because it reaches nodes in order of distance.</p>
 <div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">void Bfs(int start, Dictionary&lt;int, List&lt;int&gt;&gt; graph)
 {
@@ -3065,6 +3123,9 @@ def bfs(start, graph):
                 queue.append(neighbour)</code></pre></div>
 <p><strong>Common bug:</strong> marking visited when you <em>dequeue</em> instead of when you <em>enqueue</em> — that lets a node get added to the queue many times. Mark on enqueue.</p>
 <h3 id="graphs--pattern-3-topological-sort-ordering-with-dependencies"><a class="anchor" href="#graphs--pattern-3-topological-sort-ordering-with-dependencies">#</a>Pattern 3: Topological Sort — ordering with dependencies</h3>
+<p><strong>Task:</strong> Given tasks with prerequisites, produce an order where every task comes after the tasks it depends on.</p>
+<p><strong>Example:</strong> 4 courses, where <code>0</code> must come before <code>1</code> and <code>2</code>, and both of those before <code>3</code> → <code>[0, 1, 2, 3]</code></p>
+<p><em>(Full walkthrough: Problem 2 below.)</em></p>
 <p>For a <strong>directed acyclic graph (DAG)</strong>: produce an order where every node comes before the nodes that depend on it. Think &quot;course prerequisites&quot; or &quot;build order&quot;. Uses BFS with in-degree counts (Kahn's algorithm).</p>
 <div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">// Returns a valid order, or empty list if a cycle exists (impossible to order).
 List&lt;int&gt; TopoSort(int n, Dictionary&lt;int, List&lt;int&gt;&gt; graph)
@@ -3093,6 +3154,9 @@ List&lt;int&gt; TopoSort(int n, Dictionary&lt;int, List&lt;int&gt;&gt; graph)
 }</code></pre></div>
 <p><strong>Why use it?</strong> Dependency resolution, task scheduling, detecting cycles in directed graphs (if you can't order all nodes, there's a cycle).</p>
 <h3 id="graphs--pattern-4-union-find-disjoint-set-grouping-connected-things-fast"><a class="anchor" href="#graphs--pattern-4-union-find-disjoint-set-grouping-connected-things-fast">#</a>Pattern 4: Union-Find (Disjoint Set) — grouping connected things fast</h3>
+<p><strong>Task:</strong> Given pairs of items that are connected, count how many separate groups there are.</p>
+<p><strong>Example:</strong> 5 nodes with connections <code>0–1</code>, <code>1–2</code>, <code>3–4</code> → <code>2</code> groups: <code>{0, 1, 2}</code> and <code>{3, 4}</code></p>
+<p><em>(Related: Problem 4 below.)</em></p>
 <p>Tracks which nodes belong to the same group, with near-<code>O(1)</code> merges and lookups. Great for &quot;how many groups?&quot; and cycle detection in undirected graphs.</p>
 <div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">public class UnionFind
 {
@@ -3538,6 +3602,9 @@ largest = -heapq.heappop(max_heap)   # 5</code></pre></div>
 <hr>
 <h2 id="heaps--patterns-with-code"><a class="anchor" href="#heaps--patterns-with-code">#</a>Patterns with Code</h2>
 <h3 id="heaps--pattern-1-top-k-with-a-bounded-heap"><a class="anchor" href="#heaps--pattern-1-top-k-with-a-bounded-heap">#</a>Pattern 1: Top-K with a bounded heap</h3>
+<p><strong>Task:</strong> Given a list of numbers and <code>k</code>, find the <code>k</code> largest numbers without sorting the whole list.</p>
+<p><strong>Example:</strong> <code>nums = [3, 1, 5, 12, 2, 11]</code>, <code>k = 3</code> → <code>[5, 11, 12]</code> (in any order)</p>
+<p><em>(Related: Problems 1 and 2 below.)</em></p>
 <p>To find the <strong>K largest</strong> elements, keep a <strong>min-heap of size K</strong>. The root is the smallest of your current top-K; if a new element beats it, evict the root. This is <code>O(n log k)</code> — much better than sorting everything when <code>k ≪ n</code>.</p>
 <div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">int[] TopKLargest(int[] nums, int k)
 {
@@ -3559,6 +3626,9 @@ def top_k_largest(nums, k):
     return heapq.nlargest(k, nums)</code></pre></div>
 <p><strong>Why a MIN-heap for the LARGEST?</strong> Because you want to cheaply discard the <em>weakest</em> of your current winners. The smallest of the top-K sits at a min-heap's root, ready to evict.</p>
 <h3 id="heaps--pattern-2-merging-k-sorted-sequences"><a class="anchor" href="#heaps--pattern-2-merging-k-sorted-sequences">#</a>Pattern 2: Merging K sorted sequences</h3>
+<p><strong>Task:</strong> Merge several already-sorted lists into one sorted list.</p>
+<p><strong>Example:</strong> <code>[[1, 4, 7], [2, 5], [3, 6]]</code> → <code>[1, 2, 3, 4, 5, 6, 7]</code></p>
+<p><em>(Related: Problem 4 below, using linked lists.)</em></p>
 <p>Put the head of each sequence in a heap; repeatedly pop the global minimum and push the next element from that sequence. Each pop gives the next element in overall sorted order.</p>
 <div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">// Merge k sorted arrays into one sorted list.
 List&lt;int&gt; MergeK(List&lt;int[]&gt; lists)
@@ -3585,6 +3655,8 @@ List&lt;int&gt; MergeK(List&lt;int[]&gt; lists)
 }</code></pre></div>
 <p><strong>Why use it?</strong> The heap only ever holds <code>k</code> items (one per sequence), so merging <code>n</code> total elements costs <code>O(n log k)</code>.</p>
 <h3 id="heaps--pattern-3-two-heaps-for-a-running-median"><a class="anchor" href="#heaps--pattern-3-two-heaps-for-a-running-median">#</a>Pattern 3: Two heaps for a running median</h3>
+<p><strong>Task:</strong> Numbers arrive one at a time. At any moment, report the median of everything seen so far.</p>
+<p><strong>Example:</strong> add <code>5</code>, then <code>2</code>, then <code>8</code> → the medians are <code>5</code>, <code>3.5</code>, <code>5</code></p>
 <p>Keep a <strong>max-heap of the lower half</strong> and a <strong>min-heap of the upper half</strong>, balanced in size. The median is then at the top(s) of the heaps — <code>O(log n)</code> per insert, <code>O(1)</code> to read the median.</p>
 <div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">public class MedianFinder
 {
@@ -3816,6 +3888,9 @@ def merge_k_lists(lists):
 <hr>
 <h2 id="backtracking--patterns-with-code"><a class="anchor" href="#backtracking--patterns-with-code">#</a>Patterns with Code</h2>
 <h3 id="backtracking--pattern-1-subsets-include-or-exclude-each-element"><a class="anchor" href="#backtracking--pattern-1-subsets-include-or-exclude-each-element">#</a>Pattern 1: Subsets — include or exclude each element</h3>
+<p><strong>Task:</strong> Given a list of distinct numbers, list every possible subset.</p>
+<p><strong>Example:</strong> <code>nums = [1, 2, 3]</code> → <code>[]</code>, <code>[1]</code>, <code>[2]</code>, <code>[3]</code>, <code>[1,2]</code>, <code>[1,3]</code>, <code>[2,3]</code>, <code>[1,2,3]</code> (8 subsets)</p>
+<p><em>(Full walkthrough: Problem 1 below.)</em></p>
 <p>Every element is a binary choice: take it or don't. The decision tree has <code>2ⁿ</code> leaves = all subsets.</p>
 <div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">IList&lt;IList&lt;int&gt;&gt; Subsets(int[] nums)
 {
@@ -3852,6 +3927,9 @@ def merge_k_lists(lists):
     return results</code></pre></div>
 <p><strong>The <code>start</code> index</strong> is how you avoid generating <code>[1,2]</code> and <code>[2,1]</code> as different subsets — you only ever look <em>forward</em>.</p>
 <h3 id="backtracking--pattern-2-permutations-order-matters-track-whats-used"><a class="anchor" href="#backtracking--pattern-2-permutations-order-matters-track-whats-used">#</a>Pattern 2: Permutations — order matters, track what's used</h3>
+<p><strong>Task:</strong> Given a list of distinct numbers, list every possible ordering of them.</p>
+<p><strong>Example:</strong> <code>nums = [1, 2, 3]</code> → <code>[1,2,3]</code>, <code>[1,3,2]</code>, <code>[2,1,3]</code>, <code>[2,3,1]</code>, <code>[3,1,2]</code>, <code>[3,2,1]</code></p>
+<p><em>(Full walkthrough: Problem 2 below.)</em></p>
 <p>Here every ordering is distinct, so you consider <em>all</em> remaining elements at each step and mark which are already in the path.</p>
 <div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">IList&lt;IList&lt;int&gt;&gt; Permute(int[] nums)
 {
@@ -3901,6 +3979,9 @@ def merge_k_lists(lists):
     return results</code></pre></div>
 <p><strong>Subsets vs permutations:</strong> subsets use a <code>start</code> index (look forward only); permutations use a <code>used[]</code> flag (any unused element, order matters). That single difference changes everything.</p>
 <h3 id="backtracking--pattern-3-pruning-abandon-dead-branches-early"><a class="anchor" href="#backtracking--pattern-3-pruning-abandon-dead-branches-early">#</a>Pattern 3: Pruning — abandon dead branches early</h3>
+<p><strong>Task:</strong> Given distinct numbers and a target, find every combination that adds up to the target (a number may be reused).</p>
+<p><strong>Example:</strong> <code>candidates = [2, 3, 5]</code>, <code>target = 7</code> → <code>[[2, 2, 3], [2, 5]]</code></p>
+<p><em>(Full walkthrough: Problem 3 below.)</em></p>
 <p>The real power of backtracking is quitting a path as soon as it's hopeless. In Combination Sum, once the running total exceeds the target, every deeper choice is wasted — so we <code>break</code>/<code>return</code> instead of exploring.</p>
 <div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">IList&lt;IList&lt;int&gt;&gt; CombinationSum(int[] candidates, int target)
 {
@@ -4144,6 +4225,8 @@ def merge_k_lists(lists):
 <hr>
 <h2 id="dp-patterns--patterns-with-code"><a class="anchor" href="#dp-patterns--patterns-with-code">#</a>Patterns with Code</h2>
 <h3 id="dp-patterns--pattern-1-01-knapsack-take-it-or-leave-it-with-a-budget"><a class="anchor" href="#dp-patterns--pattern-1-01-knapsack-take-it-or-leave-it-with-a-budget">#</a>Pattern 1: 0/1 Knapsack — take-it-or-leave-it with a budget</h3>
+<p><strong>Task:</strong> Given items with a weight and a value, and a bag with a weight limit, choose items (each at most once) to get the highest total value.</p>
+<p><strong>Example:</strong> <code>weights = [1, 3, 4]</code>, <code>values = [15, 20, 30]</code>, <code>capacity = 4</code> → <code>35</code> (take the items with weights 1 and 3)</p>
 <p>You have items with weights and values and a capacity. Each item is used <strong>at most once</strong>. Maximise value without exceeding capacity. The state is <code>dp[i][w]</code> = best value using the first <code>i</code> items with capacity <code>w</code>.</p>
 <div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">int Knapsack(int[] weights, int[] values, int capacity)
 {
@@ -4178,6 +4261,9 @@ def merge_k_lists(lists):
     return dp[n][capacity]</code></pre></div>
 <p><strong>The shape:</strong> a 2D table indexed by <em>which items</em> × <em>how much budget</em>. The recurrence is always &quot;best of (skip) vs (take, if it fits)&quot;. Subset-sum, partition-equal-subset, and target-sum are all this shape in disguise.</p>
 <h3 id="dp-patterns--pattern-2-subsequence-best-run-so-far-lis"><a class="anchor" href="#dp-patterns--pattern-2-subsequence-best-run-so-far-lis">#</a>Pattern 2: Subsequence — &quot;best run so far&quot; (LIS)</h3>
+<p><strong>Task:</strong> Find the length of the longest strictly increasing subsequence (the numbers don't have to be next to each other).</p>
+<p><strong>Example:</strong> <code>nums = [10, 9, 2, 5, 3, 7]</code> → <code>3</code> (for example <code>2, 5, 7</code>)</p>
+<p><em>(Full walkthrough: Problem 2 below.)</em></p>
 <p>For Longest Increasing Subsequence, <code>dp[i]</code> = length of the longest increasing subsequence <strong>ending at index i</strong>. Each position looks back at all smaller-value predecessors and extends the best one.</p>
 <div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">int LengthOfLIS(int[] nums)
 {
@@ -4210,6 +4296,8 @@ def merge_k_lists(lists):
     return best</code></pre></div>
 <p><strong>The shape:</strong> 1D table over positions, where <code>dp[i]</code> summarises &quot;the best thing ending here&quot;. The answer is often the <em>max over all <code>dp[i]</code></em>, not <code>dp[last]</code>. (This is <code>O(n²)</code>; an <code>O(n log n)</code> version using binary search exists — a nice follow-up that reuses chapter 06.)</p>
 <h3 id="dp-patterns--pattern-3-grid-accumulate-from-neighbours-min-path-sum"><a class="anchor" href="#dp-patterns--pattern-3-grid-accumulate-from-neighbours-min-path-sum">#</a>Pattern 3: Grid — accumulate from neighbours (Min Path Sum)</h3>
+<p><strong>Task:</strong> In a grid of costs, find the cheapest path from the top-left to the bottom-right, moving only right or down.</p>
+<p><strong>Example:</strong> <code>grid = [[1,3,1],[1,5,1],[4,2,1]]</code> → <code>7</code> (the path <code>1 → 3 → 1 → 1 → 1</code>)</p>
 <p>On a grid, <code>dp[i][j]</code> is the best cost to <em>reach</em> cell <code>(i,j)</code>, built from the cells you could have come from (above or left). This generalises Unique Paths from chapter 09 (counting) to <em>optimising</em> a cost.</p>
 <div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">int MinPathSum(int[][] grid)
 {
@@ -4245,6 +4333,8 @@ def merge_k_lists(lists):
     return dp[rows - 1][cols - 1]</code></pre></div>
 <p><strong>The shape:</strong> 2D table matching the grid; fill the edges as base cases, then each interior cell combines its reachable neighbours. Watch for the base-case edges — they're where grid DP usually breaks.</p>
 <h3 id="dp-patterns--pattern-4-two-strings-match-or-mismatch-edit-distance"><a class="anchor" href="#dp-patterns--pattern-4-two-strings-match-or-mismatch-edit-distance">#</a>Pattern 4: Two strings — match or mismatch (Edit Distance)</h3>
+<p><strong>Task:</strong> Find the minimum number of insert, delete or replace steps needed to turn one string into another.</p>
+<p><strong>Example:</strong> <code>&quot;horse&quot;</code> → <code>&quot;ros&quot;</code> takes <code>3</code> steps</p>
 <p>When a problem compares two sequences, the state is <code>dp[i][j]</code> over <em>a prefix of each</em>. Edit Distance: minimum insert/delete/replace operations to turn string <code>a</code> into string <code>b</code>.</p>
 <div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">int EditDistance(string a, string b)
 {
@@ -4524,10 +4614,18 @@ DP      : try all options, keep the best combination     → slower, always corr
 <hr>
 <h2 id="greedy--essential-patterns"><a class="anchor" href="#greedy--essential-patterns">#</a>Essential Patterns</h2>
 <h3 id="greedy--pattern-1-interval-scheduling-sort-by-end"><a class="anchor" href="#greedy--pattern-1-interval-scheduling-sort-by-end">#</a>Pattern 1 — Interval scheduling (sort by end)</h3>
+<p><strong>Task:</strong> Given a set of time intervals, keep as many non-overlapping ones as possible.</p>
+<p><strong>Example:</strong> <code>[[1,3], [2,4], [3,5]]</code> → keep <code>[1,3]</code> and <code>[3,5]</code> (2 intervals; touching ends are fine)</p>
+<p><em>(Full walkthrough: Problem 2 below.)</em></p>
 <p>To fit the <strong>most</strong> non-overlapping intervals, always keep the one that <strong>finishes earliest</strong> — it frees the timeline soonest.</p>
 <h3 id="greedy--pattern-2-reach-jump-track-the-furthest-reachable"><a class="anchor" href="#greedy--pattern-2-reach-jump-track-the-furthest-reachable">#</a>Pattern 2 — Reach / jump (track the furthest reachable)</h3>
+<p><strong>Task:</strong> Given how far you can jump from each position, decide whether you can reach the last index.</p>
+<p><strong>Example:</strong> <code>nums = [2, 3, 1, 1, 4]</code> → <code>true</code>; <code>nums = [3, 2, 1, 0, 4]</code> → <code>false</code></p>
+<p><em>(Full walkthrough: Problems 3 and 4 below.)</em></p>
 <p>For &quot;can I reach the end?&quot; / &quot;fewest jumps&quot;, sweep left to right tracking the furthest index reachable so far.</p>
 <h3 id="greedy--pattern-3-exchange-argument-prove-by-swapping"><a class="anchor" href="#greedy--pattern-3-exchange-argument-prove-by-swapping">#</a>Pattern 3 — Exchange argument (prove by swapping)</h3>
+<p><strong>Task:</strong> Explain <em>why</em> a greedy rule is correct, not just that it passes the tests.</p>
+<p><strong>Example:</strong> (Assign Cookies) if a bigger cookie goes to a child who a smaller cookie would have satisfied, swapping the two never loses a satisfied child, so &quot;give the smallest cookie that works&quot; is safe.</p>
 <p>To justify a greedy order, argue that swapping any two elements out of greedy order never improves (and often worsens) the result. This is the proof interviewers want to hear — even informally.</p>
 <hr>
 <h2 id="greedy--practice-problems"><a class="anchor" href="#greedy--practice-problems">#</a>Practice Problems</h2>
@@ -4681,6 +4779,9 @@ DP      : try all options, keep the best combination     → slower, always corr
 <h2 id="tries--the-node-the-three-operations"><a class="anchor" href="#tries--the-node-the-three-operations">#</a>The node + the three operations</h2>
 <p>A node holds a map of child characters and a flag marking whether a word <em>ends</em> here (so <code>app</code> can be a word even though it's also a prefix of <code>apple</code>).</p>
 <h3 id="tries--pattern-build-the-node-once-reuse-everywhere"><a class="anchor" href="#tries--pattern-build-the-node-once-reuse-everywhere">#</a>Pattern — build the node once, reuse everywhere</h3>
+<p><strong>Task:</strong> Store a set of words so you can quickly check both whole words and prefixes.</p>
+<p><strong>Example:</strong> after inserting <code>&quot;app&quot;</code> and <code>&quot;apple&quot;</code>: <code>search(&quot;app&quot;)</code> → <code>true</code>, <code>search(&quot;appl&quot;)</code> → <code>false</code>, <code>startsWith(&quot;appl&quot;)</code> → <code>true</code></p>
+<p><em>(Full walkthrough: Problem 1 below.)</em></p>
 <p><code>insert</code>, <code>search</code>, and <code>startsWith</code> are the same walk; they differ only in what they check at the end (word-end flag vs &quot;did the path exist at all&quot;).</p>
 <hr>
 <h2 id="tries--practice-problems"><a class="anchor" href="#tries--practice-problems">#</a>Practice Problems</h2>

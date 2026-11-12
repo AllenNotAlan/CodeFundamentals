@@ -42,6 +42,12 @@ Like a queue at a shop. You add to the back, remove from the front.
 ## Patterns with Code
 
 ### Stack: Matching brackets
+**Task:** Check whether every opening bracket in a string has a matching closing bracket, in the correct order.
+
+**Example:** `"({[]})"` → `true`, `"(]"` → `false`
+
+*(Full walkthrough: Problem 1 below.)*
+
 ```csharp
 bool IsBalanced(string s)
 {
@@ -79,6 +85,12 @@ bool IsBalanced(string s)
 ```
 
 ### Stack: Monotonic stack (next greater element)
+**Task:** For each number in an array, find the next number to its right that is bigger (or `-1` if there isn't one).
+
+**Example:** `nums = [2, 1, 3, 2, 4]` → `[3, 3, 4, 4, -1]`
+
+*(Related: Problem 4 below.)*
+
 A monotonic stack keeps elements in sorted order. Useful for "next greater/smaller" problems.
 ```csharp
 // For each element, find the next element that is greater
@@ -111,6 +123,10 @@ int[] NextGreaterElement(int[] nums)
 ```
 
 ### Queue: BFS level-by-level
+**Task:** Visit a binary tree one level at a time, from the top down.
+
+**Example:** a tree with root `1`, children `2` and `3`, where `2` has children `4` and `5` → levels `[1]`, `[2, 3]`, `[4, 5]`
+
 ```csharp
 void BfsExample(TreeNode root)
 {
