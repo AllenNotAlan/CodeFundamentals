@@ -147,6 +147,51 @@ foreach (string word in words)
 }
 ```
 
+**Without LINQ — Option A: sort the characters with `Array.Sort`**
+```csharp
+var groups = new Dictionary<string, List<string>>();
+
+foreach (string word in words)
+{
+    // 1. Copy the characters into an array (ToCharArray is a plain string method, not LINQ).
+    char[] chars = word.ToCharArray();
+
+    // 2. Sort them in-place. Anagrams end up identical: "eat" and "tea" both become "aet".
+    Array.Sort(chars);
+
+    // 3. Turn the sorted characters back into a string to use as the key.
+    string key = new string(chars);
+
+    // 4. Add the original word to the list for that key (create the list the first time).
+    if (!groups.ContainsKey(key)) groups[key] = new List<string>();
+    groups[key].Add(word);
+}
+// Time: O(n * k log k) for n words of length k | Space: O(n * k)
+```
+
+**Without LINQ — Option B: count the letters (no sorting)**
+```csharp
+var groups = new Dictionary<string, List<string>>();
+
+foreach (string word in words)
+{
+    // 1. Count how many times each letter appears (assumes lowercase a-z).
+    int[] counts = new int[26];
+    foreach (char c in word)
+        counts[c - 'a']++;
+
+    // 2. Join the counts into a key. "eat" and "tea" both give the same counts, so the same key.
+    //    The "#" separator matters: without it, counts like 1,11 and 11,1 would look identical.
+    string key = string.Join("#", counts);
+
+    // 3. Add the original word to the list for that key (create the list the first time).
+    if (!groups.ContainsKey(key)) groups[key] = new List<string>();
+    groups[key].Add(word);
+}
+// Time: O(n * k) for n words of length k | Space: O(n * k)
+```
+Option A is the simplest to write. Option B is faster for long words, but only works for a fixed alphabet.
+
 ---
 
 ## Practice Problems
