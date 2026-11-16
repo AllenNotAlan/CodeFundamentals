@@ -124,7 +124,7 @@ public class HashMapSolutions
 
         var dict = new Dictionary<string, List<string>>();
 
-        foreach(string word in wordArray)
+        foreach (string word in wordArray)
         {
             char[] chars = word.ToCharArray();
             Array.Sort(chars);
@@ -134,13 +134,11 @@ public class HashMapSolutions
 
             if (!dict.ContainsKey(key))
             {
-                dict[key] = new List<string>(); 
+                dict[key] = new List<string>();
             }
-
-            //dict[key].Add(word);
         }
 
-        return true;
+        return false;
 
     }
 }
