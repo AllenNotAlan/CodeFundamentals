@@ -4,6 +4,13 @@ A **greedy** algorithm builds an answer one step at a time, always taking the ch
 
 > **Builds on:** [06 — Sorting & Binary Search](./06-sorting-and-binary-search.md) (most greedy solutions start by sorting) and [09 — Dynamic Programming Intro](./09-dynamic-programming-intro.md) (the contrast that tells you *when greedy is safe*).
 
+> **Catch up**
+> - **Idea:** At each step, take the choice that looks best right now and never revisit it. It's fast, but only correct when the local choice is provably safe. Otherwise use DP.
+> - **Spot it:** "maximum number of non-overlapping …", scheduling, "minimum number of … to cover / reach", and solutions that start with "sort by something".
+> - **Template:** Sort by the right key (intervals by **end**), then sweep once and commit. For reach problems, track `furthest = Math.Max(furthest, i + nums[i])`.
+> - **Cost:** O(n log n) when you sort first, O(n) for a single sweep. O(1) extra space.
+> - **#1 mistake:** Assuming greedy works for min-coin change. With coins `[1, 3, 4]` and amount 6, greedy uses 3 coins but 2 is optimal.
+
 ---
 
 ## Core idea — commit and never look back
@@ -222,6 +229,25 @@ def jump(nums):
 - **No proof.** "It felt right" isn't an argument. Have a one-line exchange argument ready, or you can't trust the answer.
 - **Using greedy to count.** "Number of ways" is never greedy — greedy commits to a single path and can't enumerate.
 - **Forgetting the edge where greedy leaves you stranded.** In reach problems, always check "am I now standing beyond the furthest reachable point?"
+
+---
+
+## Check Yourself
+
+Answer these without scrolling up, then open the answers.
+
+1. Which two properties must hold for greedy to be correct?
+2. In interval scheduling, what do you sort by, and why?
+3. How does Jump Game decide you can't reach the end?
+4. What is an exchange argument?
+5. Why can't greedy answer a "number of ways" question?
+
+> **Answers**
+> 1. The greedy-choice property (a locally best choice can lead to a global optimum) and optimal substructure (what's left is a smaller version of the same problem).
+> 2. End time. The interval that finishes earliest frees the timeline soonest.
+> 3. If the current index `i` is beyond `furthest`, you can never get there, so return `false`.
+> 4. A proof that swapping any two elements out of greedy order never improves the result.
+> 5. Greedy commits to a single path, so it can't count or list all the possibilities.
 
 ---
 

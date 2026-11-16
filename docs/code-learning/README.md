@@ -56,6 +56,19 @@ Work **Phase 1 in order first** — each chapter reuses the one before it. Only 
 
 ---
 
+## ⏪ Returning after a break
+
+Every chapter opens with a short **Catch up** block and ends with **Check Yourself** questions. If you've been away for a few weeks, use them instead of re-reading everything:
+
+1. **Read the catch ups** for every chapter you've finished. In `study.html`, the [Revision page](../../study-html/study.html#revision) shows them all on one screen. On GitHub, read the block at the top of each chapter.
+2. **Answer the Check Yourself questions** for each chapter without looking, then check the answers.
+3. **Solve one ⭐ problem per chapter from scratch** (from its "LeetCode Problems to Try Now" list).
+4. **Re-read the full chapter only where step 2 or 3 went wrong.**
+
+**Review schedule:** go through steps 1–3 for a chapter **1 day**, **1 week** and **1 month** after you first finish it. Several short, spaced-out reviews help you remember for longer than one long re-read. Record the dates in the **Last reviewed** field of the [Progress Tracker](../personal-projects/04-coding-practice-plan.md#-progress-tracker).
+
+---
+
 ## 🔑 Problem-Solving Framework (use this every time)
 
 ```

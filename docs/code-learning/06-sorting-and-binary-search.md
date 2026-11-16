@@ -4,6 +4,13 @@ Sorting and binary search are two foundational tools. Sorting reorganises data t
 
 > **Builds on:** [01 — Arrays & Strings](./01-arrays-and-strings.md). A **sorted** array is also the precondition for the [two-pointer](./03-two-pointers.md) pattern, and binary search underpins the heap/"minimise the max" ideas in [11 — Heaps](./11-heaps-priority-queues.md).
 
+> **Catch up**
+> - **Idea:** Sorting often makes a problem simple (two pointers, merging intervals). Binary search finds a target in a **sorted** array in O(log n) by halving the search range each step.
+> - **Spot it:** "sorted array", "find in O(log n)", "insert position", "first / last occurrence", "rotated sorted array", overlapping intervals (sort by start first).
+> - **Template:** `while (low <= high)`: `mid = low + (high - low) / 2`; if too small, `low = mid + 1`, otherwise `high = mid - 1`.
+> - **Cost:** Built-in sort is O(n log n). Binary search is O(log n) time and O(1) space.
+> - **#1 mistake:** Running binary search on data that isn't sorted.
+
 ---
 
 ## Sorting
@@ -367,6 +374,25 @@ def merge(intervals):
 - **`low <= high` vs `low < high`:** use `<=` for standard search, `<` when converging to a boundary.
 - **Not sorting before binary search** — binary search requires sorted data.
 - **Off by one on insert position** — after the loop, `low` is always the correct insertion point.
+
+---
+
+## Check Yourself
+
+Answer these without scrolling up, then open the answers.
+
+1. Why write `mid = low + (high - low) / 2` instead of `(low + high) / 2`?
+2. When do you use `low <= high`, and when `low < high`?
+3. To find the first occurrence of a duplicate, what do you do when `nums[mid] == target`?
+4. In Search Insert Position, what do you return when the target isn't found?
+5. In Merge Intervals, what must you do first, and when do two intervals overlap?
+
+> **Answers**
+> 1. `low + high` can overflow an `int`. The other form gives the same middle without overflowing.
+> 2. `<=` for a standard search. `<` when you're converging on a boundary, as in Find Minimum in Rotated Sorted Array.
+> 3. Record `result = mid`, then keep searching left with `high = mid - 1`.
+> 4. `low`. After the loop it always points to the correct insertion index.
+> 5. Sort by start time. The current interval overlaps the last merged one unless `merged[^1][1] < interval[0]`.
 
 ---
 

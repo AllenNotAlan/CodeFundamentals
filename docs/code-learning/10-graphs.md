@@ -4,6 +4,13 @@ A graph is just **nodes connected by edges**. That's it. A tree (chapter 08) is 
 
 > **Builds on:** recursion & DFS from [Trees & Recursion](./08-trees-and-recursion.md), and the queue-based BFS from [Stacks & Queues](./05-stacks-and-queues.md). If those are shaky, revisit them first — graph traversal is the same idea generalised.
 
+> **Catch up**
+> - **Idea:** A graph is nodes joined by edges, and unlike a tree it can have cycles. You traverse it with tree DFS or BFS plus a `visited` set.
+> - **Spot it:** grids ("islands", "spreads every minute"), prerequisites or build order, "how many groups?", "shortest / cheapest path".
+> - **Template:** Build an adjacency list, then choose the tool: BFS for the shortest unweighted path, DFS to flood a region, topological sort for dependency order, Union-Find for groups, Dijkstra for weighted shortest paths.
+> - **Cost:** O(V + E) time and space for BFS, DFS and topological sort. Dijkstra is O((V + E) log V).
+> - **#1 mistake:** No `visited` set, so any cycle loops forever. In BFS, mark a node visited when you enqueue it, not when you dequeue it.
+
 ---
 
 ## Core Concepts
@@ -645,6 +652,25 @@ def dijkstra(graph, src):            # graph[u] = list of (v, w)
 - **Forgetting grids are graphs** — many "grid" problems are just BFS/DFS with 4-directional neighbours.
 - **Wrong edge direction** — in directed graphs, double-check which way the edge points (prerequisite vs unlocks).
 - **Blowing the stack** — deep DFS recursion can overflow on huge graphs; switch to an explicit stack or BFS.
+
+---
+
+## Check Yourself
+
+Answer these without scrolling up, then open the answers.
+
+1. What does graph traversal add to tree traversal, and why is it needed?
+2. In BFS, when should you mark a node as visited, and what goes wrong if you do it later?
+3. Why does BFS find the shortest path in an unweighted graph, and when does it stop being correct?
+4. How does Kahn's algorithm (topological sort) tell you the graph has a cycle?
+5. In Rotting Oranges, why do you put every rotten orange in the queue at the start?
+
+> **Answers**
+> 1. A `visited` set. Graphs can have cycles, so without it the traversal loops forever.
+> 2. When you enqueue it. If you wait until you dequeue it, the same node can be added to the queue many times.
+> 3. BFS reaches nodes in order of distance (number of edges). It's wrong once edges have weights, because a 2-hop path can cost more than a 5-hop one. Use Dijkstra instead (non-negative weights only).
+> 4. It can't place every node: `order.Count` (or `completed`) ends up less than `n`.
+> 5. It's a multi-source BFS. All the rotten oranges spread at the same time, and each BFS level is one minute.
 
 ---
 

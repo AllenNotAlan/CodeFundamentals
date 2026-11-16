@@ -36,6 +36,10 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const REPO_ROOT = path.resolve(__dirname, "..", "..");
 const OUT_FILE = path.resolve(__dirname, "..", "study.html");
 
+/* Marker that starts a recap blockquote, and the id of the generated Revision page. */
+const CATCH_UP_MARKER = "**Catch up**";
+const REVISION_ID = "revision";
+
 /* ---------------------------------------------------------------------------
  * Chapter model: ordered Parts give the "thoughtful progression".
  * ------------------------------------------------------------------------- */
@@ -51,6 +55,8 @@ const PARTS = [
   {
     title: "Fundamentals — Coding Patterns",
     chapters: [
+      // Generated at build time from every "> **Catch up**" block (no source file).
+      [REVISION_ID, null, "Revision — all catch ups"],
       ["arrays", "docs/code-learning/01-arrays-and-strings.md", "1 · Arrays & Strings"],
       ["hashmaps", "docs/code-learning/02-hash-maps-and-sets.md", "2 · Hash Maps & Sets"],
       ["twoptr", "docs/code-learning/03-two-pointers.md", "3 · Two Pointers"],
@@ -434,6 +440,8 @@ function rewriteLink(href, opts) {
   if (href.startsWith("#")) return href;
   const hashIndex = href.indexOf("#");
   let file = hashIndex === -1 ? href : href.slice(0, hashIndex);
+  // Links into the generated study page (e.g. ".../study.html#revision") become in-app anchors.
+  if (/(^|\/)study\.html$/.test(file) && hashIndex !== -1) return href.slice(hashIndex);
   // resolve relative to the current chapter's directory
   const abs = path.posix.normalize(path.posix.join(opts.dir, file)).replace(/^\.\//, "");
   const id = opts.srcToId[abs];
@@ -528,7 +536,23 @@ function parseMarkdown(md, opts) {
         buf.push(lines[i].replace(/^\s*>\s?/, ""));
         i++;
       }
-      out.push(`<blockquote>${parseMarkdown(buf.join("\n"), opts).html}</blockquote>`);
+      // Marker blockquotes (see docs plan 09):
+      //   "> **Catch up**"  -> styled recap block, also collected for the Revision page
+      //   "> **Answers**"   -> collapsed <details> so learners try to recall first
+      const first = buf.findIndex((l) => l.trim() !== "");
+      const marker = first === -1 ? "" : buf[first].trim();
+      if (marker === "**Answers**") {
+        const body = parseMarkdown(buf.slice(first + 1).join("\n"), opts).html;
+        out.push(`<details class="solution"><summary>Answers</summary><div>${body}</div></details>`);
+        continue;
+      }
+      const inner = parseMarkdown(buf.join("\n"), opts).html;
+      if (marker === CATCH_UP_MARKER) {
+        if (opts.recaps) opts.recaps.push(parseMarkdown(buf.slice(first + 1).join("\n"), opts).html);
+        out.push(`<blockquote class="recap">${inner}</blockquote>`);
+        continue;
+      }
+      out.push(`<blockquote>${inner}</blockquote>`);
       continue;
     }
 
@@ -662,16 +686,54 @@ function referencesHtml(id) {
   return `<section class="refs"><h2>🔗 Further reading</h2><ul>${items}</ul></section>`;
 }
 
+// Revision page: every chapter's "Catch up" block on one page, grouped by Part,
+// each linking back to its chapter. Written once in the chapters, so it can't drift.
+function buildRevisionPage(flat) {
+  resetSlugs();
+  const headings = [];
+  const heading = (level, text) => {
+    const id = slugify(text, REVISION_ID);
+    headings.push({ level, text, id });
+    return `<h${level} id="${id}"><a class="anchor" href="#${id}">#</a>${escapeHtml(text)}</h${level}>`;
+  };
+  const title = "Revision — all catch ups";
+  const parts = [];
+  for (const part of PARTS) {
+    const chaps = flat.filter((c) => c.part === part.title && c.recaps && c.recaps.length);
+    if (!chaps.length) continue;
+    const entries = chaps.map((c) =>
+      `<div class="revision-entry"><h3><a href="#${c.id}">${escapeHtml(c.title)}</a></h3>` +
+      c.recaps.map((r) => `<blockquote class="recap">${r}</blockquote>`).join("") +
+      `</div>`
+    ).join("");
+    parts.push(heading(2, part.title) + entries);
+  }
+  const count = flat.filter((c) => c.recaps && c.recaps.length).length;
+  const html =
+    heading(1, title) +
+    `<p>Back after a break? Read the catch up for each chapter you've finished. For the coding chapters, then answer the ` +
+    `<strong>Check Yourself</strong> questions at the end of the chapter without looking. Open the full chapter only where you get stuck. ` +
+    `For the signal → pattern cheat sheet, see <a href="#pattern-recognition">14 · Pattern Recognition</a>.</p>` +
+    (parts.length ? parts.join("<hr>") : `<p><em>No catch up blocks found yet.</em></p>`);
+  console.log(`Revision page: ${count} chapters with a catch up block`);
+  return { html, headings, title };
+}
+
 async function main() {
   // Flatten chapters + build src->id map for link rewriting.
   const flat = [];
   const srcToId = {};
   for (const part of PARTS) {
-    for (const [id, src] of part.chapters) srcToId[src] = id;
+    for (const [id, src] of part.chapters) if (src) srcToId[src] = id;
   }
 
   for (const part of PARTS) {
     for (const [id, src, navLabel] of part.chapters) {
+      if (!src) {
+        // Synthetic chapter (Revision page): filled in once every chapter is parsed.
+        flat.push({ id, src, navLabel, part: part.title, math: false, html: "", headings: [], title: navLabel, recaps: [] });
+        continue;
+      }
       const abs = path.join(REPO_ROOT, src);
       let md;
       try {
@@ -683,12 +745,16 @@ async function main() {
       resetSlugs();
       const math = MATH_FILES.has(src);
       const dir = path.posix.dirname(src.split(path.sep).join("/"));
-      const { html, headings } = parseMarkdown(md, { math, dir, srcToId, chapterId: id });
+      const recaps = [];
+      const { html, headings } = parseMarkdown(md, { math, dir, srcToId, chapterId: id, recaps });
       const htmlWithDiagrams = injectChapterDiagrams(id, html);
       const title = h1Title(headings, navLabel);
-      flat.push({ id, src, navLabel, part: part.title, math, html: htmlWithDiagrams, headings, title });
+      flat.push({ id, src, navLabel, part: part.title, math, html: htmlWithDiagrams, headings, title, recaps });
     }
   }
+
+  const revision = flat.find((c) => c.id === REVISION_ID);
+  if (revision) Object.assign(revision, buildRevisionPage(flat));
 
   const anyMath = flat.some((c) => c.math);
 
@@ -840,6 +906,10 @@ blockquote{margin:1em 0;padding:.5em 1em;border-left:4px solid var(--accent);bac
 blockquote p{margin:.35em 0}
 blockquote.ddia{border-left-color:#8250df;background:color-mix(in srgb, #8250df 10%, transparent)}
 html[data-theme=dark] blockquote.ddia{background:color-mix(in srgb, #8250df 22%, transparent)}
+blockquote.recap{border-left-color:#1a7f37;background:color-mix(in srgb, #1a7f37 9%, transparent)}
+html[data-theme=dark] blockquote.recap{border-left-color:#3fb950;background:color-mix(in srgb, #3fb950 14%, transparent)}
+blockquote.recap ul{margin:.3em 0}
+.revision-entry h3{margin:1.2em 0 .3em}
 code{font-family:"SFMono-Regular",Consolas,Menlo,monospace;font-size:.86em;background:var(--code-bg);padding:.15em .4em;border-radius:5px;border:1px solid var(--border)}
 .math{font-family:"Cambria Math","Latin Modern Math",Georgia,"Times New Roman",serif;font-style:italic;white-space:nowrap;padding:0 .05em}
 .math sup,.math sub{font-style:normal}

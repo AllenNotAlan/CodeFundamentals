@@ -2,6 +2,13 @@
 
 Fintech companies like Monzo weight behavioural interviews heavily. They're hiring people who'll own production systems handling real money — they need to trust your judgement, communication, and values.
 
+> **Catch up**
+> - **Framework:** STAR, ending with what you learned. It's the same as the [generic behavioural guide](../interview-prep-generic/03-behavioural.md), with stories set around real money (reconciliation, ledgers, payments).
+> - **Incident response:** assess the impact, communicate early, mitigate first and find the root cause later, and keep a timeline. Afterwards, run a blameless postmortem with 5 Whys and action items that have owners.
+> - **Disagreement:** argue with evidence (an RFC, a proof of concept), not authority. If you lose, disagree and commit. That still makes a strong answer.
+> - **Monzo values to show:** default to transparency, think big but start small, make Monzo a great place to work, move fast with confidence, customer obsession.
+> - **Red flags to avoid:** blaming another team, waiting to be told what to do, saying "we" instead of "I", and giving no measurable result.
+
 ---
 
 ## The STAR Framework

@@ -4,6 +4,14 @@
 > **Timeline:** Weeks 3–5 (12–15 hours total)
 > **Outcome:** A working Kafka producer/consumer pipeline that processes transaction events asynchronously
 
+> **Where I left off** *(update this whenever you stop working on the project)*
+> - **Current phase:** Not started. Next is Phase 1: Docker Compose with Kafka.
+> - **Last thing done:** —
+> - **Next action:** —
+> - **Last updated:** —
+>
+> Tick items off in the **Definition of Done** at the end of this page as you finish them.
+
 ---
 
 ## 🎯 Why This Project

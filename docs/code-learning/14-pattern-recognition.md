@@ -4,6 +4,13 @@ This is the capstone. Chapters 01–13 each taught a *tool*. This chapter teache
 
 > **Builds on:** every prior chapter. Keep them open; this chapter constantly points back to them.
 
+> **Catch up**
+> - **Idea:** Interviews test two skills: recognising which pattern a new problem needs, and talking your way through it.
+> - **Spot it:** Read the signal words ("contiguous", "sorted", "top K", "number of ways", "all combinations") and map them with [The Recognition Cheat Sheet](./14-pattern-recognition.md#the-recognition-cheat-sheet).
+> - **Template:** The six-step method, said out loud: Clarify → Examples → Brute force → Optimise → Code → Test.
+> - **Cost:** State complexity without being asked. Use the "Reading complexity out loud" table to check your approach against the usual cost for its pattern.
+> - **#1 mistake:** Coding before you've clarified the problem.
+
 ---
 
 ## Why this matters more than solving more problems
@@ -145,6 +152,25 @@ If your approach is worse than these for its pattern, that's usually the hint yo
 - **Not testing your own code** — trace an example before they ask. Catching your own bug is a strong signal.
 - **Pattern-forcing** — not everything is DP. Match signals to patterns honestly; sometimes a hash map is the whole answer.
 - **Giving up at the optimisation** — a clear `O(n²)` you can explain is a pass; a half-written `O(n)` you abandoned is not.
+
+---
+
+## Check Yourself
+
+Answer these without scrolling up, then open the answers.
+
+1. List the six steps of the interview method in order.
+2. Which pattern do you reach for when a problem says "contiguous" with a condition, and which when it says "any order" or "subsequence"?
+3. What should "sorted" anywhere in the prompt make you think of?
+4. Why state the brute force before optimising?
+5. In the worked walkthrough, which three clues pointed to sliding window?
+
+> **Answers**
+> 1. Clarify, Examples, Brute force, Optimise, Code, Test.
+> 2. "Contiguous" points to sliding window. "Any order" or "subsequence" usually means DP or backtracking.
+> 3. Two pointers or binary search.
+> 4. It's your safety net. A working brute force you can explain beats an optimal solution you get stuck halfway through.
+> 5. "Contiguous", a condition on the sum, and all numbers being positive (so the sum only grows as the window expands).
 
 ---
 

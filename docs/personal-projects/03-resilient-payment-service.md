@@ -4,6 +4,14 @@
 > **Timeline:** Weeks 5–7 (15–18 hours total)
 > **Outcome:** A payment service in Go with circuit breakers, retries with backoff, idempotency, and timeout handling
 
+> **Where I left off** *(update this whenever you stop working on the project)*
+> - **Current phase:** Not started. Next is Phase 1: Fake Payment Provider.
+> - **Last thing done:** —
+> - **Next action:** —
+> - **Last updated:** —
+>
+> Tick items off in the **Definition of Done** at the end of this page as you finish them.
+
 ---
 
 ## 🎯 Why This Project

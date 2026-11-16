@@ -2,6 +2,13 @@
 
 System design is the highest-weighted interview for senior roles. You'll be asked to design systems that handle millions of users, high throughput, and complex data flows.
 
+> **Catch up**
+> - **Framework:** Clarify requirements → back-of-envelope estimate → high-level design → deep dive on 2–3 components → trade-offs and extensions ("what breaks at 10x scale?").
+> - **Questions covered:** URL shortener, notification system, rate limiter, chat system, task queue / job scheduler.
+> - **Reusable ideas:** Cache the hot read path in Redis. Use Kafka to decouple producers and absorb bursts. Retry with exponential backoff, then send to a dead letter queue. Deduplicate jobs with a unique ID.
+> - **Say out loud:** your assumptions, the specific technology and why you chose it, and the failure modes ("what happens when this service goes down?").
+> - **Know your numbers:** Redis read <1ms, Postgres read 5–20ms, same-region HTTP call 1–5ms, cross-region 50–150ms.
+
 ---
 
 ## Framework for Answering

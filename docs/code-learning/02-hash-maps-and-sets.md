@@ -4,6 +4,13 @@ The single most useful data structure for optimising brute-force solutions. If y
 
 > **Builds on:** [01 — Arrays & Strings](./01-arrays-and-strings.md) (iteration and the nested-loop patterns a hash map replaces).
 
+> **Catch up**
+> - **Idea:** Store what you've already seen in a `Dictionary` or `HashSet` so each lookup is O(1). This turns many O(n²) nested loops into one O(n) pass.
+> - **Spot it:** "count how many times", "have I seen this before?", "two numbers that add up to a target", "group the items that share something".
+> - **Template:** Loop once. For each item, look it up first (`ContainsKey` / `Contains`), then record it (`map[key] = …` / `set.Add`).
+> - **Cost:** O(n) time and O(n) extra space. You trade memory for speed.
+> - **#1 mistake:** Reading a count before it exists (`KeyNotFoundException`). Use `GetValueOrDefault(key, 0)` or `TryGetValue`.
+
 ---
 
 ## Core Concepts
@@ -375,6 +382,25 @@ def first_uniq_char(s):
 - **Forgetting to initialise the count** — use `GetValueOrDefault(key, 0)` or `TryGetValue`.
 - **Using a list for membership checks** — `list.Contains()` is O(n); `HashSet.Contains()` is O(1).
 - **Assuming order is preserved** — standard `Dictionary` in C# does NOT guarantee insertion order (though in practice it often is in modern .NET). Use `SortedDictionary` or a list of keys if order matters.
+
+---
+
+## Check Yourself
+
+Answer these without scrolling up, then open the answers.
+
+1. Why is a dictionary lookup O(1) on average?
+2. In Two Sum, what do you look up for each number, and what does the map store?
+3. What does `HashSet.Add` return when the item is already in the set, and how does Contains Duplicate use that?
+4. Name two ways to build a key that every anagram of a word shares.
+5. Why is `list.Contains()` a poor choice for "have I seen this?" checks?
+
+> **Answers**
+> 1. A hash function turns the key into an index that points straight at the stored value, so there is no searching.
+> 2. You look up the complement, `target - nums[i]`. The map stores value → index for the numbers seen so far.
+> 3. It returns `false`. Contains Duplicate uses `if (!seen.Add(n)) return true;` to check and add in one step.
+> 4. Sort the characters (`"eat"` and `"tea"` both become `"aet"`), or count the letters into an `int[26]` and join the counts with `"#"`.
+> 5. `list.Contains()` is O(n). `HashSet.Contains()` is O(1).
 
 ---
 

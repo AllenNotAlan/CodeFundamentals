@@ -4,6 +4,13 @@ A **trie** (pronounced "try", from re*trie*val) is a tree where each node repres
 
 > **Builds on:** [08 — Trees & Recursion](./08-trees-and-recursion.md) (a trie is a tree with a child *per character*) and [02 — Hash Maps & Sets](./02-hash-maps-and-sets.md) (each node's children are a small map).
 
+> **Catch up**
+> - **Idea:** A tree where each node is one character and each path from the root spells a prefix. Words that share a prefix store it once, so prefix queries walk a single path.
+> - **Spot it:** autocomplete, "starts with", "prefix", a dictionary of words, word search, spell-check.
+> - **Template:** A node holds `Children` (a map of char → node) and an `IsWord` flag. Insert, search and startsWith all walk the same path. Only the final check differs: `IsWord` for search, "the node exists" for startsWith.
+> - **Cost:** O(L) time per operation, where L is the word length. Space is O(total characters inserted).
+> - **#1 mistake:** Forgetting the end-of-word flag, so you can't tell the stored word "app" from a prefix of "apple".
+
 ---
 
 ## Why a trie instead of a hash set?
@@ -201,6 +208,25 @@ class WordDictionary:
 - **Using a fixed 26-slot array when the alphabet isn't lowercase a–z.** A `Dictionary`/`map` of children is safer for mixed/Unicode input; the array is a micro-optimisation for known small alphabets.
 - **Confusing `search` and `startsWith`.** They walk identically; only the final check differs (word-end flag vs node-exists).
 - **Recursing on every child when there's no wildcard.** Branch only on `.`; a concrete character follows exactly one edge.
+
+---
+
+## Check Yourself
+
+Answer these without scrolling up, then open the answers.
+
+1. Why use a trie instead of a `HashSet<string>` for prefix queries?
+2. What two things does each trie node hold?
+3. How do `search` and `startsWith` differ?
+4. How does the `.` wildcard change the search in Add and Search Words?
+5. When is a `Dictionary` of children safer than a fixed 26-slot array?
+
+> **Answers**
+> 1. A hash set answers exact matches in O(1), but finding every word starting with "app" means scanning every key. A trie walks one path.
+> 2. A map from each child character to its node, and a flag marking whether a word ends there.
+> 3. They walk the same path. `search` also requires the end-of-word flag; `startsWith` only needs the node to exist.
+> 4. On `.`, you don't know which child to follow, so you recurse into every child (DFS). A normal character follows exactly one edge.
+> 5. When the input isn't limited to lowercase a–z, such as mixed case or Unicode.
 
 ---
 

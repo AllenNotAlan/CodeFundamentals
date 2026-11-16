@@ -4,6 +4,13 @@ A linked list is a chain of nodes, each holding a value and a pointer to the nex
 
 > **Builds on:** [01 — Arrays & Strings](./01-arrays-and-strings.md) (the contrast — no O(1) indexing) and the **fast/slow pointer** idea from [03 — Two Pointers](./03-two-pointers.md).
 
+> **Catch up**
+> - **Idea:** A chain of nodes, each holding a value and a `next` pointer. There's no indexing, so you walk from the head and solve problems by rewiring pointers.
+> - **Spot it:** reverse a list, merge sorted lists, detect a cycle, find the middle, "nth node from the end".
+> - **Template:** Use a dummy head when the head might change. Fast/slow: `while (fast != null && fast.next != null)`, with `slow` moving 1 step and `fast` 2 steps.
+> - **Cost:** O(n) time and O(1) extra space for all the core patterns.
+> - **#1 mistake:** Losing the rest of the list: save `curr.next` before you overwrite it.
+
 ---
 
 ## Core Concepts
@@ -382,6 +389,25 @@ ListNode MiddleNode(ListNode head)
 - **Not using a dummy node:** makes inserting at the head or deleting the head much cleaner.
 - **NullReferenceException:** check `node != null` before accessing `node.next`.
 - **Off-by-one in "n steps ahead":** trace through a small example by hand first.
+
+---
+
+## Check Yourself
+
+Answer these without scrolling up, then open the answers.
+
+1. Which operations are cheaper on a linked list than on an array, and which are more expensive?
+2. When reversing a list, what three pointers do you use, and what do you return?
+3. Why use a dummy head node?
+4. How does Floyd's algorithm detect a cycle?
+5. In Remove Nth Node From End, how far ahead does `fast` start, and where is `slow` when `fast` reaches null?
+
+> **Answers**
+> 1. Inserting at the head is O(1) instead of O(n), and deleting a node is O(1) if you have the previous node. Access by index is O(n) instead of O(1).
+> 2. `prev`, `curr` and a saved `next`. Return `prev`, which is the new head.
+> 3. It removes the head edge cases (inserting at the head, deleting the head, an empty list). You return `dummy.next`.
+> 4. `slow` moves 1 step and `fast` moves 2. If they ever point to the same node, there is a cycle. If `fast` reaches the end, there isn't.
+> 5. `n + 1` steps ahead, starting from the dummy. `slow` is then one node before the one to remove, so `slow.next = slow.next.next`.
 
 ---
 

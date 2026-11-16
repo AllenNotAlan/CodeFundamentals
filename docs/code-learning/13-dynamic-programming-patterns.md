@@ -4,6 +4,13 @@ Chapter 09 taught the *machinery* of DP: define a subproblem, write a recurrence
 
 > **Builds on:** the memoisation/tabulation foundations from [Dynamic Programming (Introduction)](./09-dynamic-programming-intro.md). If "what does `dp[i]` mean?" isn't yet second nature, go back first — here we assume it is and focus on the patterns.
 
+> **Catch up**
+> - **Idea:** Most interview DP problems fit one of four shapes. Recognise the shape and you know the size of the `dp` table and the form of the recurrence before writing code.
+> - **Spot it:** Ask "what decision repeats, and what does the answer depend on?" Index plus remaining capacity is 0/1 knapsack. The best run ending here is a subsequence. A grid position is a grid. One position in each of two strings is a two-string shape.
+> - **Template:** 0/1 knapsack: best of skip or take. Subsequence: extend the best earlier run. Grid: combine from above and from the left. Two strings: characters match (go diagonal) or they don't (try the edit options).
+> - **Cost:** Usually the table size: O(n²) for LIS, O(m × n) for grids and two strings, O(n × capacity) for knapsack.
+> - **#1 mistake:** Looping capacity the wrong way. Go downward to use each item once (0/1), upward to allow reuse (unbounded).
+
 ---
 
 ## Core Concepts
@@ -399,6 +406,25 @@ def change(amount, coins):
 - **Answer is `max over dp`, not `dp[last]`** — true for LIS and similar "best ending here" problems.
 - **Off-by-one on string DP** — size tables `(m+1) × (n+1)` and index the string with `i-1`/`j-1`.
 - **Skipping base cases** — the first row/column is where grid and string DP most often break.
+
+---
+
+## Check Yourself
+
+Answer these without scrolling up, then open the answers.
+
+1. Name the four DP shapes and one problem for each.
+2. Why is Partition Equal Subset Sum a knapsack problem?
+3. In LIS, what does `dp[i]` mean, and why is the answer not just `dp[last]`?
+4. In Edit Distance, what happens when the characters match, and what are the three options when they don't?
+5. In Coin Change II, why must coins be the outer loop?
+
+> **Answers**
+> 1. 0/1 choice (Knapsack), subsequence (LIS), grid (Min Path Sum or Unique Paths), two-string (LCS or Edit Distance).
+> 2. If the total is even, the question becomes "can a subset sum to `total / 2`?", which is a take-or-skip choice for each element.
+> 3. The length of the longest increasing subsequence that ends at index `i`. The best run can end anywhere, so the answer is the max over all `dp[i]`.
+> 4. A match copies the diagonal, `dp[i-1, j-1]`. A mismatch is 1 plus the cheapest of replace (diagonal), delete (`dp[i-1, j]`) and insert (`dp[i, j-1]`).
+> 5. With coins outside, each combination is counted once. Swapping the loops counts every ordering (permutations).
 
 ---
 

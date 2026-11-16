@@ -4,6 +4,13 @@ The sliding window technique maintains a contiguous subarray (or substring) as y
 
 > **Builds on:** [03 — Two Pointers](./03-two-pointers.md) (a window is just two pointers moving in the same direction) and [02 — Hash Maps & Sets](./02-hash-maps-and-sets.md) (for counting what's inside the window).
 
+> **Catch up**
+> - **Idea:** Keep a contiguous window and slide it across the input, updating its state as elements enter and leave. This turns O(n²) into O(n).
+> - **Spot it:** a contiguous subarray or substring with a condition: "maximum/minimum subarray", "longest/shortest substring", "all distinct characters", "sum at least".
+> - **Template:** Expand `right` one step. While the window is invalid, undo `nums[left]` and move `left++`. Then record `right - left + 1`.
+> - **Cost:** O(n) time, O(1) extra space. A character map counts as O(1) because the alphabet is fixed (at most 128 ASCII characters).
+> - **#1 mistake:** Forgetting to shrink the window when the condition is broken.
+
 ---
 
 ## Core Concepts
@@ -344,6 +351,25 @@ Signal words: *"maximum/minimum subarray"*, *"longest/shortest substring"*, *"al
 - **Forgetting to shrink** the window when the condition is violated.
 - **Window size formula:** `right - left + 1` (both inclusive).
 - **Fixed vs variable confusion** — re-read the problem to confirm whether `k` is fixed.
+
+---
+
+## Check Yourself
+
+Answer these without scrolling up, then open the answers.
+
+1. What's the difference between a fixed and a variable window?
+2. In a fixed window, how do you update the sum in O(1) when the window slides?
+3. What is the formula for the current window length?
+4. In Longest Substring Without Repeating Characters, what does the dictionary store, and how does `left` move?
+5. What question tells you a problem is a sliding window problem?
+
+> **Answers**
+> 1. A fixed window has a set width `k`, and both ends move together. A variable window grows with `right` and shrinks from `left` when a condition is broken.
+> 2. Add the new element on the right and subtract the one that left: `windowSum += nums[i] - nums[i - k]`.
+> 3. `right - left + 1` (both ends inclusive).
+> 4. The last index where each character was seen. If the current character was last seen inside the window, `left` jumps to just past that position.
+> 5. "Does the problem ask about a contiguous subarray or substring with some condition on its contents?"
 
 ---
 

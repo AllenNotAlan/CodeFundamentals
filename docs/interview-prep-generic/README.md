@@ -65,3 +65,4 @@ This set is the **canonical home** for general interview-prep theory. Domain tra
 - Domain tracks must **link** to the canonical section, not copy it, and add only what's genuinely domain-specific (marked as a "delta").
 - If you fix a canonical section, you fix it once — no parallel copies to chase.
 - Deliberately different domain values (e.g. fintech scaling thresholds) must be **labelled as intentional** with a one-line reason, so they don't read as contradictions.
+- **Keep the Catch up blocks in sync.** Every chapter (here, in the coding chapters and in the domain tracks) opens with a `> **Catch up**` block that `study-html/_build/convert-v2.mjs` also collects into the Revision page. When you change a chapter, check that its Catch up and Check Yourself answers still match the body. They must only repeat what the chapter says, never add to it. Keep Catch up blocks to five bullets.

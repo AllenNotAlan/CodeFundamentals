@@ -2,6 +2,12 @@
 
 Live coding rounds test your ability to write clean, correct code under pressure. Interviewers care about your thought process as much as the final solution.
 
+> **Catch up**
+> - **Framework:** Restate the problem → work 1–2 examples by hand → state the brute force and its complexity → spot the optimisation → code while talking → trace your code → test edge cases.
+> - **Questions covered:** time-based key-value store (binary search), rate limiter (sliding window of timestamps), LRU cache (dictionary + doubly linked list), K closest points (max-heap of size K), hit counter (circular buffer), serialize a binary tree (preorder with null markers), merge K sorted lists (min-heap).
+> - **What's assessed:** problem decomposition, communication, code quality, testing mindset, complexity awareness.
+> - **Edge cases to always check:** empty input, a single element, duplicates, very large input (overflow), negative numbers, already sorted input.
+
 ---
 
 ## What Interviewers Assess

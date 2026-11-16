@@ -2,6 +2,13 @@
 
 Live coding rounds at fintech companies test your ability to write clean, correct code under pressure. They care about your thought process as much as the final solution.
 
+> **Catch up**
+> - **Framework:** the same 7-step live-coding routine as the [generic guide](../interview-prep-generic/02-coding-algorithms.md): restate, examples, brute force, optimise, code while talking, trace, edge cases.
+> - **Questions covered:** transaction deduplication (group by merchant + amount, check a 60-second window), rate limiter (queue of timestamps per user), balance at a point in time (sort + prefix sums + binary search), minimum transactions to settle debts (backtracking for the exact answer, greedy in production), fraud patterns (running average + 5-minute sliding window), LRU cache.
+> - **Money rules:** integers in minor units (pence/cents), never floats. Watch for overflow on large totals.
+> - **Say out loud:** use domain words ("transaction", "ledger entry", "settlement"), and ask "what if two requests hit this at the same time?" and "what about retries?" (idempotency).
+> - **Fintech edge cases:** zero amounts, negative amounts (refunds), time zones, and currencies without minor units (JPY).
+
 ---
 
 ## What Interviewers Assess

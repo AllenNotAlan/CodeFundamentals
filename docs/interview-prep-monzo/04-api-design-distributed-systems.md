@@ -2,6 +2,13 @@
 
 Fintech companies run microservice architectures serving millions of users. This interview tests whether you can design clean APIs and reason about the complexities of distributed systems.
 
+> **Catch up**
+> - **The general mechanics** (idempotency, outbox, versioning, circuit breaker) are explained in [Generic API Design](../interview-prep-generic/04-api-design-distributed-systems.md). This chapter adds the fintech differences.
+> - **Banking API:** money as integer minor units plus a currency, cursor pagination, `202 Accepted` for payments (fraud and compliance checks run async), and errors that include parameters such as the available balance.
+> - **Idempotency for payments:** the client supplies the `Idempotency-Key`. Persist the key with the payment, not only in Redis. The key guards the request, and the ledger's atomic guard protects the money.
+> - **Events and consistency:** partition events by `account_id` for ordering. Use a payment saga that releases the reserved funds on failure. The outbox stops "debited but never published `payment.completed`".
+> - **Fintech trade-offs to say out loud:** payments need CP, notifications can be AP. Evolve APIs additively, because other banks and old app versions can't be forced to upgrade. A fraud-service fallback that approves low-value payments is a business risk decision, not a default.
+
 ---
 
 ## Question 1 — Design a RESTful API for a Banking App

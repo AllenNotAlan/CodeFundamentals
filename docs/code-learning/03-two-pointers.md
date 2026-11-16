@@ -4,6 +4,13 @@ A technique where you maintain two indices (pointers) into an array or string, t
 
 > **Builds on:** [01 — Arrays & Strings](./01-arrays-and-strings.md) (indexing and in-place traversal). Often an alternative to the [hash-map](./02-hash-maps-and-sets.md) approach when the input is **sorted**.
 
+> **Catch up**
+> - **Idea:** Keep two indices into the array and move them by a rule instead of trying every pair. This turns O(n²) nested loops into one O(n) pass.
+> - **Spot it:** a **sorted** array, finding pairs or triplets, palindromes, in-place "remove / move" problems.
+> - **Template:** Opposite ends: `while (left < right)`, move `left++` if the sum is too small and `right--` if too big. Fast/slow: `slow` marks the write position, `fast` scans.
+> - **Cost:** O(n) time, O(1) extra space.
+> - **#1 mistake:** Using opposite-end pointers on an unsorted array when the logic depends on sorted input.
+
 ---
 
 ## Core Concepts
@@ -363,6 +370,25 @@ def move_zeroes(nums):
 - **Using two pointers on an unsorted array** when the algorithm needs sorted input — always check if sorting is required.
 - **Infinite loops** — make sure *at least one pointer always moves* each iteration.
 - **`left < right` vs `left <= right`** — use `<=` when you need to process the case where both pointers meet (like in #977 above).
+
+---
+
+## Check Yourself
+
+Answer these without scrolling up, then open the answers.
+
+1. Name the two flavours of two pointers and one problem for each.
+2. In a sorted pair-sum, which pointer do you move when the sum is too small, and why?
+3. In Remove Duplicates, what does the `slow` pointer represent?
+4. In Squares of a Sorted Array, why do you fill the result from the back?
+5. When do you use `left <= right` instead of `left < right`?
+
+> **Answers**
+> 1. Opposite ends, moving inward (Valid Palindrome, Two Sum II). Same direction, fast and slow (Move Zeroes, Remove Duplicates).
+> 2. Move `left` to the right. The array is sorted, so that increases the sum.
+> 3. The write position: the index of the last confirmed unique element. The answer is `slow + 1`.
+> 4. The largest squares come from either end (most negative or most positive), so you place the biggest one at the back first.
+> 5. When you still need to process the element where both pointers meet, as in #977.
 
 ---
 

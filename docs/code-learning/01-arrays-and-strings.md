@@ -2,6 +2,13 @@
 
 Arrays and strings are the bread and butter of LeetCode. Almost every problem touches them.
 
+> **Catch up**
+> - **Idea:** Arrays give O(1) access by index. Many problems become one O(n) pass if you reuse work: build running totals once (prefix/suffix) instead of recomputing them.
+> - **Spot it:** "running sum", "product of everything except", "reverse in-place", "sum of a range", building a string in a loop.
+> - **Template:** Seed the first slot, then grow from the previous one: `prefix[i] = prefix[i - 1] + nums[i]` (suffix is the mirror, walking right to left).
+> - **Cost:** O(n) time. O(1) extra space in-place, O(n) if you keep prefix/suffix arrays.
+> - **#1 mistake:** Off-by-one errors: check `< Length` against `<= Length - 1`.
+
 ---
 
 ## Core Concepts
@@ -438,6 +445,25 @@ int[] ProductExceptSelf(int[] nums) {
 - **Mutating while iterating** — don't add/remove from a collection you're looping over.
 - **String concatenation in loops** — use `StringBuilder` in C#.
 - **Not handling empty input** — always ask: what if the array has 0 or 1 elements?
+
+---
+
+## Check Yourself
+
+Answer these without scrolling up, then open the answers.
+
+1. Why should you use `StringBuilder` instead of `+=` when building a string in a loop?
+2. What does `prefix[i]` hold, and how do you get the sum of a range from it?
+3. The prefix loop walks from index 0 to the end. Why is it still called a "left" calculation?
+4. In Product of Array Except Self, why do the left and right arrays start with `1`?
+5. How do you reverse an array in-place, and how much extra space does it use?
+
+> **Answers**
+> 1. Strings are immutable, so every `+=` copies all the earlier characters into a new string. That makes the loop O(n²). `StringBuilder` uses one growing buffer, so it's O(n).
+> 2. The total of everything from the start up to and including `i`. The sum of `nums[1..3]` is `prefix[3] - prefix[0]`, in O(1).
+> 3. The name comes from which way each step reaches, not which way the loop moves. Each prefix slot only looks backward (`prefix[i - 1]`), so it gathers what's to its left.
+> 4. Nothing sits to the left of index 0 or to the right of the last index, and `1` is the "do nothing" value for multiplication.
+> 5. Put one pointer at each end, swap, and move both inward until they meet. O(1) extra space.
 
 ---
 

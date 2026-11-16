@@ -4,6 +4,13 @@ A heap answers one question extremely fast: **"what's the smallest (or largest) 
 
 > **Builds on:** the cost of sorting from [Sorting & Binary Search](./06-sorting-and-binary-search.md). The key realisation: if you only ever need the top/bottom element repeatedly, sorting the whole collection is wasteful — a heap is the right tool.
 
+> **Catch up**
+> - **Idea:** A heap keeps just enough order that the smallest (min-heap) or largest (max-heap) element is always at the root. You get it in O(1) and insert or remove in O(log n), without sorting everything.
+> - **Spot it:** "top K", "K largest / smallest", "K closest", "median", "merge K sorted …", "most frequent", "schedule by priority".
+> - **Template:** Top-K largest: push each item into a min-heap and `Dequeue` whenever `Count > k`. What's left is the top K, and the root is the kth largest.
+> - **Cost:** O(n log k) for top-K and merge-K. O(log n) per insert for a running median.
+> - **#1 mistake:** Using the wrong heap direction. For the K **largest**, use a **min**-heap, so you can evict the weakest survivor.
+
 ---
 
 ## Core Concepts
@@ -393,6 +400,25 @@ def merge_k_lists(lists):
 - **Forgetting Python `heapq` is min-only** — negate values for max-heap behaviour, and remember to negate back.
 - **Non-comparable elements** — in C#/Python, when priorities tie on objects (e.g. linked-list nodes), add an index tiebreaker or the comparison throws.
 - **Using a heap when one sort suffices** — if you need everything in order exactly once, just sort.
+
+---
+
+## Check Yourself
+
+Answer these without scrolling up, then open the answers.
+
+1. How do you get a max-heap from C#'s `PriorityQueue` or Python's `heapq`?
+2. Why does finding the K largest use a min-heap?
+3. In Merge K Sorted Lists, what does the heap hold, and why is the cost O(n log k)?
+4. How do two heaps give you a running median?
+5. When should you sort instead of using a heap?
+
+> **Answers**
+> 1. Both are min-heaps by default. Negate the priority (C#) or push negated values (Python), and negate back when you read them.
+> 2. The root of a min-heap is the smallest of your current top K, so you can evict it cheaply when a bigger number arrives.
+> 3. One current head per list, so never more than `k` items. Each of the `n` elements is pushed and popped once at O(log k).
+> 4. A max-heap holds the lower half and a min-heap the upper half, kept balanced. The median is the top of the low heap (odd count) or the average of both tops (even count).
+> 5. When you need the full order exactly once. One O(n log n) sort is simpler.
 
 ---
 

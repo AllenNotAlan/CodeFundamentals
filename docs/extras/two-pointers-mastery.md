@@ -4,6 +4,13 @@ The Two-Pointer technique is often the "missing link" between a brute-force $O(n
 
 This guide focuses on the "Senior" applications of the technique: partitioning unsorted data, expanding from centers, and maintaining running maximums to solve multi-faceted problems like water trapping and triplet sum optimization.
 
+> **Catch up**
+> - **Idea:** Advanced two pointers handles more state than a single left/right pair: three-way partitioning, expanding outward from a center, and pointers that move only when a condition holds.
+> - **Spot it:** three groups in one pass (Sort Colors), palindromic substrings, triplets (3Sum), Container With Most Water, Trapping Rain Water.
+> - **Template:** Dutch National Flag: `low`, `mid` and `high` with `while (mid <= high)`, swapping smaller values to `low` and larger ones to `high`. Expand from center: move `left--` and `right++` while the characters match.
+> - **Cost:** $O(n)$ time and $O(1)$ extra space for the core patterns. 3Sum adds a sort and an outer loop, giving $O(n^2)$.
+> - **#1 mistake:** Not skipping duplicates in 3Sum, which produces repeated triplets.
+
 ---
 
 ## Core Concepts
@@ -182,6 +189,25 @@ void MoveTargetToFront(int[] nums, int target) {
 - **Not skipping duplicates** in problems like 3Sum — leads to duplicate results and extra work.
 - **Forgetting to sort** — advanced two-pointer patterns almost always require a pre-sorted array.
 - **Incorrect pointer updates** — especially in problems like Trapping Rain Water, ensure you update the `max` before calculating volume.
+
+---
+
+## Check Yourself
+
+Answer these without scrolling up, then open the answers.
+
+1. In the Dutch National Flag partition, what do `low`, `mid` and `high` each mark?
+2. Why does expand-from-center try every index (and every gap) as a center?
+3. In Container With Most Water, which pointer do you move, and why?
+4. How does 3Sum reduce to a problem you already know?
+5. In Trapping Rain Water, what decides how much water sits at index `i`?
+
+> **Answers**
+> 1. `low` is the edge of the "less than" section, `mid` is the element being scanned, and `high` is the edge of the "greater than" section.
+> 2. A single character is the center of an odd-length palindrome, and a gap between two characters is the center of an even-length one.
+> 3. The one at the shorter line. The area is limited by the shorter line, so moving the taller one inward only loses width.
+> 4. Sort, fix one number `nums[i]`, then solve Two Sum II on the rest for a target of `-nums[i]`.
+> 5. `min(tallest bar to the left, tallest bar to the right) - height[i]`. With two pointers, you track `leftMax` and `rightMax` as you move inward.
 
 ---
 

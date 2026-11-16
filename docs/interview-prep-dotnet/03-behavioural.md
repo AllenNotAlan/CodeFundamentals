@@ -2,6 +2,13 @@
 
 Behavioural interviews for .NET roles often probe your experience with the ecosystem — how you've handled migrations, legacy code, performance issues, and team decisions around architecture.
 
+> **Catch up**
+> - **Framework:** STAR, the same as the [generic behavioural guide](../interview-prep-generic/03-behavioural.md). Here, each story should name the specific .NET technologies and versions.
+> - **Stories to have ready:** a legacy migration (strangler fig, not a rewrite), a performance investigation (measure first), an architecture decision (written up as an ADR), tackling tech debt, mentoring, a .NET incident, and turning a business requirement into a solution.
+> - **Tools to mention:** `dotnet-counters`, `dotnet-trace`, `dotnet-dump`, BenchmarkDotNet, Application Insights / OpenTelemetry, EF Core logging.
+> - **Common .NET causes to know:** N+1 queries in EF Core, thread pool starvation from blocking calls, GC pressure, memory leaks from event handlers or static collections.
+> - **Quantify results:** "P95 dropped from 2s to 80ms", not "it got faster".
+
 ---
 
 ## The STAR Framework

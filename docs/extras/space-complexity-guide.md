@@ -2,6 +2,13 @@
 
 Space complexity is the measure of how much **working memory** (RAM) an algorithm needs to complete its task. For a student, the best way to think about this is: "If I give my program a massive amount of data, will my computer run out of memory and crash?"
 
+> **Catch up**
+> - **Idea:** Space complexity measures the **extra** (auxiliary) memory an algorithm creates, not the input it was given. That extra memory is what interviewers mean when they ask about space.
+> - **Spot it:** any new array, list, set or map sized by the input, and recursion (every active call holds a stack frame).
+> - **Template:** Audit the code: list what it creates, decide how each item grows with $N$, add the maximum recursion depth, and keep the dominant term.
+> - **Cost:** $O(1)$ for a few variables or two pointers, $O(\log n)$ for balanced recursion, $O(n)$ for a copy or a set of the input, $O(n^2)$ for an $N \times N$ grid.
+> - **#1 mistake:** Forgetting the call stack. Recursion $N$ levels deep is $O(n)$ space, even with no collections.
+
 ---
 
 ## 1. The Two Components of Space
@@ -177,7 +184,7 @@ public List<string> FilterAndUpper(string[] words) {
 
 ---
 
-## Practice Questions (Check Your Understanding)
+## Check Yourself
 
 **Q1:** You use two pointers to swap elements in an array to reverse it. What is the Auxiliary Space?
 - *Answer:* $O(1)$. You only used two integer variables (`left` and `right`), regardless of how big the array was.

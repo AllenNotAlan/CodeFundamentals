@@ -2,6 +2,13 @@
 
 Every strong tech company weights behavioural interviews heavily. They're hiring people who'll own production systems, collaborate effectively, and grow with the team.
 
+> **Catch up**
+> - **Framework:** STAR: Situation (1–2 sentences), Task, Action (what **you** did, the bulk of the answer), Result (a measurable outcome). End with what you learned or would do differently.
+> - **Stories to have ready:** ownership and accountability, incident response, collaboration and disagreement, product thinking, mentoring, working under constraints, failure and learning.
+> - **Values to show:** ownership, bias for action, customer focus, collaboration, continuous improvement, simplicity.
+> - **Common mistakes:** being vague, saying "we" instead of "I", giving no result, only telling positive stories, reciting memorised scripts, not asking questions.
+> - **Always have 2–3 questions** ready for the interviewer, such as how on-call works or how the team handles tech debt.
+
 ---
 
 ## The STAR Framework

@@ -4,6 +4,13 @@ Backtracking is **recursion (chapter 08) plus an undo step**. You build a soluti
 
 > **Builds on:** the recursion mental model from [Trees & Recursion](./08-trees-and-recursion.md). The new idea here is the **un-choose** step — the "backtrack" that gives the technique its name. You already saw it once in the wild: the debt-settlement answer in the Monzo coding prep undoes `balances[i] += balances[start]` after exploring — that's backtracking.
 
+> **Catch up**
+> - **Idea:** Recursion plus an undo step. Build a solution one choice at a time, and after exploring each choice, undo it and try the next. Pruning drops paths that can't work.
+> - **Spot it:** "all combinations / permutations / subsets", "generate every …", "find all paths", "is there any arrangement that …", constraint puzzles (Sudoku, N-Queens).
+> - **Template:** Choose (`path.Add`), explore (recurse), un-choose (`path.RemoveAt(path.Count - 1)`). Record a **copy** of `path` at the base case.
+> - **Cost:** Exponential: O(n · 2ⁿ) for subsets and O(n · n!) for permutations. Space is O(n) for the recursion depth.
+> - **#1 mistake:** Forgetting to un-choose, so state leaks between branches.
+
 ---
 
 ## Core Concepts
@@ -440,6 +447,25 @@ When you spot a backtracking problem, answer these before coding:
 - **`start` vs `used[]` confusion** — `start` for combinations/subsets (forward only), `used[]` for permutations (order matters).
 - **No pruning** — correct but times out; add validity checks to abandon dead branches early.
 - **Off-by-one in the base case** — trace tiny inputs (empty set, single element) by hand.
+
+---
+
+## Check Yourself
+
+Answer these without scrolling up, then open the answers.
+
+1. What are the three steps of every backtracking solution?
+2. Why must you add `new List<int>(path)` to the results and not `path` itself?
+3. Subsets use a `start` index and permutations use a `used[]` flag. Why the difference?
+4. In Combination Sum, why do you recurse with `i` and not `i + 1`?
+5. In Word Search, why do you restore the cell after exploring?
+
+> **Answers**
+> 1. Choose (add to the path), explore (recurse), un-choose (remove it again).
+> 2. `path` keeps changing after you record it. Adding it directly stores a reference, so every result ends up wrong.
+> 3. Subsets ignore order, so you only look forward to avoid `[1,2]` and `[2,1]`. Permutations care about order, so any unused element can come next.
+> 4. Each number can be reused, so the same candidate must still be available on the next level.
+> 5. Marking it `'#'` stops this path reusing the cell. Restoring it lets other paths use that cell.
 
 ---
 

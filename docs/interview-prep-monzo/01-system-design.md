@@ -2,6 +2,13 @@
 
 System design is the highest-weighted interview for senior roles at fintech companies. You'll be asked to design systems that handle real money, real-time notifications, and millions of concurrent users.
 
+> **Catch up**
+> - **The framework is the same** as [Generic System Design](../interview-prep-generic/01-system-design.md): clarify → estimate → high-level design → deep dive → trade-offs. The fintech difference is that money needs strong consistency, ACID transactions and idempotency.
+> - **Payments:** a double-entry ledger (every debit has a matching credit, and all entries sum to zero) in PostgreSQL, with an idempotency key on every payment request.
+> - **Card auth vs settlement:** authorisation places a **hold** in real time, and settlement posts the ledger entry later, possibly for a different amount. Available balance = settled balance − active holds. Holds must expire or be reversed.
+> - **Questions covered:** payment system, card-transaction notifications (Kafka, at-least-once, dedupe by transaction ID), spending categorisation (layered matching, pre-aggregated summaries), card freeze (Redis for the <100ms auth check, Postgres as source of truth), and bill splitting (a greedy settlement that's good but not provably minimal).
+> - **Say out loud:** which parts need strong consistency (balances, settlements) and which can be eventual (feeds, tab display).
+
 ---
 
 ## Framework for Answering

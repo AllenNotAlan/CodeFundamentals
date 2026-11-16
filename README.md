@@ -14,6 +14,7 @@ This repository serves as a centralized hub for learning and implementing core c
 
 ## 📖 Documentation
 - [Development Guide (How to add solutions, tests, etc.)](DEVELOPMENT.md)
+- [Returning after a break](docs/code-learning/README.md#-returning-after-a-break): how to catch up using each chapter's **Catch up** and **Check Yourself** sections, or the [Revision page](study-html/study.html#revision) in `study.html`.
 
 ## 📁 Repository Structure
 - **/CodeFundamentals**: The primary C# project containing algorithm implementations.

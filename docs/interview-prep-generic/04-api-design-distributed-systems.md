@@ -2,6 +2,13 @@
 
 Modern tech companies run microservice architectures serving millions of users. This interview tests whether you can design clean APIs and reason about the complexities of distributed systems.
 
+> **Catch up**
+> - **API design:** resource URLs, cursor-based pagination (stable under inserts), PATCH for partial updates, `/v1/` versioning, ISO 8601 UTC timestamps, and a consistent error format.
+> - **Idempotency:** the client sends an `Idempotency-Key`. The server stores the result (Redis, 24–72 hour TTL) and returns it on a retry, with a lock to stop concurrent duplicates.
+> - **Events and consistency:** async events give loose coupling but eventual consistency. Partition by entity ID for ordering, and make consumers idempotent. For multi-service work, use a saga with compensating actions. Use the Outbox pattern to make the DB write and the event publish atomic.
+> - **Evolving APIs:** adding optional fields, parameters or endpoints is safe. Removing, renaming, retyping or making a field required breaks clients. Announce deprecation with `Sunset` / `Deprecation` headers.
+> - **Circuit breaker:** Closed → Open after repeated failures (fail fast) → Half-open to test one request. Pair it with a fallback.
+
 ---
 
 ## Question 1 — Design a RESTful API for a Resource Management System

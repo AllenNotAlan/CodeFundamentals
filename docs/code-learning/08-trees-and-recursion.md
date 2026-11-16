@@ -4,6 +4,13 @@ Trees appear constantly in interviews. Mastering tree traversal also teaches you
 
 > **Builds on:** [05 — Stacks & Queues](./05-stacks-and-queues.md) (DFS uses a stack / the call stack; BFS uses a queue). This recursion is the foundation for [09 — DP](./09-dynamic-programming-intro.md), [10 — Graphs](./10-graphs.md), and [12 — Backtracking](./12-backtracking.md).
 
+> **Catch up**
+> - **Idea:** Recursion solves a problem by calling itself on a smaller input until it hits a base case. For trees, think from one node: "what do I return, given what my children return?"
+> - **Spot it:** depth or height, symmetric or mirrored trees, root-to-leaf paths, validating a BST, level-by-level output (BFS).
+> - **Template:** Ask the three questions: base case (`if (node == null) return …`), recursive case (call left and right), and what to return upward.
+> - **Cost:** O(n) time. O(h) space for the call stack, which is O(log n) when balanced and O(n) in the worst case.
+> - **#1 mistake:** Forgetting the `null` base case, which causes a `NullReferenceException`.
+
 ---
 
 ## Core Concepts
@@ -384,6 +391,25 @@ You don't need to think about the whole tree — just what *this node* does with
 - **Forgetting the base case** (`if (root == null) return ...`) — this causes NullReferenceException.
 - **Returning the wrong type from null check** — make sure null returns a value consistent with non-null returns (0, true, false, etc.).
 - **Assuming BST just needs parent comparison** — always pass bounds down.
+
+---
+
+## Check Yourself
+
+Answer these without scrolling up, then open the answers.
+
+1. What are the three questions to ask when writing any recursive function?
+2. Give the visiting order for inorder, preorder and postorder. Which one gives sorted output on a BST?
+3. How does `MaxDepth` work, from the point of view of one node?
+4. Why isn't comparing each node with its children enough to validate a BST?
+5. In Symmetric Tree, which pairs of nodes must mirror each other?
+
+> **Answers**
+> 1. Base case: what's the simplest input I can handle directly? Recursive case: how do I shrink the problem and call myself? Return: what do I pass back up?
+> 2. Inorder is Left → Node → Right, preorder is Node → Left → Right, postorder is Left → Right → Node. Inorder gives sorted order on a BST.
+> 3. "My depth is 1 + the larger depth of my two children." An empty tree returns 0.
+> 4. Every node must fit within bounds set by all its ancestors, not just its parent. Pass `min` and `max` down: going left sets the new max, going right sets the new min.
+> 5. The outer pair (`left.left` with `right.right`) and the inner pair (`left.right` with `right.left`), and their values must be equal.
 
 ---
 

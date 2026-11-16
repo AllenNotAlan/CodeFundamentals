@@ -2,6 +2,13 @@
 
 Fintech systems live and die by their data layer. This interview tests whether you can design schemas that are correct, performant, and auditable — because when you're storing money, there's no room for "eventually we'll fix it."
 
+> **Catch up**
+> - **Double-entry ledger:** every movement is a debit plus a matching credit, and the system always sums to zero. Store `balance_after` on each entry so "balance at a point in time" is one indexed lookup.
+> - **Never mutate, always compensate:** reversals, refunds and chargebacks post a **new** compensating pair that links back with `reverses_transaction_id`. Never `UPDATE` or `DELETE` a posted entry.
+> - **Ledger vs transactions feed:** the ledger is the source of truth for money. The `transactions` table is the user-facing view, where a card payment starts as `pending` and only reaches the ledger when it settles.
+> - **Deleting users:** you can't hard-delete financial data (FCA/PSD2 retention is 5–7 years). Anonymise the PII for GDPR and keep the ledger intact.
+> - **Scaling and concurrency:** the thresholds are deliberately higher than the generic ones (under 100M rows: one Postgres; 100M–1B: partition + replicas; over 1B: shard). Balance checks always read from the primary. Prevent overdraft with `UPDATE … WHERE balance >= amount`.
+
 ---
 
 ## Question 1 — Design the Schema for a Banking Ledger

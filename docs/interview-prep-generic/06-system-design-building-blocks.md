@@ -4,6 +4,13 @@ The other system-design chapters are *worked questions*. This one is the **toolk
 
 > **📖 Reading companion — Designing Data-Intensive Applications (DDIA) by Martin Kleppmann.** Each section below points to the DDIA chapter that covers it in depth. This chapter is the interview-sized summary; DDIA is the why-it's-true underneath. Chapter references are to the book's chapters (stable across printings), not page numbers.
 
+> **Catch up**
+> - **The blocks:** load balancing, caching, databases (SQL vs NoSQL), replication, partitioning, consistency and consensus, messaging, idempotency and resilience, estimation, observability.
+> - **Say the "why":** name the technology **and** justify it. For example, "Postgres because this needs ACID transactions", or cache-aside with a stated invalidation plan.
+> - **Consistency per component:** strong consistency for balances and inventory, eventual for feeds. Know where consensus lives (a Raft leader, or quorums with `R + W > N`).
+> - **Resilience words to use:** idempotency keys, retries with exponential backoff and jitter, circuit breakers, timeouts and bulkheads, dead letter queues, the outbox pattern.
+> - **Operate it:** for each component, name one metric you'd alert on (RED for services, USE for resources), and trace failures with a correlation ID.
+
 ---
 
 ## How to use this in an interview

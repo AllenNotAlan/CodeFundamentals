@@ -2,6 +2,13 @@
 
 The data layer is the foundation of any system. This interview tests whether you can design schemas that are correct, performant, and scalable.
 
+> **Catch up**
+> - **Schema basics:** money as `BIGINT` in minor units (never floats), `TIMESTAMPTZ` in UTC, snapshot the price on order items, and a `reserved` column so you never oversell.
+> - **Indexing:** equality columns first, then the range/sort column. Use partial indexes for hot paths. Index foreign keys, because Postgres doesn't do it for you. In `EXPLAIN`, a `Seq Scan` or an extra `Sort` is a bad sign.
+> - **Audit and deletes:** an audit table written in the same transaction as the change. Soft deletes need a filtered view and a partial unique index. For GDPR, anonymise PII but keep the row.
+> - **Scaling:** under 50M rows, a single Postgres with good indexes. 50M–500M, partitioning plus read replicas. Over 500M, consider sharding, but only after the other options.
+> - **Concurrency:** pessimistic (`SELECT … FOR UPDATE`), optimistic (version check), or, best in most cases, an atomic conditional update (`WHERE quantity - reserved >= 1`).
+
 ---
 
 ## Question 1 — Design the Schema for an E-Commerce Order System
