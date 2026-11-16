@@ -70,7 +70,7 @@ Brute force generates everything then filters. Backtracking **prunes as it goes*
 Every element is a binary choice: take it or don't. The decision tree has `2ⁿ` leaves = all subsets.
 
 ```csharp
-IList<IList<int>> Subsets(int[] nums)
+public static IList<IList<int>> Subsets(int[] nums)
 {
     var results = new List<IList<int>>();
     var path = new List<int>();
@@ -118,7 +118,7 @@ def subsets(nums):
 Here every ordering is distinct, so you consider *all* remaining elements at each step and mark which are already in the path.
 
 ```csharp
-IList<IList<int>> Permute(int[] nums)
+public static IList<IList<int>> Permute(int[] nums)
 {
     var results = new List<IList<int>>();
     var path = new List<int>();
@@ -179,7 +179,7 @@ def permute(nums):
 The real power of backtracking is quitting a path as soon as it's hopeless. In Combination Sum, once the running total exceeds the target, every deeper choice is wasted — so we `break`/`return` instead of exploring.
 
 ```csharp
-IList<IList<int>> CombinationSum(int[] candidates, int target)
+public static IList<IList<int>> CombinationSum(int[] candidates, int target)
 {
     var results = new List<IList<int>>();
     var path = new List<int>();
@@ -220,7 +220,7 @@ IList<IList<int>> CombinationSum(int[] candidates, int target)
 
 **Solution:** (This is Pattern 1 directly.)
 ```csharp
-IList<IList<int>> Subsets(int[] nums)
+public static IList<IList<int>> Subsets(int[] nums)
 {
     var results = new List<IList<int>>();
     var path = new List<int>();
@@ -264,7 +264,7 @@ def subsets(nums):
 
 **Solution:** (Pattern 2 directly.)
 ```csharp
-IList<IList<int>> Permute(int[] nums)
+public static IList<IList<int>> Permute(int[] nums)
 {
     var results = new List<IList<int>>();
     var path = new List<int>();
@@ -321,7 +321,7 @@ def permute(nums):
 
 **Solution:**
 ```csharp
-IList<IList<int>> CombinationSum(int[] candidates, int target)
+public static IList<IList<int>> CombinationSum(int[] candidates, int target)
 {
     var results = new List<IList<int>>();
     var path = new List<int>();
@@ -376,7 +376,7 @@ def combination_sum(candidates, target):
 
 **Solution:**
 ```csharp
-bool Exist(char[][] board, string word)
+public static bool Exist(char[][] board, string word)
 {
     int rows = board.Length, cols = board[0].Length;
 

@@ -61,7 +61,7 @@ Both have **O(n) time** (each subproblem solved once). Bottom-up usually has bet
 
 **Naive recursion (exponential — don't do this):**
 ```csharp
-int Fib(int n)
+public static int Fib(int n)
 {
     // 1. Base cases: return n if it is 0 or 1
     if (n <= 1) return n;
@@ -74,7 +74,7 @@ int Fib(int n)
 
 **Top-down with memo:**
 ```csharp
-int Fib(int n, Dictionary<int, int> memo = null)
+public static int Fib(int n, Dictionary<int, int> memo = null)
 {
     // 1. Initialize the cache if it doesn't exist
     memo ??= new Dictionary<int, int>();
@@ -93,7 +93,7 @@ int Fib(int n, Dictionary<int, int> memo = null)
 
 **Bottom-up (most efficient):**
 ```csharp
-int Fib(int n)
+public static int Fib(int n)
 {
     // 1. Base cases
     if (n <= 1) return n;
@@ -142,7 +142,7 @@ def fib(n):
 
 **Solution:**
 ```csharp
-int ClimbStairs(int n)
+public static int ClimbStairs(int n)
 {
     // 1. Base cases: 1 way for 1 step, 2 ways for 2 steps
     if (n <= 2) return n;
@@ -198,7 +198,7 @@ dp[i] = max(
 
 **Solution:**
 ```csharp
-int Rob(int[] nums)
+public static int Rob(int[] nums)
 {
     // 1. Edge case: Only one house to rob
     if (nums.Length == 1) return nums[0];
@@ -257,7 +257,7 @@ dp[i] = min over all coins c where c <= i:
 
 **Solution:**
 ```csharp
-int CoinChange(int[] coins, int amount)
+public static int CoinChange(int[] coins, int amount)
 {
     // 1. Create a DP table where dp[i] is the min coins for amount i
     int[] dp = new int[amount + 1];
@@ -324,7 +324,7 @@ dp[i][j] = dp[i-1][j] + dp[i][j-1]
 
 **Solution:**
 ```csharp
-int UniquePaths(int m, int n)
+public static int UniquePaths(int m, int n)
 {
     // 1. Create a 2D table to store path counts for each cell
     int[,] dp = new int[m, n];

@@ -136,7 +136,7 @@ The prefix formula uses `prefix[i - 1]` and `nums[i]` — it only ever looks *ba
 **Example:** `arr = [1, 2, 3, 4, 5]` → `[5, 4, 3, 2, 1]`
 
 ```csharp
-void Reverse(int[] arr)
+public static void Reverse(int[] arr)
 {
     // 1. Initialize two pointers: one at the start, one at the end.
     int left = 0, right = arr.Length - 1;
@@ -199,7 +199,7 @@ public static string JoinNumbers(int count)
 
 **Solution:**
 ```csharp
-int FindMax(int[] nums)
+public static int FindMax(int[] nums)
 {
     // 1. Assume the first number is the maximum initially.
     int max = nums[0];          
@@ -241,7 +241,7 @@ def find_max(nums):
 
 **Solution:**
 ```csharp
-void ReverseString(char[] s)
+public static void ReverseString(char[] s)
 {
     // 1. Set pointers at both boundaries.
     int left = 0, right = s.Length - 1;
@@ -283,7 +283,7 @@ def reverse_string(s):
 
 **Solution:**
 ```csharp
-int[] RunningSum(int[] nums)
+public static int[] RunningSum(int[] nums)
 {
     // 1. Start from index 1 (the second element).
     for (int i = 1; i < nums.Length; i++)
@@ -315,7 +315,7 @@ def running_sum(nums):
 
 **Solution:**
 ```csharp
-bool IsPalindrome(string s)
+public static bool IsPalindrome(string s)
 {
     // 1. Filter out non-alphanumeric characters and convert to lowercase.
     //    This ensures we only compare relevant characters consistently.
@@ -417,7 +417,7 @@ The code builds each one by *reusing the previous slot* (`left[i] = left[i-1] * 
 
 **Solution:**
 ```csharp
-int[] ProductExceptSelf(int[] nums) {
+public static int[] ProductExceptSelf(int[] nums) {
     int n = nums.Length;
     int[] left = new int[n];   // left[i]  = product of everything BEFORE i
     int[] right = new int[n];  // right[i] = product of everything AFTER i

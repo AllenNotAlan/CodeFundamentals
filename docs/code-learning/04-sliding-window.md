@@ -43,7 +43,7 @@ Think of a window frame sliding across your data:
 *(Related: Problem 1 below.)*
 
 ```csharp
-int MaxSumSubarray(int[] nums, int k)
+public static int MaxSumSubarray(int[] nums, int k)
 {
     // 1. Build the initial window sum of size 'k'.
     int windowSum = 0;
@@ -93,7 +93,7 @@ def max_sum_subarray(nums, k):
 
 ```csharp
 // Template: find longest subarray with all elements ≤ limit
-int LongestValid(int[] nums, int limit)
+public static int LongestValid(int[] nums, int limit)
 {
     int left = 0, maxLen = 0;
     
@@ -132,7 +132,7 @@ int LongestValid(int[] nums, int limit)
 
 **Solution:**
 ```csharp
-double FindMaxAverage(int[] nums, int k)
+public static double FindMaxAverage(int[] nums, int k)
 {
     // 1. Calculate sum for the first 'k' elements.
     double windowSum = 0;
@@ -181,7 +181,7 @@ def find_max_average(nums, k):
 
 **Solution:**
 ```csharp
-int MaxProfit(int[] prices)
+public static int MaxProfit(int[] prices)
 {
     // 1. Initialize tracker for the lowest price seen so far.
     int minPrice = int.MaxValue;
@@ -229,7 +229,7 @@ def max_profit(prices):
 
 **Solution (variable window):**
 ```csharp
-int LengthOfLongestSubstring(string s)
+public static int LengthOfLongestSubstring(string s)
 {
     // 1. Store the last seen index of each character to jump the left pointer quickly.
     var charIndex = new Dictionary<char, int>(); 
@@ -284,7 +284,7 @@ def length_of_longest_substring(s):
 
 **Solution:**
 ```csharp
-int MinSubArrayLen(int target, int[] nums)
+public static int MinSubArrayLen(int target, int[] nums)
 {
     int left = 0, windowSum = 0;
     int minLen = int.MaxValue;

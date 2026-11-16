@@ -49,7 +49,7 @@ slow fast
 
 ```csharp
 // Does any pair in a sorted array sum to target?
-bool HasPairSum(int[] sorted, int target)
+public static bool HasPairSum(int[] sorted, int target)
 {
     // 1. Initialize pointers at the start and end of the sorted array.
     int left = 0, right = sorted.Length - 1;
@@ -106,7 +106,7 @@ def has_pair_sum(sorted_arr, target):
 
 ```csharp
 // slow pointer tracks the "write position" for unique elements
-int RemoveDuplicates(int[] sorted)
+public static int RemoveDuplicates(int[] sorted)
 {
     // 1. Edge case: empty array has 0 unique elements.
     if (sorted.Length == 0) return 0;
@@ -144,7 +144,7 @@ int RemoveDuplicates(int[] sorted)
 
 **Solution:**
 ```csharp
-bool IsPalindrome(string s)
+public static bool IsPalindrome(string s)
 {
     // 1. Set pointers at both ends of the string.
     int left = 0, right = s.Length - 1;
@@ -200,7 +200,7 @@ def is_palindrome(s):
 
 **Solution:**
 ```csharp
-int[] TwoSumSorted(int[] numbers, int target)
+public static int[] TwoSumSorted(int[] numbers, int target)
 {
     // 1. Initialize pointers at first and last elements.
     int left = 0, right = numbers.Length - 1;
@@ -255,7 +255,7 @@ def two_sum_sorted(numbers, target):
 
 **Solution:**
 ```csharp
-int[] SortedSquares(int[] nums)
+public static int[] SortedSquares(int[] nums)
 {
     // 1. Pointers at the start (potentially most negative) and end (most positive).
     int left = 0, right = nums.Length - 1;
@@ -322,7 +322,7 @@ def sorted_squares(nums):
 
 **Solution (fast/slow pointers):**
 ```csharp
-void MoveZeroes(int[] nums)
+public static void MoveZeroes(int[] nums)
 {
     // 1. 'slow' tracks the position where the next non-zero number should go.
     int slow = 0;  

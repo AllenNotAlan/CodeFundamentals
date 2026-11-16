@@ -86,7 +86,7 @@ To justify a greedy order, argue that swapping any two elements out of greedy or
 
 **Solution:**
 ```csharp
-int FindContentChildren(int[] g, int[] s)
+public static int FindContentChildren(int[] g, int[] s)
 {
     Array.Sort(g);
     Array.Sort(s);
@@ -122,7 +122,7 @@ def find_content_children(g, s):
 
 **Solution:**
 ```csharp
-int EraseOverlapIntervals(int[][] intervals)
+public static int EraseOverlapIntervals(int[][] intervals)
 {
     Array.Sort(intervals, (a, b) => a[1].CompareTo(b[1]));  // by end time
     int kept = 0, lastEnd = int.MinValue;
@@ -160,7 +160,7 @@ def erase_overlap_intervals(intervals):
 
 **Solution:**
 ```csharp
-bool CanJump(int[] nums)
+public static bool CanJump(int[] nums)
 {
     int furthest = 0;
     for (int i = 0; i < nums.Length; i++)
@@ -193,7 +193,7 @@ def can_jump(nums):
 
 **Solution:**
 ```csharp
-int Jump(int[] nums)
+public static int Jump(int[] nums)
 {
     int jumps = 0, curEnd = 0, farthest = 0;
     for (int i = 0; i < nums.Length - 1; i++)   // no need to jump from the last index

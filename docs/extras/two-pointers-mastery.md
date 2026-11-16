@@ -33,7 +33,7 @@ This guide focuses on the "Senior" applications of the technique: partitioning u
 ### Pattern 1: Three-way partitioning (Dutch National Flag)
 ```csharp
 // Using a while loop for manual control over pointer increments
-void ThreeWayPartition(int[] nums, int midVal)
+public static void ThreeWayPartition(int[] nums, int midVal)
 {
     int low = 0, mid = 0, high = nums.Length - 1;
     while (mid <= high)
@@ -57,7 +57,7 @@ void ThreeWayPartition(int[] nums, int midVal)
 ### Pattern 2: Fixed-Ahead Pointer (Fast & Slow)
 ```csharp
 // Using a for loop when the 'fast' pointer moves predictably
-int RemoveElement(int[] nums, int val) {
+public static int RemoveElement(int[] nums, int val) {
     int slow = 0;
     for (int fast = 0; fast < nums.Length; fast++) {
         if (nums[fast] != val) {
@@ -73,7 +73,7 @@ int RemoveElement(int[] nums, int val) {
 
 ### Pattern 3: The "Expand from Center" (Palindrome Substrings)
 ```csharp
-int ExpandAroundCenter(string s, int left, int right)
+public static int ExpandAroundCenter(string s, int left, int right)
 {
     while (left >= 0 && right < s.Length && s[left] == s[right])
     {
@@ -99,7 +99,7 @@ These exercises bridge the gap between simple concepts and LeetCode-level challe
 
 **The "Half-Way" Guide:**
 ```csharp
-public List<int> FindIntersection(int[] arr1, int[] arr2) {
+public static List<int> FindIntersection(int[] arr1, int[] arr2) {
     int i = 0, j = 0;
     var result = new List<int>();
 
@@ -126,7 +126,7 @@ public List<int> FindIntersection(int[] arr1, int[] arr2) {
 
 **The "Half-Way" Guide:**
 ```csharp
-void MoveTargetToFront(int[] nums, int target) {
+public static void MoveTargetToFront(int[] nums, int target) {
     int write = 0;
     // We use a for loop as a 'scanner' (read pointer)
     for (int read = 0; read < nums.Length; read++) {

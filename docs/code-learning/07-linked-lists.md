@@ -150,7 +150,7 @@ public static ListNode FindMiddle(ListNode head)
 
 **Solution (iterative):**
 ```csharp
-ListNode ReverseList(ListNode head)
+public static ListNode ReverseList(ListNode head)
 {
     // 1. Initialize pointers: 'prev' starts as null (new tail)
     ListNode prev = null;
@@ -212,7 +212,7 @@ Return:   prev=3  →  3→2→1
 
 **Solution:**
 ```csharp
-ListNode MergeTwoLists(ListNode l1, ListNode l2)
+public static ListNode MergeTwoLists(ListNode l1, ListNode l2)
 {
     // 1. Create a dummy node to act as the starting point of the new list
     var dummy = new ListNode(0);
@@ -275,7 +275,7 @@ def merge_two_lists(l1, l2):
 
 **Solution:**
 ```csharp
-bool HasCycle(ListNode head)
+public static bool HasCycle(ListNode head)
 {
     // 1. Initialize two pointers at the head
     ListNode slow = head, fast = head;
@@ -325,7 +325,7 @@ def has_cycle(head):
 
 **Solution:**
 ```csharp
-ListNode RemoveNthFromEnd(ListNode head, int n)
+public static ListNode RemoveNthFromEnd(ListNode head, int n)
 {
     // 1. Create a dummy node pointing to the head. 
     //    This handles the edge case of removing the head itself.
@@ -384,7 +384,7 @@ def remove_nth_from_end(head, n):
 
 **Solution:**
 ```csharp
-ListNode MiddleNode(ListNode head)
+public static ListNode MiddleNode(ListNode head)
 {
     // 1. Initialize two pointers at the head
     ListNode slow = head, fast = head;

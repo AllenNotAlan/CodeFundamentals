@@ -59,7 +59,7 @@ Recursion = a function calling itself with a simpler input until it hits a **bas
 
 ```csharp
 // Example: sum all numbers 1..n
-int Sum(int n)
+public static int Sum(int n)
 {
     // 1. Base case: The simplest sum is for 0, which is just 0.
     if (n == 0) return 0;         
@@ -96,7 +96,7 @@ int Sum(int n)
 
 ```csharp
 // Inorder (gives sorted order in a BST)
-void Inorder(TreeNode node)
+public static void Inorder(TreeNode node)
 {
     // 1. Base case: If node is null, we've reached a leaf's child
     if (node == null) return;
@@ -112,7 +112,7 @@ void Inorder(TreeNode node)
 }
 
 // Preorder
-void Preorder(TreeNode node)
+public static void Preorder(TreeNode node)
 {
     if (node == null) return;
     
@@ -133,7 +133,7 @@ void Preorder(TreeNode node)
 
 Process nodes level by level using a queue:
 ```csharp
-IList<IList<int>> LevelOrder(TreeNode root)
+public static IList<IList<int>> LevelOrder(TreeNode root)
 {
     var result = new List<IList<int>>();
     if (root == null) return result;
@@ -187,7 +187,7 @@ IList<IList<int>> LevelOrder(TreeNode root)
 
 **Solution:**
 ```csharp
-int MaxDepth(TreeNode root)
+public static int MaxDepth(TreeNode root)
 {
     // 1. Base case: An empty tree has a depth of 0
     if (root == null) return 0;                              
@@ -222,13 +222,13 @@ def max_depth(root):
 
 **Solution:**
 ```csharp
-bool IsSymmetric(TreeNode root)
+public static bool IsSymmetric(TreeNode root)
 {
     // 1. A tree is symmetric if its left and right subtrees are mirrors of each other
     return IsMirror(root?.left, root?.right);
 }
 
-bool IsMirror(TreeNode left, TreeNode right)
+public static bool IsMirror(TreeNode left, TreeNode right)
 {
     // 2. If both nodes are null, they are mirrors (base case 1)
     if (left == null && right == null) return true;   
@@ -282,7 +282,7 @@ def is_symmetric(root):
 
 **Solution:**
 ```csharp
-bool HasPathSum(TreeNode root, int targetSum)
+public static bool HasPathSum(TreeNode root, int targetSum)
 {
     // 1. Base case: If we've reached beyond a leaf, no path exists here
     if (root == null) return false;
@@ -327,13 +327,13 @@ def has_path_sum(root, target_sum):
 
 **Solution:**
 ```csharp
-bool IsValidBST(TreeNode root)
+public static bool IsValidBST(TreeNode root)
 {
     // 1. Start validation with the full range of possible values
     return Validate(root, long.MinValue, long.MaxValue);
 }
 
-bool Validate(TreeNode node, long min, long max)
+public static bool Validate(TreeNode node, long min, long max)
 {
     // 2. Base case: An empty tree is valid
     if (node == null) return true;

@@ -40,7 +40,7 @@ No matter how many items you are processing, you only need a fixed amount of mem
   - Using Two Pointers (`left` and `right`) to scan a list.
 - **C# Example:**
 ```csharp
-bool ContainsZero(int[] nums) {
+public static bool ContainsZero(int[] nums) {
     for (int i = 0; i < nums.Length; i++) { // 'i' is O(1) space
         if (nums[i] == 0) return true;
     }
@@ -72,7 +72,7 @@ The extra memory you use is a direct reflection of the input size. If you get tw
   - Recursion where the depth is equal to $N$ (e.g., recursive factorial).
 - **C# Example:**
 ```csharp
-int[] SquareAll(int[] nums) {
+public static int[] SquareAll(int[] nums) {
     int[] results = new int[nums.Length]; // New array of size N = O(n) space
     for (int i = 0; i < nums.Length; i++) results[i] = nums[i] * nums[i];
     return results;
@@ -107,7 +107,7 @@ This "bundle" of info is called a **Stack Frame**.
 ### Visualizing Recursive Space
 Consider a recursive function calculating the sum of numbers from $N$ down to 1:
 ```csharp
-int Sum(int n) {
+public static int Sum(int n) {
     if (n <= 0) return 0;
     return n + Sum(n - 1); // <--- Each call here waits!
 }
@@ -145,7 +145,7 @@ Just like in time complexity, we only care about the fastest-growing part.
 
 **Code to Analyze:**
 ```csharp
-public List<string> FilterAndUpper(string[] words) {
+public static List<string> FilterAndUpper(string[] words) {
     var result = new List<string>(); // 1. Created a list
     int count = 0;                  // 2. Created an int
 

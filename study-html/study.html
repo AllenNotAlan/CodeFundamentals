@@ -393,7 +393,7 @@ public static int[] BuildSuffixSums(int[] nums)
 <h3 id="arrays--3-reverse-in-place"><a class="anchor" href="#arrays--3-reverse-in-place">#</a>3. Reverse in-place</h3>
 <p><strong>Task:</strong> Reverse an array without creating a second array.</p>
 <p><strong>Example:</strong> <code>arr = [1, 2, 3, 4, 5]</code> → <code>[5, 4, 3, 2, 1]</code></p>
-<div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">void Reverse(int[] arr)
+<div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">public static void Reverse(int[] arr)
 {
     // 1. Initialize two pointers: one at the start, one at the end.
     int left = 0, right = arr.Length - 1;
@@ -438,7 +438,7 @@ public static int[] BuildSuffixSums(int[] nums)
 <p><strong>Example:</strong> <code>[3, 7, 1, 9, 4]</code> → <code>9</code></p>
 <p><strong>Think first:</strong> You need to look at every element — no shortcut.</p>
 <p><strong>Solution:</strong></p>
-<div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">int FindMax(int[] nums)
+<div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">public static int FindMax(int[] nums)
 {
     // 1. Assume the first number is the maximum initially.
     int max = nums[0];          
@@ -472,7 +472,7 @@ public static int[] BuildSuffixSums(int[] nums)
 <p><strong>Task:</strong> Reverse a char array in-place.</p>
 <p><strong>Example:</strong> <code>['h','e','l','l','o']</code> → <code>['o','l','l','e','h']</code></p>
 <p><strong>Solution:</strong></p>
-<div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">void ReverseString(char[] s)
+<div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">public static void ReverseString(char[] s)
 {
     // 1. Set pointers at both boundaries.
     int left = 0, right = s.Length - 1;
@@ -506,7 +506,7 @@ public static int[] BuildSuffixSums(int[] nums)
 <p><strong>Task:</strong> Return an array where each element is the sum of all elements up to that index.</p>
 <p><strong>Example:</strong> <code>[1, 2, 3, 4]</code> → <code>[1, 3, 6, 10]</code></p>
 <p><strong>Solution:</strong></p>
-<div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">int[] RunningSum(int[] nums)
+<div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">public static int[] RunningSum(int[] nums)
 {
     // 1. Start from index 1 (the second element).
     for (int i = 1; i &lt; nums.Length; i++)
@@ -530,7 +530,7 @@ public static int[] BuildSuffixSums(int[] nums)
 <p><strong>Task:</strong> Return true if a string reads the same forwards and backwards (ignore case, letters only).</p>
 <p><strong>Example:</strong> <code>&quot;racecar&quot;</code> → <code>true</code>, <code>&quot;hello&quot;</code> → <code>false</code></p>
 <p><strong>Solution:</strong></p>
-<div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">bool IsPalindrome(string s)
+<div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">public static bool IsPalindrome(string s)
 {
     // 1. Filter out non-alphanumeric characters and convert to lowercase.
     //    This ensures we only compare relevant characters consistently.
@@ -596,7 +596,7 @@ left[3] = 1 * nums[0]*nums[1]*nums[2] = 6   (indices 0, 1 AND 2)</code></pre></d
 <p><em>(Read <code>right[0] = 24</code> as &quot;the product of everything after index 0&quot; = <code>4 * 3 * 2</code>.)</em></p>
 <ol><li><strong>Combine them:</strong><ul><li>Multiply <code>left[i] * right[i]</code> for every index. <code>left[i]</code> covers everything to the left, <code>right[i]</code> covers everything to the right, and together they cover everything <em>except</em> <code>nums[i]</code>.</li><li><code>1*24=24</code>, <code>1*12=12</code>, <code>2*4=8</code>, <code>6*1=6</code>.</li><li>Final Result: <code>[24, 12, 8, 6]</code></li></ul></li></ol>
 <p><strong>Solution:</strong></p>
-<div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">int[] ProductExceptSelf(int[] nums) {
+<div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">public static int[] ProductExceptSelf(int[] nums) {
     int n = nums.Length;
     int[] left = new int[n];   // left[i]  = product of everything BEFORE i
     int[] right = new int[n];  // right[i] = product of everything AFTER i
@@ -834,14 +834,19 @@ public static Dictionary&lt;string, List&lt;string&gt;&gt; GroupAnagrams(string[
 <p><strong>Task:</strong> Given an array of integers and a target, return indices of the two numbers that add up to the target.</p>
 <p><strong>Example:</strong> <code>nums = [2, 7, 11, 15]</code>, <code>target = 9</code> → <code>[0, 1]</code></p>
 <p><strong>Brute force (O(n²)):</strong></p>
-<div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">// Try every possible pair of numbers.
-for (int i = 0; i &lt; nums.Length; i++)
-    for (int j = i + 1; j &lt; nums.Length; j++)
-        // Check if current pair matches target.
-        if (nums[i] + nums[j] == target)
-            return new[] { i, j };</code></pre></div>
+<div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">public static int[] TwoSumBruteForce(int[] nums, int target)
+{
+    // Try every possible pair of numbers.
+    for (int i = 0; i &lt; nums.Length; i++)
+        for (int j = i + 1; j &lt; nums.Length; j++)
+            // Check if current pair matches target.
+            if (nums[i] + nums[j] == target)
+                return new[] { i, j };
+    return Array.Empty&lt;int&gt;();
+}
+// TwoSumBruteForce(new[] { 2, 7, 11, 15 }, 9) → [0, 1]</code></pre></div>
 <p><strong>Optimised with HashMap (O(n)):</strong></p>
-<div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">int[] TwoSum(int[] nums, int target)
+<div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">public static int[] TwoSum(int[] nums, int target)
 {
     // 1. Map to store the numbers we have seen so far: [value] -&gt; [index]
     var seen = new Dictionary&lt;int, int&gt;(); 
@@ -882,7 +887,7 @@ for (int i = 0; i &lt; nums.Length; i++)
 <p><strong>Task:</strong> Return true if any value appears at least twice.</p>
 <p><strong>Example:</strong> <code>[1, 2, 3, 1]</code> → <code>true</code></p>
 <p><strong>Solution:</strong></p>
-<div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">bool ContainsDuplicate(int[] nums)
+<div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">public static bool ContainsDuplicate(int[] nums)
 {
     // 1. Create a set to store unique elements.
     var seen = new HashSet&lt;int&gt;();
@@ -907,7 +912,7 @@ for (int i = 0; i &lt; nums.Length; i++)
 <p><strong>Task:</strong> Return true if two strings are anagrams of each other.</p>
 <p><strong>Example:</strong> <code>&quot;anagram&quot;</code>, <code>&quot;nagaram&quot;</code> → <code>true</code></p>
 <p><strong>Solution:</strong></p>
-<div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">bool IsAnagram(string s, string t)
+<div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">public static bool IsAnagram(string s, string t)
 {
     // 1. Basic check: anagrams must have the same length.
     if (s.Length != t.Length) return false;
@@ -939,7 +944,7 @@ def is_anagram(s, t):
 <p><strong>Task:</strong> Return the index of the first non-repeating character in a string. Return -1 if none.</p>
 <p><strong>Example:</strong> <code>&quot;leetcode&quot;</code> → <code>0</code> (l appears once)</p>
 <p><strong>Solution:</strong></p>
-<div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">int FirstUniqChar(string s)
+<div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">public static int FirstUniqChar(string s)
 {
     // 1. First pass: Count how many times each character appears.
     var freq = new Dictionary&lt;char, int&gt;();
@@ -1009,7 +1014,7 @@ slow fast</code></pre></div>
 <p><strong>Example:</strong> <code>sorted = [1, 3, 4, 6, 8]</code>, <code>target = 10</code> → <code>true</code> (4 + 6 = 10)</p>
 <p><em>(Related: Problem 2 below, which returns the positions.)</em></p>
 <div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">// Does any pair in a sorted array sum to target?
-bool HasPairSum(int[] sorted, int target)
+public static bool HasPairSum(int[] sorted, int target)
 {
     // 1. Initialize pointers at the start and end of the sorted array.
     int left = 0, right = sorted.Length - 1;
@@ -1059,7 +1064,7 @@ bool HasPairSum(int[] sorted, int target)
 <p><strong>Task:</strong> Given a sorted array, remove the duplicates in-place and return how many unique values there are.</p>
 <p><strong>Example:</strong> <code>sorted = [1, 1, 2, 2, 3]</code> → returns <code>3</code>, and the array now starts <code>[1, 2, 3, …]</code></p>
 <div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">// slow pointer tracks the &quot;write position&quot; for unique elements
-int RemoveDuplicates(int[] sorted)
+public static int RemoveDuplicates(int[] sorted)
 {
     // 1. Edge case: empty array has 0 unique elements.
     if (sorted.Length == 0) return 0;
@@ -1089,7 +1094,7 @@ int RemoveDuplicates(int[] sorted)
 <p><strong>Task:</strong> A string is a palindrome if it reads the same after keeping only alphanumeric characters and lowercasing. Return true/false.</p>
 <p><strong>Example:</strong> <code>&quot;A man, a plan, a canal: Panama&quot;</code> → <code>true</code></p>
 <p><strong>Solution:</strong></p>
-<div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">bool IsPalindrome(string s)
+<div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">public static bool IsPalindrome(string s)
 {
     // 1. Set pointers at both ends of the string.
     int left = 0, right = s.Length - 1;
@@ -1137,7 +1142,7 @@ int RemoveDuplicates(int[] sorted)
 <p><strong>Task:</strong> Given a <strong>sorted</strong> array, find two numbers that add up to target. Return 1-indexed positions.</p>
 <p><strong>Example:</strong> <code>[2, 7, 11, 15]</code>, <code>target = 9</code> → <code>[1, 2]</code></p>
 <p><strong>Solution:</strong></p>
-<div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">int[] TwoSumSorted(int[] numbers, int target)
+<div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">public static int[] TwoSumSorted(int[] numbers, int target)
 {
     // 1. Initialize pointers at first and last elements.
     int left = 0, right = numbers.Length - 1;
@@ -1183,7 +1188,7 @@ int RemoveDuplicates(int[] sorted)
 <p><strong>Example:</strong> <code>[-4, -1, 0, 3, 10]</code> → <code>[0, 1, 9, 16, 100]</code></p>
 <p><strong>Key insight:</strong> The largest squares come from either end (most negative or most positive). Fill result array from the back.</p>
 <p><strong>Solution:</strong></p>
-<div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">int[] SortedSquares(int[] nums)
+<div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">public static int[] SortedSquares(int[] nums)
 {
     // 1. Pointers at the start (potentially most negative) and end (most positive).
     int left = 0, right = nums.Length - 1;
@@ -1242,7 +1247,7 @@ int RemoveDuplicates(int[] sorted)
 <p><strong>Task:</strong> Move all zeroes to the end of the array in-place, maintaining relative order of non-zero elements.</p>
 <p><strong>Example:</strong> <code>[0, 1, 0, 3, 12]</code> → <code>[1, 3, 12, 0, 0]</code></p>
 <p><strong>Solution (fast/slow pointers):</strong></p>
-<div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">void MoveZeroes(int[] nums)
+<div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">public static void MoveZeroes(int[] nums)
 {
     // 1. 'slow' tracks the position where the next non-zero number should go.
     int slow = 0;  
@@ -1321,7 +1326,7 @@ int RemoveDuplicates(int[] sorted)
 <p><strong>Task:</strong> Given an array and a window size <code>k</code>, find the largest sum of any <code>k</code> consecutive numbers.</p>
 <p><strong>Example:</strong> <code>nums = [2, 1, 5, 1, 3, 2]</code>, <code>k = 3</code> → <code>9</code> (the window <code>5 + 1 + 3</code>)</p>
 <p><em>(Related: Problem 1 below.)</em></p>
-<div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">int MaxSumSubarray(int[] nums, int k)
+<div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">public static int MaxSumSubarray(int[] nums, int k)
 {
     // 1. Build the initial window sum of size 'k'.
     int windowSum = 0;
@@ -1363,7 +1368,7 @@ int RemoveDuplicates(int[] sorted)
 <p><strong>Example:</strong> <code>nums = [1, 2, 5, 1, 2, 3]</code>, <code>limit = 3</code> → <code>3</code> (the stretch <code>[1, 2, 3]</code>; the <code>5</code> breaks the first run)</p>
 <p><em>(Problems 3 and 4 below use the same expand-and-shrink idea.)</em></p>
 <div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">// Template: find longest subarray with all elements ≤ limit
-int LongestValid(int[] nums, int limit)
+public static int LongestValid(int[] nums, int limit)
 {
     int left = 0, maxLen = 0;
     
@@ -1394,7 +1399,7 @@ int LongestValid(int[] nums, int limit)
 <p><strong>Task:</strong> Find the maximum average of a contiguous subarray of length exactly k.</p>
 <p><strong>Example:</strong> <code>[1, 12, -5, -6, 50, 3]</code>, <code>k = 4</code> → <code>12.75</code> (subarray <code>[12, -5, -6, 50]</code>)</p>
 <p><strong>Solution:</strong></p>
-<div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">double FindMaxAverage(int[] nums, int k)
+<div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">public static double FindMaxAverage(int[] nums, int k)
 {
     // 1. Calculate sum for the first 'k' elements.
     double windowSum = 0;
@@ -1434,7 +1439,7 @@ int LongestValid(int[] nums, int limit)
 <p><strong>Example:</strong> <code>[7, 1, 5, 3, 6, 4]</code> → <code>5</code> (buy at 1, sell at 6)</p>
 <p><strong>Key insight:</strong> Track the minimum price seen so far (your best buy day). At each day, check if selling today gives a better profit.</p>
 <p><strong>Solution:</strong></p>
-<div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">int MaxProfit(int[] prices)
+<div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">public static int MaxProfit(int[] prices)
 {
     // 1. Initialize tracker for the lowest price seen so far.
     int minPrice = int.MaxValue;
@@ -1474,7 +1479,7 @@ int LongestValid(int[] nums, int limit)
 <p><strong>Task:</strong> Return the length of the longest substring with all unique characters.</p>
 <p><strong>Example:</strong> <code>&quot;abcabcbb&quot;</code> → <code>3</code> (substring <code>&quot;abc&quot;</code>)</p>
 <p><strong>Solution (variable window):</strong></p>
-<div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">int LengthOfLongestSubstring(string s)
+<div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">public static int LengthOfLongestSubstring(string s)
 {
     // 1. Store the last seen index of each character to jump the left pointer quickly.
     var charIndex = new Dictionary&lt;char, int&gt;(); 
@@ -1521,7 +1526,7 @@ int LongestValid(int[] nums, int limit)
 <p><strong>Task:</strong> Return the minimum length of a contiguous subarray whose sum ≥ target. Return 0 if impossible.</p>
 <p><strong>Example:</strong> <code>target = 7</code>, <code>[2, 3, 1, 2, 4, 3]</code> → <code>2</code> (subarray <code>[4, 3]</code>)</p>
 <p><strong>Solution:</strong></p>
-<div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">int MinSubArrayLen(int target, int[] nums)
+<div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">public static int MinSubArrayLen(int target, int[] nums)
 {
     int left = 0, windowSum = 0;
     int minLen = int.MaxValue;
@@ -1619,7 +1624,7 @@ Peek   → 2       (doesn't remove)</code></pre></div>
 <p><strong>Task:</strong> Check whether every opening bracket in a string has a matching closing bracket, in the correct order.</p>
 <p><strong>Example:</strong> <code>&quot;({[]})&quot;</code> → <code>true</code>, <code>&quot;(]&quot;</code> → <code>false</code></p>
 <p><em>(Full walkthrough: Problem 1 below.)</em></p>
-<div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">bool IsBalanced(string s)
+<div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">public static bool IsBalanced(string s)
 {
     // 1. Initialize a stack to keep track of opening brackets
     var stack = new Stack&lt;char&gt;();
@@ -1658,7 +1663,7 @@ Peek   → 2       (doesn't remove)</code></pre></div>
 <p><em>(Related: Problem 4 below.)</em></p>
 <p>A monotonic stack keeps elements in sorted order. Useful for &quot;next greater/smaller&quot; problems.</p>
 <div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">// For each element, find the next element that is greater
-int[] NextGreaterElement(int[] nums)
+public static int[] NextGreaterElement(int[] nums)
 {
     int n = nums.Length;
     int[] result = new int[n];
@@ -1687,7 +1692,7 @@ int[] NextGreaterElement(int[] nums)
 <h3 id="stacks--queue-bfs-level-by-level"><a class="anchor" href="#stacks--queue-bfs-level-by-level">#</a>Queue: BFS level-by-level</h3>
 <p><strong>Task:</strong> Visit a binary tree one level at a time, from the top down.</p>
 <p><strong>Example:</strong> a tree with root <code>1</code>, children <code>2</code> and <code>3</code>, where <code>2</code> has children <code>4</code> and <code>5</code> → levels <code>[1]</code>, <code>[2, 3]</code>, <code>[4, 5]</code></p>
-<div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">void BfsExample(TreeNode root)
+<div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">public static void BfsExample(TreeNode root)
 {
     if (root == null) return;
 
@@ -1722,7 +1727,7 @@ int[] NextGreaterElement(int[] nums)
 <p><strong>Task:</strong> Given a string of brackets <code>()[]{}</code>, determine if it is valid (every open bracket has a matching close bracket in the right order).</p>
 <p><strong>Example:</strong> <code>&quot;()[]{}&quot;</code> → <code>true</code>, <code>&quot;([)]&quot;</code> → <code>false</code></p>
 <p><strong>Solution:</strong></p>
-<div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">bool IsValid(string s)
+<div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">public static bool IsValid(string s)
 {
     // 1. Initialize a stack for opening brackets
     var stack = new Stack&lt;char&gt;();
@@ -1886,7 +1891,7 @@ int[] NextGreaterElement(int[] nums)
 <p><strong>Task:</strong> For each day, find how many days you have to wait until a warmer temperature. Return 0 if there is no warmer day.</p>
 <p><strong>Example:</strong> <code>[73,74,75,71,69,72,76,73]</code> → <code>[1,1,4,2,1,1,0,0]</code></p>
 <p><strong>Solution (monotonic stack):</strong></p>
-<div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">int[] DailyTemperatures(int[] temperatures)
+<div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">public static int[] DailyTemperatures(int[] temperatures)
 {
     int n = temperatures.Length;
     int[] result = new int[n];
@@ -2012,7 +2017,7 @@ low=3 &gt; high=2 → not found</code></pre></div>
 <p><strong>Task:</strong> Given a sorted array and a target, find the target's index (or <code>-1</code> if it isn't there) without checking every element.</p>
 <p><strong>Example:</strong> <code>nums = [1, 3, 5, 7, 9, 11, 13]</code>, <code>target = 7</code> → <code>3</code>; <code>target = 6</code> → <code>-1</code></p>
 <p><em>(Full walkthrough: Problem 1 below.)</em></p>
-<div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">int BinarySearch(int[] nums, int target)
+<div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">public static int BinarySearch(int[] nums, int target)
 {
     // 1. Define the search boundaries
     int low = 0, high = nums.Length - 1;
@@ -2068,7 +2073,7 @@ low=3 &gt; high=2 → not found</code></pre></div>
 <p><strong>Task:</strong> Given a sorted array that may contain duplicates, find the index of the <strong>first</strong> occurrence of the target.</p>
 <p><strong>Example:</strong> <code>nums = [1, 2, 2, 2, 3]</code>, <code>target = 2</code> → <code>1</code></p>
 <p>When there are duplicates and you want the first or last occurrence:</p>
-<div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">int FindFirst(int[] nums, int target)
+<div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">public static int FindFirst(int[] nums, int target)
 {
     int low = 0, high = nums.Length - 1, result = -1;
     while (low &lt;= high)
@@ -2092,7 +2097,7 @@ low=3 &gt; high=2 → not found</code></pre></div>
 <p><strong>Task:</strong> Given a sorted array and a target, return the index of the target or -1 if not found.</p>
 <p><strong>Example:</strong> <code>[-1, 0, 3, 5, 9, 12]</code>, <code>target = 9</code> → <code>4</code></p>
 <p><strong>Solution:</strong> <em>(see standard template above)</em></p>
-<div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">int Search(int[] nums, int target)
+<div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">public static int Search(int[] nums, int target)
 {
     int low = 0, high = nums.Length - 1;
     while (low &lt;= high)
@@ -2115,7 +2120,7 @@ low=3 &gt; high=2 → not found</code></pre></div>
 <p><strong>Task:</strong> Given a sorted array and a target, return the index where it is found, or where it <em>would be</em> inserted.</p>
 <p><strong>Example:</strong> <code>[1, 3, 5, 6]</code>, <code>target = 5</code> → <code>2</code>; <code>target = 2</code> → <code>1</code></p>
 <p><strong>Solution:</strong></p>
-<div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">int SearchInsert(int[] nums, int target)
+<div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">public static int SearchInsert(int[] nums, int target)
 {
     int low = 0, high = nums.Length - 1;
     while (low &lt;= high)
@@ -2157,7 +2162,7 @@ low=3 &gt; high=2 → not found</code></pre></div>
 <p><strong>Example:</strong> <code>[3, 4, 5, 1, 2]</code> → <code>1</code></p>
 <p><strong>Key insight:</strong> The minimum is in the &quot;unsorted half&quot;. Compare <code>nums[mid]</code> with <code>nums[high]</code> to decide which side to search.</p>
 <p><strong>Solution:</strong></p>
-<div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">int FindMin(int[] nums)
+<div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">public static int FindMin(int[] nums)
 {
     int low = 0, high = nums.Length - 1;
     
@@ -2204,7 +2209,7 @@ low=3 &gt; high=2 → not found</code></pre></div>
 <p><strong>Example:</strong> <code>[[1,3],[2,6],[8,10],[15,18]]</code> → <code>[[1,6],[8,10],[15,18]]</code></p>
 <p><strong>Key insight:</strong> Sort by start time, then greedily merge.</p>
 <p><strong>Solution:</strong></p>
-<div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">int[][] Merge(int[][] intervals)
+<div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">public static int[][] Merge(int[][] intervals)
 {
     // 1. Sort intervals by their start time (crucial for greedy merging)
     Array.Sort(intervals, (a, b) =&gt; a[0].CompareTo(b[0]));
@@ -2364,7 +2369,7 @@ low=3 &gt; high=2 → not found</code></pre></div>
 <p><strong>Task:</strong> Reverse a singly linked list.</p>
 <p><strong>Example:</strong> <code>1→2→3→4→5</code> → <code>5→4→3→2→1</code></p>
 <p><strong>Solution (iterative):</strong></p>
-<div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">ListNode ReverseList(ListNode head)
+<div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">public static ListNode ReverseList(ListNode head)
 {
     // 1. Initialize pointers: 'prev' starts as null (new tail)
     ListNode prev = null;
@@ -2415,7 +2420,7 @@ Return:   prev=3  →  3→2→1</code></pre></div>
 <p><strong>Task:</strong> Merge two sorted linked lists into one sorted list.</p>
 <p><strong>Example:</strong> <code>1→2→4</code> and <code>1→3→4</code> → <code>1→1→2→3→4→4</code></p>
 <p><strong>Solution:</strong></p>
-<div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">ListNode MergeTwoLists(ListNode l1, ListNode l2)
+<div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">public static ListNode MergeTwoLists(ListNode l1, ListNode l2)
 {
     // 1. Create a dummy node to act as the starting point of the new list
     var dummy = new ListNode(0);
@@ -2470,7 +2475,7 @@ Return:   prev=3  →  3→2→1</code></pre></div>
 <p><strong>Task:</strong> Determine if a linked list has a cycle.</p>
 <p><strong>Key insight:</strong> Floyd's cycle detection — if fast and slow pointers ever point to the same node, there's a cycle.</p>
 <p><strong>Solution:</strong></p>
-<div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">bool HasCycle(ListNode head)
+<div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">public static bool HasCycle(ListNode head)
 {
     // 1. Initialize two pointers at the head
     ListNode slow = head, fast = head;
@@ -2511,7 +2516,7 @@ Return:   prev=3  →  3→2→1</code></pre></div>
 <p><strong>Example:</strong> <code>1→2→3→4→5</code>, <code>n=2</code> → <code>1→2→3→5</code></p>
 <p><strong>Key insight:</strong> Use two pointers separated by n steps. When fast reaches the end, slow is just before the node to remove.</p>
 <p><strong>Solution:</strong></p>
-<div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">ListNode RemoveNthFromEnd(ListNode head, int n)
+<div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">public static ListNode RemoveNthFromEnd(ListNode head, int n)
 {
     // 1. Create a dummy node pointing to the head. 
     //    This handles the edge case of removing the head itself.
@@ -2562,7 +2567,7 @@ Return:   prev=3  →  3→2→1</code></pre></div>
 <p><strong>Task:</strong> Return the middle node of a linked list. If two middles, return the second.</p>
 <p><strong>Example:</strong> <code>1→2→3→4→5</code> → node <code>3</code>; <code>1→2→3→4</code> → node <code>3</code></p>
 <p><strong>Solution:</strong></p>
-<div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">ListNode MiddleNode(ListNode head)
+<div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">public static ListNode MiddleNode(ListNode head)
 {
     // 1. Initialize two pointers at the head
     ListNode slow = head, fast = head;
@@ -2631,7 +2636,7 @@ Return:   prev=3  →  3→2→1</code></pre></div>
 <p><strong>The three questions to ask for any recursive function:</strong></p>
 <ol><li><strong>Base case:</strong> what's the simplest input I can handle directly?</li><li><strong>Recursive case:</strong> how do I reduce the problem and call myself?</li><li><strong>Return:</strong> what do I return upward to the caller?</li></ol>
 <div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">// Example: sum all numbers 1..n
-int Sum(int n)
+public static int Sum(int n)
 {
     // 1. Base case: The simplest sum is for 0, which is just 0.
     if (n == 0) return 0;         
@@ -2652,7 +2657,7 @@ int Sum(int n)
 4   5</code></pre></div>
 <div class="table-wrap"><table><thead><tr><th>Order</th><th>Sequence</th><th>Rule</th></tr></thead><tbody><tr><td>Inorder</td><td>4,2,5,1,3</td><td>Left → Node → Right</td></tr><tr><td>Preorder</td><td>1,2,4,5,3</td><td>Node → Left → Right</td></tr><tr><td>Postorder</td><td>4,5,2,3,1</td><td>Left → Right → Node</td></tr></tbody></table></div>
 <div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">// Inorder (gives sorted order in a BST)
-void Inorder(TreeNode node)
+public static void Inorder(TreeNode node)
 {
     // 1. Base case: If node is null, we've reached a leaf's child
     if (node == null) return;
@@ -2668,7 +2673,7 @@ void Inorder(TreeNode node)
 }
 
 // Preorder
-void Preorder(TreeNode node)
+public static void Preorder(TreeNode node)
 {
     if (node == null) return;
     
@@ -2683,7 +2688,7 @@ void Preorder(TreeNode node)
 <p><strong>Task:</strong> Visit a binary tree one level at a time, from the top down.</p>
 <p><strong>Example:</strong> a tree with root <code>1</code>, children <code>2</code> and <code>3</code>, where <code>2</code> has children <code>4</code> and <code>5</code> → levels <code>[1]</code>, <code>[2, 3]</code>, <code>[4, 5]</code></p>
 <p>Process nodes level by level using a queue:</p>
-<div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">IList&lt;IList&lt;int&gt;&gt; LevelOrder(TreeNode root)
+<div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">public static IList&lt;IList&lt;int&gt;&gt; LevelOrder(TreeNode root)
 {
     var result = new List&lt;IList&lt;int&gt;&gt;();
     if (root == null) return result;
@@ -2727,7 +2732,7 @@ void Preorder(TreeNode node)
    15   7</code></pre></div>
 <p>→ <code>3</code></p>
 <p><strong>Solution:</strong></p>
-<div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">int MaxDepth(TreeNode root)
+<div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">public static int MaxDepth(TreeNode root)
 {
     // 1. Base case: An empty tree has a depth of 0
     if (root == null) return 0;                              
@@ -2753,13 +2758,13 @@ void Preorder(TreeNode node)
 <p><strong>Example:</strong> <code>[1,2,2,3,4,4,3]</code> → <code>true</code></p>
 <p><strong>Key insight:</strong> A tree is symmetric if the left subtree is a mirror of the right subtree.</p>
 <p><strong>Solution:</strong></p>
-<div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">bool IsSymmetric(TreeNode root)
+<div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">public static bool IsSymmetric(TreeNode root)
 {
     // 1. A tree is symmetric if its left and right subtrees are mirrors of each other
     return IsMirror(root?.left, root?.right);
 }
 
-bool IsMirror(TreeNode left, TreeNode right)
+public static bool IsMirror(TreeNode left, TreeNode right)
 {
     // 2. If both nodes are null, they are mirrors (base case 1)
     if (left == null &amp;&amp; right == null) return true;   
@@ -2803,7 +2808,7 @@ bool IsMirror(TreeNode left, TreeNode right)
    /  \       \
   7    2       1</code></pre></div>
 <p><strong>Solution:</strong></p>
-<div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">bool HasPathSum(TreeNode root, int targetSum)
+<div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">public static bool HasPathSum(TreeNode root, int targetSum)
 {
     // 1. Base case: If we've reached beyond a leaf, no path exists here
     if (root == null) return false;
@@ -2840,13 +2845,13 @@ bool IsMirror(TreeNode left, TreeNode right)
 <p><strong>Task:</strong> Determine if a binary tree is a valid BST.</p>
 <p><strong>Key insight:</strong> Don't just check each node against its direct children — pass down valid min/max bounds.</p>
 <p><strong>Solution:</strong></p>
-<div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">bool IsValidBST(TreeNode root)
+<div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">public static bool IsValidBST(TreeNode root)
 {
     // 1. Start validation with the full range of possible values
     return Validate(root, long.MinValue, long.MaxValue);
 }
 
-bool Validate(TreeNode node, long min, long max)
+public static bool Validate(TreeNode node, long min, long max)
 {
     // 2. Base case: An empty tree is valid
     if (node == null) return true;
@@ -2936,7 +2941,7 @@ fib[3] = fib[2] + fib[1] = 2
 <h3 id="dp--problem-1-fibonacci-number-leetcode-509"><a class="anchor" href="#dp--problem-1-fibonacci-number-leetcode-509">#</a>Problem 1 — Fibonacci Number (LeetCode #509)</h3>
 <p><strong>Task:</strong> Return the nth Fibonacci number (0, 1, 1, 2, 3, 5, 8, ...).</p>
 <p><strong>Naive recursion (exponential — don't do this):</strong></p>
-<div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">int Fib(int n)
+<div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">public static int Fib(int n)
 {
     // 1. Base cases: return n if it is 0 or 1
     if (n &lt;= 1) return n;
@@ -2946,7 +2951,7 @@ fib[3] = fib[2] + fib[1] = 2
     return Fib(n - 1) + Fib(n - 2);
 }</code></pre></div>
 <p><strong>Top-down with memo:</strong></p>
-<div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">int Fib(int n, Dictionary&lt;int, int&gt; memo = null)
+<div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">public static int Fib(int n, Dictionary&lt;int, int&gt; memo = null)
 {
     // 1. Initialize the cache if it doesn't exist
     memo ??= new Dictionary&lt;int, int&gt;();
@@ -2962,7 +2967,7 @@ fib[3] = fib[2] + fib[1] = 2
     return memo[n];
 }</code></pre></div>
 <p><strong>Bottom-up (most efficient):</strong></p>
-<div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">int Fib(int n)
+<div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">public static int Fib(int n)
 {
     // 1. Base cases
     if (n &lt;= 1) return n;
@@ -3002,7 +3007,7 @@ fib[3] = fib[2] + fib[1] = 2
 <p><strong>Example:</strong> <code>n = 4</code> → <code>5</code> ways: (1+1+1+1), (2+1+1), (1+2+1), (1+1+2), (2+2)</p>
 <p><strong>Key insight:</strong> To reach stair <code>n</code>, you either came from stair <code>n-1</code> (took 1 step) or stair <code>n-2</code> (took 2 steps). So <code>dp[n] = dp[n-1] + dp[n-2]</code> — it's Fibonacci!</p>
 <p><strong>Solution:</strong></p>
-<div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">int ClimbStairs(int n)
+<div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">public static int ClimbStairs(int n)
 {
     // 1. Base cases: 1 way for 1 step, 2 ways for 2 steps
     if (n &lt;= 2) return n;
@@ -3046,7 +3051,7 @@ fib[3] = fib[2] + fib[1] = 2
     dp[i-2] + nums[i] // rob house i (can't have robbed i-1)
 )</code></pre></div>
 <p><strong>Solution:</strong></p>
-<div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">int Rob(int[] nums)
+<div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">public static int Rob(int[] nums)
 {
     // 1. Edge case: Only one house to rob
     if (nums.Length == 1) return nums[0];
@@ -3093,7 +3098,7 @@ fib[3] = fib[2] + fib[1] = 2
 <div class="code-wrap" data-lang="text"><button class="copy-btn" type="button">Copy</button><pre><code class="language-plaintext">dp[i] = min over all coins c where c &lt;= i:
     1 + dp[i - c]</code></pre></div>
 <p><strong>Solution:</strong></p>
-<div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">int CoinChange(int[] coins, int amount)
+<div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">public static int CoinChange(int[] coins, int amount)
 {
     // 1. Create a DP table where dp[i] is the min coins for amount i
     int[] dp = new int[amount + 1];
@@ -3149,7 +3154,7 @@ fib[3] = fib[2] + fib[1] = 2
 <div class="code-wrap" data-lang="text"><button class="copy-btn" type="button">Copy</button><pre><code class="language-plaintext">dp[i][j] = dp[i-1][j] + dp[i][j-1]</code></pre></div>
 <p><strong>Base cases:</strong> Top row and left column all have exactly 1 path.</p>
 <p><strong>Solution:</strong></p>
-<div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">int UniquePaths(int m, int n)
+<div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">public static int UniquePaths(int m, int n)
 {
     // 1. Create a 2D table to store path counts for each cell
     int[,] dp = new int[m, n];
@@ -3253,7 +3258,7 @@ public static Dictionary&lt;int, List&lt;int&gt;&gt; BuildGraph(int[][] edges, b
 <p><strong>Example:</strong> undirected edges <code>0–1</code>, <code>0–2</code>, <code>1–3</code>, start at <code>0</code> → visits <code>0, 1, 3, 2</code></p>
 <p><em>(Related: Problem 1 below.)</em></p>
 <p>This is literally tree DFS from chapter 08 plus a <code>visited</code> set.</p>
-<div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">void Dfs(int node, Dictionary&lt;int, List&lt;int&gt;&gt; graph, HashSet&lt;int&gt; visited)
+<div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">public static void Dfs(int node, Dictionary&lt;int, List&lt;int&gt;&gt; graph, HashSet&lt;int&gt; visited)
 {
     // 1. If we've already seen this node, stop — this prevents infinite loops on cycles.
     if (visited.Contains(node)) return;
@@ -3282,7 +3287,7 @@ public static Dictionary&lt;int, List&lt;int&gt;&gt; BuildGraph(int[][] edges, b
 <p><strong>Example:</strong> the same edges <code>0–1</code>, <code>0–2</code>, <code>1–3</code>, start at <code>0</code> → visits <code>0, 1, 2, 3</code> (node <code>3</code> is two steps away)</p>
 <p><em>(Related: Problem 5 below.)</em></p>
 <p>This is the queue-based level-order traversal from chapter 08, generalised. <strong>BFS finds the shortest path in an unweighted graph</strong> because it reaches nodes in order of distance.</p>
-<div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">void Bfs(int start, Dictionary&lt;int, List&lt;int&gt;&gt; graph)
+<div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">public static void Bfs(int start, Dictionary&lt;int, List&lt;int&gt;&gt; graph)
 {
     var visited = new HashSet&lt;int&gt; { start };
     var queue = new Queue&lt;int&gt;();
@@ -3323,7 +3328,7 @@ def bfs(start, graph):
 <p><em>(Full walkthrough: Problem 2 below.)</em></p>
 <p>For a <strong>directed acyclic graph (DAG)</strong>: produce an order where every node comes before the nodes that depend on it. Think &quot;course prerequisites&quot; or &quot;build order&quot;. Uses BFS with in-degree counts (Kahn's algorithm).</p>
 <div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">// Returns a valid order, or empty list if a cycle exists (impossible to order).
-List&lt;int&gt; TopoSort(int n, Dictionary&lt;int, List&lt;int&gt;&gt; graph)
+public static List&lt;int&gt; TopoSort(int n, Dictionary&lt;int, List&lt;int&gt;&gt; graph)
 {
     var inDegree = new int[n];
     foreach (var edges in graph.Values)
@@ -3391,7 +3396,7 @@ List&lt;int&gt; TopoSort(int n, Dictionary&lt;int, List&lt;int&gt;&gt; graph)
 <p>→ <code>3</code></p>
 <p><strong>Think first:</strong> A grid <em>is</em> a graph — each cell is a node, neighbours are up/down/left/right. Each time you find unvisited land, flood-fill the whole island with DFS and count one.</p>
 <p><strong>Solution:</strong></p>
-<div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">int NumIslands(char[][] grid)
+<div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">public static int NumIslands(char[][] grid)
 {
     if (grid.Length == 0) return 0;
     int rows = grid.Length, cols = grid[0].Length, count = 0;
@@ -3441,7 +3446,7 @@ List&lt;int&gt; TopoSort(int n, Dictionary&lt;int, List&lt;int&gt;&gt; graph)
 <p><strong>Example:</strong> <code>numCourses = 2</code>, <code>[[1, 0]]</code> → <code>true</code>; <code>[[1, 0], [0, 1]]</code> → <code>false</code> (circular).</p>
 <p><strong>Key insight:</strong> This is cycle detection on a directed graph — equivalently, &quot;does a topological order exist?&quot;. If topo sort places every course, there's no cycle.</p>
 <p><strong>Solution:</strong></p>
-<div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">bool CanFinish(int numCourses, int[][] prerequisites)
+<div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">public static bool CanFinish(int numCourses, int[][] prerequisites)
 {
     var graph = new Dictionary&lt;int, List&lt;int&gt;&gt;();
     var inDegree = new int[numCourses];
@@ -3512,7 +3517,7 @@ def can_finish(num_courses, prerequisites):
     public Node(int v) { val = v; }
 }
 
-Node CloneGraph(Node node)
+public static Node CloneGraph(Node node)
 {
     if (node == null) return null;
     var clones = new Dictionary&lt;Node, Node&gt;();
@@ -3560,7 +3565,7 @@ Node CloneGraph(Node node)
 <p><strong>Example:</strong> <code>[[1,1,0],[1,1,0],[0,0,1]]</code> → <code>2</code></p>
 <p><strong>Key insight:</strong> Pure connectivity question → Union-Find. Union every connected pair, then count distinct groups.</p>
 <p><strong>Solution:</strong></p>
-<div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">int FindCircleNum(int[][] isConnected)
+<div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">public static int FindCircleNum(int[][] isConnected)
 {
     int n = isConnected.Length;
     var uf = new UnionFind(n);   // from Pattern 4 above
@@ -3603,7 +3608,7 @@ Node CloneGraph(Node node)
 <p><strong>Task:</strong> In a grid, <code>2</code> = rotten orange, <code>1</code> = fresh, <code>0</code> = empty. Each minute, rotten oranges rot their 4-directional fresh neighbours. Return the minutes until none are fresh, or <code>-1</code> if impossible.</p>
 <p><strong>Key insight:</strong> &quot;Spreads outward one layer per minute&quot; = <strong>multi-source BFS</strong>. Seed the queue with <em>all</em> rotten oranges at once; each BFS level is one minute.</p>
 <p><strong>Solution:</strong></p>
-<div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">int OrangesRotting(int[][] grid)
+<div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">public static int OrangesRotting(int[][] grid)
 {
     int rows = grid.Length, cols = grid[0].Length, fresh = 0;
     var queue = new Queue&lt;(int r, int c)&gt;();
@@ -3682,7 +3687,7 @@ def oranges_rotting(grid):
 <blockquote><p><strong>Intuition:</strong> it's BFS where the queue is replaced by a priority queue keyed on total distance. You pop the closest unfinalised node, relax its neighbours (try to improve their best-known distance), and repeat. Once popped, a node's distance is final — because any later path to it would have to go through something even further away. (This is why Dijkstra needs <strong>non-negative</strong> weights.)</p></blockquote>
 <div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">// Shortest distances from `src` over a weighted graph.
 // graph[u] = list of (neighbour, weight).
-int[] Dijkstra(List&lt;(int to, int w)&gt;[] graph, int src)
+public static int[] Dijkstra(List&lt;(int to, int w)&gt;[] graph, int src)
 {
     int n = graph.Length;
     var dist = new int[n];
@@ -3808,7 +3813,7 @@ largest = -heapq.heappop(max_heap)   # 5</code></pre></div>
 <p><strong>Example:</strong> <code>nums = [3, 1, 5, 12, 2, 11]</code>, <code>k = 3</code> → <code>[5, 11, 12]</code> (in any order)</p>
 <p><em>(Related: Problems 1 and 2 below.)</em></p>
 <p>To find the <strong>K largest</strong> elements, keep a <strong>min-heap of size K</strong>. The root is the smallest of your current top-K; if a new element beats it, evict the root. This is <code>O(n log k)</code> — much better than sorting everything when <code>k ≪ n</code>.</p>
-<div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">int[] TopKLargest(int[] nums, int k)
+<div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">public static int[] TopKLargest(int[] nums, int k)
 {
     // 1. Min-heap holds the k largest seen so far; its root is the weakest survivor.
     var heap = new PriorityQueue&lt;int, int&gt;();
@@ -3833,7 +3838,7 @@ def top_k_largest(nums, k):
 <p><em>(Related: Problem 4 below, using linked lists.)</em></p>
 <p>Put the head of each sequence in a heap; repeatedly pop the global minimum and push the next element from that sequence. Each pop gives the next element in overall sorted order.</p>
 <div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">// Merge k sorted arrays into one sorted list.
-List&lt;int&gt; MergeK(List&lt;int[]&gt; lists)
+public static List&lt;int&gt; MergeK(List&lt;int[]&gt; lists)
 {
     // Heap entry: (value, whichList, indexInThatList)
     var heap = new PriorityQueue&lt;(int val, int list, int idx), int&gt;();
@@ -3913,7 +3918,7 @@ class MedianFinder:
 <p><strong>Example:</strong> <code>[3, 2, 1, 5, 6, 4]</code>, <code>k = 2</code> → <code>5</code></p>
 <p><strong>Think first:</strong> You don't need the whole array sorted — just the kth largest. A size-k min-heap keeps exactly the top-k; its root <em>is</em> the kth largest.</p>
 <p><strong>Solution:</strong></p>
-<div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">int FindKthLargest(int[] nums, int k)
+<div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">public static int FindKthLargest(int[] nums, int k)
 {
     var heap = new PriorityQueue&lt;int, int&gt;();   // min-heap, capped at size k
     foreach (int n in nums)
@@ -3939,7 +3944,7 @@ def find_kth_largest(nums, k):
 <p><strong>Example:</strong> <code>[1,1,1,2,2,3]</code>, <code>k = 2</code> → <code>[1, 2]</code></p>
 <p><strong>Key insight:</strong> Count frequencies with a hash map (chapter 02), then use a size-k min-heap keyed on frequency to keep the k most frequent.</p>
 <p><strong>Solution:</strong></p>
-<div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">int[] TopKFrequent(int[] nums, int k)
+<div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">public static int[] TopKFrequent(int[] nums, int k)
 {
     // 1. Frequency count (hash map pattern from chapter 02).
     var freq = new Dictionary&lt;int, int&gt;();
@@ -3970,7 +3975,7 @@ def top_k_frequent(nums, k):
 <p><strong>Example:</strong> <code>[[1,3],[-2,2]]</code>, <code>k = 1</code> → <code>[[-2,2]]</code></p>
 <p><strong>Key insight:</strong> &quot;K closest&quot; → size-k heap keyed on distance. Keep a <strong>max-heap of size k</strong> so you can evict the <em>farthest</em> survivor when a closer point arrives. (We can compare squared distance — no need for <code>sqrt</code>.)</p>
 <p><strong>Solution:</strong></p>
-<div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">int[][] KClosest(int[][] points, int k)
+<div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">public static int[][] KClosest(int[][] points, int k)
 {
     // Max-heap on squared distance: root is the farthest of our current k.
     var heap = new PriorityQueue&lt;int[], int&gt;();
@@ -3994,7 +3999,7 @@ def k_closest(points, k):
 <p><strong>Key insight:</strong> This is Pattern 2. Keep the current head of each list in a min-heap; repeatedly pop the smallest and advance that list. Ties in linked lists need a tiebreaker since nodes aren't comparable — use an index.</p>
 <p><strong>Solution:</strong></p>
 <div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">// ListNode from chapter 07: { int val; ListNode next; }
-ListNode MergeKLists(ListNode[] lists)
+public static ListNode MergeKLists(ListNode[] lists)
 {
     // Priority = node value; tiebreaker index keeps it stable &amp; comparable.
     var heap = new PriorityQueue&lt;ListNode, (int val, int idx)&gt;();
@@ -4101,7 +4106,7 @@ def merge_k_lists(lists):
 <p><strong>Example:</strong> <code>nums = [1, 2, 3]</code> → <code>[]</code>, <code>[1]</code>, <code>[2]</code>, <code>[3]</code>, <code>[1,2]</code>, <code>[1,3]</code>, <code>[2,3]</code>, <code>[1,2,3]</code> (8 subsets)</p>
 <p><em>(Full walkthrough: Problem 1 below.)</em></p>
 <p>Every element is a binary choice: take it or don't. The decision tree has <code>2ⁿ</code> leaves = all subsets.</p>
-<div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">IList&lt;IList&lt;int&gt;&gt; Subsets(int[] nums)
+<div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">public static IList&lt;IList&lt;int&gt;&gt; Subsets(int[] nums)
 {
     var results = new List&lt;IList&lt;int&gt;&gt;();
     var path = new List&lt;int&gt;();
@@ -4140,7 +4145,7 @@ def merge_k_lists(lists):
 <p><strong>Example:</strong> <code>nums = [1, 2, 3]</code> → <code>[1,2,3]</code>, <code>[1,3,2]</code>, <code>[2,1,3]</code>, <code>[2,3,1]</code>, <code>[3,1,2]</code>, <code>[3,2,1]</code></p>
 <p><em>(Full walkthrough: Problem 2 below.)</em></p>
 <p>Here every ordering is distinct, so you consider <em>all</em> remaining elements at each step and mark which are already in the path.</p>
-<div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">IList&lt;IList&lt;int&gt;&gt; Permute(int[] nums)
+<div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">public static IList&lt;IList&lt;int&gt;&gt; Permute(int[] nums)
 {
     var results = new List&lt;IList&lt;int&gt;&gt;();
     var path = new List&lt;int&gt;();
@@ -4192,7 +4197,7 @@ def merge_k_lists(lists):
 <p><strong>Example:</strong> <code>candidates = [2, 3, 5]</code>, <code>target = 7</code> → <code>[[2, 2, 3], [2, 5]]</code></p>
 <p><em>(Full walkthrough: Problem 3 below.)</em></p>
 <p>The real power of backtracking is quitting a path as soon as it's hopeless. In Combination Sum, once the running total exceeds the target, every deeper choice is wasted — so we <code>break</code>/<code>return</code> instead of exploring.</p>
-<div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">IList&lt;IList&lt;int&gt;&gt; CombinationSum(int[] candidates, int target)
+<div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">public static IList&lt;IList&lt;int&gt;&gt; CombinationSum(int[] candidates, int target)
 {
     var results = new List&lt;IList&lt;int&gt;&gt;();
     var path = new List&lt;int&gt;();
@@ -4225,7 +4230,7 @@ def merge_k_lists(lists):
 <p><strong>Task:</strong> Return all possible subsets (the power set) of a set of distinct integers.</p>
 <p><strong>Example:</strong> <code>[1, 2, 3]</code> → <code>[[], [1], [1,2], [1,2,3], [1,3], [2], [2,3], [3]]</code></p>
 <p><strong>Solution:</strong> (This is Pattern 1 directly.)</p>
-<div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">IList&lt;IList&lt;int&gt;&gt; Subsets(int[] nums)
+<div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">public static IList&lt;IList&lt;int&gt;&gt; Subsets(int[] nums)
 {
     var results = new List&lt;IList&lt;int&gt;&gt;();
     var path = new List&lt;int&gt;();
@@ -4261,7 +4266,7 @@ def merge_k_lists(lists):
 <p><strong>Task:</strong> Return all permutations of distinct integers.</p>
 <p><strong>Example:</strong> <code>[1, 2, 3]</code> → six orderings: <code>[1,2,3], [1,3,2], [2,1,3], [2,3,1], [3,1,2], [3,2,1]</code></p>
 <p><strong>Solution:</strong> (Pattern 2 directly.)</p>
-<div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">IList&lt;IList&lt;int&gt;&gt; Permute(int[] nums)
+<div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">public static IList&lt;IList&lt;int&gt;&gt; Permute(int[] nums)
 {
     var results = new List&lt;IList&lt;int&gt;&gt;();
     var path = new List&lt;int&gt;();
@@ -4309,7 +4314,7 @@ def merge_k_lists(lists):
 <p><strong>Example:</strong> <code>candidates = [2, 3, 6, 7]</code>, <code>target = 7</code> → <code>[[2,2,3], [7]]</code></p>
 <p><strong>Key insight:</strong> Pattern 3 with reuse — pass <code>i</code> (not <code>i+1</code>) so a candidate can be chosen again, and prune when a candidate exceeds the remaining target.</p>
 <p><strong>Solution:</strong></p>
-<div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">IList&lt;IList&lt;int&gt;&gt; CombinationSum(int[] candidates, int target)
+<div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">public static IList&lt;IList&lt;int&gt;&gt; CombinationSum(int[] candidates, int target)
 {
     var results = new List&lt;IList&lt;int&gt;&gt;();
     var path = new List&lt;int&gt;();
@@ -4355,7 +4360,7 @@ def merge_k_lists(lists):
 <p><strong>Example:</strong> grid of <code>A B C E / S F C S / A D E E</code>, word <code>&quot;ABCCED&quot;</code> → <code>true</code></p>
 <p><strong>Key insight:</strong> DFS from each cell with backtracking — mark a cell used before recursing, then <strong>un-mark it</strong> so other paths can reuse it. This is the grid-graph idea from chapter 10 <em>plus</em> the undo step.</p>
 <p><strong>Solution:</strong></p>
-<div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">bool Exist(char[][] board, string word)
+<div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">public static bool Exist(char[][] board, string word)
 {
     int rows = board.Length, cols = board[0].Length;
 
@@ -4444,7 +4449,7 @@ def merge_k_lists(lists):
 <p><strong>Task:</strong> Given items with a weight and a value, and a bag with a weight limit, choose items (each at most once) to get the highest total value.</p>
 <p><strong>Example:</strong> <code>weights = [1, 3, 4]</code>, <code>values = [15, 20, 30]</code>, <code>capacity = 4</code> → <code>35</code> (take the items with weights 1 and 3)</p>
 <p>You have items with weights and values and a capacity. Each item is used <strong>at most once</strong>. Maximise value without exceeding capacity. The state is <code>dp[i][w]</code> = best value using the first <code>i</code> items with capacity <code>w</code>.</p>
-<div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">int Knapsack(int[] weights, int[] values, int capacity)
+<div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">public static int Knapsack(int[] weights, int[] values, int capacity)
 {
     int n = weights.Length;
     // dp[i, w] = max value using first i items within capacity w
@@ -4481,7 +4486,7 @@ def merge_k_lists(lists):
 <p><strong>Example:</strong> <code>nums = [10, 9, 2, 5, 3, 7]</code> → <code>3</code> (for example <code>2, 5, 7</code>)</p>
 <p><em>(Full walkthrough: Problem 2 below.)</em></p>
 <p>For Longest Increasing Subsequence, <code>dp[i]</code> = length of the longest increasing subsequence <strong>ending at index i</strong>. Each position looks back at all smaller-value predecessors and extends the best one.</p>
-<div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">int LengthOfLIS(int[] nums)
+<div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">public static int LengthOfLIS(int[] nums)
 {
     if (nums.Length == 0) return 0;
     // dp[i] = length of the longest increasing subsequence ending at i.
@@ -4515,7 +4520,7 @@ def merge_k_lists(lists):
 <p><strong>Task:</strong> In a grid of costs, find the cheapest path from the top-left to the bottom-right, moving only right or down.</p>
 <p><strong>Example:</strong> <code>grid = [[1,3,1],[1,5,1],[4,2,1]]</code> → <code>7</code> (the path <code>1 → 3 → 1 → 1 → 1</code>)</p>
 <p>On a grid, <code>dp[i][j]</code> is the best cost to <em>reach</em> cell <code>(i,j)</code>, built from the cells you could have come from (above or left). This generalises Unique Paths from chapter 09 (counting) to <em>optimising</em> a cost.</p>
-<div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">int MinPathSum(int[][] grid)
+<div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">public static int MinPathSum(int[][] grid)
 {
     int rows = grid.Length, cols = grid[0].Length;
     int[,] dp = new int[rows, cols];
@@ -4552,7 +4557,7 @@ def merge_k_lists(lists):
 <p><strong>Task:</strong> Find the minimum number of insert, delete or replace steps needed to turn one string into another.</p>
 <p><strong>Example:</strong> <code>&quot;horse&quot;</code> → <code>&quot;ros&quot;</code> takes <code>3</code> steps</p>
 <p>When a problem compares two sequences, the state is <code>dp[i][j]</code> over <em>a prefix of each</em>. Edit Distance: minimum insert/delete/replace operations to turn string <code>a</code> into string <code>b</code>.</p>
-<div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">int EditDistance(string a, string b)
+<div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">public static int EditDistance(string a, string b)
 {
     int m = a.Length, n = b.Length;
     // dp[i, j] = edits to turn a[0..i) into b[0..j)
@@ -4602,7 +4607,7 @@ def merge_k_lists(lists):
 <p><strong>Example:</strong> <code>[1, 5, 11, 5]</code> → <code>true</code> (<code>[1,5,5]</code> and <code>[11]</code>)</p>
 <p><strong>Key insight:</strong> This is 0/1 knapsack in disguise. If the total is odd, it's impossible. Otherwise the question becomes: &quot;can we pick a subset that sums to <code>total / 2</code>?&quot; — a take-it-or-leave-it decision per element.</p>
 <p><strong>Solution:</strong></p>
-<div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">bool CanPartition(int[] nums)
+<div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">public static bool CanPartition(int[] nums)
 {
     int total = nums.Sum();
     if (total % 2 != 0) return false;          // odd total can't split evenly
@@ -4637,7 +4642,7 @@ def merge_k_lists(lists):
 <p><strong>Task:</strong> Return the length of the longest strictly increasing subsequence.</p>
 <p><strong>Example:</strong> <code>[10, 9, 2, 5, 3, 7, 101, 18]</code> → <code>4</code> (<code>[2, 3, 7, 101]</code>)</p>
 <p><strong>Solution:</strong> (Pattern 2 directly.)</p>
-<div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">int LengthOfLIS(int[] nums)
+<div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">public static int LengthOfLIS(int[] nums)
 {
     int[] dp = new int[nums.Length];
     Array.Fill(dp, 1);
@@ -4667,7 +4672,7 @@ def merge_k_lists(lists):
 <p><strong>Example:</strong> <code>&quot;abcde&quot;</code>, <code>&quot;ace&quot;</code> → <code>3</code> (<code>&quot;ace&quot;</code>)</p>
 <p><strong>Key insight:</strong> Two-string shape. <code>dp[i][j]</code> = LCS length of the first <code>i</code> chars of <code>a</code> and first <code>j</code> of <code>b</code>. If the current characters match, extend the diagonal; otherwise take the best of dropping one character from either string.</p>
 <p><strong>Solution:</strong></p>
-<div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">int LongestCommonSubsequence(string a, string b)
+<div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">public static int LongestCommonSubsequence(string a, string b)
 {
     int m = a.Length, n = b.Length;
     int[,] dp = new int[m + 1, n + 1];          // dp[0, *] and dp[*, 0] = 0 (empty)
@@ -4699,7 +4704,7 @@ def merge_k_lists(lists):
 <p><strong>Example:</strong> <code>amount = 5</code>, <code>coins = [1, 2, 5]</code> → <code>4</code></p>
 <p><strong>Key insight:</strong> Contrast with chapter 09's Coin Change (fewest coins). This counts <em>combinations</em>, and the loop order matters: iterate <strong>coins on the outside</strong> so you count each combination once (not every ordering). This is the unbounded-knapsack counting variant.</p>
 <p><strong>Solution:</strong></p>
-<div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">int Change(int amount, int[] coins)
+<div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">public static int Change(int amount, int[] coins)
 {
     // dp[a] = number of combinations that sum to a.
     var dp = new int[amount + 1];
@@ -4782,7 +4787,7 @@ def merge_k_lists(lists):
 <p><strong>3. Brute force.</strong> &quot;I could check every subarray — <code>O(n²)</code> pairs, each summed in <code>O(1)</code> with running totals. That works but it's quadratic.&quot;</p>
 <p><strong>4. Optimise — recognise the pattern.</strong> The word <strong>&quot;contiguous&quot;</strong> + &quot;a condition on the sum&quot; is the sliding-window tell (chapter 04). Because all numbers are <strong>positive</strong>, the sum grows as the window expands and shrinks as it contracts — so a variable window is valid. &quot;I'll expand <code>right</code>, and while the sum exceeds <code>k</code>, shrink from <code>left</code>. <code>O(n)</code>.&quot;</p>
 <p><strong>5. Code.</strong></p>
-<div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">int LongestSubarrayAtMostK(int[] nums, int k)
+<div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">public static int LongestSubarrayAtMostK(int[] nums, int k)
 {
     int left = 0, sum = 0, best = 0;
     for (int right = 0; right &lt; nums.Length; right++)
@@ -4864,7 +4869,7 @@ DP      : try all options, keep the best combination     → slower, always corr
 <p><strong>Example:</strong> <code>g = [1,2,3]</code>, <code>s = [1,1]</code> → <code>1</code></p>
 <p><strong>Key insight:</strong> Sort both. Give the smallest adequate cookie to the least greedy child — wasting the least capacity.</p>
 <p><strong>Solution:</strong></p>
-<div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">int FindContentChildren(int[] g, int[] s)
+<div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">public static int FindContentChildren(int[] g, int[] s)
 {
     Array.Sort(g);
     Array.Sort(s);
@@ -4891,7 +4896,7 @@ DP      : try all options, keep the best combination     → slower, always corr
 <p><strong>Example:</strong> <code>[[1,2],[2,3],[3,4],[1,3]]</code> → <code>1</code></p>
 <p><strong>Key insight:</strong> The classic interval-scheduling greedy. Sort by <strong>end</strong>; keep an interval only if it starts at or after the last kept interval's end. Everything you skip is a removal.</p>
 <p><strong>Solution:</strong></p>
-<div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">int EraseOverlapIntervals(int[][] intervals)
+<div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">public static int EraseOverlapIntervals(int[][] intervals)
 {
     Array.Sort(intervals, (a, b) =&gt; a[1].CompareTo(b[1]));  // by end time
     int kept = 0, lastEnd = int.MinValue;
@@ -4920,7 +4925,7 @@ DP      : try all options, keep the best combination     → slower, always corr
 <p><strong>Example:</strong> <code>[2,3,1,1,4]</code> → <code>true</code></p>
 <p><strong>Key insight:</strong> Track the furthest index reachable. If you ever stand beyond it, you're stuck. No DP needed.</p>
 <p><strong>Solution:</strong></p>
-<div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">bool CanJump(int[] nums)
+<div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">public static bool CanJump(int[] nums)
 {
     int furthest = 0;
     for (int i = 0; i &lt; nums.Length; i++)
@@ -4944,7 +4949,7 @@ DP      : try all options, keep the best combination     → slower, always corr
 <p><strong>Example:</strong> <code>[2,3,1,1,4]</code> → <code>2</code></p>
 <p><strong>Key insight:</strong> A greedy BFS &quot;by level&quot;: within the current jump's reach, pre-compute the furthest you could reach with one more jump. When you hit the end of the current reach, you <em>must</em> spend a jump.</p>
 <p><strong>Solution:</strong></p>
-<div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">int Jump(int[] nums)
+<div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">public static int Jump(int[] nums)
 {
     int jumps = 0, curEnd = 0, farthest = 0;
     for (int i = 0; i &lt; nums.Length - 1; i++)   // no need to jump from the last index
@@ -5185,7 +5190,7 @@ DP      : try all options, keep the best combination     → slower, always corr
 <h2 id="twoptr-adv--patterns-with-code"><a class="anchor" href="#twoptr-adv--patterns-with-code">#</a>Patterns with Code</h2>
 <h3 id="twoptr-adv--pattern-1-three-way-partitioning-dutch-national-flag"><a class="anchor" href="#twoptr-adv--pattern-1-three-way-partitioning-dutch-national-flag">#</a>Pattern 1: Three-way partitioning (Dutch National Flag)</h3>
 <div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">// Using a while loop for manual control over pointer increments
-void ThreeWayPartition(int[] nums, int midVal)
+public static void ThreeWayPartition(int[] nums, int midVal)
 {
     int low = 0, mid = 0, high = nums.Length - 1;
     while (mid &lt;= high)
@@ -5203,7 +5208,7 @@ void ThreeWayPartition(int[] nums, int midVal)
 <p><strong>Reasoning:</strong> Standard two-pointer logic only handles two states (e.g., &quot;yes&quot; or &quot;no&quot;). Adding a third pointer allows you to sort or group elements with three distinct states in a single pass (<span class="math">O(n)</span> time) without using extra space (<span class="math">O(1)</span> space).</p>
 <h3 id="twoptr-adv--pattern-2-fixed-ahead-pointer-fast-slow"><a class="anchor" href="#twoptr-adv--pattern-2-fixed-ahead-pointer-fast-slow">#</a>Pattern 2: Fixed-Ahead Pointer (Fast &amp; Slow)</h3>
 <div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">// Using a for loop when the 'fast' pointer moves predictably
-int RemoveElement(int[] nums, int val) {
+public static int RemoveElement(int[] nums, int val) {
     int slow = 0;
     for (int fast = 0; fast &lt; nums.Length; fast++) {
         if (nums[fast] != val) {
@@ -5215,7 +5220,7 @@ int RemoveElement(int[] nums, int val) {
 <p><strong>Explanation:</strong> The <code>fast</code> pointer (controlled by the for loop) scans every element, while the <code>slow</code> pointer only moves when a condition is met (in this case, when the element isn't the one we want to remove).</p>
 <p><strong>Reasoning:</strong> For loops are cleaner when one pointer moves linearly through the entire collection. It reduces the risk of infinite loops and clearly separates the &quot;scanner&quot; (fast) from the &quot;builder&quot; (slow).</p>
 <h3 id="twoptr-adv--pattern-3-the-expand-from-center-palindrome-substrings"><a class="anchor" href="#twoptr-adv--pattern-3-the-expand-from-center-palindrome-substrings">#</a>Pattern 3: The &quot;Expand from Center&quot; (Palindrome Substrings)</h3>
-<div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">int ExpandAroundCenter(string s, int left, int right)
+<div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">public static int ExpandAroundCenter(string s, int left, int right)
 {
     while (left &gt;= 0 &amp;&amp; right &lt; s.Length &amp;&amp; s[left] == s[right])
     {
@@ -5232,7 +5237,7 @@ int RemoveElement(int[] nums, int val) {
 <h3 id="twoptr-adv--exercise-1-the-intersection-of-two-sorted-arrays"><a class="anchor" href="#twoptr-adv--exercise-1-the-intersection-of-two-sorted-arrays">#</a>Exercise 1 — The Intersection of Two Sorted Arrays</h3>
 <p><strong>Task:</strong> Given two sorted arrays, find the elements that appear in both. <strong>Goal:</strong> Learn how to move pointers independently based on a comparison.</p>
 <p><strong>The &quot;Half-Way&quot; Guide:</strong></p>
-<div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">public List&lt;int&gt; FindIntersection(int[] arr1, int[] arr2) {
+<div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">public static List&lt;int&gt; FindIntersection(int[] arr1, int[] arr2) {
     int i = 0, j = 0;
     var result = new List&lt;int&gt;();
 
@@ -5254,7 +5259,7 @@ int RemoveElement(int[] nums, int val) {
 <h3 id="twoptr-adv--exercise-2-targeted-partitioning-the-gatekeeper"><a class="anchor" href="#twoptr-adv--exercise-2-targeted-partitioning-the-gatekeeper">#</a>Exercise 2 — Targeted Partitioning (The &quot;Gatekeeper&quot;)</h3>
 <p><strong>Task:</strong> Given an array, move all occurrences of a specific <code>target</code> to the front without using extra space. <strong>Goal:</strong> Master the &quot;Write&quot; vs &quot;Read&quot; pointer dynamic.</p>
 <p><strong>The &quot;Half-Way&quot; Guide:</strong></p>
-<div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">void MoveTargetToFront(int[] nums, int target) {
+<div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">public static void MoveTargetToFront(int[] nums, int target) {
     int write = 0;
     // We use a for loop as a 'scanner' (read pointer)
     for (int read = 0; read &lt; nums.Length; read++) {
@@ -5337,7 +5342,7 @@ int RemoveElement(int[] nums, int val) {
 <h3 id="space--o1-constant-space-the-pocket"><a class="anchor" href="#space--o1-constant-space-the-pocket">#</a>🟦 <span class="math">O(1)</span> — Constant Space: &quot;The Pocket&quot;</h3>
 <p>No matter how many items you are processing, you only need a fixed amount of memory. You aren't creating new collections; you're just using a few &quot;sticky notes&quot; to keep track of things.</p>
 <ul><li><strong>The Mental Model:</strong> You are sitting at a small desk. Whether the library delivers 5 books or 5,000, you only have room for one book at a time on your desk.</li><li><strong>When it happens:</strong> <ul><li>Using a few variables (<code>int i</code>, <code>int sum</code>, <code>bool found</code>).</li><li>Swapping elements in an array using a single <code>temp</code> variable.</li><li>Using Two Pointers (<code>left</code> and <code>right</code>) to scan a list.</li></ul></li><li><strong>C# Example:</strong></li></ul>
-<div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">bool ContainsZero(int[] nums) {
+<div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">public static bool ContainsZero(int[] nums) {
     for (int i = 0; i &lt; nums.Length; i++) { // 'i' is O(1) space
         if (nums[i] == 0) return true;
     }
@@ -5352,7 +5357,7 @@ Input Size: 32 -&gt; [][][][][] (5 units)</code></pre></div>
 <h3 id="space--on-linear-space-the-mirror"><a class="anchor" href="#space--on-linear-space-the-mirror">#</a>🟨 <span class="math">O(n)</span> — Linear Space: &quot;The Mirror&quot;</h3>
 <p>The extra memory you use is a direct reflection of the input size. If you get twice as much data, you use twice as much memory.</p>
 <ul><li><strong>The Mental Model:</strong> You are building a backup of a photo album. For every photo in the original album, you need exactly one slot in the new album.</li><li><strong>When it happens:</strong> <ul><li>Creating a copy of an array.</li><li>Using a <code>List&lt;T&gt;</code> or <code>HashSet&lt;T&gt;</code> to store elements from the input.</li><li>Recursion where the depth is equal to <span class="math">N</span> (e.g., recursive factorial).</li></ul></li><li><strong>C# Example:</strong></li></ul>
-<div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">int[] SquareAll(int[] nums) {
+<div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">public static int[] SquareAll(int[] nums) {
     int[] results = new int[nums.Length]; // New array of size N = O(n) space
     for (int i = 0; i &lt; nums.Length; i++) results[i] = nums[i] * nums[i];
     return results;
@@ -5378,7 +5383,7 @@ Input Size: 32 -&gt; [][][][][] (5 units)</code></pre></div>
 <p>This &quot;bundle&quot; of info is called a <strong>Stack Frame</strong>.</p>
 <h3 id="space--visualizing-recursive-space"><a class="anchor" href="#space--visualizing-recursive-space">#</a>Visualizing Recursive Space</h3>
 <p>Consider a recursive function calculating the sum of numbers from <span class="math">N</span> down to 1:</p>
-<div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">int Sum(int n) {
+<div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">public static int Sum(int n) {
     if (n &lt;= 0) return 0;
     return n + Sum(n - 1); // &lt;--- Each call here waits!
 }</code></pre></div>
@@ -5401,7 +5406,7 @@ Input Size: 32 -&gt; [][][][][] (5 units)</code></pre></div>
 <hr>
 <h3 id="space--walkthrough-example-the-memory-auditor-in-action"><a class="anchor" href="#space--walkthrough-example-the-memory-auditor-in-action">#</a>Walkthrough Example: The &quot;Memory Auditor&quot; in Action</h3>
 <p><strong>Code to Analyze:</strong></p>
-<div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">public List&lt;string&gt; FilterAndUpper(string[] words) {
+<div class="code-wrap" data-lang="csharp"><button class="copy-btn" type="button">Copy</button><pre><code class="language-csharp">public static List&lt;string&gt; FilterAndUpper(string[] words) {
     var result = new List&lt;string&gt;(); // 1. Created a list
     int count = 0;                  // 2. Created an int
 

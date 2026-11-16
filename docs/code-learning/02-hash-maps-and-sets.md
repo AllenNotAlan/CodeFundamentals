@@ -241,17 +241,22 @@ Option A is the simplest to write. Option B is faster for long words, but only w
 
 **Brute force (O(n²)):**
 ```csharp
-// Try every possible pair of numbers.
-for (int i = 0; i < nums.Length; i++)
-    for (int j = i + 1; j < nums.Length; j++)
-        // Check if current pair matches target.
-        if (nums[i] + nums[j] == target)
-            return new[] { i, j };
+public static int[] TwoSumBruteForce(int[] nums, int target)
+{
+    // Try every possible pair of numbers.
+    for (int i = 0; i < nums.Length; i++)
+        for (int j = i + 1; j < nums.Length; j++)
+            // Check if current pair matches target.
+            if (nums[i] + nums[j] == target)
+                return new[] { i, j };
+    return Array.Empty<int>();
+}
+// TwoSumBruteForce(new[] { 2, 7, 11, 15 }, 9) → [0, 1]
 ```
 
 **Optimised with HashMap (O(n)):**
 ```csharp
-int[] TwoSum(int[] nums, int target)
+public static int[] TwoSum(int[] nums, int target)
 {
     // 1. Map to store the numbers we have seen so far: [value] -> [index]
     var seen = new Dictionary<int, int>(); 
@@ -301,7 +306,7 @@ def two_sum(nums, target):
 
 **Solution:**
 ```csharp
-bool ContainsDuplicate(int[] nums)
+public static bool ContainsDuplicate(int[] nums)
 {
     // 1. Create a set to store unique elements.
     var seen = new HashSet<int>();
@@ -334,7 +339,7 @@ def contains_duplicate(nums):
 
 **Solution:**
 ```csharp
-bool IsAnagram(string s, string t)
+public static bool IsAnagram(string s, string t)
 {
     // 1. Basic check: anagrams must have the same length.
     if (s.Length != t.Length) return false;
@@ -374,7 +379,7 @@ def is_anagram(s, t):
 
 **Solution:**
 ```csharp
-int FirstUniqChar(string s)
+public static int FirstUniqChar(string s)
 {
     // 1. First pass: Count how many times each character appears.
     var freq = new Dictionary<char, int>();

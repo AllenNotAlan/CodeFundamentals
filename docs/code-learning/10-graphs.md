@@ -80,7 +80,7 @@ var visited = new HashSet<int>();   // the single most important line in graph c
 This is literally tree DFS from chapter 08 plus a `visited` set.
 
 ```csharp
-void Dfs(int node, Dictionary<int, List<int>> graph, HashSet<int> visited)
+public static void Dfs(int node, Dictionary<int, List<int>> graph, HashSet<int> visited)
 {
     // 1. If we've already seen this node, stop — this prevents infinite loops on cycles.
     if (visited.Contains(node)) return;
@@ -118,7 +118,7 @@ def dfs(node, graph, visited):
 This is the queue-based level-order traversal from chapter 08, generalised. **BFS finds the shortest path in an unweighted graph** because it reaches nodes in order of distance.
 
 ```csharp
-void Bfs(int start, Dictionary<int, List<int>> graph)
+public static void Bfs(int start, Dictionary<int, List<int>> graph)
 {
     var visited = new HashSet<int> { start };
     var queue = new Queue<int>();
@@ -168,7 +168,7 @@ For a **directed acyclic graph (DAG)**: produce an order where every node comes 
 
 ```csharp
 // Returns a valid order, or empty list if a cycle exists (impossible to order).
-List<int> TopoSort(int n, Dictionary<int, List<int>> graph)
+public static List<int> TopoSort(int n, Dictionary<int, List<int>> graph)
 {
     var inDegree = new int[n];
     foreach (var edges in graph.Values)
@@ -254,7 +254,7 @@ public class UnionFind
 
 **Solution:**
 ```csharp
-int NumIslands(char[][] grid)
+public static int NumIslands(char[][] grid)
 {
     if (grid.Length == 0) return 0;
     int rows = grid.Length, cols = grid[0].Length, count = 0;
@@ -313,7 +313,7 @@ def num_islands(grid):
 
 **Solution:**
 ```csharp
-bool CanFinish(int numCourses, int[][] prerequisites)
+public static bool CanFinish(int numCourses, int[][] prerequisites)
 {
     var graph = new Dictionary<int, List<int>>();
     var inDegree = new int[numCourses];
@@ -392,7 +392,7 @@ public class Node
     public Node(int v) { val = v; }
 }
 
-Node CloneGraph(Node node)
+public static Node CloneGraph(Node node)
 {
     if (node == null) return null;
     var clones = new Dictionary<Node, Node>();
@@ -449,7 +449,7 @@ def clone_graph(node):
 
 **Solution:**
 ```csharp
-int FindCircleNum(int[][] isConnected)
+public static int FindCircleNum(int[][] isConnected)
 {
     int n = isConnected.Length;
     var uf = new UnionFind(n);   // from Pattern 4 above
@@ -500,7 +500,7 @@ def find_circle_num(is_connected):
 
 **Solution:**
 ```csharp
-int OrangesRotting(int[][] grid)
+public static int OrangesRotting(int[][] grid)
 {
     int rows = grid.Length, cols = grid[0].Length, fresh = 0;
     var queue = new Queue<(int r, int c)>();
@@ -597,7 +597,7 @@ BFS finds the fewest *edges*, which is the shortest path only when every edge co
 ```csharp
 // Shortest distances from `src` over a weighted graph.
 // graph[u] = list of (neighbour, weight).
-int[] Dijkstra(List<(int to, int w)>[] graph, int src)
+public static int[] Dijkstra(List<(int to, int w)>[] graph, int src)
 {
     int n = graph.Length;
     var dist = new int[n];

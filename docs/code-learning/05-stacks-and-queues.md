@@ -56,7 +56,7 @@ Like a queue at a shop. You add to the back, remove from the front.
 *(Full walkthrough: Problem 1 below.)*
 
 ```csharp
-bool IsBalanced(string s)
+public static bool IsBalanced(string s)
 {
     // 1. Initialize a stack to keep track of opening brackets
     var stack = new Stack<char>();
@@ -101,7 +101,7 @@ bool IsBalanced(string s)
 A monotonic stack keeps elements in sorted order. Useful for "next greater/smaller" problems.
 ```csharp
 // For each element, find the next element that is greater
-int[] NextGreaterElement(int[] nums)
+public static int[] NextGreaterElement(int[] nums)
 {
     int n = nums.Length;
     int[] result = new int[n];
@@ -135,7 +135,7 @@ int[] NextGreaterElement(int[] nums)
 **Example:** a tree with root `1`, children `2` and `3`, where `2` has children `4` and `5` → levels `[1]`, `[2, 3]`, `[4, 5]`
 
 ```csharp
-void BfsExample(TreeNode root)
+public static void BfsExample(TreeNode root)
 {
     if (root == null) return;
 
@@ -178,7 +178,7 @@ void BfsExample(TreeNode root)
 
 **Solution:**
 ```csharp
-bool IsValid(string s)
+public static bool IsValid(string s)
 {
     // 1. Initialize a stack for opening brackets
     var stack = new Stack<char>();
@@ -364,7 +364,7 @@ public class MyQueue
 
 **Solution (monotonic stack):**
 ```csharp
-int[] DailyTemperatures(int[] temperatures)
+public static int[] DailyTemperatures(int[] temperatures)
 {
     int n = temperatures.Length;
     int[] result = new int[n];

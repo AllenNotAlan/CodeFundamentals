@@ -94,7 +94,7 @@ low=3 > high=2 → not found
 *(Full walkthrough: Problem 1 below.)*
 
 ```csharp
-int BinarySearch(int[] nums, int target)
+public static int BinarySearch(int[] nums, int target)
 {
     // 1. Define the search boundaries
     int low = 0, high = nums.Length - 1;
@@ -157,7 +157,7 @@ def binary_search(nums, target):
 
 When there are duplicates and you want the first or last occurrence:
 ```csharp
-int FindFirst(int[] nums, int target)
+public static int FindFirst(int[] nums, int target)
 {
     int low = 0, high = nums.Length - 1, result = -1;
     while (low <= high)
@@ -189,7 +189,7 @@ int FindFirst(int[] nums, int target)
 
 **Solution:** *(see standard template above)*
 ```csharp
-int Search(int[] nums, int target)
+public static int Search(int[] nums, int target)
 {
     int low = 0, high = nums.Length - 1;
     while (low <= high)
@@ -218,7 +218,7 @@ int Search(int[] nums, int target)
 
 **Solution:**
 ```csharp
-int SearchInsert(int[] nums, int target)
+public static int SearchInsert(int[] nums, int target)
 {
     int low = 0, high = nums.Length - 1;
     while (low <= high)
@@ -269,7 +269,7 @@ def search_insert(nums, target):
 
 **Solution:**
 ```csharp
-int FindMin(int[] nums)
+public static int FindMin(int[] nums)
 {
     int low = 0, high = nums.Length - 1;
     
@@ -325,7 +325,7 @@ def find_min(nums):
 
 **Solution:**
 ```csharp
-int[][] Merge(int[][] intervals)
+public static int[][] Merge(int[][] intervals)
 {
     // 1. Sort intervals by their start time (crucial for greedy merging)
     Array.Sort(intervals, (a, b) => a[0].CompareTo(b[0]));

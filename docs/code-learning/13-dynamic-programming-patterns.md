@@ -44,7 +44,7 @@ When you suspect DP (from chapter 09: "number of ways", "min/max cost", "is it p
 You have items with weights and values and a capacity. Each item is used **at most once**. Maximise value without exceeding capacity. The state is `dp[i][w]` = best value using the first `i` items with capacity `w`.
 
 ```csharp
-int Knapsack(int[] weights, int[] values, int capacity)
+public static int Knapsack(int[] weights, int[] values, int capacity)
 {
     int n = weights.Length;
     // dp[i, w] = max value using first i items within capacity w
@@ -90,7 +90,7 @@ def knapsack(weights, values, capacity):
 For Longest Increasing Subsequence, `dp[i]` = length of the longest increasing subsequence **ending at index i**. Each position looks back at all smaller-value predecessors and extends the best one.
 
 ```csharp
-int LengthOfLIS(int[] nums)
+public static int LengthOfLIS(int[] nums)
 {
     if (nums.Length == 0) return 0;
     // dp[i] = length of the longest increasing subsequence ending at i.
@@ -132,7 +132,7 @@ def length_of_lis(nums):
 On a grid, `dp[i][j]` is the best cost to *reach* cell `(i,j)`, built from the cells you could have come from (above or left). This generalises Unique Paths from chapter 09 (counting) to *optimising* a cost.
 
 ```csharp
-int MinPathSum(int[][] grid)
+public static int MinPathSum(int[][] grid)
 {
     int rows = grid.Length, cols = grid[0].Length;
     int[,] dp = new int[rows, cols];
@@ -177,7 +177,7 @@ def min_path_sum(grid):
 When a problem compares two sequences, the state is `dp[i][j]` over *a prefix of each*. Edit Distance: minimum insert/delete/replace operations to turn string `a` into string `b`.
 
 ```csharp
-int EditDistance(string a, string b)
+public static int EditDistance(string a, string b)
 {
     int m = a.Length, n = b.Length;
     // dp[i, j] = edits to turn a[0..i) into b[0..j)
@@ -238,7 +238,7 @@ def edit_distance(a, b):
 
 **Solution:**
 ```csharp
-bool CanPartition(int[] nums)
+public static bool CanPartition(int[] nums)
 {
     int total = nums.Sum();
     if (total % 2 != 0) return false;          // odd total can't split evenly
@@ -281,7 +281,7 @@ def can_partition(nums):
 
 **Solution:** (Pattern 2 directly.)
 ```csharp
-int LengthOfLIS(int[] nums)
+public static int LengthOfLIS(int[] nums)
 {
     int[] dp = new int[nums.Length];
     Array.Fill(dp, 1);
@@ -320,7 +320,7 @@ def length_of_lis(nums):
 
 **Solution:**
 ```csharp
-int LongestCommonSubsequence(string a, string b)
+public static int LongestCommonSubsequence(string a, string b)
 {
     int m = a.Length, n = b.Length;
     int[,] dp = new int[m + 1, n + 1];          // dp[0, *] and dp[*, 0] = 0 (empty)
@@ -361,7 +361,7 @@ def longest_common_subsequence(a, b):
 
 **Solution:**
 ```csharp
-int Change(int amount, int[] coins)
+public static int Change(int amount, int[] coins)
 {
     // dp[a] = number of combinations that sum to a.
     var dp = new int[amount + 1];

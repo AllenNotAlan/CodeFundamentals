@@ -94,7 +94,7 @@ Let's run the method on a prompt as if seeing it for the first time.
 
 **5. Code.**
 ```csharp
-int LongestSubarrayAtMostK(int[] nums, int k)
+public static int LongestSubarrayAtMostK(int[] nums, int k)
 {
     int left = 0, sum = 0, best = 0;
     for (int right = 0; right < nums.Length; right++)

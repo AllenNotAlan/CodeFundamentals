@@ -98,7 +98,7 @@ The classic trap it avoids: re-sorting after every change is `O(n log n)` *each 
 To find the **K largest** elements, keep a **min-heap of size K**. The root is the smallest of your current top-K; if a new element beats it, evict the root. This is `O(n log k)` — much better than sorting everything when `k ≪ n`.
 
 ```csharp
-int[] TopKLargest(int[] nums, int k)
+public static int[] TopKLargest(int[] nums, int k)
 {
     // 1. Min-heap holds the k largest seen so far; its root is the weakest survivor.
     var heap = new PriorityQueue<int, int>();
@@ -132,7 +132,7 @@ Put the head of each sequence in a heap; repeatedly pop the global minimum and p
 
 ```csharp
 // Merge k sorted arrays into one sorted list.
-List<int> MergeK(List<int[]> lists)
+public static List<int> MergeK(List<int[]> lists)
 {
     // Heap entry: (value, whichList, indexInThatList)
     var heap = new PriorityQueue<(int val, int list, int idx), int>();
@@ -229,7 +229,7 @@ class MedianFinder:
 
 **Solution:**
 ```csharp
-int FindKthLargest(int[] nums, int k)
+public static int FindKthLargest(int[] nums, int k)
 {
     var heap = new PriorityQueue<int, int>();   // min-heap, capped at size k
     foreach (int n in nums)
@@ -264,7 +264,7 @@ def find_kth_largest(nums, k):
 
 **Solution:**
 ```csharp
-int[] TopKFrequent(int[] nums, int k)
+public static int[] TopKFrequent(int[] nums, int k)
 {
     // 1. Frequency count (hash map pattern from chapter 02).
     var freq = new Dictionary<int, int>();
@@ -304,7 +304,7 @@ def top_k_frequent(nums, k):
 
 **Solution:**
 ```csharp
-int[][] KClosest(int[][] points, int k)
+public static int[][] KClosest(int[][] points, int k)
 {
     // Max-heap on squared distance: root is the farthest of our current k.
     var heap = new PriorityQueue<int[], int>();
@@ -336,7 +336,7 @@ def k_closest(points, k):
 **Solution:**
 ```csharp
 // ListNode from chapter 07: { int val; ListNode next; }
-ListNode MergeKLists(ListNode[] lists)
+public static ListNode MergeKLists(ListNode[] lists)
 {
     // Priority = node value; tiebreaker index keeps it stable & comparable.
     var heap = new PriorityQueue<ListNode, (int val, int idx)>();
