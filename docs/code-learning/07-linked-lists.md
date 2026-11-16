@@ -56,18 +56,22 @@ public class ListNode
 **Example:** `1 → 2 → 3` → prints `1`, `2`, `3`
 
 ```csharp
-// 1. Start at the beginning
-ListNode curr = head;
-
-// 2. Loop until we reach the end of the list (null)
-while (curr != null)
+public static void PrintList(ListNode head)
 {
-    // 3. Perform an action with the current node's value
-    Console.WriteLine(curr.val);
-    
-    // 4. Move to the next node in the chain
-    curr = curr.next;
+    // 1. Start at the beginning
+    ListNode curr = head;
+
+    // 2. Loop until we reach the end of the list (null)
+    while (curr != null)
+    {
+        // 3. Perform an action with the current node's value
+        Console.WriteLine(curr.val);
+        
+        // 4. Move to the next node in the chain
+        curr = curr.next;
+    }
 }
+// PrintList(1 → 2 → 3) → prints 1, 2, 3
 ```
 
 ### 2. Dummy head node
@@ -77,17 +81,29 @@ while (curr != null)
 
 Simplifies edge cases (inserting at the head, handling empty lists):
 ```csharp
-// 1. Create a placeholder node that points to the actual head
-var dummy = new ListNode(0);
-dummy.next = head;
+public static ListNode RemoveElements(ListNode head, int val)
+{
+    // 1. Create a placeholder node that points to the actual head
+    var dummy = new ListNode(0);
+    dummy.next = head;
 
-// 2. Use a pointer to build or traverse starting from before the head
-ListNode curr = dummy;
+    // 2. Use a pointer to build or traverse starting from before the head
+    ListNode curr = dummy;
 
-// 3. Work with curr...
+    // 3. Work with curr: look one node ahead and unlink it if it matches.
+    //    Because curr starts at the dummy, the real head is handled like any other node.
+    while (curr.next != null)
+    {
+        if (curr.next.val == val)
+            curr.next = curr.next.next;   // skip the matching node (don't move curr yet)
+        else
+            curr = curr.next;             // keep it and move on
+    }
 
-// 4. Return 'dummy.next' which always points to the correctly updated head
-return dummy.next;  
+    // 4. Return 'dummy.next' which always points to the correctly updated head
+    return dummy.next;  
+}
+// RemoveElements(1 → 1 → 2 → 3, 1) → 2 → 3
 ```
 
 ### 3. Fast & slow pointers
@@ -99,21 +115,26 @@ return dummy.next;
 
 Two pointers at different speeds — classic for cycle detection and finding the middle:
 ```csharp
-// 1. Both pointers start at the head
-ListNode slow = head, fast = head;
-
-// 2. fast moves twice as fast as slow. 
-//    Loop ends when fast reaches the end of the list.
-while (fast != null && fast.next != null)
+public static ListNode FindMiddle(ListNode head)
 {
-    // 3. slow moves 1 step
-    slow = slow.next;       
-    
-    // 4. fast moves 2 steps
-    fast = fast.next.next;  
-}
+    // 1. Both pointers start at the head
+    ListNode slow = head, fast = head;
 
-// 5. When the loop ends, slow is now at the middle (or the start of the second half)
+    // 2. fast moves twice as fast as slow. 
+    //    Loop ends when fast reaches the end of the list.
+    while (fast != null && fast.next != null)
+    {
+        // 3. slow moves 1 step
+        slow = slow.next;       
+        
+        // 4. fast moves 2 steps
+        fast = fast.next.next;  
+    }
+
+    // 5. When the loop ends, slow is now at the middle (or the start of the second half)
+    return slow;
+}
+// FindMiddle(1 → 2 → 3 → 4 → 5) → the node with value 3
 ```
 
 ---

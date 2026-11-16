@@ -38,38 +38,43 @@ A hash function converts a key (e.g. `"apple"`) into an integer index, pointing 
 **Example:** `nums = [1, 2, 2, 3, 3, 3]` → `{1: 1, 2: 2, 3: 3}`
 
 ```csharp
-int[] nums = { 1, 2, 2, 3, 3, 3 };
-
-// 1. Create a dictionary to store values as keys and their counts as values.
-var freq = new Dictionary<int, int>();
-
-foreach (int n in nums)
+public static Dictionary<int, int> CountFrequency(int[] nums)
 {
-    // 2. If the number isn't in the dictionary yet, initialize its count to 0.
-    //    This prevents a KeyNotFoundException.
-    if (!freq.ContainsKey(n)) freq[n] = 0;
-    
-    // 3. Increment the count for the current number.
-    freq[n]++;
-    
-    // Shorthand: freq[n] = freq.GetValueOrDefault(n, 0) + 1;
+    // 1. Create a dictionary to store values as keys and their counts as values.
+    var freq = new Dictionary<int, int>();
+
+    foreach (int n in nums)
+    {
+        // 2. If the number isn't in the dictionary yet, initialize its count to 0.
+        //    This prevents a KeyNotFoundException.
+        if (!freq.ContainsKey(n)) freq[n] = 0;
+        
+        // 3. Increment the count for the current number.
+        freq[n]++;
+        
+        // Shorthand: freq[n] = freq.GetValueOrDefault(n, 0) + 1;
+    }
+    return freq;
 }
-// Final state: freq = { 1:1, 2:2, 3:3 }
+// CountFrequency(new[] { 1, 2, 2, 3, 3, 3 }) → { 1:1, 2:2, 3:3 }
 ```
 ```python
 from collections import Counter
-nums = [1, 2, 2, 3, 3, 3]
 
-# 1. Counter is a specialized dictionary subclass for counting hashable objects.
-#    It does the 'if key not in dict' logic automatically.
-freq = Counter(nums)   # Result: {3:3, 2:2, 1:1}
+def count_frequency(nums):
+    # 1. Counter is a specialized dictionary subclass for counting hashable objects.
+    #    It does the 'if key not in dict' logic automatically.
+    return Counter(nums)   # Result: {3:3, 2:2, 1:1}
 
 # Or manually:
-freq = {}
-for n in nums:
-    # 2. .get(n, 0) returns 0 if 'n' is not in the dictionary.
-    #    We then add 1 to whatever value was there (or to 0).
-    freq[n] = freq.get(n, 0) + 1
+def count_frequency_manual(nums):
+    freq = {}
+    for n in nums:
+        # 2. .get(n, 0) returns 0 if 'n' is not in the dictionary.
+        #    We then add 1 to whatever value was there (or to 0).
+        freq[n] = freq.get(n, 0) + 1
+    return freq
+# count_frequency([1, 2, 2, 3, 3, 3]) → {1: 1, 2: 2, 3: 3}
 ```
 
 ### 2. "Have I seen this before?" — HashSet membership
@@ -78,31 +83,36 @@ for n in nums:
 **Example:** `nums = [1, 5, 3, 5, 2]` → `Duplicate: 5`
 
 ```csharp
-// 1. Use a HashSet for O(1) membership checks.
-var seen = new HashSet<int>();
-int[] nums = { 1, 5, 3, 5, 2 };
-
-foreach (int n in nums)
+public static void PrintDuplicates(int[] nums)
 {
-    // 2. Check if the current number has already been added to the set.
-    if (seen.Contains(n))
-        Console.WriteLine($"Duplicate: {n}");
-    
-    // 3. Add the number to the set so we can detect it if it appears again.
-    seen.Add(n);
+    // 1. Use a HashSet for O(1) membership checks.
+    var seen = new HashSet<int>();
+
+    foreach (int n in nums)
+    {
+        // 2. Check if the current number has already been added to the set.
+        if (seen.Contains(n))
+            Console.WriteLine($"Duplicate: {n}");
+        
+        // 3. Add the number to the set so we can detect it if it appears again.
+        seen.Add(n);
+    }
 }
+// PrintDuplicates(new[] { 1, 5, 3, 5, 2 }) → prints "Duplicate: 5"
 ```
 ```python
-# 1. Initialize an empty set for tracking unique elements.
-seen = set()
+def print_duplicates(nums):
+    # 1. Initialize an empty set for tracking unique elements.
+    seen = set()
 
-for n in [1, 5, 3, 5, 2]:
-    # 2. Membership check in a set is O(1) average.
-    if n in seen:
-        print(f"Duplicate: {n}")
-    
-    # 3. Store the element in the set for future reference.
-    seen.add(n)
+    for n in nums:
+        # 2. Membership check in a set is O(1) average.
+        if n in seen:
+            print(f"Duplicate: {n}")
+        
+        # 3. Store the element in the set for future reference.
+        seen.add(n)
+# print_duplicates([1, 5, 3, 5, 2]) → prints "Duplicate: 5"
 ```
 
 ### 3. Complement / Pair Lookup
@@ -114,21 +124,26 @@ for n in [1, 5, 3, 5, 2]:
 
 ```csharp
 // Classic Two Sum pattern: 1-pass approach
-var map = new Dictionary<int, int>();  // Stores: value → index
-
-for (int i = 0; i < nums.Length; i++)
+public static int[] FindPairIndices(int[] nums, int target)
 {
-    // 1. Calculate the 'complement' — what number would we need to reach the target?
-    int complement = target - nums[i];
-    
-    // 2. If the complement is already in our map, we've found our pair!
-    if (map.ContainsKey(complement))
-        // Return the index of the complement and the current index.
-        return new[] { map[complement], i };
+    var map = new Dictionary<int, int>();  // Stores: value → index
+
+    for (int i = 0; i < nums.Length; i++)
+    {
+        // 1. Calculate the 'complement' — what number would we need to reach the target?
+        int complement = target - nums[i];
         
-    // 3. Otherwise, store the current number and its index for future checks.
-    map[nums[i]] = i;
+        // 2. If the complement is already in our map, we've found our pair!
+        if (map.ContainsKey(complement))
+            // Return the index of the complement and the current index.
+            return new[] { map[complement], i };
+            
+        // 3. Otherwise, store the current number and its index for future checks.
+        map[nums[i]] = i;
+    }
+    return Array.Empty<int>();
 }
+// FindPairIndices(new[] { 2, 7, 11, 15 }, 9) → [0, 1]
 ```
 
 ### 4. Grouping with a Dictionary
@@ -138,62 +153,76 @@ for (int i = 0; i < nums.Length; i++)
 
 ```csharp
 // Group strings by their sorted form (anagram grouping)
-var groups = new Dictionary<string, List<string>>();
-
-foreach (string word in words)
+public static Dictionary<string, List<string>> GroupAnagrams(string[] words)
 {
-    // 1. Sort the characters of the word to create a 'canonical' key.
-    //    All anagrams (e.g., "eat", "tea") will result in the same sorted key ("aet").
-    string key = new string(word.OrderBy(c => c).ToArray());
-    
-    // 2. If this key hasn't been seen, initialize a new list for this group.
-    if (!groups.ContainsKey(key)) groups[key] = new List<string>();
-    
-    // 3. Add the original word to the list corresponding to its sorted key.
-    groups[key].Add(word);
+    var groups = new Dictionary<string, List<string>>();
+
+    foreach (string word in words)
+    {
+        // 1. Sort the characters of the word to create a 'canonical' key.
+        //    All anagrams (e.g., "eat", "tea") will result in the same sorted key ("aet").
+        string key = new string(word.OrderBy(c => c).ToArray());
+        
+        // 2. If this key hasn't been seen, initialize a new list for this group.
+        if (!groups.ContainsKey(key)) groups[key] = new List<string>();
+        
+        // 3. Add the original word to the list corresponding to its sorted key.
+        groups[key].Add(word);
+    }
+    return groups;
 }
+// GroupAnagrams(new[] { "eat", "tea", "tan", "ate", "nat", "bat" })
+//   → { "aet": [eat, tea, ate], "ant": [tan, nat], "abt": [bat] }
 ```
 
 **Without LINQ — Option A: sort the characters with `Array.Sort`**
 ```csharp
-var groups = new Dictionary<string, List<string>>();
-
-foreach (string word in words)
+public static Dictionary<string, List<string>> GroupAnagramsBySorting(string[] words)
 {
-    // 1. Copy the characters into an array (ToCharArray is a plain string method, not LINQ).
-    char[] chars = word.ToCharArray();
+    var groups = new Dictionary<string, List<string>>();
 
-    // 2. Sort them in-place. Anagrams end up identical: "eat" and "tea" both become "aet".
-    Array.Sort(chars);
+    foreach (string word in words)
+    {
+        // 1. Copy the characters into an array (ToCharArray is a plain string method, not LINQ).
+        char[] chars = word.ToCharArray();
 
-    // 3. Turn the sorted characters back into a string to use as the key.
-    string key = new string(chars);
+        // 2. Sort them in-place. Anagrams end up identical: "eat" and "tea" both become "aet".
+        Array.Sort(chars);
 
-    // 4. Add the original word to the list for that key (create the list the first time).
-    if (!groups.ContainsKey(key)) groups[key] = new List<string>();
-    groups[key].Add(word);
+        // 3. Turn the sorted characters back into a string to use as the key.
+        string key = new string(chars);
+
+        // 4. Add the original word to the list for that key (create the list the first time).
+        if (!groups.ContainsKey(key)) groups[key] = new List<string>();
+        groups[key].Add(word);
+    }
+    return groups;
 }
 // Time: O(n * k log k) for n words of length k | Space: O(n * k)
 ```
 
 **Without LINQ — Option B: count the letters (no sorting)**
 ```csharp
-var groups = new Dictionary<string, List<string>>();
-
-foreach (string word in words)
+public static Dictionary<string, List<string>> GroupAnagramsByCounting(string[] words)
 {
-    // 1. Count how many times each letter appears (assumes lowercase a-z).
-    int[] counts = new int[26];
-    foreach (char c in word)
-        counts[c - 'a']++;
+    var groups = new Dictionary<string, List<string>>();
 
-    // 2. Join the counts into a key. "eat" and "tea" both give the same counts, so the same key.
-    //    The "#" separator matters: without it, counts like 1,11 and 11,1 would look identical.
-    string key = string.Join("#", counts);
+    foreach (string word in words)
+    {
+        // 1. Count how many times each letter appears (assumes lowercase a-z).
+        int[] counts = new int[26];
+        foreach (char c in word)
+            counts[c - 'a']++;
 
-    // 3. Add the original word to the list for that key (create the list the first time).
-    if (!groups.ContainsKey(key)) groups[key] = new List<string>();
-    groups[key].Add(word);
+        // 2. Join the counts into a key. "eat" and "tea" both give the same counts, so the same key.
+        //    The "#" separator matters: without it, counts like 1,11 and 11,1 would look identical.
+        string key = string.Join("#", counts);
+
+        // 3. Add the original word to the list for that key (create the list the first time).
+        if (!groups.ContainsKey(key)) groups[key] = new List<string>();
+        groups[key].Add(word);
+    }
+    return groups;
 }
 // Time: O(n * k) for n words of length k | Space: O(n * k)
 ```

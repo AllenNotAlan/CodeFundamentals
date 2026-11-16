@@ -36,17 +36,24 @@ Graph:  0 → 1        Adjacency list:
 
 ```csharp
 // Building an adjacency list from an edge list
-var graph = new Dictionary<int, List<int>>();
-void AddEdge(int from, int to, bool undirected = true)
+public static Dictionary<int, List<int>> BuildGraph(int[][] edges, bool undirected = true)
 {
-    if (!graph.ContainsKey(from)) graph[from] = new List<int>();
-    graph[from].Add(to);
-    if (undirected)
+    var graph = new Dictionary<int, List<int>>();
+    foreach (int[] edge in edges)
     {
-        if (!graph.ContainsKey(to)) graph[to] = new List<int>();
-        graph[to].Add(from);   // undirected = edge both ways
+        int from = edge[0], to = edge[1];
+        if (!graph.ContainsKey(from)) graph[from] = new List<int>();
+        graph[from].Add(to);
+        if (undirected)
+        {
+            if (!graph.ContainsKey(to)) graph[to] = new List<int>();
+            graph[to].Add(from);   // undirected = edge both ways
+        }
     }
+    return graph;
 }
+// BuildGraph(new[] { new[] { 0, 1 }, new[] { 0, 2 }, new[] { 1, 2 }, new[] { 2, 0 } }, undirected: false)
+//   → { 0: [1, 2], 1: [2], 2: [0] }
 ```
 
 ---

@@ -32,17 +32,18 @@ Arrays and strings are the bread and butter of LeetCode. Almost every problem to
 **Example:** `nums = [1, 2, 3, 4, 5]` → prints `1`, `2`, `3`, `4`, `5` (one per line)
 
 ```csharp
-// Step-by-step:
-// 1. Initialize an array of integers.
-int[] nums = { 1, 2, 3, 4, 5 };
-
-// 2. Start a loop from index 0 up to (but not including) the length of the array.
-//    We use 'i < nums.Length' to stay within the array's bounds (0 to 4).
-for (int i = 0; i < nums.Length; i++)
+public static void PrintAll(int[] nums)
 {
-    // 3. Access the element at the current index 'i' and print it.
-    Console.WriteLine(nums[i]);
+    // Step-by-step:
+    // 1. Start a loop from index 0 up to (but not including) the length of the array.
+    //    We use 'i < nums.Length' to stay within the array's bounds (0 to 4).
+    for (int i = 0; i < nums.Length; i++)
+    {
+        // 2. Access the element at the current index 'i' and print it.
+        Console.WriteLine(nums[i]);
+    }
 }
+// PrintAll(new[] { 1, 2, 3, 4, 5 }) → prints 1, 2, 3, 4, 5 (one per line)
 ```
 
 ### 2. Prefix & Suffix Patterns — Precompute totals for fast lookups
@@ -70,35 +71,46 @@ Read `prefix[i]` as "the total of everything from the start up to and including 
 
 **C# Implementation:**
 ```csharp
-int[] nums = { 1, 2, 3, 4 };
-int n = nums.Length;
-
 // Prefix Sums: Building sums from left to right
-int[] prefix = new int[n];
+public static int[] BuildPrefixSums(int[] nums)
+{
+    int n = nums.Length;
+    int[] prefix = new int[n];
 
-// 1. SEED: the running total has to start somewhere. The first slot has
-//    nothing before it, so its prefix sum is just the first number itself.
-prefix[0] = nums[0];
+    // 1. SEED: the running total has to start somewhere. The first slot has
+    //    nothing before it, so its prefix sum is just the first number itself.
+    prefix[0] = nums[0];
 
-// 2. GROW: every later slot = "the total I already had" + "one new number".
-//    prefix[i - 1] is the sum of everything up to the previous index, so adding
-//    nums[i] extends that running total by exactly one element. We never re-add
-//    the earlier numbers — they are already baked into prefix[i - 1].
-for (int i = 1; i < n; i++)
-    prefix[i] = prefix[i - 1] + nums[i];
+    // 2. GROW: every later slot = "the total I already had" + "one new number".
+    //    prefix[i - 1] is the sum of everything up to the previous index, so adding
+    //    nums[i] extends that running total by exactly one element. We never re-add
+    //    the earlier numbers — they are already baked into prefix[i - 1].
+    for (int i = 1; i < n; i++)
+        prefix[i] = prefix[i - 1] + nums[i];
+
+    return prefix;
+}
+// BuildPrefixSums(new[] { 1, 2, 3, 4 }) → [1, 3, 6, 10]
 
 // Suffix Sums: Building sums from right to left
-int[] suffix = new int[n];
+public static int[] BuildSuffixSums(int[] nums)
+{
+    int n = nums.Length;
+    int[] suffix = new int[n];
 
-// 1. SEED: same idea, but from the other end. The last slot has nothing after
-//    it, so its suffix sum is just the last number itself.
-suffix[n - 1] = nums[n - 1];
+    // 1. SEED: same idea, but from the other end. The last slot has nothing after
+    //    it, so its suffix sum is just the last number itself.
+    suffix[n - 1] = nums[n - 1];
 
-// 2. GROW: we walk backwards. suffix[i + 1] is the total of everything to the
-//    right, so adding nums[i] extends that running total one step to the left.
-//    The loop starts at n - 2 because index n - 1 was already seeded above.
-for (int i = n - 2; i >= 0; i--)
-    suffix[i] = suffix[i + 1] + nums[i];
+    // 2. GROW: we walk backwards. suffix[i + 1] is the total of everything to the
+    //    right, so adding nums[i] extends that running total one step to the left.
+    //    The loop starts at n - 2 because index n - 1 was already seeded above.
+    for (int i = n - 2; i >= 0; i--)
+        suffix[i] = suffix[i + 1] + nums[i];
+
+    return suffix;
+}
+// BuildSuffixSums(new[] { 1, 2, 3, 4 }) → [10, 9, 7, 4]
 ```
 
 **Why does `prefix[i - 1] + nums[i]` work?**
@@ -153,15 +165,19 @@ void Reverse(int[] arr)
 **Example:** appending `0`, `1`, `2`, … `999` → one string `"0123456789101112…999"`
 
 ```csharp
-// 1. Initialize StringBuilder which uses an internal buffer.
-var sb = new StringBuilder();
+public static string JoinNumbers(int count)
+{
+    // 1. Initialize StringBuilder which uses an internal buffer.
+    var sb = new StringBuilder();
 
-// 2. Append 1000 integers to the buffer.
-for (int i = 0; i < 1000; i++)
-    sb.Append(i);           // Efficiently adds to existing memory
+    // 2. Append 'count' integers to the buffer.
+    for (int i = 0; i < count; i++)
+        sb.Append(i);           // Efficiently adds to existing memory
 
-// 3. Convert the completed buffer into a single string.
-string result = sb.ToString();
+    // 3. Convert the completed buffer into a single string.
+    return sb.ToString();
+}
+// JoinNumbers(1000) → "0123456789101112…999"
 ```
 
 **Why use this?**
