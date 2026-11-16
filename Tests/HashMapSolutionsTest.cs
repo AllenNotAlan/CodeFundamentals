@@ -73,9 +73,30 @@ namespace CodeFundamentals.Tests
         {
             //arrange
             string[] input = { "eat", "tea", "tan", "nat" };
-
+            //var expected = [{ "eat", "tea"}, { "tan", "nat"}];
+            Dictionary<string, List<string>> expected = new Dictionary<string, List<string>>()
+            {
+                {"aet", ["eat", "tea"] },
+                {"ant", ["tan", "nat"] }
+            };
+           
             var result = HashMapSolutions.GroupDictionary(input);
-            
+
+            Assert.Equal(expected, result);
+        }
+
+        [Fact]
+        public void CheckValidAnag_ReturnTrue()
+        {
+            //arrange
+            string word1 = "anagram";
+            string word2 = "nagaram";
+            bool expected = true;
+
+            //act
+            var result = HashMapSolutions.ReturnTrueIfAnag(word1, word2);
+
+            Assert.Equal(expected, result);
         }
     }
 }

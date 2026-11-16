@@ -87,10 +87,60 @@ public class HashMapSolutions
             //turn it back to a string so it can be used as the key for that array.
             string key = new string(chars);
 
-            if (!groups.Contains(key))
+            //If the dictionary does not contain the key, then add the key to the dictionary
+            if (!groups.ContainsKey(key))
             {
-
+                groups[key] = new List<string>();
             }
+
+            //add the word to it's matching key so "tea" will be added under "aet" -> { "aet", ["tea"]} ,etc.
+            groups[key].Add(word);
         }
+
+        return groups;
+    }
+
+
+    public static bool CheckContainsDup(int[] nums)
+    {
+        var seen = new HashSet<int>();
+
+        foreach (int num in nums)
+        {
+            if (seen.Contains(num))
+            {
+                return true;
+            }
+
+            seen.Add(num);
+        }
+
+        return false;
+    }
+
+    public static bool ReturnTrueIfAnag(string word1, string word2)
+    {
+        string[] wordArray = {word1, word2};
+
+        var dict = new Dictionary<string, List<string>>();
+
+        foreach(string word in wordArray)
+        {
+            char[] chars = word.ToCharArray();
+            Array.Sort(chars);
+
+            //change back to string to be used as a key
+            string key = new string(chars);
+
+            if (!dict.ContainsKey(key))
+            {
+                dict[key] = new List<string>(); 
+            }
+
+            //dict[key].Add(word);
+        }
+
+        return true;
+
     }
 }
