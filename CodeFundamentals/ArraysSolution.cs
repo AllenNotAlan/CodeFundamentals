@@ -176,4 +176,119 @@ public class ArraysSolution
             Console.WriteLine(array[i]);
         }
     }
+
+    public static int[] ReturnSumArray(int[] input)
+    {
+        int[] prefixArr = new int[input.Length];
+
+        prefixArr[0] = input[0];
+
+        for (int i = 1; i < input.Length; i++)
+        {
+            prefixArr[i] = prefixArr[i - 1] + input[i];
+        }
+
+        return prefixArr;
+    }
+
+    //this can be optimised 
+    //Solution is O(N) - there is a O(1) solution
+    public static bool CheckIfPalindrome(string input)
+    {
+        char[] inputArray = input.ToCharArray();
+        
+        int left = 0;
+        int right = input.Length - 1;
+
+        while (left < right)
+        {
+            var temp = inputArray[left];
+            inputArray[left] = inputArray[right];
+            inputArray[right] = temp;
+
+            left++;
+            right--;
+        }
+
+        var sb = new StringBuilder();
+        sb.Append(inputArray);
+
+        if (String.Equals(input, sb.ToString(), StringComparison.OrdinalIgnoreCase))
+        {
+            return true;
+        }
+
+        return false;
+    }
+
+    public static bool CheckIfPalindrome_Improved(string input)
+    {
+        char[] inputArray = input.ToCharArray();
+        Array.Reverse(inputArray);
+        
+        string reversedString = new string(inputArray);
+
+        if (string.Equals(reversedString, input, StringComparison.OrdinalIgnoreCase))
+            return true;
+
+        return false;
+    }
+
+    public static bool CheckIfPalindrome_Final(string input)
+    {
+        char[] inputArray = input.ToCharArray(); //this can be removed
+
+        int left = 0;
+        int right = input.Length - 1;
+
+        while (left < right)
+        {
+            if (char.ToLower(inputArray[left]) != char.ToLower(inputArray[right]))
+            {
+                return false;
+            }
+
+            left++;
+            right--;
+        }
+
+        return true;
+    }
+
+    public static bool CheckIfPalindrome_Final2_0(string input)
+    {
+        int left = 0;
+        int right = input.Length - 1;
+
+        while (left < right)
+        {
+            if (char.ToLower(input[left]) != char.ToLower(input[right]))
+            {
+                return false;
+            }
+
+            left++;
+            right--;
+        }
+
+        return true;
+    }
+
+    public static int[] ReturnProductArrayExceptSelf_2(int[] input)
+    {
+        //create the result array - same length as input
+        int[] result = new int[input.Length];
+
+        int left = 0;
+        int right = input.Length - 1;
+
+        while (left < right)
+        {
+            
+        }
+        
+
+        return result;
+    }
+    
 }
