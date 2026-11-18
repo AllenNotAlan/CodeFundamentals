@@ -2,11 +2,24 @@
 
 Sorting and binary search are two foundational tools. Sorting reorganises data to make it easier to work with; binary search lets you find things in O(log n) instead of O(n).
 
+> **Builds on:** [01 — Arrays & Strings](./01-arrays-and-strings.md). A **sorted** array is also the precondition for the [two-pointer](./03-two-pointers.md) pattern, and binary search underpins the heap/"minimise the max" ideas in [11 — Heaps](./11-heaps-priority-queues.md).
+
+> **Catch up**
+> - **Idea:** Sorting often makes a problem simple (two pointers, merging intervals). Binary search finds a target in a **sorted** array in O(log n) by halving the search range each step.
+> - **Spot it:** "sorted array", "find in O(log n)", "insert position", "first / last occurrence", "rotated sorted array", overlapping intervals (sort by start first).
+> - **Template:** `while (low <= high)`: `mid = low + (high - low) / 2`; if too small, `low = mid + 1`, otherwise `high = mid - 1`.
+> - **Cost:** Built-in sort is O(n log n). Binary search is O(log n) time and O(1) space.
+> - **#1 mistake:** Running binary search on data that isn't sorted.
+
 ---
 
 ## Sorting
 
 ### Built-in sorting in C# and Python
+**Task:** Put numbers or words in order: ascending, descending, or by a custom rule such as length.
+
+**Example:** `nums = [5, 2, 8, 1, 9]` → `[1, 2, 5, 8, 9]`; `words = ["banana", "apple", "cherry"]` sorted alphabetically → `["apple", "banana", "cherry"]`
+
 ```csharp
 int[] nums = { 5, 2, 8, 1, 9 };
 
@@ -74,8 +87,14 @@ low=3 > high=2 → not found
 ```
 
 ### Standard template
+**Task:** Given a sorted array and a target, find the target's index (or `-1` if it isn't there) without checking every element.
+
+**Example:** `nums = [1, 3, 5, 7, 9, 11, 13]`, `target = 7` → `3`; `target = 6` → `-1`
+
+*(Full walkthrough: Problem 1 below.)*
+
 ```csharp
-int BinarySearch(int[] nums, int target)
+public static int BinarySearch(int[] nums, int target)
 {
     // 1. Define the search boundaries
     int low = 0, high = nums.Length - 1;
@@ -132,9 +151,13 @@ def binary_search(nums, target):
 ```
 
 ### "Find leftmost / find rightmost" variant
+**Task:** Given a sorted array that may contain duplicates, find the index of the **first** occurrence of the target.
+
+**Example:** `nums = [1, 2, 2, 2, 3]`, `target = 2` → `1`
+
 When there are duplicates and you want the first or last occurrence:
 ```csharp
-int FindFirst(int[] nums, int target)
+public static int FindFirst(int[] nums, int target)
 {
     int low = 0, high = nums.Length - 1, result = -1;
     while (low <= high)
@@ -166,7 +189,7 @@ int FindFirst(int[] nums, int target)
 
 **Solution:** *(see standard template above)*
 ```csharp
-int Search(int[] nums, int target)
+public static int Search(int[] nums, int target)
 {
     int low = 0, high = nums.Length - 1;
     while (low <= high)
@@ -195,7 +218,7 @@ int Search(int[] nums, int target)
 
 **Solution:**
 ```csharp
-int SearchInsert(int[] nums, int target)
+public static int SearchInsert(int[] nums, int target)
 {
     int low = 0, high = nums.Length - 1;
     while (low <= high)
@@ -246,7 +269,7 @@ def search_insert(nums, target):
 
 **Solution:**
 ```csharp
-int FindMin(int[] nums)
+public static int FindMin(int[] nums)
 {
     int low = 0, high = nums.Length - 1;
     
@@ -302,7 +325,7 @@ def find_min(nums):
 
 **Solution:**
 ```csharp
-int[][] Merge(int[][] intervals)
+public static int[][] Merge(int[][] intervals)
 {
     // 1. Sort intervals by their start time (crucial for greedy merging)
     Array.Sort(intervals, (a, b) => a[0].CompareTo(b[0]));
@@ -354,10 +377,29 @@ def merge(intervals):
 
 ---
 
+## Check Yourself
+
+Answer these without scrolling up, then open the answers.
+
+1. Why write `mid = low + (high - low) / 2` instead of `(low + high) / 2`?
+2. When do you use `low <= high`, and when `low < high`?
+3. To find the first occurrence of a duplicate, what do you do when `nums[mid] == target`?
+4. In Search Insert Position, what do you return when the target isn't found?
+5. In Merge Intervals, what must you do first, and when do two intervals overlap?
+
+> **Answers**
+> 1. `low + high` can overflow an `int`. The other form gives the same middle without overflowing.
+> 2. `<=` for a standard search. `<` when you're converging on a boundary, as in Find Minimum in Rotated Sorted Array.
+> 3. Record `result = mid`, then keep searching left with `high = mid - 1`.
+> 4. `low`. After the loop it always points to the correct insertion index.
+> 5. Sort by start time. The current interval overlaps the last merged one unless `merged[^1][1] < interval[0]`.
+
+---
+
 ## LeetCode Problems to Try Now
 
 - #704 — Binary Search ⭐
 - #35 — Search Insert Position ⭐
-- #153 — Find Minimum in Rotated Sorted Array
-- #56 — Merge Intervals
-- #34 — Find First and Last Position of Element in Sorted Array
+- #153 — Find Minimum in Rotated Sorted Array ⭐⭐ (modified binary search)
+- #56 — Merge Intervals ⭐⭐ (sort first, then sweep)
+- #34 — Find First and Last Position of Element in Sorted Array ⭐⭐ (leftmost/rightmost variant)

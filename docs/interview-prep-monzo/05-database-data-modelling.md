@@ -2,6 +2,13 @@
 
 Fintech systems live and die by their data layer. This interview tests whether you can design schemas that are correct, performant, and auditable — because when you're storing money, there's no room for "eventually we'll fix it."
 
+> **Catch up**
+> - **Double-entry ledger:** every movement is a debit plus a matching credit, and the system always sums to zero. Store `balance_after` on each entry so "balance at a point in time" is one indexed lookup.
+> - **Never mutate, always compensate:** reversals, refunds and chargebacks post a **new** compensating pair that links back with `reverses_transaction_id`. Never `UPDATE` or `DELETE` a posted entry.
+> - **Ledger vs transactions feed:** the ledger is the source of truth for money. The `transactions` table is the user-facing view, where a card payment starts as `pending` and only reaches the ledger when it settles.
+> - **Deleting users:** you can't hard-delete financial data (FCA/PSD2 retention is 5–7 years). Anonymise the PII for GDPR and keep the ledger intact.
+> - **Scaling and concurrency:** the thresholds are deliberately higher than the generic ones (under 100M rows: one Postgres; 100M–1B: partition + replicas; over 1B: shard). Balance checks always read from the primary. Prevent overdraft with `UPDATE … WHERE balance >= amount`.
+
 ---
 
 ## Question 1 — Design the Schema for a Banking Ledger
@@ -94,6 +101,30 @@ COMMIT;
 
 The `balance >= 5000` check in the UPDATE acts as an application-level constraint — if the balance is insufficient, the UPDATE affects 0 rows and the application rolls back.
 
+### Reversals, Refunds & Chargebacks — never mutate, always compensate
+
+A core ledger rule: **you never update or delete a posted entry.** History is immutable (regulators require it). To "undo" money movement you post a **new, compensating** pair of entries that nets the original to zero.
+
+```
+Original: Alice → Bob, £50
+  tx_1: DEBIT  Alice -£50
+  tx_1: CREDIT Bob   +£50
+
+Reversal (e.g. Bob refunds, or a chargeback):
+  tx_2: DEBIT  Bob   -£50   (references tx_1 as the reversed transaction)
+  tx_2: CREDIT Alice +£50
+```
+
+| Operation | What it is | Ledger effect |
+|-----------|-----------|---------------|
+| **Reversal** | Cancel an auth/payment before settlement | Release the hold; no settled entry ever posts |
+| **Refund** | Merchant returns money after settlement | New compensating pair, linked to the original |
+| **Chargeback** | Customer disputes; scheme forces a reversal | Compensating pair + a dispute/case record; may reverse again if the merchant wins |
+
+**Schema hook:** add a nullable `reverses_transaction_id` to `ledger_entries` so every compensating entry points at what it undoes. This gives you a clean audit trail ("this £50 credit reverses tx_1 due to chargeback case C-123") and lets reconciliation prove the books still balance to zero.
+
+> ⚠️ **Common wrong answer:** "I'd just `UPDATE` the original row's status to `reversed`" or `DELETE` it. That destroys the audit trail and breaks double-entry invariants. The correct answer is always *post a new compensating entry*.
+
 ---
 
 ## Question 2 — Transactions Table Design
@@ -174,6 +205,8 @@ WHERE category = 'groceries';
 ```
 
 ### Index Selection Rules
+
+> 📎 Same general rules as **[generic §Q3](../interview-prep-generic/05-database-data-modelling.md#index-selection-rules)** — equality columns first, range/sort last, mind selectivity, partial indexes for hot paths. Shown here against the transactions table.
 
 | Rule | Explanation |
 |------|-------------|
@@ -311,6 +344,8 @@ Cons:
 
 ### Decision Framework
 
+> 📌 **Deliberately higher than the [generic baseline](../interview-prep-generic/05-database-data-modelling.md#decision-framework).** Financial-data retention (5–7 years, see Q4) keeps far more rows per table, and a single well-tuned Postgres node copes with more than people expect. These thresholds are *intentionally* higher than the general-purpose defaults — say so in the interview.
+
 ```
 < 100M rows     → Single Postgres, good indexes, done
 100M – 1B rows  → Partitioning + read replicas
@@ -320,6 +355,8 @@ Cons:
 ---
 
 ## Question 6 — Optimistic vs Pessimistic Locking
+
+> 📎 The three strategies below (pessimistic / optimistic / atomic-conditional) are the same general concurrency-control mechanics explained in **[generic §Q6](../interview-prep-generic/05-database-data-modelling.md#question-6--optimistic-vs-pessimistic-locking)**. This section applies them to the fintech case — preventing **overdraft** rather than overselling — where the atomic-conditional guard is especially elegant.
 
 > "Two requests try to debit the same account simultaneously. How do you prevent overdraft?"
 

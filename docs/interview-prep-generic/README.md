@@ -7,6 +7,8 @@
 
 ## 📚 Contents
 
+> 💡 **New here? Read [System Design Building Blocks](./06-system-design-building-blocks.md) first.** It's the reusable toolkit (load balancing, caching, replication, partitioning, consistency, messaging, resilience) that the worked questions below assemble. Learn the blocks once, then the question-driven chapters show you how to compose them.
+
 | # | Topic | Focus |
 |---|-------|-------|
 | 1 | [System Design](./01-system-design.md) | Scalable architectures, data flow, trade-offs |
@@ -14,6 +16,9 @@
 | 3 | [Behavioural & Culture](./03-behavioural.md) | Ownership, collaboration, incident response, leadership |
 | 4 | [API Design & Distributed Systems](./04-api-design-distributed-systems.md) | RESTful APIs, event-driven architecture, consistency |
 | 5 | [Database & Data Modelling](./05-database-data-modelling.md) | Schema design, transactions, scaling patterns |
+| 6 | [System Design Building Blocks](./06-system-design-building-blocks.md) | **Foundational toolkit** — the reusable components + DDIA reading map |
+
+> 📖 Chapter 6 doubles as a reading map for *Designing Data-Intensive Applications* (Kleppmann), pointing each building block to the DDIA chapter that explains the theory beneath it.
 
 ---
 
@@ -48,3 +53,17 @@
 3. **Don't skip Behavioural** — every company cares about culture fit
 4. Work through each doc's questions, attempt answers before reading the solutions
 5. Practice explaining your reasoning out loud — interviewers assess communication as much as correctness
+
+---
+
+## 🧭 Maintaining these docs (contributor note)
+
+This set is the **canonical home** for general interview-prep theory. Domain tracks (e.g. `interview-prep-monzo`) are **thin overlays**: they link back to the canonical section here and add only domain-specific deltas.
+
+**Rules to prevent duplication drift:**
+- A concept lives in **one** place. If it's general (idempotency, Outbox, circuit breaker, versioning, index-selection rules, locking strategies, the latency table), it belongs here and carries a `📌 Canonical source` banner.
+- Domain tracks must **link** to the canonical section, not copy it, and add only what's genuinely domain-specific (marked as a "delta").
+- If you fix a canonical section, you fix it once — no parallel copies to chase.
+- Deliberately different domain values (e.g. fintech scaling thresholds) must be **labelled as intentional** with a one-line reason, so they don't read as contradictions.
+- **Keep the Catch up blocks in sync.** Every chapter (here, in the coding chapters and in the domain tracks) opens with a `> **Catch up**` block that `study-html/_build/convert-v2.mjs` also collects into the Revision page. When you change a chapter, check that its Catch up and Check Yourself answers still match the body. They must only repeat what the chapter says, never add to it. Keep Catch up blocks to five bullets.
+- **C# examples in the learning chapters are `public static` methods** with explicit parameters and a usage comment after the closing brace (`// CountFrequency(new[] { 1, 2, 2 }) → { 1:1, 2:2 }`). Classes (`ListNode`, `Trie`, …), nested helpers and short API demos are the exception.

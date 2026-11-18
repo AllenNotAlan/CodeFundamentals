@@ -7,6 +7,8 @@
 
 ## 📚 Contents
 
+> 💡 **Read the [System Design Building Blocks](../interview-prep-generic/06-system-design-building-blocks.md) toolkit first** (in the generic set). It's the reusable vocabulary — load balancing, caching, replication, partitioning, consistency models, messaging, resilience — plus a *Designing Data-Intensive Applications* reading map. The Monzo questions below assume those blocks and apply them to fintech (payments, ledgers, card auth).
+
 | # | Topic | Focus |
 |---|-------|-------|
 | 1 | [System Design](./01-system-design.md) | Payments, ledgers, real-time notifications, card processing |

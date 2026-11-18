@@ -2,6 +2,15 @@
 
 The sliding window technique maintains a contiguous subarray (or substring) as you slide it across the input. It transforms O(n²) nested-loop solutions into O(n).
 
+> **Builds on:** [03 — Two Pointers](./03-two-pointers.md) (a window is just two pointers moving in the same direction) and [02 — Hash Maps & Sets](./02-hash-maps-and-sets.md) (for counting what's inside the window).
+
+> **Catch up**
+> - **Idea:** Keep a contiguous window and slide it across the input, updating its state as elements enter and leave. This turns O(n²) into O(n).
+> - **Spot it:** a contiguous subarray or substring with a condition: "maximum/minimum subarray", "longest/shortest substring", "all distinct characters", "sum at least".
+> - **Template:** Expand `right` one step. While the window is invalid, undo `nums[left]` and move `left++`. Then record `right - left + 1`.
+> - **Cost:** O(n) time, O(1) extra space. A character map counts as O(1) because the alphabet is fixed (at most 128 ASCII characters).
+> - **#1 mistake:** Forgetting to shrink the window when the condition is broken.
+
 ---
 
 ## Core Concepts
@@ -27,8 +36,14 @@ Think of a window frame sliding across your data:
 ## Patterns with Code
 
 ### Fixed window — sliding max sum of size k
+**Task:** Given an array and a window size `k`, find the largest sum of any `k` consecutive numbers.
+
+**Example:** `nums = [2, 1, 5, 1, 3, 2]`, `k = 3` → `9` (the window `5 + 1 + 3`)
+
+*(Related: Problem 1 below.)*
+
 ```csharp
-int MaxSumSubarray(int[] nums, int k)
+public static int MaxSumSubarray(int[] nums, int k)
 {
     // 1. Build the initial window sum of size 'k'.
     int windowSum = 0;
@@ -70,9 +85,15 @@ def max_sum_subarray(nums, k):
 ```
 
 ### Variable window — longest subarray satisfying a condition
+**Task:** Find the longest stretch of consecutive numbers that stays valid. Here, "valid" means every number is at most `limit`.
+
+**Example:** `nums = [1, 2, 5, 1, 2, 3]`, `limit = 3` → `3` (the stretch `[1, 2, 3]`; the `5` breaks the first run)
+
+*(Problems 3 and 4 below use the same expand-and-shrink idea.)*
+
 ```csharp
 // Template: find longest subarray with all elements ≤ limit
-int LongestValid(int[] nums, int limit)
+public static int LongestValid(int[] nums, int limit)
 {
     int left = 0, maxLen = 0;
     
@@ -111,7 +132,7 @@ int LongestValid(int[] nums, int limit)
 
 **Solution:**
 ```csharp
-double FindMaxAverage(int[] nums, int k)
+public static double FindMaxAverage(int[] nums, int k)
 {
     // 1. Calculate sum for the first 'k' elements.
     double windowSum = 0;
@@ -160,7 +181,7 @@ def find_max_average(nums, k):
 
 **Solution:**
 ```csharp
-int MaxProfit(int[] prices)
+public static int MaxProfit(int[] prices)
 {
     // 1. Initialize tracker for the lowest price seen so far.
     int minPrice = int.MaxValue;
@@ -208,7 +229,7 @@ def max_profit(prices):
 
 **Solution (variable window):**
 ```csharp
-int LengthOfLongestSubstring(string s)
+public static int LengthOfLongestSubstring(string s)
 {
     // 1. Store the last seen index of each character to jump the left pointer quickly.
     var charIndex = new Dictionary<char, int>(); 
@@ -263,7 +284,7 @@ def length_of_longest_substring(s):
 
 **Solution:**
 ```csharp
-int MinSubArrayLen(int target, int[] nums)
+public static int MinSubArrayLen(int target, int[] nums)
 {
     int left = 0, windowSum = 0;
     int minLen = int.MaxValue;
@@ -333,10 +354,29 @@ Signal words: *"maximum/minimum subarray"*, *"longest/shortest substring"*, *"al
 
 ---
 
+## Check Yourself
+
+Answer these without scrolling up, then open the answers.
+
+1. What's the difference between a fixed and a variable window?
+2. In a fixed window, how do you update the sum in O(1) when the window slides?
+3. What is the formula for the current window length?
+4. In Longest Substring Without Repeating Characters, what does the dictionary store, and how does `left` move?
+5. What question tells you a problem is a sliding window problem?
+
+> **Answers**
+> 1. A fixed window has a set width `k`, and both ends move together. A variable window grows with `right` and shrinks from `left` when a condition is broken.
+> 2. Add the new element on the right and subtract the one that left: `windowSum += nums[i] - nums[i - k]`.
+> 3. `right - left + 1` (both ends inclusive).
+> 4. The last index where each character was seen. If the current character was last seen inside the window, `left` jumps to just past that position.
+> 5. "Does the problem ask about a contiguous subarray or substring with some condition on its contents?"
+
+---
+
 ## LeetCode Problems to Try Now
 
 - #121 — Best Time to Buy and Sell Stock ⭐
 - #3 — Longest Substring Without Repeating Characters ⭐
-- #643 — Maximum Average Subarray I
-- #209 — Minimum Size Subarray Sum
-- #1004 — Max Consecutive Ones III (variable window with a budget)
+- #643 — Maximum Average Subarray I ⭐
+- #209 — Minimum Size Subarray Sum ⭐⭐ (variable window)
+- #1004 — Max Consecutive Ones III ⭐⭐ (variable window with a budget)

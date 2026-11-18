@@ -2,6 +2,13 @@
 
 System design interviews for .NET roles expect you to map architectural patterns to concrete .NET technologies. You should know when to reach for Azure Service Bus vs Kafka, EF Core vs Dapper, and how ASP.NET Core fits into a microservice topology.
 
+> **Catch up**
+> - **The general method still applies:** see [Generic System Design](../interview-prep-generic/01-system-design.md). The difference here is that you map each component to a concrete .NET or Azure technology.
+> - **Questions covered:** background jobs (Worker Service + Service Bus, Hangfire or Quartz.NET, KEDA scaling), multi-tenant SaaS (tenant middleware + EF Core global query filters), a real-time dashboard (SignalR, scaled out with Azure SignalR or a Redis backplane), CQRS + event sourcing (MediatR handlers and projectors), and layered caching.
+> - **Caching layers:** `IMemoryCache` (per instance) → Redis via `IDistributedCache` (shared) → database. Remove the key from both caches when you write.
+> - **Tenant isolation trade-off:** a shared DB with a `TenantId` column is cheapest. Schema per tenant is in the middle. A database per tenant gives the most isolation at the highest cost.
+> - **Say out loud:** name the .NET technology, know the DI lifetimes (a singleton can't depend on a scoped service), and use the built-in health checks for readiness and liveness probes.
+
 ---
 
 ## Framework for Answering

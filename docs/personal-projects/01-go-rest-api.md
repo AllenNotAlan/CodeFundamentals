@@ -4,6 +4,14 @@
 > **Timeline:** Weeks 1–3 (15–20 hours total)
 > **Outcome:** A working REST API in Go that manages user accounts and transactions
 
+> **Where I left off** *(update this whenever you stop working on the project)*
+> - **Current phase:** Not started. Next is Phase 1: Hello World API.
+> - **Last thing done:** —
+> - **Next action:** —
+> - **Last updated:** —
+>
+> Tick items off in the **Definition of Done** at the end of this page as you finish them.
+
 ---
 
 ## 🎯 Why This Project

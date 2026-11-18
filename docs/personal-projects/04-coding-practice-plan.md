@@ -149,70 +149,70 @@ Weekend:   One "mock interview" problem (random pattern, timed 25 min)
 
 ## 📊 Progress Tracker
 
-Copy this into a separate file or use it directly. Mark each problem as you complete it:
+Copy this into a separate file or use it directly. Mark each problem as you complete it. Each time you re-solve a problem during a review (see [Returning after a break](../code-learning/README.md#-returning-after-a-break)), write the date under **Last reviewed**:
 
 ```
 Status: ✅ = Solved cleanly | ⚠️ = Solved with hints | ❌ = Needed solution | 🔄 = Redo needed
 
 Week 1-2: Arrays & Hash Maps
-[ ] #1  Two Sum                          | Status: ___ | Time: ___min | Notes: ___
-[ ] #2  Valid Anagram                    | Status: ___ | Time: ___min | Notes: ___
-[ ] #3  Group Anagrams                   | Status: ___ | Time: ___min | Notes: ___
-[ ] #4  Top K Frequent Elements          | Status: ___ | Time: ___min | Notes: ___
-[ ] #5  Product of Array Except Self     | Status: ___ | Time: ___min | Notes: ___
-[ ] #6  Longest Consecutive Sequence     | Status: ___ | Time: ___min | Notes: ___
-[ ] #7  Contains Duplicate               | Status: ___ | Time: ___min | Notes: ___
-[ ] #8  Valid Sudoku                     | Status: ___ | Time: ___min | Notes: ___
-[ ] #9  Encode and Decode Strings        | Status: ___ | Time: ___min | Notes: ___
-[ ] #10 Longest Substring No Repeat      | Status: ___ | Time: ___min | Notes: ___
+[ ] #1  Two Sum                          | Status: ___ | Time: ___min | Last reviewed: ___ | Notes: ___
+[ ] #2  Valid Anagram                    | Status: ___ | Time: ___min | Last reviewed: ___ | Notes: ___
+[ ] #3  Group Anagrams                   | Status: ___ | Time: ___min | Last reviewed: ___ | Notes: ___
+[ ] #4  Top K Frequent Elements          | Status: ___ | Time: ___min | Last reviewed: ___ | Notes: ___
+[ ] #5  Product of Array Except Self     | Status: ___ | Time: ___min | Last reviewed: ___ | Notes: ___
+[ ] #6  Longest Consecutive Sequence     | Status: ___ | Time: ___min | Last reviewed: ___ | Notes: ___
+[ ] #7  Contains Duplicate               | Status: ___ | Time: ___min | Last reviewed: ___ | Notes: ___
+[ ] #8  Valid Sudoku                     | Status: ___ | Time: ___min | Last reviewed: ___ | Notes: ___
+[ ] #9  Encode and Decode Strings        | Status: ___ | Time: ___min | Last reviewed: ___ | Notes: ___
+[ ] #10 Longest Substring No Repeat      | Status: ___ | Time: ___min | Last reviewed: ___ | Notes: ___
 
 Week 3-4: Two Pointers & Sliding Window
-[ ] #11 Valid Palindrome                 | Status: ___ | Time: ___min | Notes: ___
-[ ] #12 Two Sum II                       | Status: ___ | Time: ___min | Notes: ___
-[ ] #13 3Sum                             | Status: ___ | Time: ___min | Notes: ___
-[ ] #14 Container With Most Water        | Status: ___ | Time: ___min | Notes: ___
-[ ] #15 Trapping Rain Water             | Status: ___ | Time: ___min | Notes: ___
-[ ] #16 Best Time to Buy/Sell Stock      | Status: ___ | Time: ___min | Notes: ___
-[ ] #17 Minimum Window Substring         | Status: ___ | Time: ___min | Notes: ___
-[ ] #18 Sliding Window Maximum           | Status: ___ | Time: ___min | Notes: ___
-[ ] #19 Permutation in String            | Status: ___ | Time: ___min | Notes: ___
-[ ] #20 Longest Repeating Char Replace   | Status: ___ | Time: ___min | Notes: ___
+[ ] #11 Valid Palindrome                 | Status: ___ | Time: ___min | Last reviewed: ___ | Notes: ___
+[ ] #12 Two Sum II                       | Status: ___ | Time: ___min | Last reviewed: ___ | Notes: ___
+[ ] #13 3Sum                             | Status: ___ | Time: ___min | Last reviewed: ___ | Notes: ___
+[ ] #14 Container With Most Water        | Status: ___ | Time: ___min | Last reviewed: ___ | Notes: ___
+[ ] #15 Trapping Rain Water             | Status: ___ | Time: ___min | Last reviewed: ___ | Notes: ___
+[ ] #16 Best Time to Buy/Sell Stock      | Status: ___ | Time: ___min | Last reviewed: ___ | Notes: ___
+[ ] #17 Minimum Window Substring         | Status: ___ | Time: ___min | Last reviewed: ___ | Notes: ___
+[ ] #18 Sliding Window Maximum           | Status: ___ | Time: ___min | Last reviewed: ___ | Notes: ___
+[ ] #19 Permutation in String            | Status: ___ | Time: ___min | Last reviewed: ___ | Notes: ___
+[ ] #20 Longest Repeating Char Replace   | Status: ___ | Time: ___min | Last reviewed: ___ | Notes: ___
 
 Week 5-6: Stacks, Binary Search & Linked Lists
-[ ] #21 Valid Parentheses                | Status: ___ | Time: ___min | Notes: ___
-[ ] #22 Min Stack                        | Status: ___ | Time: ___min | Notes: ___
-[ ] #23 Daily Temperatures               | Status: ___ | Time: ___min | Notes: ___
-[ ] #24 Evaluate Reverse Polish Notation | Status: ___ | Time: ___min | Notes: ___
-[ ] #25 Binary Search                    | Status: ___ | Time: ___min | Notes: ___
-[ ] #26 Search in Rotated Sorted Array   | Status: ___ | Time: ___min | Notes: ___
-[ ] #27 Find Min in Rotated Array        | Status: ___ | Time: ___min | Notes: ___
-[ ] #28 Reverse Linked List              | Status: ___ | Time: ___min | Notes: ___
-[ ] #29 Merge Two Sorted Lists           | Status: ___ | Time: ___min | Notes: ___
-[ ] #30 Linked List Cycle                | Status: ___ | Time: ___min | Notes: ___
+[ ] #21 Valid Parentheses                | Status: ___ | Time: ___min | Last reviewed: ___ | Notes: ___
+[ ] #22 Min Stack                        | Status: ___ | Time: ___min | Last reviewed: ___ | Notes: ___
+[ ] #23 Daily Temperatures               | Status: ___ | Time: ___min | Last reviewed: ___ | Notes: ___
+[ ] #24 Evaluate Reverse Polish Notation | Status: ___ | Time: ___min | Last reviewed: ___ | Notes: ___
+[ ] #25 Binary Search                    | Status: ___ | Time: ___min | Last reviewed: ___ | Notes: ___
+[ ] #26 Search in Rotated Sorted Array   | Status: ___ | Time: ___min | Last reviewed: ___ | Notes: ___
+[ ] #27 Find Min in Rotated Array        | Status: ___ | Time: ___min | Last reviewed: ___ | Notes: ___
+[ ] #28 Reverse Linked List              | Status: ___ | Time: ___min | Last reviewed: ___ | Notes: ___
+[ ] #29 Merge Two Sorted Lists           | Status: ___ | Time: ___min | Last reviewed: ___ | Notes: ___
+[ ] #30 Linked List Cycle                | Status: ___ | Time: ___min | Last reviewed: ___ | Notes: ___
 
 Week 7-8: Trees, Graphs & DP
-[ ] #31 Max Depth of Binary Tree         | Status: ___ | Time: ___min | Notes: ___
-[ ] #32 Invert Binary Tree               | Status: ___ | Time: ___min | Notes: ___
-[ ] #33 Same Tree                        | Status: ___ | Time: ___min | Notes: ___
-[ ] #34 Binary Tree Level Order          | Status: ___ | Time: ___min | Notes: ___
-[ ] #35 Validate BST                     | Status: ___ | Time: ___min | Notes: ___
-[ ] #36 Lowest Common Ancestor BST       | Status: ___ | Time: ___min | Notes: ___
-[ ] #37 Number of Islands                | Status: ___ | Time: ___min | Notes: ___
-[ ] #38 Clone Graph                      | Status: ___ | Time: ___min | Notes: ___
-[ ] #39 Course Schedule                  | Status: ___ | Time: ___min | Notes: ___
-[ ] #40 Pacific Atlantic Water Flow      | Status: ___ | Time: ___min | Notes: ___
-[ ] #41 Climbing Stairs                  | Status: ___ | Time: ___min | Notes: ___
-[ ] #42 House Robber                     | Status: ___ | Time: ___min | Notes: ___
-[ ] #43 Coin Change                      | Status: ___ | Time: ___min | Notes: ___
-[ ] #44 Longest Increasing Subsequence   | Status: ___ | Time: ___min | Notes: ___
+[ ] #31 Max Depth of Binary Tree         | Status: ___ | Time: ___min | Last reviewed: ___ | Notes: ___
+[ ] #32 Invert Binary Tree               | Status: ___ | Time: ___min | Last reviewed: ___ | Notes: ___
+[ ] #33 Same Tree                        | Status: ___ | Time: ___min | Last reviewed: ___ | Notes: ___
+[ ] #34 Binary Tree Level Order          | Status: ___ | Time: ___min | Last reviewed: ___ | Notes: ___
+[ ] #35 Validate BST                     | Status: ___ | Time: ___min | Last reviewed: ___ | Notes: ___
+[ ] #36 Lowest Common Ancestor BST       | Status: ___ | Time: ___min | Last reviewed: ___ | Notes: ___
+[ ] #37 Number of Islands                | Status: ___ | Time: ___min | Last reviewed: ___ | Notes: ___
+[ ] #38 Clone Graph                      | Status: ___ | Time: ___min | Last reviewed: ___ | Notes: ___
+[ ] #39 Course Schedule                  | Status: ___ | Time: ___min | Last reviewed: ___ | Notes: ___
+[ ] #40 Pacific Atlantic Water Flow      | Status: ___ | Time: ___min | Last reviewed: ___ | Notes: ___
+[ ] #41 Climbing Stairs                  | Status: ___ | Time: ___min | Last reviewed: ___ | Notes: ___
+[ ] #42 House Robber                     | Status: ___ | Time: ___min | Last reviewed: ___ | Notes: ___
+[ ] #43 Coin Change                      | Status: ___ | Time: ___min | Last reviewed: ___ | Notes: ___
+[ ] #44 Longest Increasing Subsequence   | Status: ___ | Time: ___min | Last reviewed: ___ | Notes: ___
 
 Bonus: Fintech-Relevant
-[ ] #45 LRU Cache                        | Status: ___ | Time: ___min | Notes: ___
-[ ] #46 Design Hit Counter               | Status: ___ | Time: ___min | Notes: ___
-[ ] #47 Time Based Key-Value Store       | Status: ___ | Time: ___min | Notes: ___
-[ ] #48 Merge Intervals                  | Status: ___ | Time: ___min | Notes: ___
-[ ] #49 Task Scheduler                   | Status: ___ | Time: ___min | Notes: ___
-[ ] #50 Serialize/Deserialize Tree       | Status: ___ | Time: ___min | Notes: ___
+[ ] #45 LRU Cache                        | Status: ___ | Time: ___min | Last reviewed: ___ | Notes: ___
+[ ] #46 Design Hit Counter               | Status: ___ | Time: ___min | Last reviewed: ___ | Notes: ___
+[ ] #47 Time Based Key-Value Store       | Status: ___ | Time: ___min | Last reviewed: ___ | Notes: ___
+[ ] #48 Merge Intervals                  | Status: ___ | Time: ___min | Last reviewed: ___ | Notes: ___
+[ ] #49 Task Scheduler                   | Status: ___ | Time: ___min | Last reviewed: ___ | Notes: ___
+[ ] #50 Serialize/Deserialize Tree       | Status: ___ | Time: ___min | Last reviewed: ___ | Notes: ___
 ```
 
 

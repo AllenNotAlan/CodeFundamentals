@@ -2,6 +2,15 @@
 
 Dynamic programming (DP) sounds scary but at its core it's simple: **solve a big problem by breaking it into smaller subproblems and caching the results so you don't recompute them.**
 
+> **Builds on:** [08 — Trees & Recursion](./08-trees-and-recursion.md) (DP is recursion + memoization). Contrast it with [15 — Greedy](./15-greedy.md), and once the machinery clicks, move on to the shapes in [13 — DP Patterns](./13-dynamic-programming-patterns.md).
+
+> **Catch up**
+> - **Idea:** Break a big problem into overlapping subproblems and cache each answer so it's computed once. Do it top-down (recursion plus a memo) or bottom-up (fill a table from the smallest case).
+> - **Spot it:** "number of ways", "minimum / maximum cost", "can you reach / is it possible", "how many combinations".
+> - **Template:** Define `dp[i]` in one sentence, write the recurrence, set the base cases, then fill smaller subproblems first. For example, `dp[i] = max(dp[i-1], dp[i-2] + nums[i])` in House Robber.
+> - **Cost:** Usually O(n) time (each subproblem once). O(n) space for the table, or O(1) if you only keep the last two values.
+> - **#1 mistake:** Coding before you've written down what `dp[i]` means.
+
 ---
 
 ## Core Concepts
@@ -52,7 +61,7 @@ Both have **O(n) time** (each subproblem solved once). Bottom-up usually has bet
 
 **Naive recursion (exponential — don't do this):**
 ```csharp
-int Fib(int n)
+public static int Fib(int n)
 {
     // 1. Base cases: return n if it is 0 or 1
     if (n <= 1) return n;
@@ -65,7 +74,7 @@ int Fib(int n)
 
 **Top-down with memo:**
 ```csharp
-int Fib(int n, Dictionary<int, int> memo = null)
+public static int Fib(int n, Dictionary<int, int> memo = null)
 {
     // 1. Initialize the cache if it doesn't exist
     memo ??= new Dictionary<int, int>();
@@ -84,7 +93,7 @@ int Fib(int n, Dictionary<int, int> memo = null)
 
 **Bottom-up (most efficient):**
 ```csharp
-int Fib(int n)
+public static int Fib(int n)
 {
     // 1. Base cases
     if (n <= 1) return n;
@@ -133,7 +142,7 @@ def fib(n):
 
 **Solution:**
 ```csharp
-int ClimbStairs(int n)
+public static int ClimbStairs(int n)
 {
     // 1. Base cases: 1 way for 1 step, 2 ways for 2 steps
     if (n <= 2) return n;
@@ -189,7 +198,7 @@ dp[i] = max(
 
 **Solution:**
 ```csharp
-int Rob(int[] nums)
+public static int Rob(int[] nums)
 {
     // 1. Edge case: Only one house to rob
     if (nums.Length == 1) return nums[0];
@@ -248,7 +257,7 @@ dp[i] = min over all coins c where c <= i:
 
 **Solution:**
 ```csharp
-int CoinChange(int[] coins, int amount)
+public static int CoinChange(int[] coins, int amount)
 {
     // 1. Create a DP table where dp[i] is the min coins for amount i
     int[] dp = new int[amount + 1];
@@ -315,7 +324,7 @@ dp[i][j] = dp[i-1][j] + dp[i][j-1]
 
 **Solution:**
 ```csharp
-int UniquePaths(int m, int n)
+public static int UniquePaths(int m, int n)
 {
     // 1. Create a 2D table to store path counts for each cell
     int[,] dp = new int[m, n];
@@ -376,11 +385,30 @@ def unique_paths(m, n):
 
 ---
 
+## Check Yourself
+
+Answer these without scrolling up, then open the answers.
+
+1. What's the difference between top-down and bottom-up DP?
+2. List the four steps of the DP thought process.
+3. Why is Climbing Stairs the same as Fibonacci?
+4. In Coin Change, why fill the table with `amount + 1` and not `int.MaxValue`?
+5. Why does a greedy "always take the largest coin" fail for coins `[1, 5, 11]` and amount 15?
+
+> **Answers**
+> 1. Top-down is recursive and caches results in a memo. Bottom-up is iterative and fills a table from the smallest subproblem upward, with no recursion stack.
+> 2. Define what `dp[i]` means, write the recurrence, identify the base cases, and choose an order that solves smaller subproblems first.
+> 3. To reach stair `n` you came from `n - 1` or `n - 2`, so `dp[n] = dp[n-1] + dp[n-2]`.
+> 4. `amount + 1` is more than any real answer, so it works as "infinity". `int.MaxValue` overflows when you add 1.
+> 5. Greedy takes 11 + 1 + 1 + 1 + 1 (5 coins). DP considers every choice and finds 5 + 5 + 5 (3 coins).
+
+---
+
 ## LeetCode Problems to Try Now
 
 - #509 — Fibonacci Number ⭐
 - #70 — Climbing Stairs ⭐
 - #198 — House Robber ⭐
-- #322 — Coin Change
-- #62 — Unique Paths
-- #746 — Min Cost Climbing Stairs (very similar to Climbing Stairs)
+- #746 — Min Cost Climbing Stairs ⭐ (very similar to Climbing Stairs)
+- #62 — Unique Paths ⭐⭐ (2D grid DP)
+- #322 — Coin Change ⭐⭐ (unbounded, min-count)

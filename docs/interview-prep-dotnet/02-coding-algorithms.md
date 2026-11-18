@@ -2,6 +2,13 @@
 
 .NET coding interviews test both algorithmic thinking and C# fluency. Interviewers expect idiomatic C#, proper use of the type system, and awareness of performance characteristics.
 
+> **Catch up**
+> - **Async:** never block with `.Result`, never write `async void`, and pass a `CancellationToken` through every async method. Throttle concurrency with `SemaphoreSlim` or `Parallel.ForEachAsync`.
+> - **EF Core LINQ:** keep queries as `IQueryable` and project with `.Select()` so they run as one SQL query. Watch for N+1 lazy loads and for running the same query twice.
+> - **Types and memory:** a struct stored in an interface variable gets boxed. Use generic constraints to avoid that, and `Span<T>` for allocation-free parsing.
+> - **DI lifetimes:** transient, scoped and singleton. A singleton holding a scoped service is a captive dependency. Turn on `ValidateScopes` and `ValidateOnBuild` to catch it.
+> - **Other questions covered:** a `Result<T>` type instead of exceptions for expected failures, a thread-safe cache with `ConcurrentDictionary` (and `Lazy<T>` to stop a stampede), and `switch` expressions with property patterns.
+
 ---
 
 ## What .NET Interviewers Specifically Assess

@@ -2,6 +2,13 @@
 
 .NET database interviews focus heavily on Entity Framework Core, performance tuning, and the patterns that bridge your domain model to the database.
 
+> **Catch up**
+> - **EF Core setup:** a scoped `DbContext` (one per request), retry on transient failures, Fluent API configuration classes, and global query filters for soft deletes.
+> - **Pitfalls to name:** N+1 queries (use `.Include()` or a `.Select()` projection), tracking overhead (use `.AsNoTracking()` for reads), and cartesian explosion from several collection includes (use `.AsSplitQuery()`).
+> - **Migrations in production:** generate an idempotent SQL script, review it, and apply it from CI/CD. Renames and type changes take several deployments (add, backfill, then drop).
+> - **EF Core vs Dapper:** EF Core for CRUD and type safety. Dapper for complex reports and hot paths. `ExecuteUpdateAsync` / `ExecuteDeleteAsync` for bulk changes.
+> - **Transactions and connections:** the `DbContext` is the unit of work (one `SaveChangesAsync` is one transaction). Use explicit transactions when you need more control. Background services must create their own scope, or connections leak.
+
 ---
 
 ## Question 1 — EF Core: Configuration & Best Practices

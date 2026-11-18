@@ -2,6 +2,15 @@
 
 A linked list is a chain of nodes, each holding a value and a pointer to the next node. Unlike arrays, there's **no index-based access** — you must traverse from the head.
 
+> **Builds on:** [01 — Arrays & Strings](./01-arrays-and-strings.md) (the contrast — no O(1) indexing) and the **fast/slow pointer** idea from [03 — Two Pointers](./03-two-pointers.md).
+
+> **Catch up**
+> - **Idea:** A chain of nodes, each holding a value and a `next` pointer. There's no indexing, so you walk from the head and solve problems by rewiring pointers.
+> - **Spot it:** reverse a list, merge sorted lists, detect a cycle, find the middle, "nth node from the end".
+> - **Template:** Use a dummy head when the head might change. Fast/slow: `while (fast != null && fast.next != null)`, with `slow` moving 1 step and `fast` 2 steps.
+> - **Cost:** O(n) time and O(1) extra space for all the core patterns.
+> - **#1 mistake:** Losing the rest of the list: save `curr.next` before you overwrite it.
+
 ---
 
 ## Core Concepts
@@ -42,55 +51,90 @@ public class ListNode
 ## Essential Patterns
 
 ### 1. Traversal
-```csharp
-// 1. Start at the beginning
-ListNode curr = head;
+**Task:** Visit every node of a linked list from head to tail and print its value.
 
-// 2. Loop until we reach the end of the list (null)
-while (curr != null)
+**Example:** `1 → 2 → 3` → prints `1`, `2`, `3`
+
+```csharp
+public static void PrintList(ListNode head)
 {
-    // 3. Perform an action with the current node's value
-    Console.WriteLine(curr.val);
-    
-    // 4. Move to the next node in the chain
-    curr = curr.next;
+    // 1. Start at the beginning
+    ListNode curr = head;
+
+    // 2. Loop until we reach the end of the list (null)
+    while (curr != null)
+    {
+        // 3. Perform an action with the current node's value
+        Console.WriteLine(curr.val);
+        
+        // 4. Move to the next node in the chain
+        curr = curr.next;
+    }
 }
+// PrintList(1 → 2 → 3) → prints 1, 2, 3
 ```
 
 ### 2. Dummy head node
+**Task:** Remove every node with a given value from a linked list, even when the value sits at the head.
+
+**Example:** `1 → 1 → 2 → 3`, remove `1` → `2 → 3` (the head itself changed)
+
 Simplifies edge cases (inserting at the head, handling empty lists):
 ```csharp
-// 1. Create a placeholder node that points to the actual head
-var dummy = new ListNode(0);
-dummy.next = head;
+public static ListNode RemoveElements(ListNode head, int val)
+{
+    // 1. Create a placeholder node that points to the actual head
+    var dummy = new ListNode(0);
+    dummy.next = head;
 
-// 2. Use a pointer to build or traverse starting from before the head
-ListNode curr = dummy;
+    // 2. Use a pointer to build or traverse starting from before the head
+    ListNode curr = dummy;
 
-// 3. Work with curr...
+    // 3. Work with curr: look one node ahead and unlink it if it matches.
+    //    Because curr starts at the dummy, the real head is handled like any other node.
+    while (curr.next != null)
+    {
+        if (curr.next.val == val)
+            curr.next = curr.next.next;   // skip the matching node (don't move curr yet)
+        else
+            curr = curr.next;             // keep it and move on
+    }
 
-// 4. Return 'dummy.next' which always points to the correctly updated head
-return dummy.next;  
+    // 4. Return 'dummy.next' which always points to the correctly updated head
+    return dummy.next;  
+}
+// RemoveElements(1 → 1 → 2 → 3, 1) → 2 → 3
 ```
 
 ### 3. Fast & slow pointers
+**Task:** Find the middle node of a linked list in a single pass.
+
+**Example:** `1 → 2 → 3 → 4 → 5` → the middle node is `3`
+
+*(Full walkthrough: Problem 5 below.)*
+
 Two pointers at different speeds — classic for cycle detection and finding the middle:
 ```csharp
-// 1. Both pointers start at the head
-ListNode slow = head, fast = head;
-
-// 2. fast moves twice as fast as slow. 
-//    Loop ends when fast reaches the end of the list.
-while (fast != null && fast.next != null)
+public static ListNode FindMiddle(ListNode head)
 {
-    // 3. slow moves 1 step
-    slow = slow.next;       
-    
-    // 4. fast moves 2 steps
-    fast = fast.next.next;  
-}
+    // 1. Both pointers start at the head
+    ListNode slow = head, fast = head;
 
-// 5. When the loop ends, slow is now at the middle (or the start of the second half)
+    // 2. fast moves twice as fast as slow. 
+    //    Loop ends when fast reaches the end of the list.
+    while (fast != null && fast.next != null)
+    {
+        // 3. slow moves 1 step
+        slow = slow.next;       
+        
+        // 4. fast moves 2 steps
+        fast = fast.next.next;  
+    }
+
+    // 5. When the loop ends, slow is now at the middle (or the start of the second half)
+    return slow;
+}
+// FindMiddle(1 → 2 → 3 → 4 → 5) → the node with value 3
 ```
 
 ---
@@ -106,7 +150,7 @@ while (fast != null && fast.next != null)
 
 **Solution (iterative):**
 ```csharp
-ListNode ReverseList(ListNode head)
+public static ListNode ReverseList(ListNode head)
 {
     // 1. Initialize pointers: 'prev' starts as null (new tail)
     ListNode prev = null;
@@ -168,7 +212,7 @@ Return:   prev=3  →  3→2→1
 
 **Solution:**
 ```csharp
-ListNode MergeTwoLists(ListNode l1, ListNode l2)
+public static ListNode MergeTwoLists(ListNode l1, ListNode l2)
 {
     // 1. Create a dummy node to act as the starting point of the new list
     var dummy = new ListNode(0);
@@ -231,7 +275,7 @@ def merge_two_lists(l1, l2):
 
 **Solution:**
 ```csharp
-bool HasCycle(ListNode head)
+public static bool HasCycle(ListNode head)
 {
     // 1. Initialize two pointers at the head
     ListNode slow = head, fast = head;
@@ -281,7 +325,7 @@ def has_cycle(head):
 
 **Solution:**
 ```csharp
-ListNode RemoveNthFromEnd(ListNode head, int n)
+public static ListNode RemoveNthFromEnd(ListNode head, int n)
 {
     // 1. Create a dummy node pointing to the head. 
     //    This handles the edge case of removing the head itself.
@@ -340,7 +384,7 @@ def remove_nth_from_end(head, n):
 
 **Solution:**
 ```csharp
-ListNode MiddleNode(ListNode head)
+public static ListNode MiddleNode(ListNode head)
 {
     // 1. Initialize two pointers at the head
     ListNode slow = head, fast = head;
@@ -369,10 +413,29 @@ ListNode MiddleNode(ListNode head)
 
 ---
 
+## Check Yourself
+
+Answer these without scrolling up, then open the answers.
+
+1. Which operations are cheaper on a linked list than on an array, and which are more expensive?
+2. When reversing a list, what three pointers do you use, and what do you return?
+3. Why use a dummy head node?
+4. How does Floyd's algorithm detect a cycle?
+5. In Remove Nth Node From End, how far ahead does `fast` start, and where is `slow` when `fast` reaches null?
+
+> **Answers**
+> 1. Inserting at the head is O(1) instead of O(n), and deleting a node is O(1) if you have the previous node. Access by index is O(n) instead of O(1).
+> 2. `prev`, `curr` and a saved `next`. Return `prev`, which is the new head.
+> 3. It removes the head edge cases (inserting at the head, deleting the head, an empty list). You return `dummy.next`.
+> 4. `slow` moves 1 step and `fast` moves 2. If they ever point to the same node, there is a cycle. If `fast` reaches the end, there isn't.
+> 5. `n + 1` steps ahead, starting from the dummy. `slow` is then one node before the one to remove, so `slow.next = slow.next.next`.
+
+---
+
 ## LeetCode Problems to Try Now
 
 - #206 — Reverse Linked List ⭐
 - #21 — Merge Two Sorted Lists ⭐
 - #141 — Linked List Cycle ⭐
-- #876 — Middle of the Linked List
-- #19 — Remove Nth Node From End of List
+- #876 — Middle of the Linked List ⭐
+- #19 — Remove Nth Node From End of List ⭐⭐ (two-pointer gap)

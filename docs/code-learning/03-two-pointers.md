@@ -2,6 +2,15 @@
 
 A technique where you maintain two indices (pointers) into an array or string, typically moving toward each other or in the same direction. Eliminates the need for nested loops in many situations.
 
+> **Builds on:** [01 — Arrays & Strings](./01-arrays-and-strings.md) (indexing and in-place traversal). Often an alternative to the [hash-map](./02-hash-maps-and-sets.md) approach when the input is **sorted**.
+
+> **Catch up**
+> - **Idea:** Keep two indices into the array and move them by a rule instead of trying every pair. This turns O(n²) nested loops into one O(n) pass.
+> - **Spot it:** a **sorted** array, finding pairs or triplets, palindromes, in-place "remove / move" problems.
+> - **Template:** Opposite ends: `while (left < right)`, move `left++` if the sum is too small and `right--` if too big. Fast/slow: `slow` marks the write position, `fast` scans.
+> - **Cost:** O(n) time, O(1) extra space.
+> - **#1 mistake:** Using opposite-end pointers on an unsorted array when the logic depends on sorted input.
+
 ---
 
 ## Core Concepts
@@ -32,9 +41,15 @@ slow fast
 ## Patterns with Code
 
 ### Pattern 1: Opposite-end pointers (sorted array pair sum)
+**Task:** Given a **sorted** array and a target, decide whether any two numbers add up to the target.
+
+**Example:** `sorted = [1, 3, 4, 6, 8]`, `target = 10` → `true` (4 + 6 = 10)
+
+*(Related: Problem 2 below, which returns the positions.)*
+
 ```csharp
 // Does any pair in a sorted array sum to target?
-bool HasPairSum(int[] sorted, int target)
+public static bool HasPairSum(int[] sorted, int target)
 {
     // 1. Initialize pointers at the start and end of the sorted array.
     int left = 0, right = sorted.Length - 1;
@@ -85,9 +100,13 @@ def has_pair_sum(sorted_arr, target):
 ```
 
 ### Pattern 2: Fast/slow — remove duplicates in-place
+**Task:** Given a sorted array, remove the duplicates in-place and return how many unique values there are.
+
+**Example:** `sorted = [1, 1, 2, 2, 3]` → returns `3`, and the array now starts `[1, 2, 3, …]`
+
 ```csharp
 // slow pointer tracks the "write position" for unique elements
-int RemoveDuplicates(int[] sorted)
+public static int RemoveDuplicates(int[] sorted)
 {
     // 1. Edge case: empty array has 0 unique elements.
     if (sorted.Length == 0) return 0;
@@ -125,7 +144,7 @@ int RemoveDuplicates(int[] sorted)
 
 **Solution:**
 ```csharp
-bool IsPalindrome(string s)
+public static bool IsPalindrome(string s)
 {
     // 1. Set pointers at both ends of the string.
     int left = 0, right = s.Length - 1;
@@ -181,7 +200,7 @@ def is_palindrome(s):
 
 **Solution:**
 ```csharp
-int[] TwoSumSorted(int[] numbers, int target)
+public static int[] TwoSumSorted(int[] numbers, int target)
 {
     // 1. Initialize pointers at first and last elements.
     int left = 0, right = numbers.Length - 1;
@@ -236,7 +255,7 @@ def two_sum_sorted(numbers, target):
 
 **Solution:**
 ```csharp
-int[] SortedSquares(int[] nums)
+public static int[] SortedSquares(int[] nums)
 {
     // 1. Pointers at the start (potentially most negative) and end (most positive).
     int left = 0, right = nums.Length - 1;
@@ -303,7 +322,7 @@ def sorted_squares(nums):
 
 **Solution (fast/slow pointers):**
 ```csharp
-void MoveZeroes(int[] nums)
+public static void MoveZeroes(int[] nums)
 {
     // 1. 'slow' tracks the position where the next non-zero number should go.
     int slow = 0;  
@@ -354,10 +373,29 @@ def move_zeroes(nums):
 
 ---
 
+## Check Yourself
+
+Answer these without scrolling up, then open the answers.
+
+1. Name the two flavours of two pointers and one problem for each.
+2. In a sorted pair-sum, which pointer do you move when the sum is too small, and why?
+3. In Remove Duplicates, what does the `slow` pointer represent?
+4. In Squares of a Sorted Array, why do you fill the result from the back?
+5. When do you use `left <= right` instead of `left < right`?
+
+> **Answers**
+> 1. Opposite ends, moving inward (Valid Palindrome, Two Sum II). Same direction, fast and slow (Move Zeroes, Remove Duplicates).
+> 2. Move `left` to the right. The array is sorted, so that increases the sum.
+> 3. The write position: the index of the last confirmed unique element. The answer is `slow + 1`.
+> 4. The largest squares come from either end (most negative or most positive), so you place the biggest one at the back first.
+> 5. When you still need to process the element where both pointers meet, as in #977.
+
+---
+
 ## LeetCode Problems to Try Now
 
 - #125 — Valid Palindrome ⭐
-- #167 — Two Sum II
-- #977 — Squares of a Sorted Array
+- #167 — Two Sum II ⭐
+- #977 — Squares of a Sorted Array ⭐
 - #283 — Move Zeroes ⭐
-- #26 — Remove Duplicates from Sorted Array
+- #26 — Remove Duplicates from Sorted Array ⭐⭐ (in-place write pointer)

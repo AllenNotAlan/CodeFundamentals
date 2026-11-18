@@ -2,6 +2,15 @@
 
 Two fundamental data structures with very different personalities. Understanding them unlocks a huge category of problems.
 
+> **Builds on:** [01 — Arrays & Strings](./01-arrays-and-strings.md) (the backing storage). The queue here is the foundation for **BFS**, used later in [08 — Trees & Recursion](./08-trees-and-recursion.md) and [10 — Graphs](./10-graphs.md).
+
+> **Catch up**
+> - **Idea:** A stack is last in, first out (LIFO). A queue is first in, first out (FIFO). Pick the one that gives you the item you need next: the most recent or the oldest.
+> - **Spot it:** Stack for matching brackets, undo, DFS and "next greater / warmer" problems (monotonic stack). Queue for BFS and processing items in order.
+> - **Template:** Monotonic stack: for each index, `while` the current value beats the value at `stack.Peek()`, pop that index and resolve it. Then push the current index.
+> - **Cost:** `Push`, `Pop`, `Enqueue` and `Dequeue` are O(1). Bracket matching and monotonic-stack scans are O(n) time and O(n) space.
+> - **#1 mistake:** Calling `Pop` or `Peek` without first checking `stack.Count > 0`.
+
 ---
 
 ## Core Concepts
@@ -40,8 +49,14 @@ Like a queue at a shop. You add to the back, remove from the front.
 ## Patterns with Code
 
 ### Stack: Matching brackets
+**Task:** Check whether every opening bracket in a string has a matching closing bracket, in the correct order.
+
+**Example:** `"({[]})"` → `true`, `"(]"` → `false`
+
+*(Full walkthrough: Problem 1 below.)*
+
 ```csharp
-bool IsBalanced(string s)
+public static bool IsBalanced(string s)
 {
     // 1. Initialize a stack to keep track of opening brackets
     var stack = new Stack<char>();
@@ -77,10 +92,16 @@ bool IsBalanced(string s)
 ```
 
 ### Stack: Monotonic stack (next greater element)
+**Task:** For each number in an array, find the next number to its right that is bigger (or `-1` if there isn't one).
+
+**Example:** `nums = [2, 1, 3, 2, 4]` → `[3, 3, 4, 4, -1]`
+
+*(Related: Problem 4 below.)*
+
 A monotonic stack keeps elements in sorted order. Useful for "next greater/smaller" problems.
 ```csharp
 // For each element, find the next element that is greater
-int[] NextGreaterElement(int[] nums)
+public static int[] NextGreaterElement(int[] nums)
 {
     int n = nums.Length;
     int[] result = new int[n];
@@ -109,8 +130,12 @@ int[] NextGreaterElement(int[] nums)
 ```
 
 ### Queue: BFS level-by-level
+**Task:** Visit a binary tree one level at a time, from the top down.
+
+**Example:** a tree with root `1`, children `2` and `3`, where `2` has children `4` and `5` → levels `[1]`, `[2, 3]`, `[4, 5]`
+
 ```csharp
-void BfsExample(TreeNode root)
+public static void BfsExample(TreeNode root)
 {
     if (root == null) return;
 
@@ -153,7 +178,7 @@ void BfsExample(TreeNode root)
 
 **Solution:**
 ```csharp
-bool IsValid(string s)
+public static bool IsValid(string s)
 {
     // 1. Initialize a stack for opening brackets
     var stack = new Stack<char>();
@@ -339,7 +364,7 @@ public class MyQueue
 
 **Solution (monotonic stack):**
 ```csharp
-int[] DailyTemperatures(int[] temperatures)
+public static int[] DailyTemperatures(int[] temperatures)
 {
     int n = temperatures.Length;
     int[] result = new int[n];
@@ -395,10 +420,29 @@ def daily_temperatures(temperatures):
 
 ---
 
+## Check Yourself
+
+Answer these without scrolling up, then open the answers.
+
+1. In bracket matching, what goes on the stack, and when does the string fail?
+2. What does a monotonic stack store in Daily Temperatures, and when do you pop?
+3. How does Min Stack return the minimum in O(1)?
+4. How do two stacks behave like a queue in Implement Queue using Stacks?
+5. In BFS, why do you capture `queue.Count` before the inner loop?
+
+> **Answers**
+> 1. Opening brackets. It fails when a closing bracket arrives and the stack is empty or the popped bracket doesn't match, or when brackets are left on the stack at the end.
+> 2. Indices of days that haven't found a warmer day yet. You pop while today's temperature is warmer than the day at the top, and record `i - prevDay`.
+> 3. A second stack records the minimum at every push. `GetMin` is `minStack.Peek()`, and both stacks pop together.
+> 4. `inbox` takes pushes. When `outbox` is empty, pour `inbox` into it, which reverses the order to FIFO. That's amortised O(1) per operation.
+> 5. So you process exactly one level at a time. Children added during the loop belong to the next level.
+
+---
+
 ## LeetCode Problems to Try Now
 
 - #20 — Valid Parentheses ⭐
 - #155 — Min Stack ⭐
-- #232 — Implement Queue using Stacks
-- #739 — Daily Temperatures
-- #496 — Next Greater Element I
+- #232 — Implement Queue using Stacks ⭐
+- #739 — Daily Temperatures ⭐⭐ (monotonic stack)
+- #496 — Next Greater Element I ⭐⭐ (monotonic stack)

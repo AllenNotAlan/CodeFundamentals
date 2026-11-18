@@ -2,6 +2,13 @@
 
 .NET roles expect you to design APIs using ASP.NET Core idioms and understand how .NET services communicate in a distributed architecture.
 
+> **Catch up**
+> - **The general concepts** (idempotency, outbox, circuit breaker, versioning) are explained in [Generic API Design](../interview-prep-generic/04-api-design-distributed-systems.md). This chapter shows the ASP.NET Core way to build them.
+> - **API building blocks:** Minimal APIs for focused endpoints, controllers for complex ones. FluentValidation for input, Problem Details (RFC 7807) for errors, and the built-in rate limiter (.NET 7+).
+> - **Middleware order matters:** the pipeline runs each middleware in on the request and back out on the response. Exception handler first, then rate limiter, authentication and authorization, then your endpoint.
+> - **Service-to-service:** HTTP via `IHttpClientFactory` with `AddStandardResilienceHandler()` (retry, circuit breaker, timeout). gRPC for high-throughput internal calls. MassTransit or Service Bus for async events.
+> - **Production-ready:** separate `/health/ready` and `/health/live` checks, OpenTelemetry tracing and metrics, structured logging (log templates, not string interpolation), and an EF Core outbox table plus a background publisher.
+
 ---
 
 ## Question 1 — Design a RESTful API with ASP.NET Core

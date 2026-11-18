@@ -1,11 +1,15 @@
 # 🧠 Coding Fundamentals Learning Plan
 
-> **Goal:** Build the foundational skills to confidently solve LeetCode Easy problems.
+> **Goal:** Build the pattern fluency to confidently solve LeetCode **Easy** problems, then step up to the **Medium** patterns that decide most real interviews (including pairing-style interviews like Monzo's).
 > **Primary language:** C# (with Python alternatives throughout)
 
 ---
 
 ## 📚 Topics (work through in order)
+
+The plan runs in two phases. **Phase 1 (1–9)** builds the foundations and targets LeetCode **Easy**. **Phase 2 (10–16)** steps up to the **Medium** patterns and the recognition/communication skills that decide most interviews. The jump from 9 → 10 is a deliberate step up in difficulty — see the note below.
+
+### Phase 1 — Foundations (LeetCode Easy)
 
 | # | Topic | Key Concepts | Why It Matters |
 |---|-------|-------------|----------------|
@@ -19,6 +23,25 @@
 | 8 | [Trees & Recursion](./08-trees-and-recursion.md) | DFS, BFS, base cases | Unlocks medium problems too |
 | 9 | [Dynamic Programming Intro](./09-dynamic-programming-intro.md) | Memoization, bottom-up tables | Easy DP problems, Fibonacci family |
 
+### Phase 2 — Stepping up (LeetCode Medium & interview patterns)
+
+> ⚠️ **Difficulty step-up.** Chapters 10–16 move from Easy into **Medium** territory (Union-Find, topological sort, Dijkstra, Edit Distance, N-Queens). Each chapter opens with a **"Builds on"** note pointing back to the Phase 1 foundations it depends on — don't skip ahead until those feel solid. **Chapter 14 is the method capstone** — the signal → pattern cheat sheet and the say-it-out-loud interview routine. Read 10–13 first, then 14, then treat 15–16 (Greedy, Tries) as two more patterns to fold into the cheat sheet.
+
+| # | Topic | Key Concepts | Why It Matters |
+|---|-------|-------------|----------------|
+| 10 | [Graphs](./10-graphs.md) | DFS/BFS, topological sort, Union-Find | Grids, dependencies, connectivity |
+| 11 | [Heaps & Priority Queues](./11-heaps-priority-queues.md) | Heap invariant, top-K, merge-K, two-heap median | "Top K", "median", "merge K" problems |
+| 12 | [Backtracking](./12-backtracking.md) | Choose/explore/un-choose, pruning | Subsets, permutations, combinations |
+| 13 | [Dynamic Programming Patterns](./13-dynamic-programming-patterns.md) | Knapsack, subsequence, grid, two-string shapes | Recognising which DP table to build |
+| 14 | [Pattern Recognition & Interview Method](./14-pattern-recognition.md) | Signal → pattern mapping, the 6-step method | **Capstone** — recognition & communication |
+| 15 | [Greedy Algorithms](./15-greedy.md) | Interval scheduling, reach/jump, exchange argument | When a local choice is provably global |
+| 16 | [Tries (Prefix Trees)](./16-tries.md) | Prefix tree, insert/search/startsWith, wildcard DFS | Autocomplete, "starts with", dictionary search |
+
+### Related deep-dives (in [`../extras`](../extras/))
+
+- [Two Pointers Mastery](../extras/two-pointers-mastery.md) — extended practice beyond chapter 3.
+- [Space Complexity Guide](../extras/space-complexity-guide.md) — a focused tour of memory cost with diagrams.
+
 ---
 
 ## 🗺️ How to Use This Plan
@@ -28,6 +51,21 @@
 3. **Try the practice problems yourself** before reading the solution.
 4. **Re-implement from memory** — close the file and write it again.
 5. **Go to LeetCode** — apply the pattern to real problems.
+
+Work **Phase 1 in order first** — each chapter reuses the one before it. Only move into **Phase 2** once the Phase 1 patterns feel automatic; the later chapters assume them. Work 10–13 in order, then **chapter 14 — the method capstone** — and keep it open as a cheat sheet while you drill chapters 15–16 and practise on real problems.
+
+---
+
+## ⏪ Returning after a break
+
+Every chapter opens with a short **Catch up** block and ends with **Check Yourself** questions. If you've been away for a few weeks, use them instead of re-reading everything:
+
+1. **Read the catch ups** for every chapter you've finished. In `study.html`, the [Revision page](../../study-html/study.html#revision) shows them all on one screen. On GitHub, read the block at the top of each chapter.
+2. **Answer the Check Yourself questions** for each chapter without looking, then check the answers.
+3. **Solve one ⭐ problem per chapter from scratch** (from its "LeetCode Problems to Try Now" list).
+4. **Re-read the full chapter only where step 2 or 3 went wrong.**
+
+**Review schedule:** go through steps 1–3 for a chapter **1 day**, **1 week** and **1 month** after you first finish it. Several short, spaced-out reviews help you remember for longer than one long re-read. Record the dates in the **Last reviewed** field of the [Progress Tracker](../personal-projects/04-coding-practice-plan.md#-progress-tracker).
 
 ---
 
@@ -42,6 +80,8 @@
 6. Test         → Run through edge cases: empty input, single element, duplicates.
 ```
 
+> This framework is expanded into an interview-ready, say-it-out-loud method in [Chapter 14 — Pattern Recognition & Interview Method](./14-pattern-recognition.md).
+
 ---
 
 ## ⚡ Quick Reference: Time Complexities
@@ -55,9 +95,9 @@
 
 ---
 
-## 🏁 LeetCode Easy Problems to Try After Each Section
+## 🏁 LeetCode Problems to Try After Each Phase
 
-After finishing all topics, attempt these classic Easy problems:
+**After Phase 1 (Easy):**
 
 - Two Sum (#1)
 - Valid Parentheses (#20)
@@ -69,3 +109,16 @@ After finishing all topics, attempt these classic Easy problems:
 - Binary Search (#704)
 - Reverse Linked List (#206)
 - Maximum Depth of Binary Tree (#104)
+
+**After Phase 2 (Medium):**
+
+- Number of Islands (#200)
+- Course Schedule (#207)
+- Kth Largest Element in an Array (#215)
+- Top K Frequent Elements (#347)
+- Subsets (#78)
+- Permutations (#46)
+- Combination Sum (#39)
+- Longest Increasing Subsequence (#300)
+- Coin Change (#322)
+- Word Search (#79)

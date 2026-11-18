@@ -5,9 +5,9 @@ class Program
 {
     static void Main(string[] args)
     {
-        int[] arr = [1, 2, 3, 4];
+        //int[] arr = [1, 2, 3, 4];
 
-        // ArraysSolution.ReturnProductArrayExceptSelf(arr);
-        ArraysSolution.ReturnProductArr(arr);
+        //// ArraysSolution.ReturnProductArrayExceptSelf(arr);
+        //ArraysSolution.ReturnProductArr(arr);
     }
 }

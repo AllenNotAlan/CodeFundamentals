@@ -2,6 +2,15 @@
 
 Trees appear constantly in interviews. Mastering tree traversal also teaches you recursion — which is the skill behind many other patterns.
 
+> **Builds on:** [05 — Stacks & Queues](./05-stacks-and-queues.md) (DFS uses a stack / the call stack; BFS uses a queue). This recursion is the foundation for [09 — DP](./09-dynamic-programming-intro.md), [10 — Graphs](./10-graphs.md), and [12 — Backtracking](./12-backtracking.md).
+
+> **Catch up**
+> - **Idea:** Recursion solves a problem by calling itself on a smaller input until it hits a base case. For trees, think from one node: "what do I return, given what my children return?"
+> - **Spot it:** depth or height, symmetric or mirrored trees, root-to-leaf paths, validating a BST, level-by-level output (BFS).
+> - **Template:** Ask the three questions: base case (`if (node == null) return …`), recursive case (call left and right), and what to return upward.
+> - **Cost:** O(n) time. O(h) space for the call stack, which is O(log n) when balanced and O(n) in the worst case.
+> - **#1 mistake:** Forgetting the `null` base case, which causes a `NullReferenceException`.
+
 ---
 
 ## Core Concepts
@@ -50,7 +59,7 @@ Recursion = a function calling itself with a simpler input until it hits a **bas
 
 ```csharp
 // Example: sum all numbers 1..n
-int Sum(int n)
+public static int Sum(int n)
 {
     // 1. Base case: The simplest sum is for 0, which is just 0.
     if (n == 0) return 0;         
@@ -66,6 +75,10 @@ int Sum(int n)
 ## Tree Traversals
 
 ### Depth-First Search (DFS) — three orders
+**Task:** Visit every node of a binary tree, going all the way down one branch before moving to the next.
+
+**Example:** the tree below → Inorder `4, 2, 5, 1, 3`; Preorder `1, 2, 4, 5, 3`; Postorder `4, 5, 2, 3, 1`
+
 
 ```
     1
@@ -83,7 +96,7 @@ int Sum(int n)
 
 ```csharp
 // Inorder (gives sorted order in a BST)
-void Inorder(TreeNode node)
+public static void Inorder(TreeNode node)
 {
     // 1. Base case: If node is null, we've reached a leaf's child
     if (node == null) return;
@@ -99,7 +112,7 @@ void Inorder(TreeNode node)
 }
 
 // Preorder
-void Preorder(TreeNode node)
+public static void Preorder(TreeNode node)
 {
     if (node == null) return;
     
@@ -113,10 +126,14 @@ void Preorder(TreeNode node)
 ```
 
 ### Breadth-First Search (BFS) — level order
+**Task:** Visit a binary tree one level at a time, from the top down.
+
+**Example:** a tree with root `1`, children `2` and `3`, where `2` has children `4` and `5` → levels `[1]`, `[2, 3]`, `[4, 5]`
+
 
 Process nodes level by level using a queue:
 ```csharp
-IList<IList<int>> LevelOrder(TreeNode root)
+public static IList<IList<int>> LevelOrder(TreeNode root)
 {
     var result = new List<IList<int>>();
     if (root == null) return result;
@@ -170,7 +187,7 @@ IList<IList<int>> LevelOrder(TreeNode root)
 
 **Solution:**
 ```csharp
-int MaxDepth(TreeNode root)
+public static int MaxDepth(TreeNode root)
 {
     // 1. Base case: An empty tree has a depth of 0
     if (root == null) return 0;                              
@@ -205,13 +222,13 @@ def max_depth(root):
 
 **Solution:**
 ```csharp
-bool IsSymmetric(TreeNode root)
+public static bool IsSymmetric(TreeNode root)
 {
     // 1. A tree is symmetric if its left and right subtrees are mirrors of each other
     return IsMirror(root?.left, root?.right);
 }
 
-bool IsMirror(TreeNode left, TreeNode right)
+public static bool IsMirror(TreeNode left, TreeNode right)
 {
     // 2. If both nodes are null, they are mirrors (base case 1)
     if (left == null && right == null) return true;   
@@ -265,7 +282,7 @@ def is_symmetric(root):
 
 **Solution:**
 ```csharp
-bool HasPathSum(TreeNode root, int targetSum)
+public static bool HasPathSum(TreeNode root, int targetSum)
 {
     // 1. Base case: If we've reached beyond a leaf, no path exists here
     if (root == null) return false;
@@ -310,13 +327,13 @@ def has_path_sum(root, target_sum):
 
 **Solution:**
 ```csharp
-bool IsValidBST(TreeNode root)
+public static bool IsValidBST(TreeNode root)
 {
     // 1. Start validation with the full range of possible values
     return Validate(root, long.MinValue, long.MaxValue);
 }
 
-bool Validate(TreeNode node, long min, long max)
+public static bool Validate(TreeNode node, long min, long max)
 {
     // 2. Base case: An empty tree is valid
     if (node == null) return true;
@@ -377,11 +394,30 @@ You don't need to think about the whole tree — just what *this node* does with
 
 ---
 
+## Check Yourself
+
+Answer these without scrolling up, then open the answers.
+
+1. What are the three questions to ask when writing any recursive function?
+2. Give the visiting order for inorder, preorder and postorder. Which one gives sorted output on a BST?
+3. How does `MaxDepth` work, from the point of view of one node?
+4. Why isn't comparing each node with its children enough to validate a BST?
+5. In Symmetric Tree, which pairs of nodes must mirror each other?
+
+> **Answers**
+> 1. Base case: what's the simplest input I can handle directly? Recursive case: how do I shrink the problem and call myself? Return: what do I pass back up?
+> 2. Inorder is Left → Node → Right, preorder is Node → Left → Right, postorder is Left → Right → Node. Inorder gives sorted order on a BST.
+> 3. "My depth is 1 + the larger depth of my two children." An empty tree returns 0.
+> 4. Every node must fit within bounds set by all its ancestors, not just its parent. Pass `min` and `max` down: going left sets the new max, going right sets the new min.
+> 5. The outer pair (`left.left` with `right.right`) and the inner pair (`left.right` with `right.left`), and their values must be equal.
+
+---
+
 ## LeetCode Problems to Try Now
 
 - #104 — Maximum Depth of Binary Tree ⭐
 - #101 — Symmetric Tree ⭐
-- #112 — Path Sum
-- #98 — Validate Binary Search Tree
-- #102 — Binary Tree Level Order Traversal
-- #226 — Invert Binary Tree (classic)
+- #226 — Invert Binary Tree ⭐ (classic)
+- #112 — Path Sum ⭐
+- #102 — Binary Tree Level Order Traversal ⭐⭐ (BFS)
+- #98 — Validate Binary Search Tree ⭐⭐ (bounds passing)

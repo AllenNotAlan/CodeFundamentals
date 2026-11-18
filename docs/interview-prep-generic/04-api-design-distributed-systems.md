@@ -2,6 +2,13 @@
 
 Modern tech companies run microservice architectures serving millions of users. This interview tests whether you can design clean APIs and reason about the complexities of distributed systems.
 
+> **Catch up**
+> - **API design:** resource URLs, cursor-based pagination (stable under inserts), PATCH for partial updates, `/v1/` versioning, ISO 8601 UTC timestamps, and a consistent error format.
+> - **Idempotency:** the client sends an `Idempotency-Key`. The server stores the result (Redis, 24–72 hour TTL) and returns it on a retry, with a lock to stop concurrent duplicates.
+> - **Events and consistency:** async events give loose coupling but eventual consistency. Partition by entity ID for ordering, and make consumers idempotent. For multi-service work, use a saga with compensating actions. Use the Outbox pattern to make the DB write and the event publish atomic.
+> - **Evolving APIs:** adding optional fields, parameters or endpoints is safe. Removing, renaming, retyping or making a field required breaks clients. Announce deprecation with `Sunset` / `Deprecation` headers.
+> - **Circuit breaker:** Closed → Open after repeated failures (fail fast) → Half-open to test one request. Pair it with a fallback.
+
 ---
 
 ## Question 1 — Design a RESTful API for a Resource Management System
@@ -112,6 +119,8 @@ GET /v1/projects/proj_123/tasks?status=in_progress&limit=25&cursor=task_abc
 
 ## Question 2 — Idempotency in Distributed Systems
 
+> 📌 **Canonical source.** This is the reference explanation of idempotency keys for the whole interview-prep set. Domain tracks (e.g. the fintech track) link here and add only their domain-specific slant.
+
 > "How do you ensure an operation isn't performed twice if the client retries?"
 
 ### The Problem
@@ -177,6 +186,8 @@ public async Task<TResult> ProcessIdempotent<TResult>(
 - **Scope:** Key should be per-user, per-action (not globally unique)
 - **Storage:** Redis for speed; persist to DB for audit trail
 - **Concurrent requests:** Use distributed locking to prevent race conditions
+
+> ⚠️ **Teaching simplification.** The code above caches only on *success*. If `action()` throws, nothing is stored and the lock releases, so a retry re-runs the operation — fine for a genuinely idempotent action, but a non-idempotent side effect could execute twice across retries. A production-grade version persists an **in-progress** marker *before* running the action (and a terminal success/failure record after), so a concurrent or later retry can tell "already running / already done" apart from "never seen." Say this out loud in an interview — it's exactly the edge the interviewer is probing.
 
 ---
 
@@ -406,6 +417,8 @@ API Gateway → Auth Service (down) → timeout → retry → timeout → retry
 ```
 
 ### Implementation
+
+> ⚠️ **Teaching simplification — not thread-safe.** The fields below (`_state`, `_failureCount`) are mutated without synchronisation, and `Execute` always calls `fallback()` on failure so the caller can't distinguish a real result from a fallback. A production breaker guards state transitions (lock or `Interlocked`/atomics), distinguishes "fail fast" from "fell back," and often uses a rolling failure window rather than a raw count. The version below is deliberately minimal to show the state machine.
 
 ```csharp
 public class CircuitBreaker
