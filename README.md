@@ -19,6 +19,7 @@ This repository is a central hub for learning and implementing core computer sci
 ## 📖 Documentation
 - [Learning plan](docs/code-learning/README.md): start here for the algorithm chapters.
 - [Development Guide](DEVELOPMENT.md): how to add solutions and tests, and how to debug.
+- [Cheat sheet](docs/code-learning/cheat-sheet.md): every coding pattern on one page (how to spot it, a C# template, its cost and its #1 mistake). Also in `study.html`, between Revision and chapter 1.
 - [Returning after a break](docs/code-learning/README.md#-returning-after-a-break): how to catch up using each chapter's **Catch up** and **Check Yourself** sections, or the [Revision page](study-html/study.html#revision) in `study.html`.
 
 ## 📁 Repository Structure
@@ -26,7 +27,7 @@ This repository is a central hub for learning and implementing core computer sci
   - `Program.cs`: Entry point for running code manually.
 - **/Tests**: xUnit tests for the solutions.
 - **/docs**: Learning resources.
-  - `/code-learning`: The 16 pattern chapters and the learning plan.
+  - `/code-learning`: The 16 pattern chapters and the learning plan, plus a one-page [cheat sheet](docs/code-learning/cheat-sheet.md).
   - `/extras`: Deep dives: [Two Pointers Mastery](docs/extras/two-pointers-mastery.md) and the [Space Complexity Guide](docs/extras/space-complexity-guide.md).
   - `/interview-prep-generic`: Canonical interview prep (system design, coding, behavioural, API design, databases, system design building blocks).
   - `/interview-prep-dotnet` and `/interview-prep-monzo`: Overlays that add .NET-specific and Monzo-specific material to the generic set.
@@ -57,7 +58,7 @@ This repository is a central hub for learning and implementing core computer sci
 15. Greedy Algorithms
 16. Tries (Prefix Trees)
 
-## 📊 Readiness Review (2026-11-16)
+## 📊 Readiness Review (2026-11-16, updated 2026-11-27)
 **Goal:** be interview ready for coding problems and interview questions.
 **Overall score: 8.5/10.** The review covers the docs only, not the work-in-progress solutions or the personal projects.
 
@@ -69,13 +70,14 @@ This repository is a central hub for learning and implementing core computer sci
 | API design & distributed systems | 9 | Idempotency, event-driven design, consistency, versioning and circuit breakers, in generic and banking versions. |
 | Database & data modelling | 8.5 | Schema design, indexing, locking, soft deletes and scaling, plus a banking ledger in the Monzo set. |
 | Behavioural (answer-structure guide) | 8.5 | STAR plus seven question types, each with what interviewers look for, follow-ups and red flags. |
-| Extras | 7 | Two useful guides, but no Big-O / time complexity primer. |
-| README & study site | 8.5 | The README matches the repo. `study.html` puts everything in one place with a Revision page. |
+| Cheat sheet | 8.5 | One page covering every pattern: spotting it, input size → target complexity, C# templates, a C# toolbox and the top mistakes. It also has short cards for Kadane, prefix sum + hash map and intervals. |
+| Extras | 7.5 | Two useful guides. The cheat sheet now has complexity tables, but there is still no full Big-O primer. |
+| README & study site | 8.5 | The README matches the repo. `study.html` puts everything in one place, with a Revision page and the Cheat sheet. |
 
 **To reach 9.5:**
-1. Add the missing coding patterns: Kadane / Maximum Subarray, prefix sum + hash map (Subarray Sum Equals K, #560) and intervals (Insert Interval, Meeting Rooms). Quickselect and bit manipulation are lower priority.
+1. Turn the cheat sheet cards for Kadane / Maximum Subarray, prefix sum + hash map (Subarray Sum Equals K, #560) and intervals (Insert Interval, Meeting Rooms) into full chapters with practice problems. Quickselect and bit manipulation are lower priority.
 2. Fix or label the ch04 `LongestValid` template. It looks like a runnable method but doesn't compile.
-3. Add a short Big-O primer, so stating time complexity unprompted is covered.
+3. Add a short Big-O primer. The cheat sheet already has the input size → complexity and pattern cost tables, but not how to work out the complexity of your own code.
 
 The rest of being interview ready is timed practice: solving problems against the clock and talking through system designs out loud.
 

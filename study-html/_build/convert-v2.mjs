@@ -57,6 +57,7 @@ const PARTS = [
     chapters: [
       // Generated at build time from every "> **Catch up**" block (no source file).
       [REVISION_ID, null, "Revision — all catch ups"],
+      ["cheat-sheet", "docs/code-learning/cheat-sheet.md", "Cheat sheet"],
       ["arrays", "docs/code-learning/01-arrays-and-strings.md", "1 · Arrays & Strings"],
       ["hashmaps", "docs/code-learning/02-hash-maps-and-sets.md", "2 · Hash Maps & Sets"],
       ["twoptr", "docs/code-learning/03-two-pointers.md", "3 · Two Pointers"],
@@ -437,7 +438,8 @@ function renderInline(text, opts) {
 // Map a .md link to the in-app anchor for that chapter, if known.
 function rewriteLink(href, opts) {
   if (/^(https?:|mailto:)/i.test(href)) return href;
-  if (href.startsWith("#")) return href;
+  // Same-page heading anchors: heading ids are "<chapterId>--<slug>".
+  if (href.startsWith("#")) return href.length > 1 ? `#${opts.chapterId}--${href.slice(1)}` : href;
   const hashIndex = href.indexOf("#");
   let file = hashIndex === -1 ? href : href.slice(0, hashIndex);
   // Links into the generated study page (e.g. ".../study.html#revision") become in-app anchors.
@@ -445,7 +447,8 @@ function rewriteLink(href, opts) {
   // resolve relative to the current chapter's directory
   const abs = path.posix.normalize(path.posix.join(opts.dir, file)).replace(/^\.\//, "");
   const id = opts.srcToId[abs];
-  if (id) return `#${id}`;
+  // "other.md#heading" -> that chapter's heading (the router falls back to the chapter top).
+  if (id) return hashIndex !== -1 && href.length > hashIndex + 1 ? `#${id}--${href.slice(hashIndex + 1)}` : `#${id}`;
   // fall back to a harmless anchor
   return `#${opts.chapterId}`;
 }

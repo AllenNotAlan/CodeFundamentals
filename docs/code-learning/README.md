@@ -42,6 +42,8 @@ The plan runs in two phases. **Phase 1 (1–9)** builds the foundations and targ
 - [Two Pointers Mastery](../extras/two-pointers-mastery.md) — extended practice beyond chapter 3.
 - [Space Complexity Guide](../extras/space-complexity-guide.md) — a focused tour of memory cost with diagrams.
 
+Quick reference: [Cheat sheet](./cheat-sheet.md) — every pattern on one page: how to spot it, a C# template, its cost and its #1 mistake.
+
 ---
 
 ## 🗺️ How to Use This Plan
